@@ -73,4 +73,6 @@ object TrackShare {
             .replace(">", "&gt;")
             .replace(""", "&quot;")
             .replace("'", "&apos;")
+        }
+    }        
 }
