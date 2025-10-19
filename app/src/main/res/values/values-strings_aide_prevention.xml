@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Titres / onglets -->
+    <string name="aide_prevention_title">Aide &amp; Prévention</string>
+    <string name="aide_tab_security">Sécurité</string>
+    <string name="aide_tab_respect">Respect</string>
+    <string name="aide_tab_checklist">Checklist</string>
+
+    <!-- Onglet 1 : Sécurité -->
+    <string name="aide_security_text">
+        Conseils de sécurité en sortie nature :\n
+        • Préviens un proche de ton itinéraire et d’une heure de retour.\n
+        • Vérifie la météo et les éventuelles alertes.\n
+        • Emporte eau, nourriture, couche chaude, trousse de secours, couverture de survie.\n
+        • Carte hors-ligne / topo + téléphone chargé (mode économie d’énergie).\n
+        • Garde de la marge (jour, météo, forme) et sais faire demi-tour.\n
+        • En saison de chasse ou de pêche : reste visible (couleurs vives) et suis la signalisation locale.
+    </string>
+
+    <!-- Onglet 2 : Respect -->
+    <string name="aide_respect_text">
+        Respect de la nature et des autres :\n
+        • Reste sur les sentiers, referme les clôtures, chiens tenus en laisse si nécessaire.\n
+        • Emporte tous tes déchets (même biodégradables) et évite le feu en période à risque.\n
+        • Sois discret près des habitations, troupeaux et zones sensibles (nichées, réserves).\n
+        • Pêcheurs : informe-toi sur les périodes, permis et tailles minimales ; respecte les berges et les autres usagers.\n
+        • Cueilleurs de champignons : identifie avec certitude, coupe au couteau sans arracher le mycélium, utilise un panier aéré et ne prélève que le nécessaire.
+    </string>
+
+    <!-- Onglet 3 : Checklist -->
+    <string name="aide_checklist_text">
+        Checklist rapide avant de partir :\n
+        • Itinéraire + trace hors-ligne OK ? Météo vérifiée ? Proche informé ?\n
+        • Eau (≥ 1,5 L), encas, coupe-vent / polaire, trousse de secours, couverture de survie.\n
+        • Lampe frontale, charge du téléphone, carte / GPS ; sifflet utile.\n
+        • Selon la saison : protection soleil/pluie/froid, répulsif tiques.\n
+        • Sur place : rythme régulier, pauses, demi-tour si doute.\n
+        • Urgences : 112 (ou SMS 114). Donne le lieu le plus précis possible.
+    </string>
+
+</resources>

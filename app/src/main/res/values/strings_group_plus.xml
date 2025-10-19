@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Notifications -->
+    <string name="groupx_notif_channel_name">Groupe</string>
+    <string name="groupx_notif_channel_desc">Notifications du groupe</string>
+    <string name="groupx_notif_member_removed">Membre supprimé : %1$s</string>
+
+    <!-- Suppression / options -->
+    <string name="groupx_delete_title">Supprimer</string>
+    <string name="groupx_delete_msg">Supprimer %1$s du groupe ?</string>
+    <string name="groupx_hide_demo">Cacher membres démo</string>
+
+    <!-- Pastille couleur -->
+    <string name="groupx_color_title">Couleur de la pastille</string>
+</resources>

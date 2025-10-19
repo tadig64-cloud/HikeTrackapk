@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="gear_nav">
+        <item>Carte IGN / Topo</item>
+        <item>Boussole</item>
+        <item>GPS / App téléphone + batterie</item>
+        <item>Trace GPX</item>
+        <item>Altimètre</item>
+        <item>Sifflet</item>
+        <item>Lampe frontale + piles</item>
+    </string-array>
+
+    <string-array name="gear_vetements">
+        <item>Veste imper-respirante</item>
+        <item>Doudoune / polaire</item>
+        <item>Couche thermique haut/bas</item>
+        <item>Pantalon rando</item>
+        <item>T-shirt respirant (x2)</item>
+        <item>Chaussettes rando (x2)</item>
+        <item>Bonnet / Buff / Casquette</item>
+        <item>Gants</item>
+        <item>Guêtres</item>
+    </string-array>
+
+    <string-array name="gear_couchage">
+        <item>Sac de couchage (temp. adaptée)</item>
+        <item>Matelas</item>
+        <item>Drap de sac</item>
+        <item>Oreiller gonflable</item>
+    </string-array>
+
+    <string-array name="gear_abri">
+        <item>Tente / Tarp</item>
+        <item>Arceaux / Sardines / Haubans</item>
+        <item>Bâche de sol</item>
+    </string-array>
+
+    <string-array name="gear_cuisine">
+        <item>Réchaud + carburant</item>
+        <item>Popote + couverts</item>
+        <item>Allume-feu / briquet</item>
+        <item>Éponge + mini-savon biodégradable</item>
+        <item>Aliments (repas, encas)</item>
+        <item>Sac poubelle (leave no trace)</item>
+    </string-array>
+
+    <string-array name="gear_hydratation">
+        <item>Gourde(s) / Poche à eau</item>
+        <item>Filtre / Pastilles purification</item>
+        <item>Sel / électrolytes</item>
+    </string-array>
+
+    <string-array name="gear_securite">
+        <item>Trousse 1er secours</item>
+        <item>Couverture de survie</item>
+        <item>Couteau multifonctions</item>
+        <item>Ruban adhésif / Réparation</item>
+        <item>Crème solaire / Stick lèvres</item>
+        <item>Anti-moustiques</item>
+    </string-array>
+
+    <string-array name="gear_electronique">
+        <item>Téléphone + carte hors-ligne</item>
+        <item>Powerbank + câble</item>
+        <item>Montre / Altimètre</item>
+        <item>Appareil photo</item>
+    </string-array>
+
+    <string-array name="gear_divers">
+        <item>Bâtons de marche</item>
+        <item>Pharmacie perso (antalgiques, pansements…)</item>
+        <item>Papiers d’identité / CB / Cash</item>
+        <item>Carte vitale / Assurances</item>
+        <item>Sac étanche / Zip</item>
+        <item>Toilettes (papier, trowel)</item>
+    </string-array>
+
+</resources>

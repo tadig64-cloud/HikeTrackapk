@@ -1,0 +1,31 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:ns0="http://schemas.android.com/apk/res/android" xmlns:ns1="http://schemas.android.com/apk/res-auto" ns0:layout_width="match_parent" ns0:layout_height="match_parent">
+
+    <com.google.android.material.appbar.MaterialToolbar ns0:id="@+id/toolbar" ns0:layout_width="match_parent" ns0:layout_height="?attr/actionBarSize" ns1:title="@string/menu_sos" />
+
+    <ScrollView ns0:layout_width="match_parent" ns0:layout_height="match_parent" ns0:layout_marginTop="?attr/actionBarSize">
+
+        <LinearLayout ns0:orientation="vertical" ns0:padding="16dp" ns0:layout_width="match_parent" ns0:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns1:cardElevation="2dp">
+
+                <LinearLayout ns0:orientation="vertical" ns0:padding="16dp" ns0:layout_width="match_parent" ns0:layout_height="wrap_content">
+
+                    <TextView ns0:id="@+id/tvSosInfo" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:text="@string/ht_sos_info" ns0:textAppearance="?attr/textAppearanceBodyMedium" />
+
+                    <TextView ns0:id="@+id/tvGps" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:paddingTop="8dp" ns0:text="@string/ht_hud_coords_default" ns0:textAppearance="?attr/textAppearanceBodySmall" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout ns0:orientation="horizontal" ns0:gravity="end" ns0:paddingTop="12dp" ns0:layout_width="match_parent" ns0:layout_height="wrap_content">
+
+                <com.google.android.material.button.MaterialButton ns0:id="@+id/btnCall112" style="@style/Widget.Material3.Button" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/ht_sos_call_now" ns1:iconPadding="8dp" ns1:icon="@drawable/ic_emergency" />
+
+                <com.google.android.material.button.MaterialButton ns0:id="@+id/btnShare" style="@style/Widget.Material3.Button.OutlinedButton" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:layout_marginStart="8dp" ns0:text="@string/ht_sos_share" ns1:iconPadding="8dp" ns1:icon="@drawable/ic_export" />
+            </LinearLayout>
+
+            <TextView ns0:id="@+id/tvBattery" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:paddingTop="12dp" ns0:text="@string/i18n_activity_sos_text_batterie_2" ns0:textAppearance="?attr/textAppearanceBodySmall" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

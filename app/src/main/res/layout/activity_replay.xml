@@ -1,0 +1,19 @@
+<FrameLayout xmlns:ns0="http://schemas.android.com/apk/res/android" ns0:id="@+id/replay_root" ns0:layout_width="match_parent" ns0:layout_height="match_parent">
+
+    <org.osmdroid.views.MapView ns0:id="@+id/replay_map" ns0:layout_width="match_parent" ns0:layout_height="match_parent" />
+
+    
+    <LinearLayout ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:orientation="vertical" ns0:padding="12dp" ns0:background="@android:color/transparent" ns0:layout_gravity="bottom">
+
+        <TextView ns0:id="@+id/hud" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_activity_replay_text_rejoue_2" ns0:textColor="@android:color/white" ns0:background="#66000000" ns0:padding="8dp" />
+
+        <SeekBar ns0:id="@+id/seek" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:layout_marginTop="8dp" />
+
+        <LinearLayout ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:orientation="horizontal" ns0:gravity="center_vertical" ns0:layout_marginTop="6dp">
+
+            <ImageButton ns0:id="@+id/btn_play" ns0:layout_width="48dp" ns0:layout_height="48dp" ns0:background="@android:color/transparent" ns0:src="@android:drawable/ic_media_play" ns0:contentDescription="@string/i18n_activity_replay_contentDescription_playpause_2" />
+
+            <TextView ns0:id="@+id/btn_speed" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_activity_replay_text_1_2" ns0:textSize="16sp" ns0:padding="10dp" ns0:layout_marginStart="12dp" ns0:background="#22000000" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

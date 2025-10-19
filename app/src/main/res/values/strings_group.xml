@@ -1,0 +1,41 @@
+<!-- res/values/strings_group.xml — FUSION COMPLÈTE (FR par défaut) -->
+<resources>
+    <!-- Titre & menu -->
+    <string name="group_title">Groupe</string>
+    <string name="menu_group_title">Groupe</string>
+
+    <!-- UI & messages -->
+    <string name="group_empty">Aucun membre pour le moment.</string>
+    <string name="group_member_pin_content_desc">Marqueur membre</string>
+    <string name="group_info_center">Centrer</string>
+    <string name="group_member_coords_fmt">(%1$s, %2$s)</string>
+
+    <!-- Boutons -->
+    <string name="group_host">Créer groupe</string>
+    <string name="group_join">Rejoindre</string>
+    <string name="group_stop">Arrêter</string>
+    <string name="group_clear">Vider la liste</string>
+
+    <!-- État / erreurs génériques -->
+    <string name="group_ready">Prêt</string>
+    <string name="group_permissions_missing">Permissions manquantes : %1$s</string>
+    <string name="group_cannot_open">Impossible d’ouvrir Groupe : %1$s</string>
+
+    <!-- Météo (dialog + bulle) -->
+    <string name="group_weather_loading">Météo : chargement…</string>
+    <string name="group_weather_unavailable">Météo : indisponible</string>
+    <string name="group_weather_fmt">Météo : %1$s — %2$.0f°C</string>
+
+    <!-- Dialog navigation -->
+    <string name="group_nav_button">Naviguer</string>
+    <string name="group_close_button">Fermer</string>
+    <string name="group_nav_choose">Choisir une application</string>
+    <string name="group_nav_noapp">Aucune application de navigation trouvée</string>
+    <string name="group_member_avatar_cd">Avatar du membre</string>
+
+    <!-- Pluriels -->
+    <plurals name="group_members_count">
+        <item quantity="one">%d membre</item>
+        <item quantity="other">%d membres</item>
+    </plurals>
+</resources>

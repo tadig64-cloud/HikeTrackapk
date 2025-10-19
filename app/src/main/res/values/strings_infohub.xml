@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="ih_section_markings">Balisage &amp; sigles</string>
+    <string name="ih_section_weather">Météo &amp; orages</string>
+    <string name="ih_section_orientation">Orientation &amp; progression</string>
+    <string name="ih_section_respect">Respect de la nature</string>
+    <string name="ih_section_firstaid">Premiers secours &amp; SOS</string>
+
+    <string name="ih_markings_body">
+🔴⚪ GR (Grande Randonnée) : balisage blanc/rouge ; itinéraires de plusieurs jours.
+🟡🔴 GRP (GR de Pays) : balisage jaune/rouge ; boucles/traversées à l’échelle d’un territoire.
+🟡 PR (Promenade &amp; Randonnée) : balisage jaune ; boucles à la demi‑journée/journée.
+Marques : // = bon chemin ; angle = tourner ; croix = mauvaise direction.
+Repère : le balisage officiel est défini par la FFRandonnée ; hors réseaux officiels, suivez la signalétique locale.
+    </string>
+
+    <string name="ih_weather_body">
+• Avant de partir : consulte un bulletin local (vent, pluie, risque d’orage).
+
+• Orage : évite crêtes/points hauts/arbres isolés. Écarte les objets métalliques.
+
+• Si le tonnerre gronde : descend vers une zone basse mais non inondable. Éloigne-toi des parois humides et cours d’eau.
+
+• Flash-to-bang : compte secondes entre éclair et tonnerre ; &lt; 30 s ⇒ danger très proche.
+
+• Position de sécurité : accroupi sur sac/isolant, pieds joints, mains sur les genoux. Évite de t’allonger.
+
+• Grêle/pluie intense : mets-toi à l’abri des chutes (branches/rochers). Méfie-toi des crues éclairs en fond de vallée.
+    </string>
+
+    <string name="ih_orient_body">
+• Prépare ton itinéraire (points clés, échappatoires, horaires).
+
+• Emporte carte + boussole (et/ou appli hors ligne), batterie suffisante.
+
+• Rythme : pauses courtes et régulières, hydrate-toi tôt.
+
+• Groupes : fixe un point d’attente, ferme la marche, ne laisse personne seul derrière.
+
+• En cas d’erreur : arrête-toi, respire, re-localise-toi (dernier point sûr), compare carte/terrain.
+    </string>
+
+    <string name="ih_respect_body">
+Réserves / cœurs de parcs : reste sur sentiers, ne cueille pas, chiens interdits en cœur de parc, drones interdits (sauf autorisation).
+Lacs d’altitude : baignade déconseillée (écosystèmes fragiles, crèmes/polluants, dérangement de la faune, eau très froide) et parfois interdite par arrêté communal.
+Bivouac : souvent toléré 1 nuit (19h→9h) loin des routes/maisons ; à &gt;20 m des lacs/ruisseaux ; remporte eaux grises et déchets.
+    </string>
+
+    <string name="ih_firstaid_body">
+• Alerte : 112. Donne lieu, nature des blessures, accès.
+
+• Protéger-Alerter-Secourir : sécurise la zone.
+
+• Évalue : conscience, respiration. PLS si nécessaire.
+
+• Blessures : comprime une hémorragie, immobilise, couvre et rassure.
+
+• Hypo/hyperthermie : isoler du sol, boire/eau sucrée, retirer mouillé, couvrir.
+
+• Perdu ? Reste groupé, économise la batterie, marque ta position, cherche un point haut si sûr.
+    </string>
+
+    <string name="ih_expand">Afficher</string>
+    <string name="ih_collapse">Masquer</string>
+
+    </resources>

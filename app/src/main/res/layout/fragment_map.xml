@@ -1,0 +1,85 @@
+<FrameLayout xmlns:ns0="http://schemas.android.com/apk/res/android" xmlns:ns1="http://schemas.android.com/apk/res-auto" ns0:id="@+id/map_root" ns0:layout_width="match_parent" ns0:layout_height="match_parent">
+
+    
+    <FrameLayout ns0:id="@+id/map_container" ns0:layout_width="match_parent" ns0:layout_height="match_parent" />
+
+    
+    <com.google.android.material.appbar.MaterialToolbar ns0:id="@+id/toolbar" style="?attr/toolbarStyle" ns0:layout_width="match_parent" ns0:layout_height="?attr/actionBarSize" ns0:background="?attr/colorSurface" ns1:title="" ns1:navigationIcon="@null" />
+
+    
+    <com.google.android.material.card.MaterialCardView ns0:id="@+id/plan_card" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:layout_gravity="top|end" ns0:layout_margin="12dp" ns0:visibility="gone" ns1:cardElevation="4dp" ns1:cardUseCompatPadding="true">
+
+        <LinearLayout ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:padding="12dp" ns0:orientation="vertical">
+
+            <TextView ns0:id="@+id/plan_title" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_fragment_map_text_plan_2" ns0:textStyle="bold" ns0:textAllCaps="true" ns0:letterSpacing="0.05" />
+
+            <LinearLayout ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:orientation="horizontal" ns0:paddingTop="6dp">
+
+                
+                <LinearLayout ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:orientation="vertical" ns0:paddingEnd="12dp">
+                    <TextView ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_fragment_map_text_dist_2" ns0:textStyle="bold" />
+                    <TextView ns0:id="@+id/tvPlannedDist" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_fragment_map_text_000_km_3" />
+                </LinearLayout>
+
+                
+                <LinearLayout ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:orientation="vertical" ns0:paddingEnd="12dp">
+                    <TextView ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_fragment_map_text_d_3" ns0:textStyle="bold" />
+                    <TextView ns0:id="@+id/tvPlannedGain" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_fragment_map_text_0_m_5" />
+                </LinearLayout>
+
+                
+                <LinearLayout ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:orientation="vertical" ns0:paddingEnd="12dp">
+                    <TextView ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_fragment_map_text_d_4" ns0:textStyle="bold" />
+                    <TextView ns0:id="@+id/tvPlannedLoss" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_fragment_map_text_0_m_6" />
+                </LinearLayout>
+
+                
+                <LinearLayout ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:orientation="vertical">
+                    <TextView ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_fragment_map_text_eta_2" ns0:textStyle="bold" />
+                    <TextView ns0:id="@+id/tvPlannedEta" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_fragment_map_text_00h00_2" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+    
+
+    
+    <com.google.android.material.card.MaterialCardView ns0:id="@+id/hud_card" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:layout_margin="12dp" ns0:layout_gravity="bottom" ns1:cardElevation="4dp" ns1:cardUseCompatPadding="true" ns0:layout_marginBottom="@dimen/hud_bottom_inset">
+
+        <LinearLayout ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:padding="12dp" ns0:gravity="center_vertical" ns0:orientation="horizontal" ns0:weightSum="5">
+
+            
+            <LinearLayout ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:orientation="vertical">
+                <TextView ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/hud_dist_label" ns0:textStyle="bold" />
+                <TextView ns0:id="@+id/hud_distance" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_fragment_map_text_000_km_4" />
+            </LinearLayout>
+
+            
+            <LinearLayout ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:orientation="vertical">
+                <TextView ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/hud_gain_label" ns0:textStyle="bold" />
+                <TextView ns0:id="@+id/hud_gain" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_fragment_map_text_0_m_7" />
+            </LinearLayout>
+
+            
+            <LinearLayout ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:orientation="vertical">
+                <TextView ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/hud_loss_label" ns0:textStyle="bold" />
+                <TextView ns0:id="@+id/hud_loss" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_fragment_map_text_0_m_8" />
+            </LinearLayout>
+
+            
+            <LinearLayout ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:orientation="vertical">
+                <TextView ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/hud_speed_label" ns0:textStyle="bold" />
+                <TextView ns0:id="@+id/hud_speed" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_fragment_map_text_00_kmh_2" />
+            </LinearLayout>
+
+            
+            <LinearLayout ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:orientation="vertical">
+                <TextView ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/hud_time_label" ns0:textStyle="bold" />
+                <TextView ns0:id="@+id/hud_time" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="00:00:00" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</FrameLayout>

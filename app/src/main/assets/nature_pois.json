@@ -1,0 +1,56 @@
+[
+  {
+    "id": "tree_irmas202",
+    "type": "TREE",
+    "name": "Hêtre tortillard",
+    "lat": 43.2988,
+    "lon": -0.3697,
+    "radiusM": 120.0,
+    "note": "Arbre remarquable – ne pas déranger la zone racinaire."
+  },
+  {
+    "id": "shelter_lacs_d_ayous",
+    "type": "SHELTER",
+    "name": "Refuge des Lacs d'Ayous",
+    "lat": 42.8389,
+    "lon": -0.4517,
+    "radiusM": 200.0,
+    "note": "Ouvert en saison, eau non garantie."
+  },
+  {
+    "id": "protected_gave",
+    "type": "PROTECTED",
+    "name": "Zone Natura 2000 – Gave d'Ossau",
+    "lat": 43.1195,
+    "lon": -0.4401,
+    "radiusM": 300.0,
+    "note": "Restez sur le sentier, chiens tenus en laisse."
+  },
+  {
+    "id": "tree_chene",
+    "type": "TREE",
+    "name": "Chêne centenaire",
+    "lat": 43.215,
+    "lon": -0.614,
+    "radiusM": 100.0,
+    "note": "Photo spot 🌳"
+  },
+  {
+    "id": "shelter_cabane_pastore",
+    "type": "SHELTER",
+    "name": "Cabane du Pastore",
+    "lat": 42.9872,
+    "lon": -0.3423,
+    "radiusM": 150.0,
+    "note": "Cabane non gardée – propretez svp."
+  },
+  {
+    "id": "protected_tetra",
+    "type": "PROTECTED",
+    "name": "Zone Tétras-lyre",
+    "lat": 42.9755,
+    "lon": -0.3855,
+    "radiusM": 400.0,
+    "note": "Silence et pas de drones."
+  }
+]

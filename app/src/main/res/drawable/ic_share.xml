@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="24" android:viewportHeight="24"
+    android:tint="?attr/colorControlNormal">
+    <!-- Flèche de partage simple -->
+    <path
+        android:fillColor="@android:color/black"
+        android:pathData="M5,13h9l-3.5,3.5l1.4,1.4L18.8,12l-6.9,-5.9l-1.4,1.4L14,11H5z"/>
+</vector>

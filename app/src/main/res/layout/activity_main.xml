@@ -1,0 +1,22 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:ns0="http://schemas.android.com/apk/res/android" xmlns:ns1="http://schemas.android.com/apk/res-auto" ns0:id="@+id/root_main" ns0:layout_width="match_parent" ns0:layout_height="match_parent" ns0:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.AppBarLayout ns0:id="@+id/appBarLayout" ns0:layout_width="match_parent" ns0:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar ns0:id="@+id/toolbar" ns0:layout_width="match_parent" ns0:layout_height="?attr/actionBarSize" ns0:background="?attr/colorPrimary" ns1:logo="@drawable/bg_hiketrack" ns1:navigationIconTint="@android:color/white" ns1:popupTheme="@style/ThemeOverlay.MaterialComponents.Light" ns1:title="@null" ns1:titleTextColor="@android:color/white" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    
+    <FrameLayout ns0:id="@+id/container" ns0:layout_width="match_parent" ns0:layout_height="match_parent" ns1:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    
+    <FrameLayout ns0:id="@+id/progress_overlay" ns0:layout_width="match_parent" ns0:layout_height="match_parent" ns0:clickable="true" ns0:focusable="true" ns0:background="#80000000" ns0:visibility="gone">
+
+        <LinearLayout ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:layout_gravity="center" ns0:orientation="vertical" ns0:padding="24dp" ns0:background="@android:color/white" ns0:elevation="4dp">
+
+            <ProgressBar ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" />
+
+            <TextView ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:layout_marginTop="12dp" ns0:text="@string/i18n_activity_main_text_ouverture_de_la_carte_2" />
+        </LinearLayout>
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

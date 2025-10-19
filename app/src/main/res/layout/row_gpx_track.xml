@@ -1,0 +1,8 @@
+<LinearLayout xmlns:ns0="http://schemas.android.com/apk/res/android" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:orientation="vertical" ns0:padding="12dp" ns0:background="?attr/selectableItemBackground" ns0:clickable="true" ns0:focusable="true">
+
+    <TextView ns0:id="@+id/txtTitle" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:textStyle="bold" ns0:textSize="16sp" ns0:text="@string/i18n_row_gpx_track_text_nom_de_la_trace_2" />
+
+    <TextView ns0:id="@+id/txtSubtitle" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_row_gpx_track_text_000_km__0__0_2" ns0:paddingTop="2dp" />
+
+    <TextView ns0:id="@+id/txtMeta" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_row_gpx_track_text_0_pts__filegpx_2" ns0:paddingTop="2dp" ns0:textSize="12sp" />
+</LinearLayout>

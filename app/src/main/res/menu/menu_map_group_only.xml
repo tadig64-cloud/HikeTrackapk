@@ -1,0 +1,4 @@
+<menu xmlns:ns0="http://schemas.android.com/apk/res/android" xmlns:ns1="http://schemas.android.com/apk/res-auto">
+    
+    <item ns0:id="@+id/action_group" ns0:title="@string/i18n_menu_map_group_only_title_groupe_2" ns0:icon="@android:drawable/ic_menu_myplaces" ns1:showAsAction="never" />
+</menu>

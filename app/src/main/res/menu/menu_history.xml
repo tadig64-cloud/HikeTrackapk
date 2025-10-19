@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_history_import"
+        android:title="@string/history_import"
+        android:icon="@android:drawable/ic_menu_upload"
+        app:showAsAction="ifRoom|withText" />
+
+    <item
+        android:id="@+id/action_history_search"
+        android:title="@string/history_search"
+        android:icon="@android:drawable/ic_menu_search"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+
+    <item
+        android:id="@+id/action_history_sort"
+        android:title="@string/history_sort"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_history_filter_elev"
+        android:title="@string/history_filter_elev"
+        android:checkable="true"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_history_rescan"
+        android:title="@string/history_rescan"
+        app:showAsAction="never" />
+</menu>

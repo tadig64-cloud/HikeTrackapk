@@ -1,0 +1,15 @@
+<LinearLayout xmlns:ns0="http://schemas.android.com/apk/res/android" ns0:orientation="vertical" ns0:padding="12dp" ns0:layout_width="match_parent" ns0:layout_height="wrap_content">
+
+    <TextView ns0:id="@+id/tvName" ns0:textStyle="bold" ns0:textSize="16sp" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:text="@string/i18n_row_gpx_item_text_track_0001gpx_2" />
+
+    <TextView ns0:id="@+id/tvInfo" ns0:textSize="12sp" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:text="@string/i18n_row_gpx_item_text_taille__modifi_le_2" />
+
+    <LinearLayout ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:gravity="end" ns0:orientation="horizontal" ns0:paddingTop="6dp">
+
+        <TextView ns0:id="@+id/btnOpen" ns0:padding="8dp" ns0:text="@string/open_in_viewer" ns0:textAllCaps="true" />
+
+        <TextView ns0:id="@+id/btnShare" ns0:padding="8dp" ns0:text="@string/share_gpx" ns0:textAllCaps="true" />
+
+        <TextView ns0:id="@+id/btnDelete" ns0:padding="8dp" ns0:text="@string/ht_delete" ns0:textAllCaps="true" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/profile_title">
+        <EditTextPreference
+            android:key="profile_pseudo"
+            android:title="@string/profile_pseudo"
+            android:dialogTitle="@string/profile_pseudo" />
+        <Preference
+            android:key="profile_clear_avatar_pref"
+            android:title="@string/profile_clear_avatar" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/profile_badge_hint">
+        <SwitchPreferenceCompat
+            android:key="profile_hud_weather"
+            android:title="@string/profile_pref_hud_weather"
+            android:defaultValue="true" />
+        <SwitchPreferenceCompat
+            android:key="profile_auto_follow"
+            android:title="@string/profile_pref_auto_follow"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

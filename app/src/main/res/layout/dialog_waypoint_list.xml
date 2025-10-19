@@ -1,0 +1,67 @@
+<LinearLayout xmlns:ns0="http://schemas.android.com/apk/res/android" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:orientation="vertical" ns0:paddingStart="12dp" ns0:paddingEnd="12dp" ns0:paddingTop="8dp" ns0:paddingBottom="32dp" ns0:fitsSystemWindows="true">
+
+    
+    <LinearLayout ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:orientation="horizontal" ns0:gravity="center_vertical" ns0:padding="8dp">
+
+        <TextView ns0:id="@+id/titleDialog" ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:text="@string/i18n_dialog_waypoint_list_text_waypoints_2" ns0:textStyle="bold" ns0:textSize="18sp" />
+
+        <Spinner ns0:id="@+id/spinner_sort" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" />
+    </LinearLayout>
+
+    
+    <LinearLayout ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:orientation="horizontal" ns0:gravity="center_vertical" ns0:paddingStart="8dp" ns0:paddingEnd="8dp" ns0:paddingBottom="6dp">
+
+        <EditText ns0:id="@+id/input_search" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:hint="@string/i18n_dialog_waypoint_list_hint_rechercher_nom_ou_4312_123_2" ns0:imeOptions="actionDone" ns0:singleLine="true" />
+    </LinearLayout>
+
+    
+    <LinearLayout ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:orientation="horizontal" ns0:gravity="center_vertical" ns0:paddingStart="8dp" ns0:paddingEnd="8dp" ns0:paddingBottom="6dp">
+
+        <Spinner ns0:id="@+id/spinner_groups" ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch ns0:id="@+id/switch_hidden" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_dialog_waypoint_list_text_afficher_groupes_masqus_2" ns0:paddingStart="8dp" />
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton ns0:id="@+id/btn_toggle_group_visibility" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:text="@string/i18n_dialog_waypoint_list_text_masquerafficher_groupe_2" ns0:layout_marginBottom="6dp" />
+
+    <com.google.android.material.button.MaterialButton ns0:id="@+id/btn_clear_filters" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:text="@string/i18n_dialog_waypoint_list_text_effacer_le_filtre_2" ns0:layout_marginBottom="6dp" />
+
+    
+    <HorizontalScrollView ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:paddingBottom="6dp" ns0:overScrollMode="never">
+        <LinearLayout ns0:id="@+id/groupLegend" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:orientation="horizontal" ns0:paddingStart="4dp" ns0:paddingEnd="4dp" />
+    </HorizontalScrollView>
+    <androidx.recyclerview.widget.RecyclerView ns0:id="@+id/recycler_waypoints" ns0:layout_width="match_parent" ns0:layout_height="0dp" ns0:layout_weight="1" ns0:clipToPadding="false" ns0:paddingBottom="16dp" />
+<TextView ns0:id="@+id/emptyText" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:text="@string/i18n_dialog_waypoint_list_text_aucun_waypoint_pour_linstant_2" ns0:gravity="center" ns0:padding="16dp" ns0:visibility="gone" />
+
+    <com.google.android.material.button.MaterialButton ns0:id="@+id/btn_toggle_selection" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:text="@string/i18n_dialog_waypoint_list_text_basculer_mode_slection_2" ns0:layout_marginBottom="6dp" />
+
+    
+    <LinearLayout ns0:id="@+id/selectionBar" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:orientation="horizontal" ns0:gravity="center_vertical" ns0:paddingBottom="6dp" ns0:visibility="gone">
+
+        <com.google.android.material.button.MaterialButton ns0:id="@+id/btn_select_all" ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:text="@string/i18n_dialog_waypoint_list_text_tout_slectionner_2" />
+
+        <com.google.android.material.button.MaterialButton ns0:id="@+id/btn_export_sel" ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:text="@string/i18n_dialog_waypoint_list_text_exporter_slection_2" />
+
+        <com.google.android.material.button.MaterialButton ns0:id="@+id/btn_delete_sel" ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:text="@string/i18n_dialog_waypoint_list_text_supprimer_slection_2" />
+
+        <com.google.android.material.button.MaterialButton ns0:id="@+id/btn_cancel_sel" ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:text="@string/i18n_dialog_waypoint_list_text_annuler_2" />
+    </LinearLayout>
+
+    <LinearLayout ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:orientation="horizontal" ns0:weightSum="2">
+
+        <com.google.android.material.button.MaterialButton ns0:id="@+id/btn_import" ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:text="@string/i18n_dialog_waypoint_list_text_importer_gpxcsvjson_2" ns0:layout_marginEnd="4dp" />
+
+        <com.google.android.material.button.MaterialButton ns0:id="@+id/btn_export" ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:text="@string/i18n_dialog_waypoint_list_text_exporter_gpx_filtre_2" />
+    </LinearLayout>
+
+    <LinearLayout ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:orientation="horizontal" ns0:weightSum="2" ns0:layout_marginTop="4dp">
+
+        <com.google.android.material.button.MaterialButton ns0:id="@+id/btn_export_json" ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:text="@string/i18n_dialog_waypoint_list_text_exporter_json_backup_2" ns0:layout_marginEnd="4dp" />
+
+        <Space ns0:layout_width="0dp" ns0:layout_height="0dp" ns0:layout_weight="1" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton ns0:id="@+id/btn_close" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:text="@string/i18n_dialog_waypoint_list_text_fermer_2" ns0:layout_marginTop="6dp" />
+
+</LinearLayout>

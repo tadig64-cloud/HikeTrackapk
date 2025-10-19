@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dialog / statut téléchargement de tuiles -->
+    <string name="offline_title_starting">Préparation du téléchargement…</string>
+    <string name="offline_title_downloading">Téléchargement des tuiles…</string>
+    <string name="offline_title_working">Téléchargement des tuiles…</string>
+    <string name="offline_title_done">Téléchargement terminé</string>
+    <string name="offline_title_failed">Échec du téléchargement</string>
+    <string name="offline_title_error">Erreur de téléchargement</string>
+
+    <string name="offline_msg_starting">Initialisation…</string>
+    <string name="offline_msg_progress">%1$d / %2$d tuiles</string>
+    <string name="offline_msg_done">Tuiles téléchargées : %1$d</string>
+    <string name="offline_msg_failed">Erreur : %1$s</string>
+
+    <string name="offline_tiles_progress">%1$d / %2$d tuiles</string>
+    <string name="offline_tiles_cancel">Annuler</string>
+
+    <string name="offline_btn_cancel">Annuler</string>
+    <string name="offline_btn_close">Fermer</string>
+</resources>

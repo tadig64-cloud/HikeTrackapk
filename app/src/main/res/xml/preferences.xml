@@ -1,0 +1,46 @@
+<PreferenceScreen xmlns:ns0="http://schemas.android.com/apk/res/android" xmlns:ns1="http://schemas.android.com/apk/res-auto">
+
+    
+    <PreferenceCategory ns0:title="@string/pref_category_map">
+
+        <ListPreference ns0:key="@string/pref_key_map_source" ns0:title="@string/pref_map_source" ns0:entries="@array/map_source_entries" ns0:entryValues="@array/map_source_values" ns0:defaultValue="osm" />
+
+        <SeekBarPreference ns0:key="@string/pref_key_map_default_zoom" ns0:title="@string/pref_default_zoom" ns0:defaultValue="15" ns0:max="20" ns1:min="5" ns1:showSeekBarValue="true" />
+
+        <SwitchPreferenceCompat ns0:key="pref_key_lock_rotation" ns0:title="@string/pref_lock_rotation" ns0:summary="@string/pref_lock_rotation_summary" ns0:defaultValue="false" />
+
+        
+        <EditTextPreference ns0:key="@string/pref_key_plan_speed_kmh" ns0:title="@string/pref_plan_speed_title" ns0:summary="@string/pref_plan_speed_summary" ns0:defaultValue="4.0" ns0:inputType="numberDecimal" />
+
+        
+        <SwitchPreferenceCompat ns0:key="@string/pref_key_battery_saver" ns0:title="@string/pref_battery_saver_title" ns0:summary="@string/pref_battery_saver_summary" ns0:defaultValue="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory ns0:title="@string/i18n_preferences_title_planification__batterie_2">
+
+        <EditTextPreference ns0:key="pref_key_plan_speed_kmh" ns0:title="@string/i18n_preferences_title_vitesse_de_planification_kmh_3" ns0:dialogTitle="@string/i18n_preferences_dialogTitle_vitesse_de_planification_2" ns0:defaultValue="4.0" ns0:inputType="numberDecimal" ns1:useSimpleSummaryProvider="true" />
+
+        <SwitchPreferenceCompat ns0:key="pref_key_battery_saver" ns0:title="@string/i18n_preferences_title_cobatterie_gps_adaptatif_2" ns0:summary="@string/i18n_preferences_summary_rduit_la_frquence_des_mises__jou_2" ns0:defaultValue="true" />
+    </PreferenceCategory>
+
+    
+    <PreferenceCategory ns0:title="@string/pref_category_gpx">
+
+        <Preference ns0:key="@string/pref_key_import_gpx" ns0:title="@string/pref_import_gpx_title" ns0:summary="@string/pref_import_gpx_summary" />
+
+        <Preference ns0:key="@string/pref_key_export_gpx" ns0:title="@string/pref_export_gpx_title" ns0:summary="@string/pref_export_gpx_summary" />
+    </PreferenceCategory>
+
+    
+    <PreferenceCategory ns0:title="@string/i18n_preferences_title_nergie__gps_2">
+
+        <SwitchPreferenceCompat ns0:key="pref_key_battery_saver" ns0:title="@string/i18n_preferences_title_co_batterie_gps_adaptatif_2" ns0:defaultValue="true" ns0:summary="@string/i18n_preferences_summary_ajuste_la_frquencedistance_des_p_2" />
+    </PreferenceCategory>
+
+    
+    <PreferenceCategory ns0:title="@string/i18n_preferences_title_planification_2">
+
+        <EditTextPreference ns0:key="pref_key_plan_speed_kmh" ns0:title="@string/i18n_preferences_title_vitesse_de_planification_kmh_4" ns0:defaultValue="4.0" ns1:useSimpleSummaryProvider="false" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,7 @@
+<LinearLayout xmlns:ns0="http://schemas.android.com/apk/res/android" ns0:layout_width="wrap_content" ns0:layout_height="match_parent" ns0:gravity="center_vertical" ns0:paddingStart="8dp" ns0:paddingEnd="8dp" ns0:orientation="horizontal">
+
+    <ImageView ns0:id="@+id/badge_avatar" ns0:layout_width="28dp" ns0:layout_height="28dp" ns0:scaleType="centerCrop" ns0:src="@drawable/ic_profile" ns0:background="@android:color/transparent" />
+
+    <TextView ns0:id="@+id/badge_name" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:layout_marginStart="8dp" ns0:text="@string/i18n_profile_badge_text_profil_2" ns0:textSize="14sp" ns0:textColor="@android:color/white" />
+
+</LinearLayout>

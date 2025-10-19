@@ -1,0 +1,15 @@
+<LinearLayout xmlns:ns0="http://schemas.android.com/apk/res/android" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:orientation="horizontal" ns0:paddingStart="8dp" ns0:paddingEnd="4dp" ns0:paddingTop="8dp" ns0:paddingBottom="8dp">
+
+    <View ns0:id="@+id/group_dot" ns0:layout_width="10dp" ns0:layout_height="10dp" ns0:layout_gravity="center_vertical" ns0:layout_marginEnd="6dp" ns0:background="@drawable/group_dot" />
+
+    <CheckBox ns0:id="@+id/checkbox" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:visibility="gone" ns0:paddingEnd="6dp" />
+
+    <LinearLayout ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:orientation="vertical">
+
+        <TextView ns0:id="@+id/title" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_row_waypoint_text_waypoint_2" ns0:textStyle="bold" ns0:textSize="16sp" />
+
+        <TextView ns0:id="@+id/subtitle" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_row_waypoint_text_000000_000000__20250101_1200_2" ns0:textSize="13sp" ns0:alpha="0.8" />
+    </LinearLayout>
+
+    <ImageButton ns0:id="@+id/more" ns0:layout_width="40dp" ns0:layout_height="40dp" ns0:contentDescription="@string/i18n_row_waypoint_contentDescription_plus_doptions_2" ns0:background="?attr/selectableItemBackgroundBorderless" ns0:src="@android:drawable/ic_menu_more" />
+</LinearLayout>

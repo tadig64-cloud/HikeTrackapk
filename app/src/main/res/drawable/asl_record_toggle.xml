@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- STOP quand checké -->
+    <item
+        android:id="@+id/checked"
+        android:state_checked="true"
+        android:drawable="@drawable/ic_stop_square" />
+
+    <!-- RECORD quand non-checké -->
+    <item
+        android:id="@+id/unchecked"
+        android:state_checked="false"
+        android:drawable="@drawable/ic_record_circle" />
+
+</animated-selector>

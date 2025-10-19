@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titre écran Groupe -->
+    <string name="group_title">Groupe</string>
+
+    <!-- Libellés boutons -->
+    <string name="group_host">Créer groupe</string>
+    <string name="group_join">Rejoindre</string>
+    <string name="group_stop">Arrêter</string>
+
+    <!-- Menu (au cas où) -->
+    <string name="menu_group_title">Groupe</string>
+
+    <!-- Divers -->
+    <string name="group_ready">Prêt</string>
+    <string name="group_permissions_missing">Permissions manquantes : %1$s</string>
+    <string name="group_cannot_open">Impossible d’ouvrir Groupe : %1$s</string>
+</resources>

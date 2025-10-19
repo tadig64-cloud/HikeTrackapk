@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="history_totals">Total: %1$s km • +%2$d / -%3$d</string>
+    <string name="history_totals_placeholder">Total: 0.00 km • +0 / -0</string>
+    <string name="history_detail_title">Détail de la trace</string>
+    <string name="history_share">Partager GPX</string>
+    <string name="history_share_title">Partager la trace</string>
+    <string name="history_detail_missing">Introuvable : %1$s</string>
+</resources>

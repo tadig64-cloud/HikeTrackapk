@@ -1,0 +1,7 @@
+<menu xmlns:ns0="http://schemas.android.com/apk/res/android">
+    <item ns0:id="@+id/action_sos" ns0:title="@string/i18n_menu_v6_shortcuts_title_sos_2" ns0:showAsAction="never" />
+    <item ns0:id="@+id/action_back_to_start" ns0:title="@string/i18n_menu_v6_shortcuts_title_retour_dpart_2" ns0:showAsAction="never" />
+    <item ns0:id="@+id/action_water_points" ns0:title="@string/i18n_menu_v6_shortcuts_title_points_deau_2" ns0:showAsAction="never" />
+    <item ns0:id="@+id/action_respect" ns0:title="@string/i18n_menu_v6_shortcuts_title_respect_nature_2" ns0:showAsAction="never" />
+    <item ns0:id="@+id/action_first_aid" ns0:title="@string/i18n_menu_v6_shortcuts_title_premiers_secours_2" ns0:showAsAction="never" />
+</menu>

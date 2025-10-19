@@ -1,0 +1,407 @@
+[
+  {
+    "id": "pnx-reserves-integrales_0",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 47.991095894569156,
+    "lon": 5.007153846337708,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-reserves-integrales_1",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 42.988134598343144,
+    "lon": 6.394980248277876,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-reserves-integrales_2",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 43.01442532144696,
+    "lon": 6.389315187431354,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-reserves-integrales_3",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 43.01194341253282,
+    "lon": 6.363346637139379,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-reserves-integrales_4",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 44.20015711355748,
+    "lon": 6.7825406934980155,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-reserves-integrales_5",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 44.951534840915706,
+    "lon": 6.059684677270495,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_0",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 42.79867623157029,
+    "lon": -0.23852477653696566,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_1",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 44.17448122212688,
+    "lon": 7.083735132717876,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_2",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 43.24970732018091,
+    "lon": 5.393373140331996,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_3",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 43.19725339192248,
+    "lon": 5.436190535726444,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_4",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 43.21987621479402,
+    "lon": 5.4258566184302905,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_5",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 43.237634610266916,
+    "lon": 5.492174650588779,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_6",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 3.3246784113451637,
+    "lon": -53.1416231685841,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_7",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 3.172758772650471,
+    "lon": -53.11062916062522,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_8",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 16.236959250930827,
+    "lon": -61.617098324969824,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_9",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 16.30756783114442,
+    "lon": -61.66132920233486,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_10",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 16.27060774951859,
+    "lon": -61.64995749442118,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_11",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 43.1035103286849,
+    "lon": 6.3554508140015695,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_12",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 43.00451223266813,
+    "lon": 6.29279880985008,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_13",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 43.00363147725229,
+    "lon": 6.28007582925467,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_14",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 43.10662972891332,
+    "lon": 6.388567658972429,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_15",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 44.10023196189431,
+    "lon": 7.114374742772151,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_16",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 45.37463296553521,
+    "lon": 6.842717444315057,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_17",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 45.41439369746079,
+    "lon": 6.6477375100560545,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_18",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 47.822210999597424,
+    "lon": 4.926586413546034,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_19",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 47.81243545070536,
+    "lon": 4.923737086317205,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_20",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 44.25910638026127,
+    "lon": 3.624383446226029,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_21",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 44.79764814151032,
+    "lon": 6.303801903805823,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_22",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 44.85469008306729,
+    "lon": 6.280413257292361,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_23",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": -21.101327765618294,
+    "lon": 55.54223220567388,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_24",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": -21.12395160960453,
+    "lon": 55.533406385683705,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_25",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 16.08680244006606,
+    "lon": -61.68295013422563,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_26",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 44.268309381562176,
+    "lon": 3.7153632332755024,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-coeur-aa-ama_27",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 42.92184672451108,
+    "lon": -0.16733523263847597,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-aoa_0",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 43.22555807366749,
+    "lon": 5.541691236548047,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-aoa_1",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 47.810037560028704,
+    "lon": 4.897579900286612,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-aoa_2",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 44.787580815916826,
+    "lon": 6.268881725754319,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-aoa_3",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 42.89198917383843,
+    "lon": -0.20918391712021606,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-aoa_4",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 3.3322002012694942,
+    "lon": -53.55665903410264,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-aoa_5",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": -21.11294110013814,
+    "lon": 55.538839940658846,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-aoa_6",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 44.1547375285873,
+    "lon": 7.140503321758321,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-aoa_7",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 43.148930163774104,
+    "lon": 6.276750944211557,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-aoa_8",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 16.203018980539806,
+    "lon": -61.56313615712867,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-aoa_9",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 45.38966973206252,
+    "lon": 6.776179869274214,
+    "radiusM": 1000.0,
+    "note": null
+  },
+  {
+    "id": "pnx-aoa_10",
+    "type": "PROTECTED",
+    "name": "Zone protégée",
+    "lat": 44.280742295769336,
+    "lon": 3.766144504128244,
+    "radiusM": 1000.0,
+    "note": null
+  }
+]

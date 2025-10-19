@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ih_section_markings">Balisage &amp; sigles</string>
+    <string name="ih_section_weather">Météo &amp; orages</string>
+    <string name="ih_section_orientation">Orientation &amp; progression</string>
+    <string name="ih_section_respect">Respect de la nature</string>
+    <string name="ih_section_firstaid">Premiers secours &amp; SOS</string>
+
+    <string name="ih_markings_body">
+GR : traits rouge/blanc • PR : jaune (ou jaune/rouge) • Itinéraires locaux : spécifiques.\n
+Reste sur les sentiers balisés, ne coupe pas les lacets, referme les clôtures.
+    </string>
+
+    <string name="ih_weather_body">
+• Avant de partir : consulte un bulletin local (vent, pluie, risque d’orage).\n
+• Orage : évite crêtes/points hauts/arbres isolés. Écarte les objets métalliques.\n
+• Si le tonnerre gronde : descend vers une zone basse mais non inondable. Éloigne-toi des parois humides et cours d’eau.\n
+• Flash-to-bang : compte secondes entre éclair et tonnerre ; &lt; 30 s ⇒ danger très proche.\n
+• Position de sécurité : accroupi sur sac/isolant, pieds joints, mains sur les genoux. Évite de t’allonger.\n
+• Grêle/pluie intense : mets-toi à l’abri des chutes (branches/rochers). Méfie-toi des crues éclairs en fond de vallée.
+    </string>
+
+    <string name="ih_orient_body">
+• Prépare ton itinéraire (points clés, échappatoires, horaires).\n
+• Emporte carte + boussole (et/ou appli hors ligne), batterie suffisante.\n
+• Rythme : pauses courtes et régulières, hydrate-toi tôt.\n
+• Groupes : fixe un point d’attente, ferme la marche, ne laisse personne seul derrière.\n
+• En cas d’erreur : arrête-toi, respire, re-localise-toi (dernier point sûr), compare carte/terrain.
+    </string>
+
+    <string name="ih_respect_body">
+• Reste sur sentiers, ne piétine pas les zones sensibles.\n
+• Emporte tes déchets, attention au bruit.\n
+• Chiens : tenus si faune/troupeaux.\n
+• Feu : strictement interdit hors zones autorisées.\n
+• Eau : ne contamine pas les sources/cours d’eau.
+    </string>
+
+    <string name="ih_firstaid_body">
+• Alerte : 112. Donne lieu, nature des blessures, accès.\n
+• Protéger-Alerter-Secourir : sécurise la zone.\n
+• Évalue : conscience, respiration. PLS si nécessaire.\n
+• Blessures : comprime une hémorragie, immobilise, couvre et rassure.\n
+• Hypo/hyperthermie : isoler du sol, boire/eau sucrée, retirer mouillé, couvrir.\n
+• Perdu ? Reste groupé, économise la batterie, marque ta position, cherche un point haut si sûr.
+    </string>
+
+    <string name="ih_expand">Afficher</string>
+    <string name="ih_collapse">Masquer</string>
+</resources>

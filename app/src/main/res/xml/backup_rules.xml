@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Inclure les données applicatives internes -->
+    <include domain="file" path="."/>
+    <include domain="database" path="."/>
+    <include domain="sharedpref" path="."/>
+
+    <!-- Inclure les fichiers App-specific sur le stockage externe
+         (getExternalFilesDir(...)) -->
+    <include domain="external" path="."/>
+
+    <!-- NOTE: pas de domaine "cache" : les caches ne sont pas sauvegardés. -->
+</full-backup-content>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="history_sort">Trier…</string>
+    <string name="history_sort_title">Trier par</string>
+    <string name="history_sort_date_desc">Date (récent → ancien)</string>
+    <string name="history_sort_date_asc">Date (ancien → récent)</string>
+    <string name="history_sort_dist_desc">Distance (↓)</string>
+    <string name="history_sort_dist_asc">Distance (↑)</string>
+    <string name="history_sort_gain_desc">D+ (↓)</string>
+    <string name="history_sort_gain_asc">D+ (↑)</string>
+
+    <string name="history_filter_elev">Uniquement avec altitude</string>
+</resources>

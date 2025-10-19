@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- État CHECKED = FOLLOW ON -->
+    <item
+        android:id="@+id/checked"
+        android:state_checked="true"
+        android:drawable="@drawable/ic_center_on_24" />
+
+    <!-- État UNCHECKED = FOLLOW OFF -->
+    <item
+        android:id="@+id/unchecked"
+        android:state_checked="false"
+        android:drawable="@drawable/ic_center_off_24" />
+
+    <!-- Transition OFF -> ON (réversible) -->
+    <transition
+        android:fromId="@id/unchecked"
+        android:toId="@id/checked"
+        android:drawable="@drawable/ic_center_on_24"
+        android:reversible="true" />
+</animated-selector>

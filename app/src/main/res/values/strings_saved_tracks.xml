@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="stx_open_folder">Ouvrir le dossier</string>
+    <string name="stx_refresh">Actualiser</string>
+    <string name="stx_delete_confirm_title">Supprimer ce GPX ?</string>
+    <string name="stx_delete_confirm_msg">Cette action supprimera le fichier de la mémoire de l’appareil.</string>
+    <string name="stx_deleted">Fichier supprimé</string>
+    <string name="stx_open_failed">Impossible d’ouvrir ce fichier.</string>
+    <string name="stx_share_failed">Échec du partage.</string>
+    <string name="stx_no_viewer">Aucune application disponible pour ouvrir ce fichier.</string>
+</resources>

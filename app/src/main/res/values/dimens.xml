@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- HUD météo / coordonnées -->
+    <dimen name="hud_pad">12dp</dimen>
+    <dimen name="hud_top_margin">16dp</dimen>
+    <dimen name="hud_corner">16dp</dimen>
+    <dimen name="hud_elevation">6dp</dimen>
+
+    <!-- Carte : carte de stats -->
+    <dimen name="stats_card_margin">12dp</dimen>
+    <dimen name="stats_card_pad_h">12dp</dimen>
+    <dimen name="stats_card_pad_v">8dp</dimen>
+
+    <!-- FAB / actions flottantes -->
+    <dimen name="fab_size_normal">56dp</dimen>
+    <dimen name="fab_icon_padding">6dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Extra bottom margin to clear gesture/navigation bar -->
+    <dimen name="hud_bottom_inset">24dp</dimen>
+</resources>

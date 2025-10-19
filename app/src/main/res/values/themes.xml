@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.HikeTrack" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Couleurs (garde tes ressources existantes) -->
+        <item name="colorPrimary">@color/md_primary</item>
+        <item name="colorSecondary">@color/md_secondary</item>
+        <item name="colorSurface">@color/md_surface</item>
+        <item name="colorOnPrimary">@color/md_on_primary</item>
+        <item name="colorOnSecondary">@color/md_on_secondary</item>
+        <item name="colorOnSurface">@color/md_on_surface</item>
+
+        <!-- Barre de statut -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- Matérial 3 widgets par défaut -->
+        <item name="bottomAppBarStyle">@style/Widget.Material3.BottomAppBar</item>
+    </style>
+</resources>

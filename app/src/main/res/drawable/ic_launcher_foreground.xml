@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+  <!-- Cercle léger derrière le H (simule le logo cercle coloré) -->
+  <path
+      android:fillColor="#1FFFFFFF"
+      android:pathData="M54,12a42,42 0,1 1,0 84a42,42 0,1 1,0 -84z" />
+
+  <!-- Lettre H “graffiti” stylisée avec trois rectangles -->
+  <path android:fillColor="#FFFFFFFF" android:pathData="M26,28 h14 v52 h-14 z"/>
+  <path android:fillColor="#FFFFFFFF" android:pathData="M68,28 h14 v52 h-14 z"/>
+  <path android:fillColor="#FFFFFFFF" android:pathData="M40,50 h28 v12 h-28 z"/>
+
+  <!-- Petit “tag” oblique pour le côté graffiti -->
+  <path android:fillColor="#FFFFFFFF" android:pathData="M70,24 l12,0 l-28,60 l-12,0 z" android:fillAlpha="0.10"/>
+</vector>

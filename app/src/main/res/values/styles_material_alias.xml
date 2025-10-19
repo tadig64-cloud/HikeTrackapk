@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Alias pour compat avec les layouts existants -->
+    <style name="Widget.Material3.Button.Filled" parent="Widget.Material3.Button"/>
+    <style name="Widget.Material3.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton"/>
+</resources>

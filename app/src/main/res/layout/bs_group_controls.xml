@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/bsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Groupe"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:paddingBottom="8dp"/>
+
+    <Button
+        android:id="@+id/bsZoomAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Zoom all" />
+
+    <Button
+        android:id="@+id/bsLabels"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Labels" />
+
+    <Button
+        android:id="@+id/bsCluster"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cluster" />
+
+    <Button
+        android:id="@+id/bsSim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sim ON" />
+
+</LinearLayout>

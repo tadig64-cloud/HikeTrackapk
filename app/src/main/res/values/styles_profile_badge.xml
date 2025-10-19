@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base shape overlay: perfect circle -->
+    <style name="ShapeAppearanceOverlay.HikeTrack">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <!-- Variant for layouts that reference .Full -->
+    <style name="ShapeAppearanceOverlay.HikeTrack.Full" parent="ShapeAppearanceOverlay.HikeTrack" />
+
+    <!-- Back-compat alias for samples -->
+    <style name="ShapeAppearanceOverlay.App.Corner.Full" parent="ShapeAppearanceOverlay.HikeTrack" />
+</resources>

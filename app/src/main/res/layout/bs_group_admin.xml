@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/txtStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Aucun groupe sélectionné"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:paddingBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/txtRole"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="rôle: (aucun)"
+            android:paddingBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnNew"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Créer groupe (vide)" />
+
+        <Button
+            android:id="@+id/btnNewFromOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Créer depuis la carte" />
+
+        <Button
+            android:id="@+id/btnSnapshot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sauver la carte dans le groupe" />
+
+        <Button
+            android:id="@+id/btnInvite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Inviter (code + lien)" />
+
+        <Button
+            android:id="@+id/btnJoin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rejoindre par code" />
+
+        <Button
+            android:id="@+id/btnRename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Renommer groupe" />
+
+        <Button
+            android:id="@+id/btnSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Changer de groupe" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Supprimer groupe (owner)" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="12dp" />
+
+        <Button
+            android:id="@+id/btnExport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Exporter JSON (membres)" />
+
+        <Button
+            android:id="@+id/btnImportMerge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Importer JSON (fusion)" />
+
+        <Button
+            android:id="@+id/btnImportReplace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Importer JSON (remplace)" />
+
+    </LinearLayout>
+</ScrollView>

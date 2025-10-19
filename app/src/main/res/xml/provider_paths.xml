@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- GPX enregistrés en stockage privé: filesDir/tracks/ -->
+    <files-path name="tracks" path="tracks/" />
+
+    <!-- Partage temporaire (si besoin) depuis le cache: cacheDir/shared/ -->
+    <cache-path name="shared_cache" path="shared/" />
+
+    <!-- Si vous stockez des images créées par l'app dans getExternalFilesDir(Pictures) -->
+    <external-files-path name="ext_pictures" path="Pictures/" />
+
+    <!-- Optionnel: cache externe -->
+    <external-cache-path name="ext_cache" path=""/>
+</paths>

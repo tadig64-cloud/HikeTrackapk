@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Simple, dependency-safe layout. No custom ShapeAppearanceOverlay references. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
+    android:background="@android:color/transparent"
+    android:minHeight="40dp">
+
+    <ImageView
+        android:id="@+id/profileBadgeImage"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_profile_avatar_round"
+        android:contentDescription="@string/profile_badge_content_desc"
+        android:layout_gravity="center_vertical" />
+
+    <TextView
+        android:id="@+id/profileBadgeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@android:color/white"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="" />
+</LinearLayout>

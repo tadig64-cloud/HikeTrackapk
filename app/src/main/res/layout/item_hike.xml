@@ -1,0 +1,8 @@
+<LinearLayout xmlns:ns0="http://schemas.android.com/apk/res/android" ns0:orientation="vertical" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:padding="12dp">
+
+    <TextView ns0:id="@+id/hike_title" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:textStyle="bold" ns0:textSize="16sp" ns0:text="@string/i18n_item_hike_text_14_sept_2025_1042_2" />
+
+    <TextView ns0:id="@+id/hike_subtitle" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_item_hike_text_123_km__d_520_m__4h_05_2" ns0:layout_marginTop="2dp" />
+
+    <TextView ns0:id="@+id/hike_notes" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_item_hike_text_notes_2" ns0:layout_marginTop="4dp" />
+</LinearLayout>

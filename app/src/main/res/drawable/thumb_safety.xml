@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/bg_hud_card"/>
+    <item>
+        <inset
+            android:drawable="@drawable/ic_safety"
+            android:insetLeft="16dp"
+            android:insetTop="16dp"
+            android:insetRight="16dp"
+            android:insetBottom="16dp"/>
+    </item>
+</layer-list>

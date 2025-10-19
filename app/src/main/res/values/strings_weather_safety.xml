@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Orages -->
+    <string name="wx_thunder_title">Orages &amp; foudre</string>
+    <string name="wx_thunder_intro">
+        Orage en montagne = danger immédiat (foudre, grêle, rafales, crues éclairs). Anticipez et adaptez l’itinéraire.
+    </string>
+    <string name="wx_thunder_do">
+        • Vérifiez le bulletin météo avant de partir (orage possible = itinéraire court/évasif).\n
+        • Sur le terrain, surveillez le ciel : bourgeonnements rapides, tonnerre lointain, vent qui tourne, grésillement.\n
+        • Évacuez crêtes, arêtes, sommets, dalles exposées ; visez une zone basse mais sèche, loin d’un point isolé.\n
+        • Écartez-vous d’au moins 20 m les uns des autres pour limiter le risque groupé.\n
+        • En dernier recours, position accroupie sur sac/corde sèche (isolant), pieds serrés, temps d’exposition minimal.
+    </string>
+    <string name="wx_thunder_dont">
+        • Ne restez pas sous un arbre isolé, un surplomb métallique, une croix de sommet, une ligne électrique.\n
+        • N’utilisez pas de bâtons/piolets tenus en l’air ; rangez antennes, mât, parapluie.\n
+        • N’abritez pas tout le groupe au même endroit ; évitez grottes ruisselantes et berges en crue.
+    </string>
+    <string name="wx_thunder_after">
+        Après l’orage : prudence sur névés/roches détrempés, ponts de neige fragilisés, coulées/locales crues.
+    </string>
+
+    <!-- Chaleur -->
+    <string name="wx_heat_title">Chaleur &amp; ensoleillement</string>
+    <string name="wx_heat_tips">
+        • Départ tôt, rythme adapté, pauses fréquentes à l’ombre.\n
+        • Boire avant d’avoir soif, électrolytes si effort prolongé ; chapeau + lunettes catégorie 3/4, crème SPF 50.\n
+        • Surveiller maux de tête, nausées, confusion : arrêt/rafraîchissement immédiats ; alerte si aggravation.
+    </string>
+
+    <!-- Froid -->
+    <string name="wx_cold_title">Froid &amp; hypothermie</string>
+    <string name="wx_cold_tips">
+        • Superposition de couches (respirant/isolant/coupe-vent), protections mains/pieds/tête.\n
+        • Mouillé = danger : privilégier vêtements secs ; surveiller frissons, maladresse, somnolence.\n
+        • Boisson chaude sucrée, isolement du sol (couverture), abri du vent ; alerte secours si état altéré.
+    </string>
+
+    <!-- Vent -->
+    <string name="wx_wind_title">Vent fort</string>
+    <string name="wx_wind_tips">
+        • Méfiez-vous des rafales en crêtes/cols, corniches instables.\n
+        • Bâtons réglés courts, points d’appui sûrs, lunettes pour poussières.\n
+        • Renoncez si progression incertaine : demi-tour = bonne décision.
+    </string>
+
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Menu -->
+    <string name="menu_about">À propos</string>
+
+    <!-- Titre de l'écran À propos (facultatif si tu n'en veux pas dans le manifest) -->
+    <string name="about_title">À propos</string>
+</resources>

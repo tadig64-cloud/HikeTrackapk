@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ProfileBadgeView">
+        <attr name="nicknameVisible" format="boolean"/>
+        <attr name="ringColor" format="color"/>
+    </declare-styleable>
+</resources>

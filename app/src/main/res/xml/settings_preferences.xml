@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Carte -->
+    <PreferenceCategory
+        android:title="@string/settings_section_map">
+
+        <ListPreference
+            android:key="@string/pref_key_map_source"
+            android:title="@string/pref_map_source_title"
+            android:entries="@array/map_source_entries"
+            android:entryValues="@array/map_source_values"
+            android:defaultValue="osm" />
+
+        <SeekBarPreference
+            android:key="@string/pref_key_map_default_zoom"
+            android:title="@string/pref_default_zoom"
+            android:defaultValue="12" />
+
+        </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_cat_language">
+        <ListPreference
+            android:key="pref_app_language"
+            android:title="@string/pref_language_title"
+            android:entries="@array/app_language_entries"
+            android:entryValues="@array/app_language_values"
+            android:defaultValue="auto"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+    <!-- GPX -->
+    <!-- === Tracks / Persistance & Always-show === -->
+    <PreferenceCategory
+        android:title="@string/settings_section_tracks">
+
+        <SwitchPreferenceCompat
+            android:key="@string/pref_key_persist_tracks"
+            android:title="@string/pref_persist_tracks_title"
+            android:summary="@string/pref_persist_tracks_summary"
+            android:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/pref_key_show_saved_tracks"
+            android:title="@string/pref_show_saved_tracks_title"
+            android:summary="@string/pref_show_saved_tracks_summary"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
