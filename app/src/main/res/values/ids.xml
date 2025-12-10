@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item type="id" name="action_nature_toggle"/>
-    <item type="id" name="action_nature_sources"/>
+    <item name="nav" type="id"/>
+    <item name="bottom_nav" type="id"/>
+    <item name="hud_coords" type="id"/>
+    <item name="hud_weather" type="id"/>
 </resources>

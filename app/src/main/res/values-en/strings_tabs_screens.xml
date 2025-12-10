@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titles used by placeholder screens -->
+    <string name="title_tracks">Tracks</string>
+    <string name="title_waypoints">Waypoints</string>
+    <string name="title_more">More</string>
+
+    <!-- Missing toasts for placeholder actions -->
+    <string name="toast_waypoints">Waypoints feature coming soon…</string>
+    <string name="toast_more">Utilities coming soon…</string>
+</resources>

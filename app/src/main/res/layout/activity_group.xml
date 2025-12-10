@@ -6,6 +6,7 @@
     android:orientation="vertical"
     tools:context=".group.GroupActivity">
 
+    <!-- Top bar: search + admin -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,64 +21,118 @@
             android:hint="Rechercher (id/nom)"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
-            android:background="@android:drawable/edit_text" />
+            android:background="@android:drawable/edit_text"
+            android:maxLines="1"/>
 
         <Button
             android:id="@+id/btnSearch"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="Chercher" />
+            android:text="Chercher"
+            android:maxLines="1"/>
 
         <Button
             android:id="@+id/btnGroupAdmin"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="Groupe" />
+            android:text="Groupe"
+            android:maxLines="1"/>
     </LinearLayout>
 
+    <!-- Map -->
     <org.osmdroid.views.MapView
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
+    <!-- Bottom button row -->
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:orientation="horizontal"
-        android:padding="6dp">
+        android:padding="6dp"
+        android:weightSum="5">
 
         <Button
             android:id="@+id/btnZoomAll"
-            android:layout_width="93dp"
-            android:layout_height="wrap_content"
-            android:text="Zoom all" />
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:minWidth="0dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:text="Zoom"
+            android:textSize="12sp"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:ellipsize="end" />
 
         <Button
             android:id="@+id/btnLabels"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Labels" />
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:minWidth="0dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:text="Labels"
+            android:textSize="12sp"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:ellipsize="end" />
 
         <Button
             android:id="@+id/btnCluster"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cluster" />
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:minWidth="0dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:text="Cluster"
+            android:textSize="12sp"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:ellipsize="end" />
 
         <Button
             android:id="@+id/btnSim"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sim ON" />
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:minWidth="0dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:text="Sim"
+            android:textSize="12sp"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <Button
+            android:id="@+id/btnP2P"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:minWidth="0dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:text="P2P
+Aide"
+            android:lines="2"
+            android:maxLines="2"
+            android:gravity="center"
+            android:textSize="11sp"
+            android:includeFontPadding="false"
+            android:ellipsize="end"
+            android:contentDescription="Découvrir en P2P (appui long: aide)"/>
     </LinearLayout>
 
+    <!-- Members list -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listMembers"
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:padding="4dp"
-        tools:listitem="@layout/item_group_member"/>
-
+        android:padding="4dp"/>
 </LinearLayout>

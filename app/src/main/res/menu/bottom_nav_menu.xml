@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:ns0="http://schemas.android.com/apk/res/android">
+    <item
+        ns0:id="@+id/menu_map"
+        ns0:icon="@android:drawable/ic_menu_compass"
+        ns0:title="Carte" />
+
+    <item
+        ns0:id="@+id/mbtiles"
+        ns0:icon="@android:drawable/ic_menu_mapmode"
+        ns0:title="Offline" />
+
+    <item
+        ns0:id="@+id/menu_group"
+        ns0:icon="@android:drawable/ic_menu_myplaces"
+        ns0:title="Groupe" />
+
+    <item
+        ns0:id="@+id/menu_help"
+        ns0:icon="@android:drawable/ic_menu_help"
+        ns0:title="Aide" />
+</menu>

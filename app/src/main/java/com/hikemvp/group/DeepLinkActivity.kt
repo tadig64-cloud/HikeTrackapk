@@ -4,43 +4,34 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.Toast
+import android.util.Log
 
 /**
- * Gère les liens d'invitation de groupe.
- * Formats acceptés :
- *  - https://hiketrack.app/join?code=ABC123
- *  - https://hiketrack.app/join/ABC123   (dernier segment)
- *
- * Le code est stocké dans GroupDeepLink.pendingCode, lu ensuite par GroupActivity.
- * Aucun changement d'UI ici.
+ * Route les liens d'invitation vers GroupActivity.
+ * Gère :
+ *   - https://hiketrack.app/join?code=XXXX
+ *   - hiketrack://join?code=XXXX
  */
 class DeepLinkActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Récupère l'URI du lien d'invitation
         val uri: Uri? = intent?.data
+        val code: String? = uri?.getQueryParameter("code")
 
-        // Extrait le code (priorité au paramètre ?code=, sinon dernier segment du chemin)
-        val code: String? = uri?.let { u: Uri ->
-            u.getQueryParameter("code") ?: u.lastPathSegment
-        }
-
+        // Stocke un éventuel code pour traitement côté GroupActivity
         if (!code.isNullOrBlank()) {
-            // Stocke le code pour que GroupActivity puisse l'utiliser
             GroupDeepLink.pendingCode = code
-            Toast.makeText(this, "Code détecté : " + code, Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(this, "Lien d'invitation invalide", Toast.LENGTH_SHORT).show()
         }
+        Log.d("GroupDeepLink", "uri=" + intent?.data + " code=" + code)
+        Log.d("GroupDeepLink", "forward GroupActivity code=" + code)
 
-        // Enchaîne sur l'écran groupe sans modifier l'UI existante
-        val intent = Intent(this, GroupActivity::class.java).addFlags(
-            Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-        )
-        startActivity(intent)
+        // Relance l'écran groupe (aucun changement d'UI ici)
+        startActivity(Intent(this, GroupActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            if (!code.isNullOrBlank()) putExtra("extra_join_code", code)
+        })
         finish()
     }
 }

@@ -1,36 +1,132 @@
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:ns0="http://schemas.android.com/apk/res/android" xmlns:ns1="http://schemas.android.com/apk/res-auto" ns0:id="@+id/root" ns0:layout_width="match_parent" ns0:layout_height="match_parent">
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.MaterialToolbar ns0:id="@+id/toolbar" ns0:layout_width="match_parent" ns0:layout_height="?attr/actionBarSize" ns0:background="@color/topbar_idle_bg" ns1:titleTextColor="@color/topbar_idle_icon" ns1:navigationIconTint="@color/topbar_idle_icon" />
+    <!-- Toolbar en haut, inchangée -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title=""
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:popupTheme="@style/ThemeOverlay.Material3.MaterialAlertDialog" />
 
-    <FrameLayout ns0:id="@+id/map_container" ns0:layout_width="match_parent" ns0:layout_height="match_parent" ns0:layout_marginTop="?attr/actionBarSize">
+    <!-- Conteneur principal sous la toolbar -->
+    <FrameLayout
+        android:id="@+id/map_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize">
 
-        <org.osmdroid.views.MapView ns0:id="@+id/map" ns0:layout_width="match_parent" ns0:layout_height="match_parent" ns0:clickable="true" />
+        <!-- Carte -->
+        <org.osmdroid.views.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true" />
 
-        <View ns0:id="@+id/hudWeatherContainer" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:layout_gravity="top|end" ns0:layout_margin="12dp" ns0:background="#332196F3" ns0:visibility="gone" />
+        <!-- HUD à droite (coords/alt + météo) -->
+        <LinearLayout
+            android:id="@+id/hud_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|top"
+            android:layout_margin="12dp"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:background="?attr/colorSurface"
+            android:elevation="4dp">
 
-        
-        <LinearLayout ns0:id="@+id/hud_box" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:layout_gravity="top|end" ns0:layout_margin="@dimen/hud_pad" ns0:layout_marginTop="@dimen/hud_top_margin" ns0:orientation="vertical" ns0:padding="@dimen/hud_pad" ns0:background="@drawable/bg_hud_round">
+            <TextView
+                android:id="@+id/tvCoordsAlt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="—"
+                android:paddingBottom="4dp"
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall" />
 
-            <TextView ns0:id="@+id/tvCoordsAlt" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/i18n_activity_map_text_lat_nlon_nalt_2" ns0:textSize="12sp" ns0:textColor="@android:color/white" />
-
-            <TextView ns0:id="@+id/tvWeather" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:layout_marginTop="4dp" ns0:text="@string/weather_loading" ns0:textSize="12sp" ns0:textColor="@android:color/white" />
+            <TextView
+                android:id="@+id/tvWeather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="—"
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall" />
         </LinearLayout>
 
-        
-        <com.google.android.material.card.MaterialCardView ns0:id="@+id/card_stats" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:layout_gravity="bottom" ns0:layout_margin="12dp" ns1:cardBackgroundColor="@android:color/white" ns1:cardElevation="2dp" ns1:strokeColor="@color/topbar_rec_icon" ns1:strokeWidth="1dp" ns0:layout_marginBottom="@dimen/hud_bottom_inset">
+        <!-- Carte des stats en bas -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_stats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_margin="12dp"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="16dp">
 
-            <LinearLayout ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:orientation="horizontal" ns0:padding="10dp" ns0:gravity="center_vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:gravity="center_vertical">
 
-                <TextView ns0:id="@+id/tvStatDist" ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:text="@string/stat_dist_placeholder" ns0:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingEnd="8dp">
 
-                <TextView ns0:id="@+id/tvStatGain" ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:text="@string/stat_gain_placeholder" />
+                    <TextView
+                        android:id="@+id/tvStatDist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="—"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
 
-                <TextView ns0:id="@+id/tvStatLoss" ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:text="@string/stat_loss_placeholder" />
+                    <TextView
+                        android:id="@+id/tvStatGain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="—"
+                        android:textAppearance="@style/TextAppearance.Material3.BodySmall" />
+                </LinearLayout>
 
-                <TextView ns0:id="@+id/tvStatSpeed" ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:text="@string/stat_speed_placeholder" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingEnd="8dp">
 
-                <TextView ns0:id="@+id/tvStatElapsed" ns0:layout_width="wrap_content" ns0:layout_height="wrap_content" ns0:text="@string/stat_elapsed_placeholder" />
+                    <TextView
+                        android:id="@+id/tvStatLoss"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="—"
+                        android:textAppearance="@style/TextAppearance.Material3.BodySmall" />
+
+                    <TextView
+                        android:id="@+id/tvStatSpeed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="—"
+                        android:textAppearance="@style/TextAppearance.Material3.BodySmall" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvStatElapsed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="—"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView></FrameLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

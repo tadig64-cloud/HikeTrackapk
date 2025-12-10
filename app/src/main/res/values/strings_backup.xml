@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- New strings for backups & confirmations (kept in a separate file to avoid duplicates) -->
-    <string name="pref_title_backups">Sauvegardes publiques</string>
-    <string name="pref_summary_backups">Copier automatiquement les données dans Documents/HikeTrack (survit à la désinstallation)</string>
-
+    <!-- Backup / suppression (locale par défaut) -->
     <string name="confirm_delete_title">Confirmer la suppression</string>
     <string name="confirm_delete_message">Voulez-vous vraiment supprimer cet élément ? Cette action est irréversible.</string>
 

@@ -1,6 +1,7 @@
 package com.hikemvp.group
 
 import android.app.Service
+import android.content.Context
 import android.content.Intent
 import android.os.Binder
 import android.os.Handler
@@ -31,6 +32,25 @@ class GroupService : Service() {
         // markers broadcast
         const val ACTION_GROUP_MARKERS = "com.hikemvp.group.ACTION_GROUP_MARKERS"
         const val EXTRA_MARKERS_JSON = "extra_markers_json"
+
+        // deep link join
+        const val EXTRA_JOIN_CODE = "extra_join_code"
+
+        /**
+         * Point d’entrée simple pour rejoindre un groupe depuis une Activity.
+         * Démarre le service en ACTION_START_JOIN avec le code en extra.
+         */
+        fun requestJoin(ctx: Context, code: String) {
+            val i = Intent(ctx, GroupService::class.java).apply {
+                action = ACTION_START_JOIN
+                putExtra(EXTRA_JOIN_CODE, code)
+            }
+            try {
+                ctx.startService(i)
+            } catch (t: Throwable) {
+                Log.w("GroupService", "Impossible de démarrer le service pour join", t)
+            }
+        }
     }
 
     private val binder = Binder()
@@ -40,9 +60,10 @@ class GroupService : Service() {
     private var advertising = false
     private var discovering = false
     private var members = mutableListOf<Member>()
+
     private var tickRunnable: Runnable? = null
 
-    // Identité locale pour imposer le #1 sans changer l'UI
+    // Identité locale -> on garantit le #1 sans toucher l’UI.
     private var localId: String = "self"
     private var localName: String = "Me"
 
@@ -64,7 +85,15 @@ class GroupService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         when (intent?.action) {
             ACTION_START_HOST -> startHost()
-            ACTION_START_JOIN -> startGuest()
+            ACTION_START_JOIN -> {
+                val code = intent.getStringExtra(EXTRA_JOIN_CODE)
+                startGuest()
+                if (!code.isNullOrBlank()) {
+                    // Ici tu brancheras la logique réseau réelle (BLE/HTTP/etc.)
+                    Log.d("GroupService", "Reçu code de join via deeplink: $code")
+                    sendState("Join demandé (code=$code)")
+                }
+            }
             ACTION_STOP -> stopAll()
             ACTION_PING -> sendState("Ping envoyé")
             ACTION_STATE -> sendState(null)
@@ -78,15 +107,12 @@ class GroupService : Service() {
         } catch (_: Throwable) {
             localId = "self"
         }
-        // Le nom n'est pas affiché par nous directement, on garde une valeur simple
         localName = "Moi"
     }
 
     private fun ensureSelfMember() {
-        // S'assure que le membre local existe et est en position 0
         val idx = members.indexOfFirst { it.id == localId }
         if (idx == -1) {
-            // Valeurs de départ neutres ; seront mises à jour par ailleurs
             members.add(
                 0,
                 Member(
@@ -147,14 +173,14 @@ class GroupService : Service() {
     }
 
     private fun synthesizeMembers() {
-        // Génère des membres factices pour visualisation (à remplacer par GPS/BLE)
+        // Démo: membres factices. À remplacer par tes sources (GPS, réseau…)
         if (members.isEmpty()) {
             ensureSelfMember()
             repeat(3) { idx ->
                 members.add(
                     Member(
                         id = "m$idx",
-                        name = "Membre ${idx + 2}", // commence après le #1 local
+                        name = "Membre ${idx + 2}",
                         lat = 43.6 + Random.nextDouble(-0.01, 0.01),
                         lon = 1.44 + Random.nextDouble(-0.01, 0.01),
                         color = listOf(0xFFE53935, 0xFF1E88E5, 0xFF43A047, 0xFFFDD835).random().toInt()
@@ -162,18 +188,15 @@ class GroupService : Service() {
                 )
             }
         } else {
-            // Petite dérive aléatoire
             members.forEach {
                 it.lat += Random.nextDouble(-0.0005, 0.0005)
                 it.lon += Random.nextDouble(-0.0005, 0.0005)
             }
         }
-        // Garantit que le local reste #1
         ensureSelfMember()
     }
 
     private fun broadcastMarkers() {
-        // Ordonne pour que le local soit toujours premier (index 0)
         val ordered = members.sortedWith(compareBy<Member> { it.id != localId }.thenBy { it.name })
         val arr = JSONArray()
         ordered.forEach { m ->

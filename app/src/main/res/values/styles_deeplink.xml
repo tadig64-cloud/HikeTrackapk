@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        Style utilisé par DeepLinkActivity pour être rapide/transparent.
+        Parent en AppCompat pour compatibilité large.
+        Si votre projet utilise Material3 et que le dependency est présent,
+        vous pouvez changer le parent en Theme.Material3.DayNight.NoActionBar.
+    -->
+    <style name="Theme.Transparent.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+    </style>
+</resources>

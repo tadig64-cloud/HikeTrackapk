@@ -1,5 +1,7 @@
 package com.hikemvp.group
 
+import com.hikemvp.group.GroupMemberName
+
 import android.app.AlertDialog
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
@@ -12,6 +14,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hikemvp.R
 
 class GroupAdminSheet : BottomSheetDialogFragment() {
+
+    private fun resolveLocalMemberName(): String {
+        val fallback = try { android.os.Build.MODEL ?: "Moi" } catch (_: Throwable) { "Moi" }
+        return GroupMemberName.localDisplayName(requireContext(), fallback)
+    }
 
     private val mapView get() = GroupBridge.mapView
 
@@ -55,6 +62,8 @@ class GroupAdminSheet : BottomSheetDialogFragment() {
                 val mv = mapView ?: return@askText
                 GroupRepo.createGroup(requireContext(), name, mv, fromOverlay = false)
                 updateStatus()
+                // --> centrage explicite sur moi après création
+                (requireActivity() as? com.hikemvp.group.GroupActivity)?.centerOnMe(16.0)
                 toast("Groupe créé")
             }
         }
@@ -63,6 +72,7 @@ class GroupAdminSheet : BottomSheetDialogFragment() {
                 val mv = mapView ?: return@askText
                 GroupRepo.createGroup(requireContext(), name, mv, fromOverlay = true)
                 updateStatus()
+                (requireActivity() as? com.hikemvp.group.GroupActivity)?.centerOnMe(16.0)
                 toast("Groupe créé depuis la carte")
             }
         }

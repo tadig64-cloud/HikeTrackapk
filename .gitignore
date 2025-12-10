@@ -1,0 +1,9 @@
+﻿.gradle/
+**/build/
+*.iml
+.idea/
+local.properties
+.DS_Store
+Thumbs.db
+app/src/main/_res_backup/
+build/

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_import"
+        android:title="@string/open" />
+    <item
+        android:id="@+id/menu_export"
+        android:title="@string/share" />
+    <item
+        android:id="@+id/mbtiles"
+        android:title="MBTiles" />
+    <item
+        android:id="@+id/menu_offline_maps"
+        android:title="@string/offline_title_downloading" />
+    <item
+        android:id="@+id/menu_help"
+        android:title="@string/help_placeholder" />
+</menu>

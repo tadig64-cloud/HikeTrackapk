@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_stats"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|start"
+    android:layout_margin="12dp"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvStatDist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dist —" />
+
+        <TextView
+            android:id="@+id/tvStatGain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="D+ —" />
+
+        <TextView
+            android:id="@+id/tvStatLoss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="D- —" />
+
+        <TextView
+            android:id="@+id/tvStatSpeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vitesse —" />
+
+        <TextView
+            android:id="@+id/tvStatElapsed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temps —" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

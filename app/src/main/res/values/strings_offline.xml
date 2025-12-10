@@ -1,21 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Dialog / statut téléchargement de tuiles -->
-    <string name="offline_title_starting">Préparation du téléchargement…</string>
-    <string name="offline_title_downloading">Téléchargement des tuiles…</string>
-    <string name="offline_title_working">Téléchargement des tuiles…</string>
-    <string name="offline_title_done">Téléchargement terminé</string>
-    <string name="offline_title_failed">Échec du téléchargement</string>
-    <string name="offline_title_error">Erreur de téléchargement</string>
+    <!-- IMPORTANT: ne pas définir no_tracks ici pour éviter les doublons -->
+    <string name="no_offline_maps">Aucune carte hors‑ligne disponible</string>
+
+    <string name="offline_title_starting">Préparation du téléchargement</string>
+    <string name="offline_title_downloading">Téléchargement en cours</string>
+    <string name="offline_title_working">Traitement en cours</string>
+    <string name="offline_title_error">Erreur</string>
+    <string name="offline_title_failed">Échec</string>
+    <string name="offline_title_done">Terminé</string>
 
     <string name="offline_msg_starting">Initialisation…</string>
-    <string name="offline_msg_progress">%1$d / %2$d tuiles</string>
-    <string name="offline_msg_done">Tuiles téléchargées : %1$d</string>
-    <string name="offline_msg_failed">Erreur : %1$s</string>
+    <string name="offline_msg_progress">Progression : %1$d%%</string>
+    <string name="offline_msg_failed">Le téléchargement a échoué.</string>
+    <string name="offline_msg_done">Cartes hors‑ligne prêtes.</string>
 
-    <string name="offline_tiles_progress">%1$d / %2$d tuiles</string>
-    <string name="offline_tiles_cancel">Annuler</string>
+    <string name="offline_tiles_progress">Téléchargement des tuiles…</string>
+    <string name="offline_tiles_cancel">Annuler le téléchargement</string>
 
-    <string name="offline_btn_cancel">Annuler</string>
+    <string name="pref_title_backups">Sauvegardes</string>
+    <string name="pref_summary_backups">Exporter les données de l’application</string>
+
     <string name="offline_btn_close">Fermer</string>
+    <string name="offline_btn_cancel">Annuler</string>
 </resources>

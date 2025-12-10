@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Placeholders & toasts for tabs-related screens (FR) -->
+    <string name="placeholder_more">Fonctions utiles à venir…</string>
+    <string name="placeholder_tracks">Aucune trace pour le moment.</string>
+    <string name="placeholder_waypoints">Aucun waypoint pour le moment.</string>
+    <string name="toast_tracks">Ouverture de la liste des traces…</string>
+</resources>

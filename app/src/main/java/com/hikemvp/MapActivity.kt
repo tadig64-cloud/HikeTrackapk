@@ -1,4 +1,6 @@
 package com.hikemvp
+import android.view.MenuItem
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.hikemvp.group.GroupBridge
 import com.hikemvp.utils.OsmdroidStorage
 import com.hikemvp.group.GroupPrefs
@@ -7,6 +9,7 @@ import com.hikemvp.profile.ProfilePrefs
 import android.content.SharedPreferences
 import android.util.Log
 import android.widget.ArrayAdapter
+import com.hikemvp.R
 
 
 import android.widget.FrameLayout
@@ -103,11 +106,45 @@ import android.graphics.Shader
 import android.provider.Settings
 import org.osmdroid.views.overlay.Polygon
 import com.hikemvp.group.GroupMember
+import com.hikemvp.ui.MapUiWiring
+import com.hikemvp.ui.wire
 
 import com.hikemvp.group.GroupNearbyService
 
 class MapActivity : AppCompatActivity() {
     // A7.2: Nearby group → UI updates
+
+    private var receiversRegistered = false
+
+    // --- Dynamic receivers registration (Android 13+ flags) ---
+    private fun registerGroupReceivers() {
+        if (receiversRegistered) return
+        val fConn  = android.content.IntentFilter("com.hikemvp.group.CONNECTED")
+        val fPos   = android.content.IntentFilter("com.hikemvp.group.POSITION")
+        val fMarks = android.content.IntentFilter("com.hikemvp.group.ACTION_GROUP_MARKERS")
+        if (android.os.Build.VERSION.SDK_INT >= 33) {
+            registerReceiver(groupConnectedReceiver, fConn, android.content.Context.RECEIVER_NOT_EXPORTED)
+            registerReceiver(groupPosReceiver,       fPos,  android.content.Context.RECEIVER_NOT_EXPORTED)
+            registerReceiver(groupMarkersReceiver,   fMarks,android.content.Context.RECEIVER_NOT_EXPORTED)
+        } else {
+            @Suppress("DEPRECATION")
+            run {
+                registerReceiver(groupConnectedReceiver, fConn)
+                registerReceiver(groupPosReceiver,       fPos)
+                registerReceiver(groupMarkersReceiver,   fMarks)
+            }
+        }
+        receiversRegistered = true
+    }
+
+    private fun unregisterGroupReceivers() {
+        if (!receiversRegistered) return
+        runCatching { unregisterReceiver(groupConnectedReceiver) }
+        runCatching { unregisterReceiver(groupPosReceiver) }
+        runCatching { unregisterReceiver(groupMarkersReceiver) }
+        receiversRegistered = false
+    }
+
     private val groupConnectedReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: android.content.Context?, intent: android.content.Intent?) {
             if (intent?.action == "com.hikemvp.group.CONNECTED") {
@@ -1273,7 +1310,7 @@ hudPseudoView?.let { view ->
         Toast.makeText(this, "Zones protégées : ${protectedAreaOverlays.size}", Toast.LENGTH_SHORT).show()
 
         val assetNames = assets.list("")?.toList().orEmpty()
-            names.filter { it in assetNames }.forEach { n ->
+names.filter { it in assetNames }.forEach { n ->
                 runCatching {
                     val json = assets.open(n).bufferedReader(Charsets.UTF_8).use { it.readText() }
                     val polys = parseGeoJsonPolygons(json)
@@ -1436,34 +1473,42 @@ hudPseudoView?.let { view ->
 
 
     // --- Helpers pour estimer Durée / Mouvement / Vitesse moyenne (pour la bottom sheet) ---
-    private fun parseGpxTimes(file: java.io.File): List<Long> {
-        return try {
-            val times = mutableListOf<Long>()
-            file.inputStream().bufferedReader(Charsets.UTF_8).useLines { seq ->
-                val re = Regex("<time>([^<]+)</time>")
-                seq.forEach { line ->
-                    val m = re.find(line)
-                    if (m != null) {
-                        val iso = m.groupValues[1].trim()
-                        // Parsing ISO 8601 with or without Z; fallback to instant
-                        val t = runCatching {
-                            java.time.Instant.parse(iso).toEpochMilli()
-                        }.getOrElse {
-                            // Some GPX may use local time without Z; try offsetDateTime
-                            runCatching {
-                                java.time.OffsetDateTime.parse(iso).toInstant().toEpochMilli()
-                            }
-                                .getOrElse { 0L }
-                        }
-                        if (t > 0L) times += t
-                    }
-                }
-            }
-            times
-        } catch (_: Throwable) {
-            emptyList()
-        }
+    // Helper ISO8601 compatible avec API 24+ (évite java.time)
+private fun parseIso8601Millis(iso: String): Long {
+    val patterns = arrayOf(
+        "yyyy-MM-dd'T'HH:mm:ss.SSSX",
+        "yyyy-MM-dd'T'HH:mm:ssX"
+    )
+    for (p in patterns) {
+        try {
+            val sdf = java.text.SimpleDateFormat(p, java.util.Locale.US)
+            sdf.timeZone = java.util.TimeZone.getTimeZone("UTC")
+            val d = sdf.parse(iso)
+            if (d != null) return d.time
+        } catch (_: Throwable) { /* continue */ }
     }
+    return 0L
+}
+
+private fun parseGpxTimes(file: java.io.File): List<Long> {
+    return try {
+        val times = mutableListOf<Long>()
+        file.inputStream().bufferedReader(Charsets.UTF_8).useLines { seq ->
+            val re = Regex("<time>([^<]+)</time>")
+            seq.forEach { line ->
+                val m = re.find(line) ?: return@forEach
+                val iso = m.groupValues[1].trim()
+                val t = parseIso8601Millis(iso)
+                if (t > 0L) times += t
+            }
+        }
+        times
+    } catch (_: Throwable) {
+        emptyList()
+    }
+}
+
+
     // --- Affichage des zones protégées (toggle menu) ---
 
     private data class TimeStats(val totalMs: Long, val movingMs: Long, val avgKmh: Double)
@@ -1853,7 +1898,8 @@ hudPseudoView?.let { view ->
     // ===== Lifecycle =====
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                setContentView(R.layout.activity_map)
+requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         Configuration.getInstance().userAgentValue = packageName
         try {val base = File(getExternalFilesDir(null), "osmdroid")
@@ -1868,7 +1914,8 @@ hudPseudoView?.let { view ->
 }
 
         setContentView(R.layout.activity_map)
-        map = findViewById(R.id.map)
+        MapUiWiring.wire(this)
+        map = findViewById(R.id.mapView)
         com.hikemvp.GroupGlobals.mapView = map
         if (com.hikemvp.group.GroupBridge.overlay == null) {
             com.hikemvp.group.GroupBridge.overlay = com.hikemvp.group.GroupOverlay()
@@ -1893,9 +1940,14 @@ hudPseudoView?.let { view ->
         groupOverlay = com.hikemvp.group.GroupOverlay(this)
         map.overlays.add(groupOverlay)
         map.invalidate()
-        toolbar = findViewById(R.id.toolbar)
-        tvCoordsAlt = findViewById(R.id.tvCoordsAlt)
-        tvWeather = findViewById(R.id.tvWeather)
+        val ui = MapUiWiring.wire(this)
+
+        toolbar = ui.toolbar                   // MaterialToolbar
+        tvCoordsAlt = ui.tvCoordsAlt           // TextView -> R.id.tvCoordsAlt
+        tvWeather = ui.tvWeather               // TextView -> R.id.tvWeather
+
+        bottomNav = ui.bottomNav               // BottomNavigationView? (si présent via layout)
+
         WaypointAutoRestore.restoreIfEmpty(this)
 
         findViewById<View>(R.id.hud_box).setOnClickListener {
@@ -1940,9 +1992,9 @@ hudPseudoView?.let { view ->
         naturePois.addAll(loadNaturePois())
         setNatureMarkersVisible(false)
 
-        addGpxFab()
+        // addGpxFab() // removed
         addPlannerHud()
-        addWaypointsFab()
+        // addWaypointsFab() // removed
 
         if (!hasLocationPerm()) requestLocationPerm()
 
@@ -1997,107 +2049,25 @@ runCatching {
 }
 
     override fun onStart() {
-        if (Build.VERSION.SDK_INT >= 33) {
-            registerReceiver(groupConnectedReceiver, IntentFilter("com.hikemvp.group.CONNECTED"), Context.RECEIVER_NOT_EXPORTED)
-        
-        // Réception de la liste des membres / marqueurs du groupe
-        if (Build.VERSION.SDK_INT >= 33) {
-            registerReceiver(
-                groupMarkersReceiver,
-                IntentFilter("com.hikemvp.group.ACTION_GROUP_MARKERS"),
-                Context.RECEIVER_NOT_EXPORTED
-            )
-        } else {
-            @Suppress("DEPRECATION")
-            registerReceiver(
-                groupMarkersReceiver,
-                IntentFilter("com.hikemvp.group.ACTION_GROUP_MARKERS")
-            )
-        }
-} else {
-            @Suppress("DEPRECATION")
-            registerReceiver(groupConnectedReceiver, IntentFilter("com.hikemvp.group.CONNECTED"))
-        }
-        if (Build.VERSION.SDK_INT >= 33) {
-            registerReceiver(groupPosReceiver, IntentFilter("com.hikemvp.group.POSITION"), Context.RECEIVER_NOT_EXPORTED)
-        } else {
-            @Suppress("DEPRECATION")
-            registerReceiver(groupPosReceiver, IntentFilter("com.hikemvp.group.POSITION"))
-        }
-        runCatching {
-            val f = IntentFilter("com.hikemvp.group.ACTION_GROUP_MARKERS")
-            if (android.os.Build.VERSION.SDK_INT >= 33) {
-                registerReceiver(groupMarkersReceiver, f, Context.RECEIVER_NOT_EXPORTED)
-            } else {
-                @Suppress("DEPRECATION")
-                registerReceiver(groupMarkersReceiver, f)
-            }
-        }
-        // Réception des marqueurs (liste des membres / positions)
-        if (Build.VERSION.SDK_INT >= 33) {
-            registerReceiver(
-                groupMarkersReceiver,
-                IntentFilter("com.hikemvp.group.ACTION_GROUP_MARKERS"),
-                Context.RECEIVER_NOT_EXPORTED
-            )
-        } else {
-            @Suppress("DEPRECATION")
-            registerReceiver(
-                groupMarkersReceiver,
-                IntentFilter("com.hikemvp.group.ACTION_GROUP_MARKERS")
-            )
-        }
-
-
         super.onStart()
-        val trackFilter = IntentFilter().apply {
-            addAction(Constants.BROADCAST_TRACK_POINT)
-            addAction(Constants.BROADCAST_TRACK_RESET)
-        }
-        ContextCompat.registerReceiver(
-            this,
-            pointReceiver,
-            trackFilter,
-            ContextCompat.RECEIVER_NOT_EXPORTED
-        )
-        ContextCompat.registerReceiver(
-            this,
-            statusReceiver,
-            IntentFilter(Constants.ACTION_RECORDING_STATUS),
-            ContextCompat.RECEIVER_NOT_EXPORTED
-        )
-    
-        // Register group positions receiver
-        run {
-            val filter = IntentFilter("com.hikemvp.group.POS")
-            if (Build.VERSION.SDK_INT >= 33) {
-                registerReceiver(groupPosReceiver, filter, Context.RECEIVER_NOT_EXPORTED)
-            } else {
-                @Suppress("DEPRECATION")
-                if (Build.VERSION.SDK_INT >= 33) {
-            registerReceiver(groupPosReceiver, filter, Context.RECEIVER_NOT_EXPORTED)
-        }
-            }
-        }
+        registerGroupReceivers()
 }
 
     override fun onStop() {
-        runCatching { unregisterReceiver(groupConnectedReceiver)
-        runCatching { unregisterReceiver(groupMarkersReceiver) }
-    }
-        runCatching { unregisterReceiver(groupPosReceiver) }
-        runCatching { unregisterReceiver(groupMarkersReceiver) }
-
+        if (receiversRegistered) {
+            runCatching { unregisterReceiver(groupConnectedReceiver) }
+            runCatching { unregisterReceiver(groupPosReceiver) }
+            runCatching { unregisterReceiver(groupMarkersReceiver) }
+            receiversRegistered = false
+        }
         super.onStop()
-        runCatching { unregisterReceiver(pointReceiver) }
-        runCatching { unregisterReceiver(statusReceiver) }
-        runCatching { unregisterReceiver(groupPosReceiver) }
-        stopGroupTicker()
-        stopElapsedTicker(); stopNatureTicker(); stopOffTrailTicker() }
+}
 
     override fun onResume() {
         super.onResume()
-        map.onResume()
+        
+        refreshProfileSubtitle()
+map.onResume()
         applyUserPrefs()
         updateToolbarTheme()
         updateStatsVisibility()
@@ -2577,7 +2547,6 @@ runCatching {
                 .show()
         }
     }
-
     private fun addWaypointsFab() {
         if (waypointFab != null) return
         waypointFab = FloatingActionButton(this).apply {
@@ -3393,7 +3362,6 @@ runCatching {
         }
         toolbar.overflowIcon?.mutate()?.setTint(color)
     }
-
     private fun addGpxFab() {
         if (gpxFab != null) return
         gpxFab = ExtendedFloatingActionButton(this).apply {
@@ -4883,4 +4851,82 @@ Dénivelé du plan
 // [removed duplicate onPause]
 
     
+
+    private var bottomNav: BottomNavigationView? = null
+
+    private fun setupBottomNav() {
+        try {
+            if (bottomNav != null) return
+            val nav = BottomNavigationView(this).apply {
+                id = View.generateViewId()
+                menu.add(0, 1, 0, getString(R.string.tab_map)).setIcon(android.R.drawable.ic_menu_mapmode)
+                menu.add(0, 2, 1, getString(R.string.tab_group)).setIcon(android.R.drawable.ic_menu_share)
+                menu.add(0, 3, 2, getString(R.string.tab_tracks)).setIcon(android.R.drawable.ic_menu_myplaces)
+                menu.add(0, 4, 3, getString(R.string.tab_waypoints)).setIcon(android.R.drawable.ic_menu_mylocation)
+                menu.add(0, 5, 4, getString(R.string.tab_more)).setIcon(android.R.drawable.ic_menu_more)
+                labelVisibilityMode = com.google.android.material.navigation.NavigationBarView.LABEL_VISIBILITY_LABELED
+                setOnItemSelectedListener { item ->
+                    when (item.itemId) {
+                        1 -> { true }
+                        2 -> { try { startActivity(android.content.Intent(this@MapActivity, com.hikemvp.group.GroupActivity::class.java)) } catch (_: Throwable) {} ; true }
+                        3 -> { try { openTracksList() } catch (_: Throwable) { Toast.makeText(this@MapActivity, "Traces indisponible", Toast.LENGTH_SHORT).show() } ; true }
+                        4 -> { try { showWaypointsManager() } catch (_: Throwable) { Toast.makeText(this@MapActivity, "Waypoints indisponible", Toast.LENGTH_SHORT).show() } ; true }
+                        5 -> { showMorePopup(this@apply) ; true }
+                        else -> false
+                    }
+                }
+            }
+            val lp = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT).apply {
+                gravity = Gravity.BOTTOM
+            }
+            addContentView(nav, lp)
+            bottomNav = nav
+        } catch (_: Throwable) {}
+    }
+
+    private fun showMorePopup(anchor: View) {
+        val items = arrayOf(
+            getString(R.string.menu_import),
+            getString(R.string.menu_export),
+            getString(R.string.menu_offline_maps),
+            getString(R.string.menu_settings),
+            getString(R.string.menu_help)
+        )
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.more_title))
+            .setItems(items) { _, which ->
+                when(which) {
+                    0 -> try { com.hikemvp.io.ImportExportController(this).startImportChooser() } catch (_: Throwable) {}
+                    1 -> try { com.hikemvp.io.ImportExportController(this).startExportChooser() } catch (_: Throwable) {}
+                    2 -> try { com.hikemvp.mbtiles(this) } catch (_: Throwable) {}
+                    3 -> try { openSettings() } catch (_: Throwable) {}
+                    4 -> try { openHelp() } catch (_: Throwable) {}
+                }
+            }
+            .show()
+    }
+
+    private fun openTracksList() {
+        android.widget.Toast.makeText(this, getString(R.string.tracks_open_placeholder), android.widget.Toast.LENGTH_SHORT).show()
+    }
+
+    private fun openSettings() {
+        try {
+            val intent = android.content.Intent(android.provider.Settings.ACTION_SETTINGS)
+            startActivity(intent)
+        } catch (_: Throwable) {
+            Toast.makeText(this, "Réglages indisponibles", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun openHelp() {
+        Toast.makeText(this, getString(R.string.help_placeholder), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun tryHideLegacyFabs() {
+        try { waypointFab?.visibility = android.view.View.GONE } catch (_: Throwable) {}
+        try { gpxFab?.visibility = android.view.View.GONE } catch (_: Throwable) {}
+    }
+
 }
+

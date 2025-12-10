@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Réglages — Module Groupe"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/swLabelsDefault"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Labels affichés au démarrage" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/swAutoZoomTap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Auto-centrer la carte quand je tape un membre" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/swClusterDefault"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cluster activé au démarrage" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/swSimDefault"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Simulation activée au démarrage" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Taille des pastilles (dp)"
+            android:paddingTop="12dp"
+            android:paddingBottom="4dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <SeekBar
+                android:id="@+id/seekDotSize"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:min="12"
+                android:max="40"
+                android:progress="24" />
+
+            <TextView
+                android:id="@+id/tvDotSizeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="24dp"
+                android:paddingStart="12dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Aide rapide :&#10;• Zoom : Ajuste la carte pour voir tous les membres.&#10;• Labels : Affiche/Masque les libellés des membres (si supporté par l’overlay).&#10;• Cluster : Regroupe les membres proches (si supporté).&#10;• Sim : Active/désactive la simulation locale des positions.&#10;• P2P : Découvre les appareils Wi-Fi Direct à proximité (appui court). Long-press sur P2P = cette aide.&#10;&#10;Astuce : appuie sur un membre dans la liste pour centrer la carte sur lui."
+            android:textSize="15sp"
+            android:lineSpacingExtra="2dp"
+            android:paddingTop="12dp" />
+
+    
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Maintenance"
+            android:textStyle="bold"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnResetMembers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Réinitialiser la liste" />
+
+            <Button
+                android:id="@+id/btnResetColors"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Réinitialiser couleurs"
+                android:layout_marginStart="12dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
+

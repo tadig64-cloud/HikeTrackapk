@@ -26,7 +26,11 @@ object TrackShare {
      * @param trackName nom facultatif de la trace (affiché dans le gpx).
      */
     @JvmStatic
-    fun exportGpx(context: Context, points: List<Location>, trackName: String? = null): android.net.Uri {
+    fun exportGpx(
+        context: Context,
+        points: List<Location>,
+        trackName: String? = null
+    ): android.net.Uri {
         val exportsDir = File(context.cacheDir, "exports").apply { mkdirs() }
         val file = File(exportsDir, "track_${System.currentTimeMillis()}.gpx")
 
@@ -50,14 +54,22 @@ object TrackShare {
                 out.appendLine("</gpx>")
             }
         }
-        return FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", file)
+        return FileProvider.getUriForFile(
+            context,
+            "${context.packageName}.fileprovider",
+            file
+        )
     }
 
     /**
      * Prépare un Intent chooser pour partager le GPX. À lancer via startActivity(intent).
      */
     @JvmStatic
-    fun buildShareGpxIntent(context: Context, gpxUri: android.net.Uri, title: String? = null): Intent {
+    fun buildShareGpxIntent(
+        context: Context,
+        gpxUri: android.net.Uri,
+        title: String? = null
+    ): Intent {
         val send = Intent(Intent.ACTION_SEND).apply {
             type = "application/gpx+xml"
             putExtra(Intent.EXTRA_STREAM, gpxUri)
@@ -71,8 +83,6 @@ object TrackShare {
         s.replace("&", "&amp;")
             .replace("<", "&lt;")
             .replace(">", "&gt;")
-            .replace(""", "&quot;")
+            .replace("\"", "&quot;")
             .replace("'", "&apos;")
-        }
-    }        
 }
