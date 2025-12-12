@@ -235,15 +235,75 @@ class GroupNearbyService : Service(), LocationListener {
     }
 
     private fun requestLocation() {
+        // Gestion plus robuste de la localisation pour le groupe :
+        // - GPS pour l'extérieur
+        // - NETWORK pour l'intérieur / zones difficiles
+        // - seed initiale avec le meilleur lastKnownLocation si dispo
         locMan = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
+        // 1) GPS brut
         try {
-            locMan?.requestLocationUpdates(LocationManager.GPS_PROVIDER, minTimeMs, minDistM, this)
+            locMan?.requestLocationUpdates(
+                LocationManager.GPS_PROVIDER,
+                minTimeMs,
+                minDistM,
+                this
+            )
         } catch (_: SecurityException) {
+        }
+
+        // 2) Provider réseau (Wi-Fi / cellulaire) - généralement plus fiable en intérieur
+        try {
+            locMan?.requestLocationUpdates(
+                LocationManager.NETWORK_PROVIDER,
+                minTimeMs,
+                minDistM,
+                this
+            )
+        } catch (_: SecurityException) {
+        }
+
+        // 3) Seed initiale : on pousse tout de suite la meilleure position connue,
+        // mais uniquement si elle est *récente* (sinon on risque un vieux fix à plusieurs km)
+        try {
+            val lm = locMan ?: return
+            val providers = lm.getProviders(true)
+            var best: Location? = null
+            for (p in providers) {
+                val l = try {
+                    lm.getLastKnownLocation(p)
+                } catch (_: SecurityException) {
+                    null
+                }
+                if (l != null && (best == null || l.time > best!!.time)) {
+                    best = l
+                }
+            }
+            if (best != null) {
+                val now = System.currentTimeMillis()
+                val maxAgeMs = 5 * 60 * 1000L // 5 minutes
+                if (now - best.time <= maxAgeMs) {
+                    onLocationChanged(best!!)
+                }
+            }
+        } catch (_: Exception) {
         }
     }
 
     override fun onLocationChanged(location: Location) {
         val now = System.currentTimeMillis()
+
+        // Filtre anti-fix pourri :
+        // - ignore les positions trop anciennes
+        // - ignore les précisions vraiment mauvaises (ex: > 500 m)
+        val maxAgeMs = 10 * 60 * 1000L // 10 minutes
+        if (kotlin.math.abs(now - location.time) > maxAgeMs) {
+            return
+        }
+        if (location.hasAccuracy() && location.accuracy > 500f) {
+            return
+        }
+
         val acc = if (location.hasAccuracy()) location.accuracy else 0f
         lastSent = location
         val msg = com.hikemvp.group.GroupWire.Position(

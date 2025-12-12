@@ -1,7 +1,10 @@
 package com.hikemvp.group
 
 import android.Manifest
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -32,7 +35,10 @@ import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.Marker
 import java.io.File
+import java.util.Comparator
+import java.util.HashMap
 import java.util.LinkedHashMap
 
 class GroupActivity : AppCompatActivity() {
@@ -53,6 +59,7 @@ class GroupActivity : AppCompatActivity() {
     private var overlay: GroupOverlayApi? = null
     private var wifiBridge: GroupWifiBridge? = null
     private var wifiP2p: GroupWifiP2pHelper? = null
+
     private val REQ_P2P_PERMS = 10042
     private val REQ_LOC_PERMS = 10043
     private var pendingCreateGroupAtMyLoc = false
@@ -67,16 +74,21 @@ class GroupActivity : AppCompatActivity() {
     private var autoZoomTap = true
     private var dotSizeDp = 24
 
-    // overlays
+    // overlays additionnels
     private var labelOverlay: MemberLabelsOverlay? = null
     private var gridCluster: GridClusterOverlay? = null
     private var highlight: MemberHighlightOverlay? = null
     private var selectedIdLocal: String? = null
+    private var selfCenteredOnce: Boolean = false
+    private var selfMarker: Marker? = null
 
     // mesh + sim
     private var mesh: GroupMesh? = null
     private var simHandler: Handler? = null
     private var simRunnable: Runnable? = null
+
+    // live position receiver
+    private var posReceiver: BroadcastReceiver? = null
 
     // --- Model for member list ---
     private data class UiMember(
@@ -92,7 +104,7 @@ class GroupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group)
 
-        // Bind views
+        // Views
         mapView = findViewById(R.id.map)
         listView = findViewById(R.id.listMembers)
         searchInput = findViewById(R.id.searchInput)
@@ -111,9 +123,10 @@ class GroupActivity : AppCompatActivity() {
             listView.translationZ = 12f
             (listView.parent as? ViewGroup)?.bringChildToFront(listView)
             listView.bringToFront()
-        } catch (_: Throwable) {}
+        } catch (_: Throwable) {
+        }
 
-        // Map
+        // Map de base + cache osmdroid
         Configuration.getInstance().userAgentValue = packageName
         mapView.setTileSource(TileSourceFactory.MAPNIK)
         mapView.setMultiTouchControls(true)
@@ -123,9 +136,10 @@ class GroupActivity : AppCompatActivity() {
             if (!tiles.exists()) tiles.mkdirs()
             Configuration.getInstance().osmdroidBasePath = base
             Configuration.getInstance().osmdroidTileCache = tiles
-        } catch (_: Throwable) {}
+        } catch (_: Throwable) {
+        }
 
-        // Overlay (reuse or default)
+        // Overlay (reuse ou défaut)
         val currentOverlay = GroupBridge.overlay ?: SimpleGroupOverlay()
         overlay = currentOverlay
         currentOverlay.attachTo(mapView)
@@ -135,8 +149,11 @@ class GroupActivity : AppCompatActivity() {
         // Persistance: reload si présent, sinon seed
         val persisted = GroupStore.load(this)
         if (persisted.isNotEmpty()) {
-            overlay?.setMembers(persisted, true) // Map<String,GeoPoint>
-            try { GroupActions.zoomAll() } catch (_: Throwable) {}
+            overlay?.setMembers(persisted, true)
+            try {
+                GroupActions.zoomAll()
+            } catch (_: Throwable) {
+            }
         } else if (overlay?.members?.isEmpty() != false) {
             val center = GeoPoint(43.6045, 1.4440) // Toulouse
             val list = GroupSeeder.seedAround(center, 10)
@@ -144,15 +161,20 @@ class GroupActivity : AppCompatActivity() {
             mapView.controller.setZoom(14.0)
             mapView.controller.setCenter(center)
         } else {
-            try { GroupActions.zoomAll() } catch (_: Throwable) {}
+            try {
+                GroupActions.zoomAll()
+            } catch (_: Throwable) {
+            }
         }
 
-        // Liste
+        // Liste membres
         listView.layoutManager = LinearLayoutManager(this)
         adapter = UiMemberAdapter(
             data = items,
+            myIdProvider = { myMemberId() },
             onClick = { member ->
                 if (autoZoomTap) focusOn(member.point)
+                // si l'impl concrète supporte setSelected
                 (overlay as? GroupOverlay)?.setSelected(member.id)
                 selectedIdLocal = member.id
                 ensureHighlightOverlay()
@@ -163,17 +185,21 @@ class GroupActivity : AppCompatActivity() {
         )
         listView.adapter = adapter
         refreshMembersFromOverlay()
-        loadPrefs() // applique les réglages et met à jour les textes des boutons
+        loadPrefs()
 
         // Boutons
         btnGroupAdmin.setOnClickListener {
             GroupAdminSheet().show(supportFragmentManager, "group_admin")
         }
-        // Long-press = Réglages/Aide
         btnGroupAdmin.setOnLongClickListener {
             startActivity(Intent(this, GroupSettingsActivity::class.java)); true
         }
-        btnZoomAll.setOnClickListener { try { GroupActions.zoomAll() } catch (_: Throwable) {} }
+        btnZoomAll.setOnClickListener {
+            try {
+                GroupActions.zoomAll()
+            } catch (_: Throwable) {
+            }
+        }
         btnLabels.setOnClickListener {
             labelsEnabled = !labelsEnabled
             loadPrefsTextsOnly()
@@ -187,16 +213,28 @@ class GroupActivity : AppCompatActivity() {
         btnSim.setOnClickListener {
             simEnabled = !simEnabled
             loadPrefsTextsOnly()
-            Toast.makeText(this, if (simEnabled) "Simulation activée" else "Simulation arrêtée", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                if (simEnabled) "Simulation activée" else "Simulation arrêtée",
+                Toast.LENGTH_SHORT
+            ).show()
             if (simEnabled) startSimTicker() else stopSimTicker()
             bringMembersListToFront()
         }
-        btnP2P.setOnClickListener { launchPeerDiscovery() }
-        btnP2P.setOnLongClickListener { showP2PMenu(); true }
+        btnP2P.setOnClickListener {
+            launchPeerDiscovery()
+        }
+        btnP2P.setOnLongClickListener {
+            showP2PMenu()
+            true
+        }
         btnSearch.setOnClickListener {
             val q = searchInput.text?.toString()?.trim().orEmpty()
-            if (q.isEmpty()) Toast.makeText(this, "Saisis un id/nom", Toast.LENGTH_SHORT).show()
-            else searchAndFocus(q)
+            if (q.isEmpty()) {
+                Toast.makeText(this, "Saisis un id/nom", Toast.LENGTH_SHORT).show()
+            } else {
+                searchAndFocus(q)
+            }
         }
 
         // Bridges
@@ -205,6 +243,27 @@ class GroupActivity : AppCompatActivity() {
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
         }
         wifiP2p = GroupWifiP2pHelper(this)
+
+        // Mesh
+        try {
+            mesh = GroupMesh.get(this)
+            mesh?.onPeerPos = { id, gp ->
+                runOnUiThread {
+                    Log.d("GroupActivity", "onPeerPos: $id @ ${gp.latitude},${gp.longitude}")
+                    updateOwnPosition(id, gp)
+                    if (id == myMemberId()) {
+                        ensureSelfMarkerAt(gp)
+                    }
+                }
+            }
+        } catch (_: Throwable) {
+        }
+
+        // Assurer mon membre à la dernière position connue
+        try {
+            ensureSelfMemberFromLocation(centerIfNew = true)
+        } catch (_: Throwable) {
+        }
 
         // Extra deeplink (legacy)
         intent?.getStringExtra("extra_join_code")?.let {
@@ -216,29 +275,45 @@ class GroupActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         wifiBridge?.start()
+        registerPositionReceiver()
     }
 
     override fun onStop() {
         super.onStop()
         wifiBridge?.stop()
         mesh?.stop()
+        posReceiver?.let {
+            try {
+                unregisterReceiver(it)
+            } catch (_: Exception) {
+            }
+        }
     }
 
     override fun onPause() {
         super.onPause()
-        try { GroupStore.save(this, overlay?.members) } catch (_: Throwable) {}
+        try {
+            GroupStore.save(this, overlay?.members)
+        } catch (_: Throwable) {
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        loadPrefs() // revenir de Réglages
+        loadPrefs()
+        ensureSelfMemberFromLocation(centerIfNew = true)
         try {
             GroupDeepLink.handleIfPresent { code ->
                 GroupJoin.joinByLinkCode(this, code) { ok ->
-                    Toast.makeText(this, if (ok) "Rejoint via lien: $code" else "Échec du lien: $code", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        if (ok) "Rejoint via lien: $code" else "Échec du lien: $code",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
-        } catch (_: Throwable) {}
+        } catch (_: Throwable) {
+        }
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -247,41 +322,52 @@ class GroupActivity : AppCompatActivity() {
         try {
             GroupDeepLink.handleIfPresent { code ->
                 GroupJoin.joinByLinkCode(this, code) { ok ->
-                    Toast.makeText(this, if (ok) "Rejoint via lien: $code" else "Échec du lien: $code", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        if (ok) "Rejoint via lien: $code" else "Échec du lien: $code",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
-        } catch (_: Throwable) {}
+        } catch (_: Throwable) {
+        }
     }
 
     // --- Helpers UI/données ---
 
     private fun myMemberId(): String {
         return try {
-            val pseudo = com.hikemvp.group.GroupMemberName.localDisplayName(this, "")
-            if (!pseudo.isNullOrBlank()) {
-                pseudo.trim()
+            // Aligné avec GroupNearbyService : il stocke son id dans "group_nearby"
+            val svcPrefs = getSharedPreferences("group_nearby", Context.MODE_PRIVATE)
+            val storedId = svcPrefs.getString("myId", null)
+            if (!storedId.isNullOrBlank()) {
+                storedId.trim()
             } else {
-                "Me-" + (android.os.Build.MODEL ?: "Android")
+                val pseudo = GroupMemberName.localDisplayName(this, "")
+                if (!pseudo.isNullOrBlank()) {
+                    pseudo.trim()
+                } else {
+                    "Me-" + (android.os.Build.MODEL ?: "Android")
+                }
             }
         } catch (_: Throwable) {
             "Me-" + (android.os.Build.MODEL ?: "Android")
         }
     }
 
-    // --- Center map on my current/last-known location ---
+    // Centre la mini-map sur ma position
     fun centerOnMe(minZoom: Double = 15.0) {
         val loc = lastKnownLocation() ?: run {
-            android.util.Log.w("Group", "No last known location to center")
+            Log.w("GroupActivity", "No last known location to center")
             return
         }
-        val gp = org.osmdroid.util.GeoPoint(loc.latitude, loc.longitude)
-        // utilise la MapView déjà bindée
+        val gp = GeoPoint(loc.latitude, loc.longitude)
         mapView.controller.animateTo(gp)
         val z = mapView.zoomLevelDouble
         if (z < minZoom) mapView.controller.setZoom(minZoom)
     }
 
-    private fun lastKnownLocation(): android.location.Location? {
+    private fun lastKnownLocation(): Location? {
         // 1) Si MyLocationNewOverlay présent, on utilise son lastFix
         try {
             val myOverlay = mapView.overlays.firstOrNull {
@@ -289,18 +375,90 @@ class GroupActivity : AppCompatActivity() {
             } as? org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
             val fix = myOverlay?.lastFix
             if (fix != null) return fix
-        } catch (_: Throwable) {}
+        } catch (_: Throwable) {
+        }
 
         // 2) Sinon on prend le meilleur lastKnownLocation Android
-        val lm = getSystemService(android.content.Context.LOCATION_SERVICE) as? android.location.LocationManager
-            ?: return null
-        val providers = try { lm.getProviders(true) } catch (_: Throwable) { emptyList<String>() }
-        var best: android.location.Location? = null
+        val lm = getSystemService(Context.LOCATION_SERVICE) as? LocationManager ?: return null
+        val providers = try {
+            lm.getProviders(true)
+        } catch (_: Throwable) {
+            emptyList<String>()
+        }
+        var best: Location? = null
         for (p in providers) {
-            val l = try { lm.getLastKnownLocation(p) } catch (_: SecurityException) { null } catch (_: Throwable) { null }
+            val l = try {
+                lm.getLastKnownLocation(p)
+            } catch (_: SecurityException) {
+                null
+            } catch (_: Throwable) {
+                null
+            }
             if (l != null && (best == null || l.accuracy < best!!.accuracy)) best = l
         }
         return best
+    }
+
+    private fun ensureSelfMarkerAt(gp: GeoPoint) {
+        try {
+            if (selfMarker == null) {
+                selfMarker = Marker(mapView).apply {
+                    setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
+                    title = "Moi"
+                }
+                mapView.overlays.add(selfMarker)
+            }
+            selfMarker?.position = gp
+            mapView.invalidate()
+        } catch (_: Throwable) {
+        }
+    }
+
+    private fun ensureSelfMemberFromLocation(centerIfNew: Boolean) {
+        val loc = lastKnownLocation() ?: return
+        val gp = GeoPoint(loc.latitude, loc.longitude)
+        val meId = myMemberId()
+        val already = overlay?.members?.containsKey(meId) == true
+        updateOwnPosition(meId, gp)
+        ensureSelfMarkerAt(gp)
+        if (centerIfNew && !already && !selfCenteredOnce) {
+            selfCenteredOnce = true
+            try {
+                mapView.controller.setZoom(16.0)
+                mapView.controller.setCenter(gp)
+            } catch (_: Throwable) {
+            }
+        }
+    }
+
+    private fun registerPositionReceiver() {
+        if (posReceiver == null) {
+            posReceiver = object : BroadcastReceiver() {
+                override fun onReceive(context: Context?, intent: Intent?) {
+                    intent ?: return
+                    if (intent.action != "com.hikemvp.group.POSITION") return
+                    val id = intent.getStringExtra("id") ?: return
+                    val lat = intent.getDoubleExtra("lat", Double.NaN)
+                    val lon = intent.getDoubleExtra("lon", Double.NaN)
+                    if (lat.isNaN() || lon.isNaN()) return
+                    val gp = GeoPoint(lat, lon)
+                    try {
+                        updateOwnPosition(id, gp)
+                        if (id == myMemberId()) {
+                            ensureSelfMarkerAt(gp)
+                        }
+                    } catch (_: Throwable) {
+                    }
+                }
+            }
+        }
+        val filter = IntentFilter("com.hikemvp.group.POSITION")
+        if (Build.VERSION.SDK_INT >= 33) {
+            registerReceiver(posReceiver, filter, Context.RECEIVER_NOT_EXPORTED)
+        } else {
+            @Suppress("DEPRECATION")
+            registerReceiver(posReceiver, filter)
+        }
     }
 
     private fun bringMembersListToFront() {
@@ -313,14 +471,15 @@ class GroupActivity : AppCompatActivity() {
             listView.bringToFront()
             listView.requestLayout()
             listView.invalidate()
-        } catch (_: Throwable) {}
+        } catch (_: Throwable) {
+        }
     }
 
     private fun refreshMembersFromOverlay() {
         val map: Map<String, GeoPoint> = overlay?.members ?: emptyMap()
         val meId = myMemberId()
         val entries = map.entries.toMutableList()
-        entries.sortWith(object : java.util.Comparator<Map.Entry<String, GeoPoint>> {
+        entries.sortWith(object : Comparator<Map.Entry<String, GeoPoint>> {
             override fun compare(a: Map.Entry<String, GeoPoint>, b: Map.Entry<String, GeoPoint>): Int {
                 val ra = if (a.key == meId) 0 else 1
                 val rb = if (b.key == meId) 0 else 1
@@ -330,6 +489,8 @@ class GroupActivity : AppCompatActivity() {
         val newList = entries.map { e -> UiMember(e.key, e.value, colorFromId(e.key)) }
         items.clear()
         items.addAll(newList)
+        adapter.dotSizePx =
+            (dotSizeDp * resources.displayMetrics.density).toInt().coerceAtLeast(8)
         adapter.notifyDataSetChanged()
         bringMembersListToFront()
         if (labelOverlay != null || gridCluster != null || highlight != null) mapView.invalidate()
@@ -342,12 +503,6 @@ class GroupActivity : AppCompatActivity() {
         autoZoomTap = prefs.getBoolean("auto_zoom_tap", true)
         dotSizeDp = prefs.getInt("dot_size_dp", 24)
         loadPrefsTextsOnly()
-
-        val scale = resources.displayMetrics.density
-        val px = (dotSizeDp * scale).toInt().coerceAtLeast(8)
-        adapter.dotSizePx = px
-        adapter.notifyDataSetChanged()
-
         ensureLabelsOverlay()
         setClusterIfSupported(clusterEnabled)
     }
@@ -357,7 +512,8 @@ class GroupActivity : AppCompatActivity() {
         btnCluster.text = if (clusterEnabled) "🧩  Cluster ON" else "🧩  Cluster"
         btnSim.text = if (simEnabled) "▶  Sim ON" else "▶  Sim OFF"
         btnZoomAll.text = "🔎  Zoom"
-        btnP2P.text = if (btnP2P.text?.contains("✓") == true) "📶  P2P ✓" else "📶  P2P"
+        btnP2P.text =
+            if (btnP2P.text?.contains("✓") == true) "📶  P2P ✓" else "📶  P2P"
         btnGroupAdmin.text = "👤  Groupe"
         btnSearch.text = "🔍"
     }
@@ -413,12 +569,15 @@ class GroupActivity : AppCompatActivity() {
         var handled = false
         if (o != null) {
             try {
-                val m = o.javaClass.methods.firstOrNull { it.name == "setClusterEnabled" && it.parameterTypes.size == 1 }
+                val m = o.javaClass.methods.firstOrNull {
+                    it.name == "setClusterEnabled" && it.parameterTypes.size == 1
+                }
                 if (m != null) {
                     m.invoke(o, enabled)
                     handled = true
                 }
-            } catch (_: Throwable) {}
+            } catch (_: Throwable) {
+            }
         }
         if (!handled) {
             if (enabled) ensureGridClusterOverlay() else removeGridClusterOverlay()
@@ -442,7 +601,8 @@ class GroupActivity : AppCompatActivity() {
         try {
             mapView.controller.setZoom(17.0)
             mapView.controller.animateTo(p)
-        } catch (_: Throwable) {}
+        } catch (_: Throwable) {
+        }
     }
 
     private fun colorFromId(id: String): Int {
@@ -457,10 +617,11 @@ class GroupActivity : AppCompatActivity() {
     }
 
     private fun updateOwnPosition(id: String, gp: GeoPoint) {
-        // 1) Overlay map update (favor in-place)
+        // 1) Overlay map update
         val cur = overlay?.members
-        if (cur is MutableMap<String, GeoPoint>) {
-            cur[id] = gp
+        if (cur is MutableMap<*, *>) {
+            @Suppress("UNCHECKED_CAST")
+            (cur as MutableMap<String, GeoPoint>)[id] = gp
             overlay?.setMembers(cur, true)
         } else {
             val newMap = HashMap<String, GeoPoint>(cur ?: emptyMap<String, GeoPoint>())
@@ -468,7 +629,7 @@ class GroupActivity : AppCompatActivity() {
             overlay?.setMembers(newMap, true)
         }
 
-        // 2) UI list update (single row if possible)
+        // 2) UI list update
         val idx = items.indexOfFirst { it.id == id }
         if (idx >= 0) {
             items[idx] = items[idx].copy(point = gp)
@@ -479,11 +640,10 @@ class GroupActivity : AppCompatActivity() {
             items.sortBy { it.id }
             adapter.notifyDataSetChanged()
         }
-        // 3) Assure z-order
         bringMembersListToFront()
     }
 
-    // --- P2P / Mesh ---
+    // --- P2P / Mesh / Wi-Fi Direct ---
 
     private fun showPeersDialog(list: WifiP2pDeviceList?) {
         val devices = list?.deviceList?.toList().orEmpty()
@@ -501,28 +661,35 @@ class GroupActivity : AppCompatActivity() {
             .setTitle("Appareils à proximité")
             .setItems(labels) { _, which ->
                 val chosen = devices[which]
-                Toast.makeText(this, "Connexion à ${chosen.deviceName}…", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "Connexion à ${chosen.deviceName}…",
+                    Toast.LENGTH_SHORT
+                ).show()
                 wifiP2p?.connectTo(chosen.deviceAddress ?: "") { ok, info: WifiP2pInfo? ->
                     if (ok) {
                         btnP2P.text = "📶  P2P ✓"
-                        // Démarrer le mesh
                         try {
                             val m = GroupMesh.get(this)
                             m.onPeerPos = { peerId, gp ->
                                 runOnUiThread {
-                                    val current: Map<String, GeoPoint> = overlay?.members ?: emptyMap()
+                                    val current: Map<String, GeoPoint> =
+                                        overlay?.members ?: emptyMap()
                                     val newMap = HashMap<String, GeoPoint>(current)
                                     newMap[peerId] = gp
                                     overlay?.setMembers(newMap, true)
-                                    // met à jour la liste pour une seule entrée
                                     updateOwnPosition(peerId, gp)
                                 }
                             }
                             m.start(info)
                             mesh = m
-                        } catch (_: Throwable) {}
-                        Toast.makeText(this, "Connecté à ${chosen.deviceName}", Toast.LENGTH_SHORT).show()
-                        Log.d("GroupP2P", "info=$info")
+                        } catch (_: Throwable) {
+                        }
+                        Toast.makeText(
+                            this,
+                            "Connecté à ${chosen.deviceName}",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     } else {
                         Toast.makeText(this, "Échec de connexion", Toast.LENGTH_SHORT).show()
                     }
@@ -577,11 +744,19 @@ class GroupActivity : AppCompatActivity() {
     private fun ensureP2pPermissions(): Boolean {
         val needed = mutableListOf<String>()
         if (Build.VERSION.SDK_INT >= 33) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.NEARBY_WIFI_DEVICES) != PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.NEARBY_WIFI_DEVICES
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
                 needed.add(Manifest.permission.NEARBY_WIFI_DEVICES)
             }
         } else {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
                 needed.add(Manifest.permission.ACCESS_FINE_LOCATION)
             }
         }
@@ -602,40 +777,49 @@ class GroupActivity : AppCompatActivity() {
     }
 
     fun createGroupAtMyLocation() {
-        // demandé depuis GroupAdminSheet
+        // appelé depuis GroupAdminSheet
         pendingCreateGroupAtMyLoc = false
         if (!ensureLocationPermission()) {
             pendingCreateGroupAtMyLoc = true
             return
         }
-        val lm = getSystemService(LOCATION_SERVICE) as LocationManager
-        var best: Location? = null
-        try {
-            val providers = listOf(LocationManager.GPS_PROVIDER, LocationManager.NETWORK_PROVIDER, LocationManager.PASSIVE_PROVIDER)
-            for (p in providers) {
-                val l = lm.getLastKnownLocation(p)
-                if (l != null && (best == null || l.time > best!!.time)) best = l
-            }
-        } catch (_: SecurityException) { }
+
+        val best = lastKnownLocation()
         if (best == null) {
             Toast.makeText(this, "Position indisponible (active la localisation)", Toast.LENGTH_SHORT).show()
             return
         }
+
         val meId = myMemberId()
-        val gp = GeoPoint(best!!.latitude, best!!.longitude)
+        val gp = GeoPoint(best.latitude, best.longitude)
         val roster = LinkedHashMap<String, GeoPoint>(1)
         roster[meId] = gp
         overlay?.setMembers(roster, true)
         mapView.controller.setZoom(17.0)
         mapView.controller.setCenter(gp)
+        selfCenteredOnce = true
         refreshMembersFromOverlay()
-        try { GroupStore.save(this, roster) } catch (_: Throwable) {}
+        ensureSelfMarkerAt(gp)
+        try {
+            GroupStore.save(this, roster)
+        } catch (_: Throwable) {
+        }
         Toast.makeText(this, "Groupe créé à ta position", Toast.LENGTH_SHORT).show()
+
+        // Retour automatique sur la carte principale avec le groupe actif
+        val intent = Intent(this, com.hikemvp.MapActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        }
+        startActivity(intent)
+        finish()
     }
 
     fun onResetRoster() {
         overlay?.setMembers(emptyMap<String, GeoPoint>(), true)
         refreshMembersFromOverlay()
+        selfMarker?.let { marker -> mapView.overlays.remove(marker) }
+        selfMarker = null
+        mapView.invalidate()
         Toast.makeText(this, "Liste réinitialisée", Toast.LENGTH_SHORT).show()
     }
 
@@ -658,11 +842,13 @@ class GroupActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQ_P2P_PERMS) {
-            val granted = grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }
+            val granted =
+                grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }
             if (granted) launchPeerDiscovery()
             else Toast.makeText(this, "Permission requise pour la découverte P2P", Toast.LENGTH_SHORT).show()
         } else if (requestCode == REQ_LOC_PERMS) {
-            val granted = grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED
+            val granted =
+                grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED
             if (granted && pendingCreateGroupAtMyLoc) {
                 createGroupAtMyLocation()
             } else if (!granted && pendingCreateGroupAtMyLoc) {
@@ -674,7 +860,11 @@ class GroupActivity : AppCompatActivity() {
 
     // --- Picker couleur ---
     private fun showColorPicker(memberId: String) {
-        val names = arrayOf("Rouge", "Orange", "Jaune", "Vert", "Bleu", "Violet", "Rose", "Gris", "Supprimer couleur perso")
+        val names = arrayOf(
+            "Rouge", "Orange", "Jaune", "Vert",
+            "Bleu", "Violet", "Rose", "Gris",
+            "Supprimer couleur perso"
+        )
         val values = intArrayOf(
             Color.parseColor("#E53935"),
             Color.parseColor("#FB8C00"),
@@ -716,7 +906,6 @@ class GroupActivity : AppCompatActivity() {
                 val lat = base.latitude + 0.0015 * Math.sin(rad)
                 val lon = base.longitude + 0.0015 * Math.cos(rad)
                 val gp = GeoPoint(lat, lon)
-                // update overlay + list sans tout reconstruire
                 updateOwnPosition(meId, gp)
                 mesh?.broadcastPosition(meId, gp)
                 mapView.postInvalidateOnAnimation()
@@ -729,14 +918,14 @@ class GroupActivity : AppCompatActivity() {
     }
 
     private fun stopSimTicker() {
-        // flag déjà mis à false dans le click
         simRunnable = null
         simHandler = null
     }
 
-    // --- Adapter (inner class) ---
+    // --- Adapter liste membres ---
     private class UiMemberAdapter(
         private val data: List<UiMember>,
+        private val myIdProvider: () -> String,
         private val onClick: (UiMember) -> Unit,
         private val onLongClick: (UiMember) -> Unit
     ) : RecyclerView.Adapter<UiMemberAdapter.Holder>() {
@@ -783,9 +972,13 @@ class GroupActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: Holder, position: Int) {
             val m = data[position]
-            holder.title.text = m.id
+            val meId = myIdProvider()
+            holder.title.text = if (m.id == meId) {
+                m.id + " (moi)"
+            } else {
+                m.id
+            }
 
-            // enforce dot size in case it changed
             val lp = holder.colorDot.layoutParams as LinearLayout.LayoutParams
             lp.width = dotSizePx
             lp.height = dotSizePx
@@ -798,7 +991,10 @@ class GroupActivity : AppCompatActivity() {
             holder.colorDot.background = dot
 
             holder.itemView.setOnClickListener { onClick(m) }
-            holder.itemView.setOnLongClickListener { onLongClick(m); true }
+            holder.itemView.setOnLongClickListener {
+                onLongClick(m)
+                true
+            }
         }
 
         override fun getItemCount(): Int = data.size
