@@ -55,6 +55,12 @@
         android:weightSum="5">
 
         <Button
+            android:id="@+id/btnRecordGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="● Rec groupe" />
+
+        <Button
             android:id="@+id/btnZoomAll"
             android:layout_width="0dp"
             android:layout_height="36dp"

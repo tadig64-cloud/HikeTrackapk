@@ -30,6 +30,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.hikemvp.Constants
+import com.hikemvp.TrackRecordingService
 import com.hikemvp.R
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
@@ -54,6 +56,7 @@ class GroupActivity : AppCompatActivity() {
     private lateinit var btnCluster: Button
     private lateinit var btnSim: Button
     private lateinit var btnP2P: Button
+    private lateinit var btnRecordGroup: Button
 
     // --- State / helpers ---
     private var overlay: GroupOverlayApi? = null
@@ -74,13 +77,17 @@ class GroupActivity : AppCompatActivity() {
     private var autoZoomTap = true
     private var dotSizeDp = 24
 
-    // overlays additionnels
+    // overlays
     private var labelOverlay: MemberLabelsOverlay? = null
     private var gridCluster: GridClusterOverlay? = null
     private var highlight: MemberHighlightOverlay? = null
     private var selectedIdLocal: String? = null
     private var selfCenteredOnce: Boolean = false
     private var selfMarker: Marker? = null
+
+    private var tracksOverlay: GroupTracksOverlay? = null
+    private var groupRecActive: Boolean = false
+    private var groupRecPaused: Boolean = false
 
     // mesh + sim
     private var mesh: GroupMesh? = null
@@ -115,6 +122,7 @@ class GroupActivity : AppCompatActivity() {
         btnCluster = findViewById(R.id.btnCluster)
         btnSim = findViewById(R.id.btnSim)
         btnP2P = findViewById(R.id.btnP2P)
+        btnRecordGroup = findViewById(R.id.btnRecordGroup)
 
         // Z-order: garde la liste devant la carte
         try {
@@ -146,6 +154,10 @@ class GroupActivity : AppCompatActivity() {
         GroupBridge.attach(mapView, currentOverlay)
         GroupActions.autoCenterOnTap(true, 17.0)
 
+        // Overlay de traces de groupe
+        tracksOverlay = GroupTracksOverlay(this)
+        mapView.overlays.add(tracksOverlay)
+
         // Persistance: reload si présent, sinon seed
         val persisted = GroupStore.load(this)
         if (persisted.isNotEmpty()) {
@@ -174,7 +186,6 @@ class GroupActivity : AppCompatActivity() {
             myIdProvider = { myMemberId() },
             onClick = { member ->
                 if (autoZoomTap) focusOn(member.point)
-                // si l'impl concrète supporte setSelected
                 (overlay as? GroupOverlay)?.setSelected(member.id)
                 selectedIdLocal = member.id
                 ensureHighlightOverlay()
@@ -221,11 +232,14 @@ class GroupActivity : AppCompatActivity() {
             if (simEnabled) startSimTicker() else stopSimTicker()
             bringMembersListToFront()
         }
-        btnP2P.setOnClickListener {
-            launchPeerDiscovery()
-        }
+        btnP2P.setOnClickListener { launchPeerDiscovery() }
         btnP2P.setOnLongClickListener {
             showP2PMenu()
+            true
+        }
+        btnRecordGroup.setOnClickListener { toggleRecordingState(false) }
+        btnRecordGroup.setOnLongClickListener {
+            toggleRecordingState(true)
             true
         }
         btnSearch.setOnClickListener {
@@ -337,7 +351,6 @@ class GroupActivity : AppCompatActivity() {
 
     private fun myMemberId(): String {
         return try {
-            // Aligné avec GroupNearbyService : il stocke son id dans "group_nearby"
             val svcPrefs = getSharedPreferences("group_nearby", Context.MODE_PRIVATE)
             val storedId = svcPrefs.getString("myId", null)
             if (!storedId.isNullOrBlank()) {
@@ -347,15 +360,14 @@ class GroupActivity : AppCompatActivity() {
                 if (!pseudo.isNullOrBlank()) {
                     pseudo.trim()
                 } else {
-                    "Me-" + (android.os.Build.MODEL ?: "Android")
+                    "Me-" + (Build.MODEL ?: "Android")
                 }
             }
         } catch (_: Throwable) {
-            "Me-" + (android.os.Build.MODEL ?: "Android")
+            "Me-" + (Build.MODEL ?: "Android")
         }
     }
 
-    // Centre la mini-map sur ma position
     fun centerOnMe(minZoom: Double = 15.0) {
         val loc = lastKnownLocation() ?: run {
             Log.w("GroupActivity", "No last known location to center")
@@ -368,35 +380,44 @@ class GroupActivity : AppCompatActivity() {
     }
 
     private fun lastKnownLocation(): Location? {
-        // 1) Si MyLocationNewOverlay présent, on utilise son lastFix
+        val lm = getSystemService(LOCATION_SERVICE) as? LocationManager ?: return null
+
+        fun isFresh(loc: Location): Boolean {
+            val maxAgeMs = 5 * 60 * 1000L
+            return System.currentTimeMillis() - loc.time <= maxAgeMs
+        }
+
         try {
-            val myOverlay = mapView.overlays.firstOrNull {
-                it is org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
-            } as? org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
-            val fix = myOverlay?.lastFix
-            if (fix != null) return fix
+            val gps = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+            if (gps != null && isFresh(gps)) {
+                Log.d("GroupActivity", "Using GPS lastKnown: ${gps.latitude}, ${gps.longitude}")
+                return gps
+            }
+        } catch (_: SecurityException) {
         } catch (_: Throwable) {
         }
 
-        // 2) Sinon on prend le meilleur lastKnownLocation Android
-        val lm = getSystemService(Context.LOCATION_SERVICE) as? LocationManager ?: return null
-        val providers = try {
-            lm.getProviders(true)
-        } catch (_: Throwable) {
-            emptyList<String>()
-        }
-        var best: Location? = null
-        for (p in providers) {
-            val l = try {
-                lm.getLastKnownLocation(p)
-            } catch (_: SecurityException) {
-                null
-            } catch (_: Throwable) {
-                null
+        try {
+            val net = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+            if (net != null && isFresh(net)) {
+                Log.d("GroupActivity", "Using NET lastKnown: ${net.latitude}, ${net.longitude}")
+                return net
             }
-            if (l != null && (best == null || l.accuracy < best!!.accuracy)) best = l
+        } catch (_: SecurityException) {
+        } catch (_: Throwable) {
         }
-        return best
+
+        try {
+            val passives = lm.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER)
+            if (passives != null && isFresh(passives)) {
+                Log.d("GroupActivity", "Using PASSIVE lastKnown: ${passives.latitude}, ${passives.longitude}")
+                return passives
+            }
+        } catch (_: SecurityException) {
+        } catch (_: Throwable) {
+        }
+
+        return null
     }
 
     private fun ensureSelfMarkerAt(gp: GeoPoint) {
@@ -452,12 +473,12 @@ class GroupActivity : AppCompatActivity() {
                 }
             }
         }
-        val filter = IntentFilter("com.hikemvp.group.POSITION")
+        val f = IntentFilter("com.hikemvp.group.POSITION")
         if (Build.VERSION.SDK_INT >= 33) {
-            registerReceiver(posReceiver, filter, Context.RECEIVER_NOT_EXPORTED)
+            registerReceiver(posReceiver, f, Context.RECEIVER_NOT_EXPORTED)
         } else {
             @Suppress("DEPRECATION")
-            registerReceiver(posReceiver, filter)
+            registerReceiver(posReceiver, f)
         }
     }
 
@@ -512,10 +533,75 @@ class GroupActivity : AppCompatActivity() {
         btnCluster.text = if (clusterEnabled) "🧩  Cluster ON" else "🧩  Cluster"
         btnSim.text = if (simEnabled) "▶  Sim ON" else "▶  Sim OFF"
         btnZoomAll.text = "🔎  Zoom"
-        btnP2P.text =
-            if (btnP2P.text?.contains("✓") == true) "📶  P2P ✓" else "📶  P2P"
+        btnP2P.text = if (btnP2P.text?.contains("✓") == true) "📶  P2P ✓" else "📶  P2P"
         btnGroupAdmin.text = "👤  Groupe"
         btnSearch.text = "🔍"
+        updateRecordButtonLabel()
+    }
+
+    private fun updateRecordButtonLabel() {
+        val label = when {
+            !groupRecActive -> "● Rec groupe"
+            groupRecActive && !groupRecPaused -> "⏸ Pause groupe"
+            else -> "■ Stop groupe"
+        }
+        btnRecordGroup.text = label
+    }
+
+    private fun sendTrackAction(action: String) {
+        val intent = Intent(this, TrackRecordingService::class.java).apply {
+            this.action = action
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ContextCompat.startForegroundService(this, intent)
+        } else {
+            startService(intent)
+        }
+    }
+
+    /**
+     * toggleRecordingState(false) => clic court (start/pause/reprise)
+     * toggleRecordingState(true)  => appui long (stop)
+     */
+    private fun toggleRecordingState(forceStop: Boolean) {
+        if (forceStop) {
+            // STOP (appui long)
+            sendTrackAction(Constants.ACTION_STOP_RECORD)
+            groupRecActive = false
+            groupRecPaused = false
+            Toast.makeText(this, "Trace de groupe stoppée", Toast.LENGTH_SHORT).show()
+            updateRecordButtonLabel()
+            try {
+                mapView.postInvalidateOnAnimation()
+            } catch (_: Throwable) {
+            }
+            return
+        }
+
+        // Clic court: start / pause / reprise
+        if (!groupRecActive) {
+            // Démarrage
+            sendTrackAction(Constants.ACTION_START_RECORD)
+            groupRecActive = true
+            groupRecPaused = false
+            Toast.makeText(this, "Enregistrement de la trace de groupe démarré", Toast.LENGTH_SHORT).show()
+        } else if (!groupRecPaused) {
+            // Pause
+            sendTrackAction(Constants.ACTION_PAUSE_RECORD)
+            groupRecPaused = true
+            Toast.makeText(this, "Trace de groupe en pause", Toast.LENGTH_SHORT).show()
+        } else {
+            // Reprise
+            sendTrackAction(Constants.ACTION_RESUME_RECORD)
+            groupRecPaused = false
+            Toast.makeText(this, "Enregistrement de la trace de groupe repris", Toast.LENGTH_SHORT).show()
+        }
+
+        updateRecordButtonLabel()
+        try {
+            mapView.postInvalidateOnAnimation()
+        } catch (_: Throwable) {
+        }
     }
 
     private fun ensureLabelsOverlay() {
@@ -617,19 +703,20 @@ class GroupActivity : AppCompatActivity() {
     }
 
     private fun updateOwnPosition(id: String, gp: GeoPoint) {
-        // 1) Overlay map update
+        // 1) Overlay map update (favor in-place)
         val cur = overlay?.members
         if (cur is MutableMap<*, *>) {
             @Suppress("UNCHECKED_CAST")
-            (cur as MutableMap<String, GeoPoint>)[id] = gp
-            overlay?.setMembers(cur, true)
+            val mutable = cur as MutableMap<String, GeoPoint>
+            mutable[id] = gp
+            overlay?.setMembers(mutable, true)
         } else {
             val newMap = HashMap<String, GeoPoint>(cur ?: emptyMap<String, GeoPoint>())
             newMap[id] = gp
             overlay?.setMembers(newMap, true)
         }
 
-        // 2) UI list update
+        // 2) UI list update (single row if possible)
         val idx = items.indexOfFirst { it.id == id }
         if (idx >= 0) {
             items[idx] = items[idx].copy(point = gp)
@@ -640,10 +727,23 @@ class GroupActivity : AppCompatActivity() {
             items.sortBy { it.id }
             adapter.notifyDataSetChanged()
         }
+
+        // 3) Si on enregistre la trace de groupe, on stocke le point
+        try {
+            if (groupRecActive && !groupRecPaused) {
+                GroupTrackStore.addPoint(id, gp)
+                tracksOverlay?.let {
+                    mapView.postInvalidateOnAnimation()
+                }
+            }
+        } catch (_: Throwable) {
+        }
+
+        // 4) Assure z-order
         bringMembersListToFront()
     }
 
-    // --- P2P / Mesh / Wi-Fi Direct ---
+    // --- P2P / Mesh ---
 
     private fun showPeersDialog(list: WifiP2pDeviceList?) {
         val devices = list?.deviceList?.toList().orEmpty()
@@ -777,7 +877,6 @@ class GroupActivity : AppCompatActivity() {
     }
 
     fun createGroupAtMyLocation() {
-        // appelé depuis GroupAdminSheet
         pendingCreateGroupAtMyLoc = false
         if (!ensureLocationPermission()) {
             pendingCreateGroupAtMyLoc = true
@@ -806,7 +905,6 @@ class GroupActivity : AppCompatActivity() {
         }
         Toast.makeText(this, "Groupe créé à ta position", Toast.LENGTH_SHORT).show()
 
-        // Retour automatique sur la carte principale avec le groupe actif
         val intent = Intent(this, com.hikemvp.MapActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
         }
