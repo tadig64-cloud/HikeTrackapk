@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Titres / onglets -->
+  <string name="aide_prevention_title">Help &amp; Prevention</string>
+  <string name="aide_tab_security">Security</string>
+  <string name="aide_tab_respect">Compliance</string>
+  <string name="aide_tab_checklist">Checklist</string>
+  <!-- Onglet 1 : Sécurité -->
+  <string name="aide_security_text">Safety tips in nature:_TOK0__
+• Notify a relative of your itinerary and an hour of return.
+• Checks the weather and any warnings.
+• Brings water, food, hot layer, emergency kit, survival blanket._TOK0__
+• Offline card / topo + charged phone (energy saving mode).\n
+• Keep the margin (day, weather, shape) and know how to turn around.
+• In season of hunting or fishing: remains visible (living colors) and follow local signs.
+.</string>
+  <!-- Onglet 2 : Respect -->
+  <string name="aide_respect_text">Respect for nature and others :_TOK0__
+• Stay on the trails, close fences, dogs kept on leash if necessary._TOK0__
+• Take all your waste (even biodegradable) and avoid fire in times of risk.
+• Be discreet near homes, herds and sensitive areas (nested, reserves).
+• Fishermen: learn about minimum periods, permits and sizes; respect banks and other users.\n
+• Mushroom pickers: identifies with certainty, cuts with a knife without tearing the mycelium, uses an airy basket and collects only the necessary.
+.</string>
+  <!-- Onglet 3 : Checklist -->
+  <string name="aide_checklist_text">Quick checklist before leaving :_TOK0__
+• Itinerary + off-line track OK? Weather checked? Close informed ?\n
+• Water (≥ 1.5 L), snacks, windbreak/polar, emergency kit, survival cover.
+• Headlight, phone charge, map / GPS; useful whistle._TOK0__
+• Depending on the season: sun/rain/cold protection, repellent.
+• On-site: regular rhythm, breaks, turn back if doubted.\n
+• Emergency: 112 (or SMS 114). Gives the place as precise as possible.
+.</string>
+  </resources>

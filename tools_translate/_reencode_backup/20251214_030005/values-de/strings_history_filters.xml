@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="history_sort">Wie..</string>
+  <string name="history_sort_title">Sortieren nach</string>
+  <string name="history_sort_date_desc">Datum (Anstieg → alt)</string>
+  <string name="history_sort_date_asc">Datum (früher → neu)</string>
+  <string name="history_sort_dist_desc">Distanz (▼)</string>
+  <string name="history_sort_dist_asc">Distanz (↑)</string>
+  <string name="history_sort_gain_desc">D+</string>
+  <string name="history_sort_gain_asc">D+↑</string>
+  <string name="history_filter_elev">Nur mit Höhe</string>
+  </resources>

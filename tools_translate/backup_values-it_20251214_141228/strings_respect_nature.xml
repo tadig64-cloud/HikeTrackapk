@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="ht_respect_nature_text">Respect in National Reserves and Parks
+• Parks: protected areas. Frequent rules: stay on the trails, do not pick anything, no fire, dogs prohibited (even on a leash), drones prohibited unless authorized. Respect on-site signs and local orders.
+• Nature reserves &amp; regional parks: variable rules (bivouac, dogs, fires). Check for seasonal quietness areas and signage.
+
+Why not bathe in high-altitude lakes
+• Fragile ecosystems: many lakes are oligotrophic and very sensitive; small disturbances have great effects.
+• Pollutants: sunscreen/body products, textile fibres and micro-organisms degrade water and plankton; focus on managed bathing areas.
+• Wildlife disturbance: amphibians and shorebirds are sensitive to noise, trampling and clapp (plants, spawning grounds).
+• Health/safety: very cold water (thermal shock/hypothermia), slippery banks; Some municipalities prohibit bathing by decree.
+• Simple rule: if a ban is displayed, you do not bathe; Otherwise, observe without entering the water, leave nothing, avoid prolonged contact.
+
+Good practices in protected areas
+• Stay on the trails to limit erosion.
+• Bivouac: often tolerated overnight (after 7pm – before 9am), away from roads/houses; remain &gt; 20 m from lakes/water courses; leave with grey water and waste.
+• Dogs: usually forbidden in park hearts; keep on a leash and respect periods of tranquillity.
+• Drones: assimilated to motorized and prohibited aircraft in park cores (rare exceptions on authorization).
+• Wildlife &amp; herds: do not continue; make a wide detour; Close the fences.
+
+Marking: color codes
+- GR: white/red; // = straight; angle = turn; Cross = wrong path.
+GRP: yellow/red; territory loops.
+PR: yellow; local/day loops.</string>
+      <string name="pref_app_language_summary">Scegli la lingua dell'interfaccia.</string>
+    <string name="pref_keep_screen_on_title">Schermo sempre acceso</string>
+    <string name="pref_app_language_title">Lingua dell'app</string>
+    <string name="pref_keep_screen_on_summary">Evita che lo schermo si spenga durante l'uso.</string>
+</resources>

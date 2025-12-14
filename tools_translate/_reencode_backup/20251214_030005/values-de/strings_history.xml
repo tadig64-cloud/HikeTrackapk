@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="history_empty">Keine Spur im Moment.__TOK0_Importiert eine GPX-Datei über das Menü.</string>
+  <string name="history_import">GPX importieren</string>
+  <string name="history_rescan">Recanner</string>
+  <string name="history_row_stats">%1$s km • +_TOK4____%3$d_______________________________________________________________________________________________________________________________________________________________________________________________________________________________________</string>
+  <string name="history_row_meta">%1$d pts • %2$s</string>
+  <string name="history_import_ok">Importiert: %1$s</string>
+  <string name="history_import_fail">Importausfall</string>
+  </resources>

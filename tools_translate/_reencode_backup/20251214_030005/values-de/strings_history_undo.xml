@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="undo">Abbrechen</string>
+  <string name="history_deleted">Gelöscht: %1$s</string>
+  <string name="history_delete_fail">Nicht zu entfernen</string>
+  </resources>

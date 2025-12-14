@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+    Fichier nettoyé pour éviter les doublons.
+    Toutes les chaînes déjà définies ailleurs (strings.xml, strings_gear.xml)
+    ont été retirées : menu_center_me, menu_record, menu_download_tiles,
+    menu_import_gpx, menu_export_gpx, menu_clear_track, menu_safety,
+    track_detail_title, msg_download_ok, msg_download_failed,
+    gpx_import_ok, gpx_import_fail, err_nothing_to_export,
+    err_export_failed, err_no_picker, msg_rec_started, msg_rec_stopped,
+    msg_export_ready, menu_gear, etc.
+
+    Les nouvelles chaînes UI (HUD météo/GPS/altitude + téléchargements tuiles
+    + détails de trace) sont dans values/strings_ui.xml.
+    -->
+</resources>

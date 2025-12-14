@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- A7: Nearby / Foreground notification -->
+    <string name="groupx_live_channel_name">Groupe (proximité)</string>
+    <string name="groupx_live_channel_desc">Suivi de groupe via proximité (Bluetooth / Wi‑Fi)</string>
+    <string name="groupx_live_running">Groupe actif — membres connectés : %1$d</string>
+    <string name="groupx_live_host_advertising">Hôte en attente…</string>
+    <string name="groupx_live_discovering">Recherche d’hôte…</string>
+    <string name="groupx_join_request_title">%1$s veut rejoindre</string>
+    <string name="groupx_join_request_text">Confirmer l’ajout au groupe ?</string>
+    <string name="groupx_action_accept">Accepter</string>
+    <string name="groupx_action_reject">Refuser</string>
+    <string name="groupx_action_stop">Arrêter</string>
+    <string name="groupx_perm_battery_title">Optimisation batterie</string>
+    <string name="groupx_perm_battery_text">Désactive l’optimisation pour un suivi plus régulier.</string>
+</resources>

@@ -14,10 +14,20 @@ class FirstAidActivity : AppCompatActivity() {
         binding = ActivityFirstAidBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        // Rend le retour (bouton back) plus “snappy” en supprimant l’animation.
+        overridePendingTransition(0, 0)
+
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
         binding.tvContent.text = getString(R.string.ht_first_aid_text)
     }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(0, 0)
+    }
+
 }

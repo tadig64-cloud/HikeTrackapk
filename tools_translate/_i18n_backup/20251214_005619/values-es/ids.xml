@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <item name="nav" type="id" />
+  <item name="bottom_nav" type="id" />
+  <item name="hud_coords" type="id" />
+  <item name="hud_weather" type="id" />
+  </resources>

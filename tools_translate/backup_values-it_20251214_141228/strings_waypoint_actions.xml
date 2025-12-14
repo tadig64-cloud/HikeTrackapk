@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="wp_action_open">Open</string>
+  <string name="wp_action_share">Share</string>
+  <string name="wp_action_delete">Remove</string>
+  <!-- Row action labels used by item_waypoint.xml -->
+  <string name="wp_view_on_map">See on the map</string>
+  <string name="wp_rename">Rename</string>
+  <string name="wp_delete">Remove</string>
+      <string name="pref_app_language_summary">Scegli la lingua dell'interfaccia.</string>
+    <string name="pref_keep_screen_on_title">Schermo sempre acceso</string>
+    <string name="pref_app_language_title">Lingua dell'app</string>
+    <string name="pref_keep_screen_on_summary">Evita che lo schermo si spenga durante l'uso.</string>
+</resources>

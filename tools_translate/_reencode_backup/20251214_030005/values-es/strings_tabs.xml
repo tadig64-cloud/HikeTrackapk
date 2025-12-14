@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="tab_map">Mapa</string>
+  <string name="tab_group">Grupo</string>
+  <string name="tab_tracks">Traces</string>
+  <string name="tab_waypoints">Waypoints</string>
+  <string name="tab_more">Más</string>
+  </resources>

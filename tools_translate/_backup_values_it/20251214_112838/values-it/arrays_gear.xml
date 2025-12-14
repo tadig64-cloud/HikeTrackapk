@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="gear_nav">
+    <item>IGN / Topo Card</item>
+    <item>Compass</item>
+    <item>GPS / Phone App + Battery</item>
+    <item>GPX Trace</item>
+    <item>Altimeter</item>
+    <item>Sifflet</item>
+    <item>Front lamp + batteries</item>
+  </string-array>
+  <string-array name="gear_vetements">
+    <item>Breathable jacket</item>
+    <item>Soft/polar</item>
+    <item>High/low thermal layer</item>
+    <item>Pantaloni da trekking</item>
+    <item>Breathable T-shirt (x2)</item>
+    <item>Calze da trekking (x2)</item>
+    <item>Cap / Buff / Cap</item>
+    <item>Gloves</item>
+    <item>Guests</item>
+  </string-array>
+  <string-array name="gear_couchage">
+    <item>Sleeping bag (temp. adapted)</item>
+    <item>Mattress</item>
+    <item>Bag sheet</item>
+    <item>Inflatable Pillow</item>
+  </string-array>
+  <string-array name="gear_abri">
+    <item>Tent / Tarp</item>
+    <item>Arceaux / Sardines / Haubans</item>
+    <item>Floor covering</item>
+  </string-array>
+  <string-array name="gear_cuisine">
+    <item>Reed + fuel</item>
+    <item>Popote + covered</item>
+    <item>Fire ignition / lighter</item>
+    <item>Sponge + biodegradable mini soap</item>
+    <item>Food (meals, snacks)</item>
+    <item>Trash bag (leave no trace)</item>
+  </string-array>
+  <string-array name="gear_hydratation">
+    <item>Gourde(s) / Water pocket</item>
+    <item>Filter / Purification tablet</item>
+    <item>Salt/electrolytes</item>
+  </string-array>
+  <string-array name="gear_securite">
+    <item>First aid kit</item>
+    <item>Survival coverage</item>
+    <item>Multifunctional knife</item>
+    <item>Adhesive tape / Repair</item>
+    <item>Sunscreen / Lip Stick</item>
+    <item>Anti-moss</item>
+  </string-array>
+  <string-array name="gear_electronique">
+    <item>Phone + offline card</item>
+    <item>Powerbank + cable</item>
+    <item>Watch/Altimeter</item>
+    <item>Camera</item>
+  </string-array>
+  <string-array name="gear_divers">
+    <item>Walking poles</item>
+    <item>Personal pharmacy (antalgics, dressings...)</item>
+    <item>Identity papers / CB / Cash</item>
+    <item>Vital card / Insurance</item>
+    <item>Waterproof bag / Zip</item>
+    <item>Toilets (paper, trowel)</item>
+  </string-array>
+</resources>

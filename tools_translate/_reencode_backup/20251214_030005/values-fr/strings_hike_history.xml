@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hike_history_title">Historique des randos</string>
+    <string name="hike_empty">Aucune rando enregistrée pour le moment.</string>
+</resources>

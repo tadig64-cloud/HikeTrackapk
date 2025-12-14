@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Météo / Panneau droit -->
+    <string name="weather_panel_title">Météo</string>
+    <string name="weather_loading">Mise à jour météo…</string>
+    <string name="weather_na">—</string>
+
+    <!-- Confirmations (conservées ici uniquement) -->
+    <string name="confirm_clear_title">Supprimer la trace ?</string>
+    <string name="confirm_clear_msg">Cette action efface la trace affichée.</string>
+    <string name="btn_stop">Arrêter</string>
+    <string name="btn_cancel">Annuler</string>
+</resources>

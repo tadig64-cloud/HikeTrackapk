@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="ih_section_markings">Balisage &amp; sigles</string>
+    <string name="ih_section_weather">Météo &amp; orages</string>
+    <string name="ih_section_orientation">Orientation &amp; progression</string>
+    <string name="ih_section_respect">Respect de la nature</string>
+    <string name="ih_section_firstaid">Premiers secours &amp; SOS</string>
+
+    <!-- ====== BALISAGE & SIGLES ====== -->
+    <string name="ih_markings_body">🔴⚪ GR (Grande Randonnée) : balisage blanc/rouge ; itinéraires de plusieurs jours.
+🟡🔴 GRP (GR de Pays) : balisage jaune/rouge ; boucles/traversées à l’échelle d’un territoire.
+🟡 PR (Promenade &amp; Randonnée) : balisage jaune ; boucles à la demi-journée/journée.
+
+Marques (formes) :
+• ║║ (ou || ou //) = bon chemin / continuer
+• └ = tourner à gauche
+• ┘ = tourner à droite
+• ✖ (ou X) = mauvaise direction (faire demi-tour)
+
+À savoir (très utile sur le terrain) :
+• Aux carrefours, cherche d’abord la marque “bon chemin” (║║). Si tu vois une ✖, tu pars dans le mauvais sens.
+• Souvent, une marque de confirmation est placée quelques dizaines de mètres après l’embranchement.
+• Si tu ne vois plus de balisage depuis un moment : reviens calmement au dernier point sûr (dernier balisage).
+• Les marques peuvent être sur rochers, troncs, poteaux, murets : balaie à gauche/droite du sentier et un peu plus haut.
+• Hors itinéraires officiels, la signalétique locale peut varier : suis les panneaux sur place et reste cohérent avec la carte/trace.
+
+Repère : le balisage officiel des GR/GRP/PR est défini par la FFRandonnée.</string>
+
+    <!-- ====== MÉTÉO & ORAGES (général) ====== -->
+    <string name="ih_weather_body">Avant de partir :
+• Consulte un bulletin local + l’évolution heure par heure (vent, pluie, orages).
+• Regarde aussi : température ressentie en altitude, rafales sur crêtes, limite pluie/neige (si saison).
+• Prévois un “plan B” : itinéraire plus court/plus bas + échappatoires (retour rapide).
+
+Orages (règles simples) :
+• Évite crêtes, sommets, arêtes, zones dégagées quand le risque augmente.
+• Écarte les objets métalliques (bâtons, clôtures) et éloigne-toi des arbres isolés.
+• “Flash-to-bang” : &lt; 30 s entre éclair et tonnerre ⇒ danger proche.
+• Position de sécurité : accroupi sur sac/isolant, pieds joints, mains sur les genoux ; évite de t’allonger.
+• En groupe : espacez-vous (≈ 10 m) pour limiter le risque d’impact collectif.
+• Attends 30 minutes après le dernier tonnerre avant de repartir.
+
+Autres pièges météo :
+• Vent fort : prudence sur arêtes/cols (déséquilibre), éloigne-toi des bords.
+• Pluie intense : attention aux crues éclairs (fonds de vallon, ravines) + glissades.
+• Brouillard : ralentis, reste groupé, avance de repère en repère (panneau, croisement, sommet secondaire).</string>
+
+    <!-- ====== ORIENTATION & PROGRESSION ====== -->
+    <string name="ih_orient_body">Avant de partir :
+• Estime réalistement : distance + dénivelé + durée (marge !), points d’eau, zones d’ombre, échappatoires.
+• Télécharge carte/trace hors-ligne ; vérifie batterie + mode économie.
+• Informe un proche (itinéraire + heure de retour) : c’est simple, ça sauve.
+
+Sur le terrain :
+• Vérifie régulièrement : balisage, carte, relief (vallon/crête), prochaine étape repère.
+• Aux croisements : fais une pause, confirme la direction AVANT de t’engager.
+• Rythme : régulier ; micro-pauses ; boire tôt (avant d’avoir soif) ; manger avant d’être “vidé”.
+
+En groupe :
+• Le plus lent donne le rythme. Fixe des points d’attente. Ferme de marche.
+• Si quelqu’un fatigue : raccourcir / redescendre tôt (avant d’être “au bout”).
+
+Si tu doutes / si tu t’es égaré :
+• STOP : S’arrêter, respirer, Observer, Trouver le dernier point sûr, Planifier.
+• Revenir au dernier point sûr est souvent la meilleure solution (simple et efficace).
+• Si météo/nuit/danger : abri + chaleur + économie batterie ; alerte si nécessaire.</string>
+
+    <!-- ====== RESPECT DE LA NATURE ====== -->
+    <string name="ih_respect_body">Règle “sans trace” :
+• Emporte tous tes déchets (même biodégradables). Ne laisse pas de mouchoirs.
+• Besoins naturels : loin des sentiers et des points d’eau ; enterre (petit trou) et rebouche si possible.
+• Silence : évite musique forte/cris (faune + autres randonneurs). Reste discret près des habitations.
+
+Faune / troupeaux :
+• Garde tes distances (surtout jeunes/animaux sauvages). Ne nourris pas.
+• Chiens : souvent interdits en cœur de parc ; ailleurs, laisse selon zones/périodes (troupeaux, faune).
+• Si patous : reste calme, contourne largement, ne cours pas, tiens le chien près de toi (ou sans laisse si nécessaire pour éviter conflit — selon situation).
+
+Espaces protégés :
+• Reste sur les sentiers (érosion + zones fragiles).
+• Drones : fréquemment interdits (surtout cœurs de parc) sauf autorisation.
+
+Lacs d’altitude :
+• Baignade souvent déconseillée : écosystèmes fragiles + pollution (crèmes) + eau très froide (hypothermie) + parfois interdite par arrêté.
+
+Bivouac / feu :
+• Bivouac souvent toléré 1 nuit (≈ 19h → 9h) loin des routes/maisons ; reste à &gt; 20 m des lacs/ruisseaux.
+• Feux souvent interdits : préfère un réchaud et respecte les arrêtés locaux.</string>
+
+    <!-- ====== PREMIERS SECOURS & SOS ====== -->
+    <string name="ih_firstaid_body">Urgences (France) :
+• 112 (numéro européen) — fonctionne souvent même sans réseau “classique”.
+• 114 (SMS) si appel impossible (utile aussi si tu n’arrives pas à parler).
+• 15 (SAMU) / 18 (Pompiers) / 17 (Police) selon situation.
+
+À dire au téléphone :
+• Où ? (commune/secteur, nom de col/refuge/panneau, coordonnées GPS si possible)
+• Quoi ? (chute, malaise, blessure) — combien de personnes — état (conscient ? respire ?)
+• Accès possible (route/piste, point de repère, météo sur place)
+
+Gestes utiles (simple) :
+• Protéger – Alerter – Secourir : sécurise la zone d’abord.
+• Hémorragie : compression directe forte.
+• Inconscient qui respire : PLS, couvrir, surveiller.
+• Entorse/fracture : immobiliser, éviter de faire marcher, garder au chaud.
+• Hypothermie : isoler du sol, couper le vent, retirer le mouillé, couvrir.
+• Coup de chaud : ombre, rafraîchir, boire par petites gorgées, arrêter l’effort.
+
+Perdu / immobilisé :
+• Reste groupé, économise la batterie, marque ta position, abrite-toi, signale-toi (sifflet/lampe).</string>
+
+    <string name="ih_expand">Afficher</string>
+    <string name="ih_collapse">Masquer</string>
+
+</resources>

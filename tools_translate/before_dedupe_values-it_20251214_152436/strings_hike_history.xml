@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="hike_history_title">History of hiking</string>
+  <string name="hike_empty">Nessuna escursione salvata per ora.</string>
+    <string name="pref_keep_screen_on_title">Schermo sempre acceso</string>
+    </resources>
+

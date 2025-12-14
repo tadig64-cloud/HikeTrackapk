@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Chaînes dédiées au module Profil (préfixées pour éviter les collisions) -->
+  <string name="action_profile_save">Guardar</string>
+  <string name="action_profile_edit">Modificar</string>
+  <string name="action_profile_delete">Retirar</string>
+  <string name="action_profile_close">Cerca</string>
+  <!-- Autres éventuelles actions profil -->
+  <string name="action_profile_change_photo">Cambiar foto</string>
+  <string name="action_profile_reset">Reset</string>
+  </resources>

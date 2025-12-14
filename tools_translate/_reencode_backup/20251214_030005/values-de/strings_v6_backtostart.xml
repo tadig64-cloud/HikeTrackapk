@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Back to Start -->
+  <string name="bts_title">Zurück zur Abreise</string>
+  <string name="bts_waiting_fix">Warten auf GPS..</string>
+  <string name="bts_bearing_placeholder">Bezeichnung: —°</string>
+  <string name="bts_bearing_fmt">Cap: __TOK3_°</string>
+  <string name="bts_distance_m_fmt">%1$d m</string>
+  <string name="bts_distance_km_fmt">__TOK3_ km</string>
+  <string name="bts_no_start">Kein Ausgangspunkt gefunden</string>
+  <string name="bts_no_start_toast">Starten Sie eine Aufnahme, um einen Startpunkt einzustellen.</string>
+  <string name="bts_perm_denied">Autorisierung abgelehnt zu lokalisieren.</string>
+  <string name="bts_gps_unavailable">Kein Standortanbieter verfügbar.</string>
+  <string name="bts_arrow_cd">Pfeil zum Ausgangspunkt</string>
+  <string name="bts_hint">Der Pfeil zeigt auf den ersten aufgezeichneten Punkt (Abteilung)._ TOK0__Der Abstand und die Überschrift werden automatisch aktualisiert.</string>
+  </resources>

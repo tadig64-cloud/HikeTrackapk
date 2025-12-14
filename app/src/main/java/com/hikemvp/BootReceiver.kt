@@ -10,7 +10,7 @@ class BootReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action != Intent.ACTION_BOOT_COMPLETED) return
         // Si on enregistrait avant le reboot, relance le service
-        if (RecordingPrefs_isActive(context)) {
+        if (RecordingStatePrefs.isActive(context)) {
             val svc = Intent(context, TrackRecordingService::class.java)
                 .setAction(Constants.ACTION_START_RECORD)
             if (Build.VERSION.SDK_INT >= 26) {
@@ -19,11 +19,5 @@ class BootReceiver : BroadcastReceiver() {
                 context.startService(svc)
             }
         }
-    }
-
-    // Copie locale pour accéder à RecordingPrefs (déclaré private dans TrackRecordingService.kt)
-    private fun RecordingPrefs_isActive(ctx: Context): Boolean {
-        return androidx.preference.PreferenceManager.getDefaultSharedPreferences(ctx)
-            .getBoolean("rec_active", false)
     }
 }

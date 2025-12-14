@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- En-têtes -->
+  <string name="cl_day_h">Day hiking</string>
+  <string name="cl_trek_h">Trek / several days</string>
+  <string name="cl_bivouac_h">Bivouac</string>
+  <!-- Journée -->
+  <string name="cl_water">Water (1.5–3 L)</string>
+  <string name="cl_snacks">Snacks / cold meals</string>
+  <string name="cl_map">Paper card</string>
+  <string name="cl_compass">Compass</string>
+  <string name="cl_phone">Phone charged</string>
+  <string name="cl_powerbank">External battery</string>
+  <string name="cl_firstaid">First aid kit</string>
+  <string name="cl_jacket">Windproof jacket / chaude</string>
+  <string name="cl_headlamp">Front lamp</string>
+  <!-- Trek -->
+  <string name="cl_sleepbag">Sleeping bag</string>
+  <string name="cl_stove">Reed</string>
+  <string name="cl_fuel">Fuel</string>
+  <string name="cl_cookset">Poppy / utensils</string>
+  <string name="cl_fooddays">Rations (x days)</string>
+  <string name="cl_filter">Filter / water pellets</string>
+  <string name="cl_repair">Repair kit</string>
+  <string name="cl_hygiene">Hygiene</string>
+  <!-- Bivouac -->
+  <string name="cl_tent">Tent</string>
+  <string name="cl_tarp">Tarp / tarpaulin</string>
+  <string name="cl_pad">Mattress</string>
+  <string name="cl_warmlayers">Hot diapers</string>
+  <string name="cl_rain">Rainwear</string>
+  <!-- Actions -->
+  <string name="cl_reset">Reset</string>
+      <string name="pref_app_language_summary">Scegli la lingua dell'interfaccia.</string>
+    <string name="pref_keep_screen_on_title">Schermo sempre acceso</string>
+    <string name="pref_app_language_title">Lingua dell'app</string>
+    <string name="pref_keep_screen_on_summary">Evita che lo schermo si spenga durante l'uso.</string>
+</resources>

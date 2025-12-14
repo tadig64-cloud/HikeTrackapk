@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Notifications -->
+  <string name="groupx_notif_channel_name">Group</string>
+  <string name="groupx_notif_channel_desc">Group notifications</string>
+  <string name="groupx_notif_member_removed">Deleted member: %1$s</string>
+  <!-- Suppression / options -->
+  <string name="groupx_delete_title">Remove</string>
+  <string name="groupx_delete_msg">Delete %1$s from the group?</string>
+  <string name="groupx_hide_demo">Hide demo members</string>
+  <!-- Pastille couleur -->
+  <string name="groupx_color_title">Colour of the tablet</string>
+      <string name="pref_keep_screen_on_title">Schermo sempre acceso</string>
+    </resources>
+

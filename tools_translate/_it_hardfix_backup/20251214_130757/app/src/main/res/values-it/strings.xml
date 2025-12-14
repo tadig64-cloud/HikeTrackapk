@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">HikeTrack</string>
+  <string name="ht_weather_placeholder">Weather: —</string>
+  <string name="ht_hud_gps_default">GPS: — / —</string>
+  <string name="ht_hud_gps_fmt">GPS: %1$s / ±%2$s</string>
+  <string name="ht_hud_coords_default">Lat: —_TOK0__Lon: —_TOK0__Alt: —</string>
+  <string name="ht_hud_coords_fmt">Lat: __TOK3_\nLon: %2$.5f\nAlt: %3$s</string>
+  <string name="notif_channel_rec">Record trace</string>
+  <string name="ht_track_dist">Distance:</string>
+  <string name="ht_track_alt_min">Alt. min:</string>
+  <string name="ht_track_alt_max">Alt. max:</string>
+  <string name="ht_track_points">Points:</string>
+  <string name="nav_choose_app">Choose a browser application</string>
+  <string name="nav_no_app_found">No navigation application found</string>
+  <string name="ht_cleared">Trace deleted</string>
+  <string name="ht_confirm_stop_title">Stop recording?</string>
+  <string name="ht_confirm_stop_msg">Would you stop recording the trace?</string>
+  <string name="confirm_stop_title">Stop recording?</string>
+  <string name="confirm_stop_msg">Would you stop recording the trace?</string>
+  <string name="err_safety_unavailable">Screen .</string>
+  <string name="err_recording_unavailable">Recording unavailable on this device.</string>
+  <string name="ht_yes">Yes</string>
+  <string name="ht_no">No</string>
+  <string name="ht_delete">Remove</string>
+  <string name="marker_start">Departure</string>
+  <string name="marker_end">Arrival</string>
+  <string name="label_gain">Graded +</string>
+  <string name="label_loss">High -</string>
+  <string name="replay_cursor_title">Replay</string>
+  <string name="menu_guide">Hiking guide</string>
+  <string name="guide_balisage_title">Marking of trails</string>
+  <string name="guide_balisage_content">🟥⚪ GR (Great Hiking): red and white lines.\n
+🟨 PR (Promenade/Country GR): yellow (or yellow/red depending on the region)._TOK0__
+🟦 Local routes: specific local markings.\n
+Tip: Follow the official markup, do not create a cut, respect private property.
+.</string>
+  <string name="guide_respect_title">Respect for nature</string>
+  <string name="guide_security_title">Security / First Aid / SOS</string>
+  <string name="guide_security_content">Emergency number: 112.\n
+🛡 Secure the area, protect the victim, alert rescue._TOK0__
+Check consciousness and breathing; PLS if necessary.
+💰 Carry water, warm clothing, survival blanket, emergency kit.\n
+Share your position if possible (GPS enabled).
+.</string>
+  <string name="menu_center_me">Focus</string>
+  <string name="menu_record">Save</string>
+  <string name="menu_download_tiles">Download maps (visible area)</string>
+  <string name="menu_import_gpx">Import GPX</string>
+  <string name="menu_export_gpx">Export GPX</string>
+  <string name="menu_clear_track">Clear Trace</string>
+  <string name="menu_settings">Parameters</string>
+  <string name="title_settings">Parameters</string>
+  <string name="menu_safety">Road safety</string>
+  <string name="menu_checklist">Equipment list</string>
+  <string name="track_detail_title">Trace Details</string>
+  <string name="menu_sos">SOS – Emergency</string>
+  <string name="menu_back_to_start">Return to departure</string>
+  <string name="menu_water_points">Water points</string>
+  <string name="menu_respect_nature">Respect for nature</string>
+  <string name="menu_first_aid">First aid</string>
+  <string name="ht_emergency_number">112</string>
+  <string name="ht_sos_info">In case of emergency, call 911. If possible, give your GPS position, victim status and access.</string>
+  <string name="ht_sos_call_now">Call 112</string>
+  <string name="ht_sos_share">Sharing an emergency message</string>
+  <string name="ht_sos_share_text">SOS - La mia posizione:</string>
+  <string name="ht_back_to_start_placeholder">Function: Back to the next start: direction/distance display to the starting point of the trace.</string>
+  <string name="ht_water_points_placeholder">Display of upcoming water points (offline/online).</string>
+  <string name="ht_first_aid_text">First aid: alert rescue (112), secure the area, protect the victim, check consciousness and breathing, put in PLS if necessary, cover and reassure.</string>
+  <string name="title_add_waypoint">Add a point</string>
+  <string name="wp_dialog_title">Add a point</string>
+  <string name="waypoint_default_name">Item</string>
+  <string name="wp_name_hint">Item name</string>
+  <string name="wp_note_hint">Note (optional)</string>
+  <string name="save">Save</string>
+  <string name="waypoint_list_title">Waypoints</string>
+  <string name="offline_tiles_info">Download tiles from the currently visible area, for levels 6 to 16.</string>
+  <string name="err_no_location_yet">Position not yet available</string>
+  <string name="msg_download_ok">Downloaded tiles</string>
+  <string name="msg_download_failed">Download failed</string>
+  <string name="msg_download_nothing">Nothing to download for this zone/zoom</string>
+  <string name="track_detail_placeholder">Trace Details</string>
+  <string name="gpx_import_ok">Imported GPX</string>
+  <string name="gpx_import_fail">GPX import failure</string>
+  <string name="err_nothing_to_export">Nothing to export</string>
+  <string name="err_export_failed">Export failure</string>
+  <string name="err_no_picker">No selection application found</string>
+  <string name="msg_rec_started">Registration started</string>
+  <string name="msg_rec_stopped">Registration stopped</string>
+  <string name="msg_import_ready">Open the file from the map menu..</string>
+  <string name="msg_export_ready">File created, back to the card..</string>
+  <string name="msg_map_source_changed">Modified map source</string>
+  <string name="pref_category_map">Map</string>
+  <string name="pref_category_gpx">GPX files</string>
+  <string name="pref_map_source">Source of maps</string>
+  <string name="pref_default_zoom">Default Zoom</string>
+  <string name="pref_import_gpx">Import GPX</string>
+  <string name="pref_import_gpx_summary">Choose a .gpx file and open it on the map</string>
+  <string name="pref_export_gpx">Export Track</string>
+  <string name="pref_export_gpx_summary">Create a .gpx file from the current track</string>
+  <string name="settings_section_map">Map</string>
+  <string name="pref_map_source_title">Source of maps</string>
+  <string name="pref_lock_rotation">Lock rotation</string>
+  <string name="pref_lock_rotation_summary">Prevents card rotation with gesture</string>
+  <string name="settings_section_gpx">GPX files</string>
+  <string name="pref_import_gpx_title">Import GPX</string>
+  <string name="pref_export_gpx_title">Export Track</string>
+  <string name="pref_key_map_source">pref_key_map_source</string>
+  <string name="pref_key_map_default_zoom">pref_key_map_default_zoom</string>
+  <string name="pref_key_import_gpx">pref_key_import_gpx</string>
+  <string name="pref_key_export_gpx">pref_key_export_gpx</string>
+  <string name="pref_key_plan_speed_kmh">pref_key_plan_speed_kmh</string>
+  <string name="pref_key_battery_saver">pref_key_battery_saver</string>
+  <string name="pref_plan_speed_title">Running speed (km/h)</string>
+  <string name="pref_plan_speed_summary">Used to estimate the duration of a route plan (e.g. 4.0)</string>
+  <string name="pref_battery_saver_title">Battery Saver (GPS)</string>
+  <string name="pref_battery_saver_summary">Reduces the frequency of points when you move little (minimal impact on the track).</string>
+  <string name="hud_dist_label">Dist.</string>
+  <string name="hud_gain_label">D+</string>
+  <string name="hud_loss_label">D-</string>
+  <string name="hud_speed_label">Speed</string>
+  <string name="hud_time_label">Time</string>
+  <string name="menu_info_hub">Hike info</string>
+  <string name="info_hub_title">Hike info</string>
+  <string name="trail_markings_title">Marking of trails</string>
+  <string name="trail_markings_intro">Common marks encountered on routes:</string>
+  <string name="trail_markings_hint">See local signage for regional variants and specificities.</string>
+  <string name="stat_dist_placeholder">0.00 km</string>
+  <string name="stat_gain_placeholder">+0 m</string>
+  <string name="stat_loss_placeholder">-0 m</string>
+  <string name="stat_speed_placeholder">0.0 km/h</string>
+  <string name="stat_elapsed_placeholder">00:00:00</string>
+  <string name="stat_dist_fmt">__TOK3_ km</string>
+  <string name="stat_gain_fmt">+%.0f m</string>
+  <string name="stat_loss_fmt">−%.0f m</string>
+  <string name="stat_speed_fmt">__TOK3_ km/h</string>
+  <string name="back_to_start_title">Return to departure</string>
+  <string name="back_to_start_no_target">No starting point defined</string>
+  <string name="back_to_start_target_fmt">Target: %1$.5f, %2$.5f</string>
+  <string name="back_to_start_set_here">Fix here</string>
+  <string name="back_to_start_use_track_start">From the trace</string>
+  <string name="back_to_start_clear">Clear</string>
+  <string name="back_to_start_from_track">Departure loaded from trace</string>
+  <string name="back_to_start_no_track">No trace in memory</string>
+  <string name="back_to_start_set_here_ok">Fixed starting point</string>
+  <string name="back_to_start_arrow_cd">Direction to departure</string>
+  <string name="distance_to_start_default">Distance: —</string>
+  <string name="bearing_default">Cap: —</string>
+  <string name="distance_km_fmt">Distance: __TOK3_ km</string>
+  <string name="distance_m_fmt">Distance: %1$d m</string>
+  <string name="bearing_fmt">Cap: __TOK3_°</string>
+  <string name="download_tiles_title">Download zone</string>
+  <string name="zoom_min">Zoom min</string>
+  <string name="zoom_max">Zoom max</string>
+  <string name="btn_download">Download</string>
+  <string name="msg_download_start">Downloading tiles..</string>
+  <string name="menu_load_mbtiles">Open MBTiles..</string>
+  <string name="menu_disable_mbtiles">Back to Online Maps</string>
+  <string name="msg_mbtiles_enabled">Offline cards enabled</string>
+  <string name="msg_mbtiles_disabled">Restored online maps</string>
+  <string name="msg_download_not_allowed">The card source does not allow mass download.</string>
+  <string name="msg_already_offline">Offline cards already active</string>
+  <string name="menu_elev_settings">Settings D+/D -</string>
+  <string name="menu_elev_help">Aid D+/D -</string>
+  <string name="open_in_viewer">Open</string>
+  <string name="menu_saved_tracks">Saved tracks</string>
+  <string name="saved_tracks_title">Saved tracks</string>
+  <string name="saved_tracks_empty">No trace yet.</string>
+  <string name="export_gpx_name_title">Name of GPX file</string>
+  <string name="export_gpx_name_hint">e.g. Today</string>
+  <string name="export_gpx_name_default">track</string>
+  <string name="perm_bg_location_title">Allow the location in the background?</string>
+  <string name="perm_bg_location_msg">To save the same screen track turned off, Android requests permission "Always allow".</string>
+  <string name="battery_opt_title">Energy saving</string>
+  <string name="battery_opt_msg">To prevent the system from cutting the recording in the background, allow HikeTrack to be exempted from battery optimization.</string>
+  <string name="guide_storms_title">Thunderstorms: essential instructions</string>
+  <string name="guide_storms_content"> In the mountains, avoid ridges and peaks from the first rumbling; Go down.
+Get away from isolated trees, pylons and fences; space each other about 10m._TOK0_
+Rule 30/30: if lightning occurs less than 30 seconds after thunder, take shelter; wait 30 minutes after the last thunder before leaving._TOK0__
+Metal/electronics: store the sticks, place the bag on the ground, isolate yourself squat, joint feet, on an insulating support (bag, dry rope)._TOK0_
+If possible, keep battery (aircraft mode, SMS). Stay dry and warm.
+.</string>
+  <string name="info_hub_markings_title">Marking &amp; acronyms</string>
+  <string name="info_hub_respect_title">Respect for nature</string>
+  <string name="info_hub_firstaid_title">First Aid &amp; SOS</string>
+  <string name="info_hub_open_sos">Open SOS Screen</string>
+  <string name="search">Search</string>
+  <string name="ih_expand_all">Everything</string>
+  <string name="ih_collapse_all">Fold All</string>
+  <string name="water_points_title">Water points</string>
+  <string name="water_point_label">Water point</string>
+  <string name="water_add_here_title">Add a water dot here ?\nLat: %1$.5f, Lon: %2$.5f</string>
+  <string name="water_add_here_btn">Add here</string>
+  <string name="water_point_details">Water point</string>
+  <string name="water_distance_fmt">Distance: %1$s</string>
+  <string name="water_delete_this">Remove</string>
+  <string name="water_cleared_ok">All water points have been removed.</string>
+  <string name="water_deleted_ok">Water point removed.</string>
+  <string name="water_added_ok">Water point added.</string>
+  <string name="water_clear_all_title">Remove all water points?</string>
+  <string name="water_clear_all_msg">This action permanently erases all recorded water points.</string>
+  <string name="elev_help_title">Settings D+ / D - Help</string>
+  <string name="elev_help_text">&lt;b&gt;Definitions&lt;/b&gt;&lt;br/&gt;
+• &lt;b&gt;D+&lt;/b&gt;: sum of "free" altitude increases on the route.&lt;br/&gt;
+• &lt;b&gt;D−&lt;/b&gt;: sum of "free" decreases. &lt;i&gt;(« Franche » = after filtering to avoid overcounting of yoyos.)&lt;/i&gt;_TOK13__&lt;br/&gt;
+&lt;b&gt;field matches (1:1)&lt;/b&gt;&lt;br/&gt;
+1) &lt;b&gt;Not minimum (m) – hysteresis&lt;/b&gt; = &lt;i&gt;Vertical hysteresis (inversion threshold)&lt;/i&gt;: as long as the variation from extremum does not reach this threshold, microvariations are not known.&lt;br/&gt;
+Reco: 1–2 m (baro) • 3–5 m (GPS alone).
+2) &lt;b&gt;EMA α (0.1–0.9)&lt;/b&gt; = &lt;i&gt;Exponential Moving Average&lt;/i&gt;: smoothing coefficient after the median.&lt;br/&gt;
+  0.1 = very smooth (stable, but delay) • 0.9 = reactive (more "nerve")._TOK30&lt;br/&gt;
+3) &lt;b&gt;Median window (unfair)&lt;/b&gt; = &lt;i&gt;Median filter&lt;/i&gt;: window size (3,5,7...). Remove isolated peaks before EMA._TOK36__
+Larger = more stable, slightly rounded relief. Reco: 3–8 (baro) • 5–13 (GPS alone)._TOK37&lt;br/&gt;
+4) &lt;b&gt;Anti-spike: horiz &lt; (m)&lt;/b&gt; = very short distance where a large vertical jump is suspect.&lt;br/&gt;
+5) &lt;b&gt;Anti-spike: jump &gt; (m)&lt;/b&gt; = minimum Δalt to consider the point as a "spike". If (4) AND (5) are true, the point is not known.&lt;br/&gt;&lt;br/&gt;
+6) &lt;b&gt;Horizontal threshold min (m)&lt;/b&gt; = minimum distance between points to process D+/D− (avoids the jitter at a stop).&lt;br/&gt;TOK49__
+&lt;b&gt;Recommended adjustments (recalls)&lt;/b&gt;TOK52__
+• &lt;b&gt;GPS smartphone alone, forest/canyon&lt;/b&gt;: Median 5–13 • Hysteresis 3–5 m • EMA α ~0.3–0.5 • Anti-spike (h&lt;5 m, Δalt&gt;15–25 m) • Min horiz 1–2 m._TOK55__
+• &lt;b&gt;Apparel with baro_TOK57__: Median 3–7 • Hysteresis 1–2 m • EMA α ~0.3–0.5 • Moderate anti-spike • Min horiz 1–1.5 m._TOK58&lt;br/&gt;
+&lt;b&gt;Notes&lt;/b&gt;&lt;br/&gt;
+• These parameters do not alter the trace, only the calculation D+/D−._TOK63__
+• More smoothing/hysteresis = less noise, but D+ slightly underestimated in micro-relief.&lt;br/&gt;
+• To compare apps, align re-sampling and thresholds._TOK65__
+</string>
+  <string name="empty_waypoints">No waypoint yet</string>
+  <string name="waypoints">Waypoints</string>
+  <string name="settings_section_tracks">Tracks</string>
+  <string name="pref_key_persist_tracks">pref_key_persist_tracks</string>
+  <string name="pref_persist_tracks_title">Track persistence</string>
+  <string name="pref_persist_tracks_summary">Keep all tracks even after updating or restarting.</string>
+  <string name="pref_key_show_saved_tracks">pref_key_show_saved_tracks</string>
+  <string name="pref_show_saved_tracks_title">Show saved tracks</string>
+  <string name="pref_show_saved_tracks_summary">Permanently display registered and imported GPX on the card.</string>
+<string name="pref_app_language_title">Lingua dell'app</string></resources>

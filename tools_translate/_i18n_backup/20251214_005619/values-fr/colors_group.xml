@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="group_self">#2E7D32</color>     <!-- vert hôte/local -->
+    <color name="group_member">#1565C0</color>  <!-- bleu membre -->
+</resources>

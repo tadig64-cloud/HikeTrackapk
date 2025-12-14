@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="notif_channel_tracking_title">Aufzeichnungsträger</string>
+  <string name="notif_channel_tracking_desc">Angaben zur GPS-Aufzeichnung.</string>
+  <string name="notif_rec_title">Rekordspur</string>
+  <string name="notif_rec_text">Aktiver Service</string>
+  </resources>

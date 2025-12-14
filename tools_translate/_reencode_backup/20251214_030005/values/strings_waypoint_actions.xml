@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wp_action_open">Ouvrir</string>
+    <string name="wp_action_share">Partager</string>
+    <string name="wp_action_delete">Supprimer</string>
+
+    <!-- Row action labels used by item_waypoint.xml -->
+    <string name="wp_view_on_map">Voir sur la carte</string>
+    <string name="wp_rename">Renommer</string>
+    <string name="wp_delete">Supprimer</string>
+
+</resources>

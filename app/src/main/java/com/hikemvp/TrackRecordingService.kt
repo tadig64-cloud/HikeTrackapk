@@ -92,8 +92,11 @@ class TrackRecordingService : Service(), LocationListener {
         super.onCreate()
         lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         createNotifChannelIfNeeded()
-        if (RecordingPrefs.isActive(this) && !isRecording) {
+        if (RecordingStatePrefs.isActive(this) && !isRecording) {
             startRecording(resume = true)
+            if (RecordingStatePrefs.isPaused(this)) {
+                pauseRecording()
+            }
         }
     }
 
@@ -104,8 +107,11 @@ class TrackRecordingService : Service(), LocationListener {
             Constants.ACTION_PAUSE_RECORD  -> pauseRecording()
             Constants.ACTION_RESUME_RECORD -> resumeRecording()
             else -> {
-                if (RecordingPrefs.isActive(this) && !isRecording) {
+                if (RecordingStatePrefs.isActive(this) && !isRecording) {
                     startRecording(resume = true)
+                    if (RecordingStatePrefs.isPaused(this)) {
+                        pauseRecording()
+                    }
                 } else if (isRecording) {
                     updateForegroundNotification()
                 }
@@ -127,7 +133,12 @@ class TrackRecordingService : Service(), LocationListener {
 
     @SuppressLint("MissingPermission")
     private fun startRecording(resume: Boolean) {
-        if (isRecording) return
+        if (isRecording) {
+            showToast("Enregistrement déjà en cours")
+            broadcastStatus()
+            updateForegroundNotification()
+            return
+        }
         isRecording = true
         isPaused = false
         pendingFirstFix = null
@@ -156,12 +167,17 @@ class TrackRecordingService : Service(), LocationListener {
             }
         }
 
-        RecordingPrefs.set(this, active = true, paused = false)
+        RecordingStatePrefs.set(this, active = true, paused = false)
         broadcastStatus()
     }
 
     private fun stopRecording() {
-        if (!isRecording) { stopSelf(); return }
+        // Sécurité: si on reçoit STOP alors que l'état interne est déjà faux, on nettoie quand même l'état partagé.
+        if (!isRecording) {
+            RecordingStatePrefs.set(this, active = false, paused = false)
+            broadcastStatus()
+            stopSelf(); return
+        }
         isRecording = false
         isPaused = false
 
@@ -175,7 +191,7 @@ class TrackRecordingService : Service(), LocationListener {
         runCatching { ActiveTrackRepo.clear(this) }
 
         broadcastReset()
-        RecordingPrefs.set(this, active = false, paused = false)
+        RecordingStatePrefs.set(this, active = false, paused = false)
         broadcastStatus()
         stopSelf()
     }
@@ -185,7 +201,7 @@ class TrackRecordingService : Service(), LocationListener {
         isPaused = true
         stopLocationUpdates()
         updateForegroundNotification()
-        RecordingPrefs.set(this, active = true, paused = true)
+        RecordingStatePrefs.set(this, active = true, paused = true)
         broadcastStatus()
     }
 
@@ -194,7 +210,7 @@ class TrackRecordingService : Service(), LocationListener {
         isPaused = false
         requestAdaptiveUpdates()
         updateForegroundNotification()
-        RecordingPrefs.set(this, active = true, paused = false)
+        RecordingStatePrefs.set(this, active = true, paused = false)
         broadcastStatus()
     }
 
@@ -539,16 +555,4 @@ private fun GeoPoint.toLocation(): Location = Location("restore").apply {
     latitude = this@toLocation.latitude
     longitude = this@toLocation.longitude
     if (!this@toLocation.altitude.isNaN()) altitude = this@toLocation.altitude
-}
-
-// Persistance état rec
-private object RecordingPrefs {
-    private const val KEY_ACTIVE = "rec_active"
-    private const val KEY_PAUSED = "rec_paused"
-    fun set(context: Context, active: Boolean, paused: Boolean) {
-        androidx.preference.PreferenceManager.getDefaultSharedPreferences(context)
-            .edit().putBoolean(KEY_ACTIVE, active).putBoolean(KEY_PAUSED, paused).apply()
-    }
-    fun isActive(context: Context): Boolean =
-        androidx.preference.PreferenceManager.getDefaultSharedPreferences(context).getBoolean(KEY_ACTIVE, false)
 }

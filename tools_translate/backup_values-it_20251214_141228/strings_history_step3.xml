@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="history_search">Search</string>
+  <string name="history_search_hint">Name or file..</string>
+  <string name="history_delete">Remove</string>
+  <string name="history_delete_title">Clear track?</string>
+  <string name="history_delete_msg">Confirm removal of %1$s?</string>
+  <string name="history_delete_confirm">Remove</string>
+      <string name="pref_app_language_summary">Scegli la lingua dell'interfaccia.</string>
+    <string name="pref_keep_screen_on_title">Schermo sempre acceso</string>
+    <string name="pref_app_language_title">Lingua dell'app</string>
+    <string name="pref_keep_screen_on_summary">Evita che lo schermo si spenga durante l'uso.</string>
+</resources>

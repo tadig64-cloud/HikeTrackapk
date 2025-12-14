@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="groupx_restore_camera">Reprendre la vue de la carte au démarrage</string>
+    <string name="groupx_fit_group">Cadrer sur le groupe au démarrage (si membres)</string>
+    <string name="groupx_notif_restore_on">Reprise de la vue activée</string>
+    <string name="groupx_notif_restore_off">Reprise de la vue désactivée</string>
+    <string name="groupx_notif_fit_on">Cadrage sur le groupe activé</string>
+    <string name="groupx_notif_fit_off">Cadrage sur le groupe désactivé</string>
+</resources>

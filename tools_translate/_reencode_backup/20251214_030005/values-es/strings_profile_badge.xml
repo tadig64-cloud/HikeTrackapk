@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- NE PAS redéclarer profile_badge_content_desc ici pour éviter les doublons -->
+  <string name="profile_badge_user">Usuario</string>
+  </resources>

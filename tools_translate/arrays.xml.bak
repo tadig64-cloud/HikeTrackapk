@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string-array name="map_source_entries">
+    <item>OpenStreetMap</item>
+    <item>Satellite</item>
+    <item>Relief</item>
+    </string-array>
+  <string-array name="map_source_values">
+    <item>osm</item>
+    <item>satellite</item>
+    <item>field</item>
+    </string-array>
+      <string name="pref_app_language_summary">Scegli la lingua dell'interfaccia.</string>
+    <string name="pref_keep_screen_on_title">Schermo sempre acceso</string>
+    <string name="pref_app_language_title">Lingua dell'app</string>
+    <string name="pref_keep_screen_on_summary">Evita che lo schermo si spenga durante l'uso.</string>
+</resources>

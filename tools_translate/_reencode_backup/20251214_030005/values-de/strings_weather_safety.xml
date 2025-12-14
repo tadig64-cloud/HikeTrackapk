@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Orages -->
+  <string name="wx_thunder_title">Gewitter und Blitz</string>
+  <string name="wx_thunder_intro">Berg Gewitter = unmittelbare Gefahr (Fruuling, Hagel, Böen, Blitzfluten). Erwarten und anpassen Sie die Route.
+.</string>
+  <string name="wx_thunder_do">• Überprüfen Sie den Wetterbericht vor dem Verlassen (möglicher Gewitter = kurze/evasive Route).
+• Auf dem Feld, beobachten Sie den Himmel: schnelle Auftrieb, ferne Donner, rotierende Wind, sizzling.
+• Evakuieren Sie Grats, Grats, Peaks, exponierte Brammen; zielen Sie auf einen niedrigen, aber trockenen Bereich ab, weg von einem isolierten Punkt._TOK0__
+• Schritt voneinander um mindestens 20 m, um das Gruppenrisiko zu begrenzen.
+• Als letztes Resort, Squat auf trockenen Beutel / Ton (isolieren), enge Füße, minimale Belichtungszeit.
+.</string>
+  <string name="wx_thunder_dont">• Bleiben Sie nicht unter einem isolierten Baum, einem metallischen Überhang, einem oberen Kreuz, einer elektrischen Leitung.
+• Verwenden Sie keine in der Luft gehaltenen Sticks/Pilets; Speicherantennen, Masten, Schirme.
+• Bewahren Sie nicht die gesamte Gruppe an der gleichen Stelle; vermeiden Sie laufende Höhlen und Banken in Flut.
+.</string>
+  <string name="wx_thunder_after">Nach dem Sturm: Aufregung auf nassen Schnee/Gesteinen, geschwächte Schneebrücken, Überschwemmungen/Lokale.
+.</string>
+  <!-- Chaleur -->
+  <string name="wx_heat_title">Hitze &amp; Sonnenschein</string>
+  <string name="wx_heat_tips">• Frühe Abreise, angepasster Rhythmus, häufige Pausen im Schatten.
+• Trinken Sie vor Durst, Elektrolyte, wenn längerer Aufwand; Hut + Gläser Kategorie 3/4, Creme SPF 50._TOK0__
+• Überwachen Sie Kopfschmerzen, Übelkeit, Verwirrung: sofortige Einstellung / Rekrutierung; Alarm so Verschlechterung.
+.</string>
+  <!-- Froid -->
+  <string name="wx_cold_title">Kälte und Hypothermie</string>
+  <string name="wx_cold_tips">• Overlay von Schichten (Atmung/Isolierung/Wicklung), Hand/Fuß/Kopf-Schutz.
+• Geformt = Gefahr: Vorziehen trockener Kleidung; beobachten Sie Chilis, Malfeasance, Drowsiness.\n
+• Süßes heißes Getränk, Bodenisolierung (Abdeckung), Schutz vor dem Wind; Notfallwarnung, wenn geändert.
+.</string>
+  <!-- Vent -->
+  <string name="wx_wind_title">Starker Wind</string>
+  <string name="wx_wind_tips">• Achten Sie auf Böen in Graten / Coles, instabile Cornices.
+• Kurze Pole, sichere Stützpunkte, Staubgläser.
+• Renunciate, wenn unsichere Progression: zurückdrehen = richtige Entscheidung.
+.</string>
+  </resources>

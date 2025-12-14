@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Manquants qui faisaient planter la compile -->
+  <string name="btn_pause">Break</string>
+  <string name="btn_resume">Take over</string>
+  <string name="msg_rec_paused">Recording on pause</string>
+  <string name="msg_rec_resumed">Resuming registration</string>
+  <!-- Nouveaux libellés pour la notif / canal -->
+  <string name="channel_recording_name">Trace recording</string>
+  <string name="notif_recording_title_active">Registration in progress</string>
+  <string name="notif_recording_title_paused">Recording on pause</string>
+  <string name="notif_recording_text_active">Distance: __TOK3_ km</string>
+  <string name="notif_recording_text_paused">Break • Distance: __TOK3_ km</string>
+  </resources>

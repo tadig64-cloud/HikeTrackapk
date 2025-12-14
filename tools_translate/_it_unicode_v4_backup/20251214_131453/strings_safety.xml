@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- ===== Sécurité : ORAGES ===== -->
+  <string name="ht_safety_storm_title">Thunderstorm: what to do?</string>
+  <string name="ht_safety_storm_before">• Check the local weather before you leave.
+• Avoid ridges, peaks, edges and clear areas if risk increases.
+• Identify areas of retreat in advance (cabana, building, dense forest not isolated).
+.</string>
+  <string name="ht_safety_storm_during">Durante un temporale: evita creste, alberi isolati e l'acqua. Spostati in un luogo piÃ¹ basso e sicuro.</string>
+  <string name="ht_safety_storm_after">• Wait for the confirmed distance (≥30 min without thunder).
+• Checks the condition of the unit, warms/drys if necessary.
+• In case of accident, alert 112 and precise position, condition, access.
+.</string>
+  <!-- ===== Sécurité : CHALEUR / CANICULE ===== -->
+  <string name="ht_safety_heat_title">Heat &amp; heat</string>
+  <string name="ht_safety_heat_body">• Leave early/late, avoid the hottest hours.
+• Wood small to small (0.5–1 L/h depending on effort), dirty a little food.
+• Cover yourself: hat/chap, glasses, sunscreen, light sleeves.
+• Weighs naked/forearm if possible, multiplies breaks in shade.
+• Warning signs: headache, nausea, cramps, dizziness, confusion — STOP, get shaded, refresh yourself, rehydrate yourself, warn if it persists.
+.</string>
+  <!-- ===== Sécurité : FROID / HYPOTHERMIE ===== -->
+  <string name="ht_safety_cold_title">Cold &amp; hypothermia</string>
+  <string name="ht_safety_cold_body">• Superimposed 3 layers (breathing / insulating / rainproof).
+• Warm head/hand/foot guard; changes a wet garment as soon as possible.
+• Cut the wind, shelter; move regularly without sweating excessively.
+• Drink and eat (hot if possible) to keep energy.
+• Warning signs: uncontrolled chills, awkwardness, drowsiness — warms gently, isolates soil/wind, alerts if worsening.
+.</string>
+  <!-- ===== Sécurité : BROUILLARD / ÉGAREMENT ===== -->
+  <string name="ht_safety_nav_title">Fog &amp; astray</string>
+  <string name="ht_safety_nav_body">Navigazione: pianifica il percorso, porta una mappa offline e controlla i punti di riferimento. Se ti perdi, fermati e rivaluta.</string>
+  <!-- ===== Sécurité : ANIMAUX / TROUPEAUX ===== -->
+  <string name="ht_safety_animals_title">Animals &amp; herds</string>
+  <string name="ht_safety_animals_body">Fauna selvatica: mantieni le distanze, resta calmo e non dare cibo agli animali.</string>
+  </resources>

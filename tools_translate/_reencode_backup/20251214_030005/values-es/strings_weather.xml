@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Météo / Panneau droit -->
+  <string name="weather_panel_title">El tiempo</string>
+  <string name="weather_loading">Actualización meteorológica..</string>
+  <string name="weather_na">—</string>
+  <!-- Confirmations (conservées ici uniquement) -->
+  <string name="confirm_clear_title">¿Lista clara?</string>
+  <string name="confirm_clear_msg">Esta acción borra el rastro mostrado.</string>
+  <string name="btn_stop">Para</string>
+  <string name="btn_cancel">Cancelar</string>
+  </resources>

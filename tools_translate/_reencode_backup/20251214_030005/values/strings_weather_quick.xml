@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="qw_title">Conditions météo : réflexes</string>
+    <string name="qw_close">Fermer</string>
+    <string name="qw_intro">Tapote la carte météo pour retrouver vite les réflexes par situation. Ces conseils ne remplacent pas un bulletin fiable ni le bon sens sur le terrain.</string>
+
+    <!-- Orages -->
+    <string name="qw_thunder_title">⛈️ Orages</string>
+    <string name="qw_thunder_body">
+• Évite crêtes, arbres isolés, arêtes, grottes humides, eau.\n
+• Écarte bâtons et objets métalliques; isole-toi du sol (sac, mousse).\n
+• “Flash-to-bang” : &lt; 30 s ⇒ danger proche. Descends vers une zone basse non inondable.\n
+• Position sécurité : accroupi, pieds joints, sur isolant. Ne t’allonge pas.
+    </string>
+
+    <!-- Vent -->
+    <string name="qw_wind_title">🌬️ Vent fort</string>
+    <string name="qw_wind_body">
+• Méfie-toi des crêtes et couloirs ; évite les lacs et ponts exposés.\n
+• Anticipe branches/rochers instables ; espace le groupe.\n
+• Fixe capuche/équipement ; baisse le centre de gravité dans les rafales.
+    </string>
+
+    <!-- Chaleur -->
+    <string name="qw_heat_title">🔥 Chaleur</string>
+    <string name="qw_heat_body">
+• Hydrate-toi tôt et souvent ; sels/eau sucrée utiles.\n
+• Ralentis, multiplie les pauses à l’ombre ; couvre nuque/tête.\n
+• Surveille crampes, maux de tête, confusion ⇒ stoppe &amp; refroidis.
+    </string>
+
+    <!-- Froid / Neige -->
+    <string name="qw_cold_title">❄️ Froid / Neige</string>
+    <string name="qw_cold_body">
+• Superpose les couches ; protège extrémités et vent.\n
+• Garde au sec : change un haut mouillé ; isole-toi du sol.\n
+• Hypo : frissons, maladresse, lenteur ⇒ abriter, sucré chaud, changer mouillé.
+    </string>
+
+    <!-- Brouillard -->
+    <string name="qw_fog_title">🌫️ Brouillard</string>
+    <string name="qw_fog_body">
+• Réduis l’allure ; reste groupé ; visibilité / falaise = prudence ++.\n
+• Oriente-toi : boussole, azimut court, points d’attaque simples.\n
+• Marque le chemin (waypoints), vérifie souvent carte/terrain.
+    </string>
+
+    <!-- Pluie / Crues -->
+    <string name="qw_rain_title">🌧️ Pluie / Crues</string>
+    <string name="qw_rain_body">
+• Évite fonds de ravins en cas d’orage ; attention crues éclairs.\n
+• Garde une couche imper-respirante ; protège ce qui ne doit pas mouiller.\n
+• Pieds : anticipe glissade (pierres/bois) et froid prolongé.
+    </string>
+</resources>

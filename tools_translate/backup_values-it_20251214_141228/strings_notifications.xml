@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="notif_channel_tracking_title">Trace recording</string>
+  <string name="notif_channel_tracking_desc">Notifications related to GPS recording.</string>
+  <string name="notif_rec_title">Record trace</string>
+  <string name="notif_rec_text">Active service</string>
+      <string name="pref_app_language_summary">Scegli la lingua dell'interfaccia.</string>
+    <string name="pref_keep_screen_on_title">Schermo sempre acceso</string>
+    <string name="pref_app_language_title">Lingua dell'app</string>
+    <string name="pref_keep_screen_on_summary">Evita che lo schermo si spenga durante l'uso.</string>
+</resources>

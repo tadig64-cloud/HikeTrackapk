@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Variante nuit -->
+    <color name="md_primary">#4FD8C7</color>
+    <color name="md_on_primary">#003730</color>
+    <color name="md_primary_variant">#379A8E</color>
+
+    <color name="md_secondary">#B1CCC5</color>
+    <color name="md_on_secondary">#1B3530</color>
+
+    <color name="md_background">#121212</color>
+    <color name="md_on_background">#E6E1E5</color>
+
+    <color name="md_surface">#121212</color>
+    <color name="md_on_surface">#E6E1E5</color>
+
+    <color name="md_error">#CF6679</color>
+    <color name="md_on_error">#000000</color>
+
+    <!-- Alias classiques -->
+    <color name="colorPrimary">@color/md_primary</color>
+    <color name="colorPrimaryVariant">@color/md_primary_variant</color>
+    <color name="colorSecondary">@color/md_secondary</color>
+    <color name="colorOnPrimary">@color/md_on_primary</color>
+    <color name="colorOnSecondary">@color/md_on_secondary</color>
+    <color name="colorSurface">@color/md_surface</color>
+    <color name="colorOnSurface">@color/md_on_surface</color>
+    <color name="colorBackground">@color/md_background</color>
+    <color name="colorOnBackground">@color/md_on_background</color>
+    <color name="colorError">@color/md_error</color>
+    <color name="colorOnError">@color/md_on_error</color>
+
+    <!-- Toolbar (nuit) : lisible sans être trop sombre -->
+    <color name="topbar_idle_bg">#455A64</color>   <!-- BlueGrey 700 -->
+    <color name="topbar_idle_icon">#FFFFFF</color>
+
+    <color name="topbar_rec_bg">#5D2C2C</color>    <!-- rouge assombri -->
+    <color name="topbar_rec_icon">#FFCDD2</color>  <!-- rose clair lisible -->
+
+    <!-- Legacy -->
+    <color name="purple_200">#BB86FC</color>
+    <color name="purple_500">#6200EE</color>
+    <color name="purple_700">#3700B3</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="teal_700">#018786</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+</resources>

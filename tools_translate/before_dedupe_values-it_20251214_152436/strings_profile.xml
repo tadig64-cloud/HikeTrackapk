@@ -1,0 +1,23 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="profile_title">Profile</string>
+  <string name="profile_pick_avatar">Choose a profile photo</string>
+  <string name="profile_clear_avatar">Delete Photo</string>
+  <string name="profile_pseudo">Nickname</string>
+  <string name="profile_pref_hud_weather">Show weather in the HUD</string>
+  <string name="profile_pref_auto_follow">Auto Position Tracking</string>
+  <string name="profile_action_save">Save</string>
+  <string name="profile_action_change_photo">Change Photo</string>
+  <string name="profile_action_remove_photo">Remove Photo</string>
+  <string name="profile_action_history">History</string>
+  <string name="profile_action_settings">Profile Parameters</string>
+  <string name="profile_avatar_selected">Selected photo</string>
+  <string name="profile_avatar_cleared">Photo deleted</string>
+  <string name="profile_pseudo_required">The nickname is required</string>
+  <string name="profile_saved">Registered profile</string>
+  <string name="profile_badge_content_desc">Profile badge</string>
+  <string name="profile_badge_label">Hiking badge</string>
+  <string name="not_yet_implemented">Soon available</string>
+      <string name="pref_keep_screen_on_title">Schermo sempre acceso</string>
+    </resources>
+

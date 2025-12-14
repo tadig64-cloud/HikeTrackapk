@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- IMPORTANT: ne pas définir no_tracks ici pour éviter les doublons -->
+  <string name="no_offline_maps">No hay mapa sin conexión disponible</string>
+  <string name="offline_title_starting">Descargar preparación</string>
+  <string name="offline_title_downloading">Descarga en progreso</string>
+  <string name="offline_title_working">Tratamiento en curso</string>
+  <string name="offline_title_error">Error</string>
+  <string name="offline_title_failed">Fallo</string>
+  <string name="offline_title_done">Completado</string>
+  <string name="offline_msg_starting">Iniciación..</string>
+  <string name="offline_msg_progress">Progresión: %1$dTOK4__</string>
+  <string name="offline_msg_failed">La descarga falló.</string>
+  <string name="offline_msg_done">Mapas sin conexión listos.</string>
+  <string name="offline_tiles_progress">Descarga de azulejos..</string>
+  <string name="offline_tiles_cancel">Cancelar descarga</string>
+  <string name="pref_title_backups">Copia de seguridad</string>
+  <string name="pref_summary_backups">Datos de aplicación de las exportaciones</string>
+  <string name="offline_btn_close">Cerca</string>
+  <string name="offline_btn_cancel">Cancelar</string>
+  </resources>

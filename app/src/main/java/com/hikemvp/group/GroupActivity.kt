@@ -31,6 +31,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hikemvp.Constants
+import com.hikemvp.RecordingStatePrefs
 import com.hikemvp.TrackRecordingService
 import com.hikemvp.R
 import org.osmdroid.config.Configuration
@@ -96,6 +97,9 @@ class GroupActivity : AppCompatActivity() {
 
     // live position receiver
     private var posReceiver: BroadcastReceiver? = null
+
+    // recording status receiver (TrackRecordingService)
+    private var recStatusReceiver: BroadcastReceiver? = null
 
     // --- Model for member list ---
     private data class UiMember(
@@ -290,6 +294,8 @@ class GroupActivity : AppCompatActivity() {
         super.onStart()
         wifiBridge?.start()
         registerPositionReceiver()
+        registerRecordingStatusReceiver()
+        syncRecordingStateFromPrefs()
     }
 
     override fun onStop() {
@@ -297,6 +303,12 @@ class GroupActivity : AppCompatActivity() {
         wifiBridge?.stop()
         mesh?.stop()
         posReceiver?.let {
+            try {
+                unregisterReceiver(it)
+            } catch (_: Exception) {
+            }
+        }
+        recStatusReceiver?.let {
             try {
                 unregisterReceiver(it)
             } catch (_: Exception) {
@@ -315,6 +327,7 @@ class GroupActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         loadPrefs()
+        syncRecordingStateFromPrefs()
         ensureSelfMemberFromLocation(centerIfNew = true)
         try {
             GroupDeepLink.handleIfPresent { code ->
@@ -482,6 +495,36 @@ class GroupActivity : AppCompatActivity() {
         }
     }
 
+
+private fun registerRecordingStatusReceiver() {
+    if (recStatusReceiver == null) {
+        recStatusReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                intent ?: return
+                if (intent.action != Constants.ACTION_RECORDING_STATUS) return
+                val active = intent.getBooleanExtra(Constants.EXTRA_ACTIVE, false)
+                val paused = intent.getBooleanExtra(Constants.EXTRA_IS_PAUSED, false)
+                groupRecActive = active
+                groupRecPaused = paused
+                updateRecordButtonLabel()
+            }
+        }
+    }
+    val f = IntentFilter(Constants.ACTION_RECORDING_STATUS)
+    if (Build.VERSION.SDK_INT >= 33) {
+        registerReceiver(recStatusReceiver, f, Context.RECEIVER_NOT_EXPORTED)
+    } else {
+        @Suppress("DEPRECATION")
+        registerReceiver(recStatusReceiver, f)
+    }
+}
+
+private fun syncRecordingStateFromPrefs(updateLabel: Boolean = true) {
+    groupRecActive = RecordingStatePrefs.isActive(this)
+    groupRecPaused = RecordingStatePrefs.isPaused(this)
+    if (updateLabel) updateRecordButtonLabel()
+}
+
     private fun bringMembersListToFront() {
         try {
             listView.visibility = View.VISIBLE
@@ -536,7 +579,7 @@ class GroupActivity : AppCompatActivity() {
         btnP2P.text = if (btnP2P.text?.contains("✓") == true) "📶  P2P ✓" else "📶  P2P"
         btnGroupAdmin.text = "👤  Groupe"
         btnSearch.text = "🔍"
-        updateRecordButtonLabel()
+        syncRecordingStateFromPrefs()
     }
 
     private fun updateRecordButtonLabel() {
@@ -563,9 +606,20 @@ class GroupActivity : AppCompatActivity() {
      * toggleRecordingState(false) => clic court (start/pause/reprise)
      * toggleRecordingState(true)  => appui long (stop)
      */
+    
     private fun toggleRecordingState(forceStop: Boolean) {
+        // On resynchronise d'abord avec l'état réel du service (prefs + broadcast)
+        val localActiveBefore = groupRecActive
+        val localPausedBefore = groupRecPaused
+        syncRecordingStateFromPrefs(updateLabel = false)
+    
         if (forceStop) {
-            // STOP (appui long)
+            // STOP (appui long) — évite de démarrer un service "juste pour stopper" si rien ne tourne.
+            if (!groupRecActive) {
+                Toast.makeText(this, "Aucun enregistrement en cours", Toast.LENGTH_SHORT).show()
+                updateRecordButtonLabel()
+                return
+            }
             sendTrackAction(Constants.ACTION_STOP_RECORD)
             groupRecActive = false
             groupRecPaused = false
@@ -577,7 +631,21 @@ class GroupActivity : AppCompatActivity() {
             }
             return
         }
-
+    
+        // Si l'UI était "désynchronisée" (bouton revenu à Rec), on ne déclenche PAS une pause.
+        // On remet juste l'UI au bon état + message.
+        if (!localActiveBefore && groupRecActive) {
+            Toast.makeText(this, "Enregistrement déjà en cours", Toast.LENGTH_SHORT).show()
+            updateRecordButtonLabel()
+            return
+        }
+        if (localActiveBefore && !localPausedBefore && groupRecActive && groupRecPaused) {
+            // cas rare: prefs disent "pause" mais l'UI croyait actif
+            Toast.makeText(this, "Enregistrement déjà en pause", Toast.LENGTH_SHORT).show()
+            updateRecordButtonLabel()
+            return
+        }
+    
         // Clic court: start / pause / reprise
         if (!groupRecActive) {
             // Démarrage
@@ -596,13 +664,14 @@ class GroupActivity : AppCompatActivity() {
             groupRecPaused = false
             Toast.makeText(this, "Enregistrement de la trace de groupe repris", Toast.LENGTH_SHORT).show()
         }
-
+    
         updateRecordButtonLabel()
         try {
             mapView.postInvalidateOnAnimation()
         } catch (_: Throwable) {
         }
     }
+
 
     private fun ensureLabelsOverlay() {
         if (!labelsEnabled) {

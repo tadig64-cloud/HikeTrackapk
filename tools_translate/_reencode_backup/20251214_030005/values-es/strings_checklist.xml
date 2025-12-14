@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- En-têtes -->
+  <string name="cl_day_h">Día de caminata</string>
+  <string name="cl_trek_h">Trek / varios días</string>
+  <string name="cl_bivouac_h">Bivouac</string>
+  <!-- Journée -->
+  <string name="cl_water">Agua (1.5–3 L)</string>
+  <string name="cl_snacks">Snacks / comidas frías</string>
+  <string name="cl_map">Tarjeta de papel</string>
+  <string name="cl_compass">Compass</string>
+  <string name="cl_phone">Teléfono cargado</string>
+  <string name="cl_powerbank">Batería externa</string>
+  <string name="cl_firstaid">Kit de primeros auxilios</string>
+  <string name="cl_jacket">Chaqueta impermeable / chaude</string>
+  <string name="cl_headlamp">Lámpara frontal</string>
+  <!-- Trek -->
+  <string name="cl_sleepbag">Bolsa de dormir</string>
+  <string name="cl_stove">Reed</string>
+  <string name="cl_fuel">Fuel</string>
+  <string name="cl_cookset">Poppy / utensilios</string>
+  <string name="cl_fooddays">Raciones (x días)</string>
+  <string name="cl_filter">Filtro / pellets de agua</string>
+  <string name="cl_repair">Kit de reparación</string>
+  <string name="cl_hygiene">Higiene</string>
+  <!-- Bivouac -->
+  <string name="cl_tent">Tent</string>
+  <string name="cl_tarp">Tarp / tarpaulina</string>
+  <string name="cl_pad">Mattress</string>
+  <string name="cl_warmlayers">Pañales calientes</string>
+  <string name="cl_rain">Ropa de lluvia</string>
+  <!-- Actions -->
+  <string name="cl_reset">Reset</string>
+  </resources>

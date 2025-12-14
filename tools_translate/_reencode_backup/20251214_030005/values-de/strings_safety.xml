@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- ===== Sécurité : ORAGES ===== -->
+  <string name="ht_safety_storm_title">Thunderstorm: Was zu tun?</string>
+  <string name="ht_safety_storm_before">• Überprüfen Sie das lokale Wetter, bevor Sie gehen.
+• Vermeiden Sie Stege, Spitzen, Kanten und klare Bereiche, wenn das Risiko steigt.
+• Erkennen von Rückzugsgebieten im Voraus (Cabana, Gebäude, dichter Wald nicht isoliert).
+.</string>
+  <string name="ht_safety_storm_during">• Schritt weg von anderen (ca. 10 m zwischen Menschen).
+• Beutel/Stiel/Metall-Objekte weg; Halten Sie sie nicht auf Sie.
+• Gehen Sie zu einem weniger belichteten Bereich, weg von isolierten Bäumen und Metall (Gehäuse).
+• Vermeiden Sie flache Höhlen, Metallhütten, Kanten und Wasser (Wasserläufe, Seen).
+• Squat auf der Spitze Ihrer Füße, Arme um Ihre Knie, minimalen Kontakt auf dem Boden.
+• Regel 30/30 anwenden: wenn Blitz und Donner einen Abstand von &lt; 30 s haben, Schutz; 30 Minuten nach dem letzten Donner warten.
+.</string>
+  <string name="ht_safety_storm_after">• Warten Sie auf die bestätigte Entfernung (≥30 min ohne Donner).
+• Prüft den Zustand der Einheit, wärmt/trocken, falls erforderlich.
+• Bei Unfall, Alarm 112 und präzise Position, Zustand, Zugriff.
+.</string>
+  <!-- ===== Sécurité : CHALEUR / CANICULE ===== -->
+  <string name="ht_safety_heat_title">Wärme und Wärme</string>
+  <string name="ht_safety_heat_body">• Lassen Sie früh/lat, vermeiden Sie die heißesten Stunden.
+• Holz klein bis klein (0,5–1 L/h je nach Aufwand), schmutzig ein wenig Nahrung.
+• Decke dich selbst: Hut/Kap, Gläser, Sonnenschutz, leichte Ärmel.
+• Wiegt nackt/vorarm, wenn möglich, multiplies bricht im Schatten.
+• Warnzeichen: Kopfschmerzen, Übelkeit, Krämpfe, Schwindel, Verwirrung — STOP, erhalten Schatten, erfrischen Sie sich, rehydratisieren Sie sich, warnen, wenn es fortbesteht.
+.</string>
+  <!-- ===== Sécurité : FROID / HYPOTHERMIE ===== -->
+  <string name="ht_safety_cold_title">Kälte und Hypothermie</string>
+  <string name="ht_safety_cold_body">• Überlagerte 3 Schichten (Atmung / Isolieren / Regendicht).
+• Warmer Kopf/Hand/Fußschutz; ändert so schnell wie möglich ein nasses Kleidungsstück.
+• Schneiden Sie den Wind, Schutz; bewegen Sie sich regelmäßig, ohne zu schwitzen.
+• Trinken und essen (wenn möglich) um Energie zu halten.
+• Warnhinweise: unkontrollierte Kälte, Begierde, Schläfrigkeit – wärmt sanft, isoliert Boden/Wind, Alarme, wenn sich verschlechtert.
+.</string>
+  <!-- ===== Sécurité : BROUILLARD / ÉGAREMENT ===== -->
+  <string name="ht_safety_nav_title">Fog &amp; astray</string>
+  <string name="ht_safety_nav_body">• STOP: atmen, lagern. Versink nicht zufällig.
+• Zurück zum letzten sicheren Punkt (Markierung, Kreuzung) wenn es einfach und kurz ist.
+• Karte/Boussole/GPS: Kontrollkappe und Niveaulinie; Fortschritte in kurzen Schritten mit Markern.
+• In der Nacht/Scratch, bleiben gruppiert, verwenden Sie bei Bedarf Pfeifen/Lampe.
+• Wenn lange Zweifel oder Gefahr: Schutz, Energie sparen, Alarm bei Bedarf.
+.</string>
+  <!-- ===== Sécurité : ANIMAUX / TROUPEAUX ===== -->
+  <string name="ht_safety_animals_title">Tiere und Herden</string>
+  <string name="ht_safety_animals_body">• Bleiben Sie ruhig, erweitern Sie den Umweg, halten Sie Ihren Hund auf einer Leine weg von den Bestien.
+• Überqueren Sie keine Herde in der Mitte, Bypass, während Sie die Distanz halten.
+• Schließen Sie Zäune, erschrecken Sie keine Tiere, vermeiden Sie Laufen.
+• Vor einem Schutzhund: Stopp, mit einer Stimme sprechen, langsam umpassen.
+.</string>
+  </resources>

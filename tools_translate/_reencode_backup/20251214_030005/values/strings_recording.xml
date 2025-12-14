@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Manquants qui faisaient planter la compile -->
+    <string name="btn_pause">Pause</string>
+    <string name="btn_resume">Reprendre</string>
+    <string name="msg_rec_paused">Enregistrement en pause</string>
+    <string name="msg_rec_resumed">Reprise de l’enregistrement</string>
+
+    <!-- Nouveaux libellés pour la notif / canal -->
+    <string name="channel_recording_name">Enregistrement de trace</string>
+    <string name="notif_recording_title_active">Enregistrement en cours</string>
+    <string name="notif_recording_title_paused">Enregistrement en pause</string>
+    <string name="notif_recording_text_active">Distance: %.1f km</string>
+    <string name="notif_recording_text_paused">Pause • Distance: %.1f km</string>
+</resources>

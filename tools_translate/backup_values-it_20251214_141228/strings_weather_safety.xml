@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Orages -->
+  <string name="wx_thunder_title">Thunderstorms &amp; Lightning</string>
+  <string name="wx_thunder_intro">Mountain thunderstorm = immediate danger (fouling, hail, gusts, flash floods). Anticipate and adapt the route.
+.</string>
+  <string name="wx_thunder_do">• Check the weather report before leaving (possible thunderstorm = short/evasive route).
+• In the field, watch the sky: rapid budding, distant thunder, rotating wind, sizzling.
+• Evacuate ridges, ridges, peaks, exposed slabs; target a low but dry area, away from an isolated point._TOK0__
+• Step away from each other by at least 20 m to limit the group risk.
+• As a last resort, squat on dry bag/cord (insulating), tight feet, minimum exposure time.
+.</string>
+  <string name="wx_thunder_dont">• Do not stay under an isolated tree, a metallic overhang, a top cross, an electric line.
+• Do not use sticks/pilets held in the air; store antennas, masts, umbrellas.
+• Do not shelter the entire group in the same place; avoid running caves and banks in flood.
+.</string>
+  <string name="wx_thunder_after">After the storm: prudence on wet snows/rocks, weakened snow bridges, flooded flows/locals.
+.</string>
+  <!-- Chaleur -->
+  <string name="wx_heat_title">Heat &amp; sunshine</string>
+  <string name="wx_heat_tips">• Early departure, adapted rhythm, frequent breaks in the shade.
+• Drink before thirst, electrolytes if prolonged effort; hat + glasses category 3/4, cream SPF 50.\n
+• Monitor headache, nausea, confusion: immediate cessation/refreshment; alert so worsening.
+.</string>
+  <!-- Froid -->
+  <string name="wx_cold_title">Cold &amp; hypothermia</string>
+  <string name="wx_cold_tips">• Overlay of layers (breathing/insulating/winding), hand/foot/head protections.
+• Moulded = danger: prefer dry clothes; watch chills, malfeasance, drowsiness.\n
+• Sweet hot drink, soil isolation (cover), shelter from the wind; Emergency alert if altered.
+.</string>
+  <!-- Vent -->
+  <string name="wx_wind_title">Strong wind</string>
+  <string name="wx_wind_tips">• Beware of gusts in ridges/coles, unstable cornices.
+• Short-set poles, safe support points, dust glasses.
+• Renunciate if uncertain progression: turn back = right decision.
+.</string>
+      <string name="pref_app_language_summary">Scegli la lingua dell'interfaccia.</string>
+    <string name="pref_keep_screen_on_title">Schermo sempre acceso</string>
+    <string name="pref_app_language_title">Lingua dell'app</string>
+    <string name="pref_keep_screen_on_summary">Evita che lo schermo si spenga durante l'uso.</string>
+</resources>

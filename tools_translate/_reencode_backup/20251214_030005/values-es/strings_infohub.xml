@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="ih_section_markings">Marcación " siglas</string>
+  <string name="ih_section_weather">El tiempo " tormentas</string>
+  <string name="ih_section_orientation">Orientación " progresión</string>
+  <string name="ih_section_respect">Respeto de la naturaleza</string>
+  <string name="ih_section_firstaid">First Aid " SOS</string>
+  <!-- ====== BALISAGE & SIGLES ====== -->
+  <string name="ih_markings_body">GR (Great Hiking): marca blanca/rojo; itinerarios de varios días.
+GRP (GR del país): marcado amarillo/rojo; bucles/crossings a escala territorial.
+• PR (Promenade " Hiking): marca amarilla; bucles a medio día/día.
+
+Hace (formas):
+•
+• - = giro a la izquierda
+• - = girar a la derecha
+• (o X) = dirección incorrecta (volver atrás)
+
+Saber (muy útil en el campo):
+• En las intersecciones, primero busque la marca "buena manera" ( Si usted ve uno, usted va en la dirección equivocada.
+• A menudo, una marca de confirmación se coloca a unas docenas de metros después de la línea de rama.
+• Si no has visto una marca por un tiempo: regresa tranquilamente al último lugar seguro (última marca).
+• Las marcas pueden estar en rocas, troncos, postes, paredes: barrer a la izquierda/derecha del sendero y un poco más alto.
+• Aparte de las rutas oficiales, la señalización local puede variar: siga las indicaciones en el sitio y siga siendo compatible con el mapa/trace.
+
+Benchmark: el marcado oficial del GR/GRP/PR es definido por el FFRandonée.</string>
+  <!-- ====== MÉTÉO & ORAGES (général) ====== -->
+  <string name="ih_weather_body">Antes de partir:
+• Consulte un boletín local + evolución hora a hora (viento, lluvia, tormentas).
+• Mira también: la temperatura se siente en la altitud, las ráfagas en los picos, la lluvia límite / nieve (si estación).
+• Plan B: ruta más corta/más baja + bucles (retorno rápido).
+
+Tormentas (reglas simples):
+• Evite crestas, picos, bordes, áreas claras cuando el riesgo aumenta.
+• Quitar objetos metálicos (palos, cercas) y alejarse de árboles aislados.
+• Flash-to-bang: 30 s entre rayos y truenos
+• Posición de seguridad: asfaltar sobre bolsa/aislante, articulaciones de pies, manos sobre rodillas; evita estirarse.
+• Como grupo: se extendió (10 m) para limitar el riesgo de impacto colectivo.
+• Espera 30 minutos después del último trueno antes de irte.
+
+Otras trampas meteorológicas:
+• Viento fuerte: precaución en los bordes/coles (disequilibrio), alejarse de los bordes.
+• Lluvia pesada: atención a las inundaciones flash (valleles bajos, barrancos) + diapositivas.
+• Fog: se ralentiza, se mantiene agrupada, apuntando hacia adelante (firme, cruce, top secundario).</string>
+  <!-- ====== ORIENTATION & PROGRESSION ====== -->
+  <string name="ih_orient_body">Antes de partir:
+• Estimación realista: distancia + elevación + duración (margin!), puntos de agua, zonas de sombra, escape.
+• Descarga la tarjeta/trace offline; Comprobar batería + modo de economía.
+• Informar a un pariente (ruto + tiempo de retorno): Es simple, ahorra.
+
+En el campo:
+• Compruebe con regularidad: marcado, mapa, relieve (vallon/peak), siguiente paso marcador.
+• En las intersecciones: tomar un descanso, confirmar la dirección ANTES de comprometerse.
+• Ritmo: regular; micropausa; beber temprano (antes de tener sed); comer antes de estar borracho.
+
+Grupo:
+• El más lento da el ritmo. Puntos de espera fijos. Caminar granja.
+• Si alguien está cansado: acortar/abajo temprano (antes de estar al final).
+
+Si dudas / si estás perdido:
+• Parar, respirar, observar, encontrar el último lugar seguro, plan.
+• Volver al último punto seguro es a menudo la mejor solución (simple y eficaz).
+• Si el tiempo/noche/peligro: refugio + calor + economía de batería; alerta si es necesario.</string>
+  <!-- ====== RESPECT DE LA NATURE ====== -->
+  <string name="ih_respect_body">Regla sin traza:
+• Llevar todos tus residuos (incluso biodegradable). No dejes pañuelos.
+• Necesidades naturales: lejos de senderos y puntos de agua; enterrar (pequeño agujero) y enchufe si es posible.
+• Silencio: evita la música fuerte/cris (fauna + otros excursionistas). Quédate cerca de las casas.
+
+Vida silvestre/heredos:
+• Mantenga su distancia (especialmente los animales jóvenes y salvajes). No te alimentas.
+• Perros: a menudo prohibidos en el corazón del parque; en otros lugares, salir según zonas/períodos (troupeaux, fauna).
+• Si es patoso: mantener la calma, pasar por alto ampliamente, no correr, mantener al perro cerca de usted (o sin correa si es necesario para evitar el conflicto - dependiendo de la situación).
+
+Áreas protegidas:
+• Manténgase en los senderos (erosión + áreas frágiles).
+• Drones: frecuentemente prohibido (especialmente los corazones del parque) a menos que sea autorizado.
+
+Lagos de Altitud:
+• A menudo no se recomienda: ecosistemas frágiles + contaminación (cremos) + agua muy fría (hipotermia) + a veces prohibida por decreto.
+
+Bivouac / Fuego:
+• Bivouac a menudo tolerado 1 noche A 20 m de los lagos/river.
+• Fuegos a menudo prohibidos: prefiere una estufa y respeta las órdenes locales.</string>
+  <!-- ====== PREMIERS SECOURS & SOS ====== -->
+  <string name="ih_firstaid_body">Respuesta de emergencia (Francia):
+• 112 (Número europeo) – a menudo funciona sin una red convencional.
+• 114 (SMS) si la llamada es imposible (también útil si no puedes hablar).
+• 15 (SAMU) / 18 (Firemen) / 17 (Policía) según la situación.
+
+Para decir por teléfono:
+• ¿Dónde? (common/sector, col/refuge/sign, coordenadas GPS si es posible)
+• ¿Qué? (caída, malestar, lesión) — ¿cuántas personas — condición (consciente? respirar?)
+• Posible acceso (carretera/vía, hito, clima in situ)
+
+gestos útiles (simple):
+• Proteger – Alerta – Ayuda: asegurar el área primero.
+• Hemorragia: compresión fuerte directa.
+• Inconsciente que respira: PLS, tapa, monitor.
+• Tightness/fracture: inmovilice, evite caminar, mantenga caliente.
+• Hipotermia: aislante desde el suelo, cortando el viento, quitando el mojado, cubriendo.
+• Warmness: sombra, refresco, bebida en pequeños sorbos, para el esfuerzo.
+
+Perdido / encerrado en:
+• Manténgase unidos, ahorre la batería, marque su posición, cobijo, señale usted mismo (blow/lamp).</string>
+  <string name="ih_expand">Show</string>
+  <string name="ih_collapse">Oculto</string>
+  </resources>

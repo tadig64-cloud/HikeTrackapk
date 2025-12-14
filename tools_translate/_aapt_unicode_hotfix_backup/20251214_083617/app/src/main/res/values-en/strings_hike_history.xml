@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="hike_history_title">History of hiking</string>
+  <string name="hike_empty">There's no taped rando yet.</string>
+  </resources>

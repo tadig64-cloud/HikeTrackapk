@@ -1,0 +1,7 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="map_action_reset_camera">Reset View</string>
+  <string name="map_reset_done">Reset view</string>
+      <string name="pref_keep_screen_on_title">Schermo sempre acceso</string>
+    </resources>
+

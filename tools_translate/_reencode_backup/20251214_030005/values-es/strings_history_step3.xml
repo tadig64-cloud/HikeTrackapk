@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="history_search">Búsqueda</string>
+  <string name="history_search_hint">Nombre o archivo..</string>
+  <string name="history_delete">Retirar</string>
+  <string name="history_delete_title">¿Lista clara?</string>
+  <string name="history_delete_msg">Confirme la eliminación de %1$s?</string>
+  <string name="history_delete_confirm">Retirar</string>
+  </resources>

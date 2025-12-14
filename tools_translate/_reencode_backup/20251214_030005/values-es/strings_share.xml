@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="share_gpx">Compartir GPX</string>
+  <string name="no_viewer_app">No hay aplicación para mostrar esta imagen.</string>
+  <string name="missing_permission">No podía abrir la imagen (permiso de cancelación).</string>
+  <string name="file_not_found">El archivo no encontrado.</string>
+  </resources>

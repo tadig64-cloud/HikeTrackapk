@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ⚠️ Les titres de menu V6 (menu_sos, menu_back_to_start, etc.)
+         sont DÉJÀ dans strings.xml. On ne les redéfinit pas ici pour éviter
+         les doublons. -->
+
+    <!-- Back to Start -->
+    <string name="v6_bts_title">Retour au départ</string>
+    <string name="v6_bts_desc">Guide vers le point de départ avec cap et distance.</string>
+    <string name="v6_bts_no_fix">Position GPS indisponible</string>
+    <string name="v6_bts_distance_fmt">%1$.1f km</string>
+    <string name="v6_bts_bearing_fmt">%1$.0f°</string>
+
+    <!-- SOS -->
+    <string name="v6_sos_title">SOS – Urgences</string>
+    <string name="v6_sos_desc">Infos d’urgence et options d’appel ou SMS.</string>
+    <string name="v6_sos_call">Appeler les secours</string>
+    <string name="v6_sos_sms">Envoyer SMS d’urgence</string>
+    <string name="v6_sos_prep">Préparer message SOS…</string>
+
+    <!-- Points d’eau -->
+    <string name="v6_water_title">Points d’eau</string>
+    <string name="v6_water_none">Aucun point d’eau à proximité.</string>
+    <string name="v6_water_loading">Chargement des points d’eau…</string>
+    <string name="v6_water_distance_fmt">%1$.0f m</string>
+
+    <!-- Respect de la nature -->
+    <string name="v6_respect_title">Respect de la nature</string>
+    <string name="v6_respect_intro">Règles simples pour minimiser l’impact en randonnée.</string>
+
+    <!-- Premiers secours -->
+    <string name="v6_firstaid_title">Premiers secours</string>
+    <string name="v6_firstaid_intro">Gestes essentiels à garder en tête en cas d’incident.</string>
+
+    <!-- Commun -->
+    <string name="v6_open">Ouvrir</string>
+    <string name="v6_close">Fermer</string>
+    <string name="v6_retry">Réessayer</string>
+</resources>

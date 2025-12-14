@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="no_tracks">Aún no hay rastro</string>
+  <string name="tracks_open_placeholder">¿Qué quieres hacer?</string>
+  </resources>

@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Titre / menu -->
+  <string name="menu_gear">Ausrüstung</string>
+  <string name="gear_title">Prüfliste Material</string>
+  <!-- En-têtes de sections -->
+  <string name="gear_hdr_navigation">Navigation</string>
+  <string name="gear_hdr_securite">Sicherheit</string>
+  <string name="gear_hdr_habillement">Bekleidung</string>
+  <string name="gear_hdr_couchage">Bettwäsche</string>
+  <string name="gear_hdr_abri">Shelter</string>
+  <string name="gear_hdr_cuisine">Küche / Wasser</string>
+  <string name="gear_hdr_electronique">Elektronik</string>
+  <string name="gear_hdr_pharmacie">Notfallkit</string>
+  <string name="gear_hdr_alimentation">Lebensmittel</string>
+  <string name="gear_hdr_divers">Verschiedenes</string>
+  <string name="gear_hdr_hiver">Winter / Berg</string>
+  <!-- Navigation -->
+  <string name="gear_item_carte_topo">Topo Papierkarte</string>
+  <string name="gear_item_boussole">Kompass</string>
+  <string name="gear_item_gps">GPS / Smartphone mit Offlinekarten</string>
+  <string name="gear_item_powerbank">Externer Akku (Powerbank)</string>
+  <string name="gear_item_cable_chargement">Ladekabel</string>
+  <!-- Sécurité -->
+  <string name="gear_item_trousse_survie">Mini-Überlebensset (Bifflet, leichter, Feuerstahl)</string>
+  <string name="gear_item_couteau">Messer / Multi-Tool</string>
+  <string name="gear_item_lampe">Frontleuchte + Batterien</string>
+  <string name="gear_item_couverture_survie">Überlebensdeckung</string>
+  <string name="gear_item_bande_kinesio">Bands / Bänder</string>
+  <string name="gear_item_creme_solaire">Sonnencreme + Lippenstift</string>
+  <string name="gear_item_repulsif">Moskito / Zeckenabwehr</string>
+  <string name="gear_item_kit_reparation">Reparatursatz (Dickband, Faden, Nadel)</string>
+  <!-- Vêtements -->
+  <string name="gear_item_tshirt_ls">Atmungsaktives T-Shirt (1–2)</string>
+  <string name="gear_item_polaire">Licht polar</string>
+  <string name="gear_item_doudoune">Dudoune synth / down</string>
+  <string name="gear_item_veste_pluie">Atmungsaktive Jacke (hardshell)</string>
+  <string name="gear_item_pantalon_rando">Rando Hose (oder Shorts + Strumpfhose)</string>
+  <string name="gear_item_sous_vetements">Unterwäsche (2 Paare)</string>
+  <string name="gear_item_chaussettes">Socken (2–3 Paare)</string>
+  <string name="gear_item_gants">Lichthandschuhe</string>
+  <string name="gear_item_bonnet">Cap / Buff</string>
+  <string name="gear_item_guetres">Gäste (Wetland/Schnee)</string>
+  <!-- Couchage -->
+  <string name="gear_item_sac_couchage">Schlafsack (temp. angepasster Komfort)</string>
+  <string name="gear_item_tapis_sol">Matratze / Schaum</string>
+  <string name="gear_item_drap_soie">Seidenblatt / Liner</string>
+  <string name="gear_item_oreiller">Aufblasbare Kissen (optional)</string>
+  <!-- Abri -->
+  <string name="gear_item_tente">Zelt / Tarp</string>
+  <string name="gear_item_duvet_pluie">Fußabdruck / Bodenmatte</string>
+  <string name="gear_item_haubans">Haubans + Pickets</string>
+  <string name="gear_item_baton_marche">Sticks (wenn tarp)</string>
+  <!-- Cuisine / Eau -->
+  <string name="gear_item_rechaud">Reed (Gas/Alkohol/Holz)</string>
+  <string name="gear_item_cartouche">Kartusche / Kraftstoff</string>
+  <string name="gear_item_popote">Popote + bedeckt</string>
+  <string name="gear_item_briquet">Bricket / wasserdichte Spiele</string>
+  <string name="gear_item_filtre">Filter/Paints Reinigung</string>
+  <string name="gear_item_gourde">Gourde / Wassertasche (2–3 L)</string>
+  <string name="gear_item_mug">Tasse / Schüssel</string>
+  <string name="gear_item_eponge">Schwamm, biologisch abbaubare Miniseife</string>
+  <!-- Électronique -->
+  <string name="gear_item_tel">Telefon (Flugbetrieb)</string>
+  <string name="gear_item_cable_tel">USB-Kabel</string>
+  <string name="gear_item_gps_dedicace">GPS dediziert (optional)</string>
+  <string name="gear_item_montre">Uhr / Höhenmesser (optional)</string>
+  <!-- Trousse de secours -->
+  <string name="gear_item_pansements">Bandagen, sterile Pressen</string>
+  <string name="gear_item_antiseptique">Antiseptikum</string>
+  <string name="gear_item_antalgique">Antalgisch (Paacetamol/Iuprofen...)</string>
+  <string name="gear_item_pince_tiques">Tickspin</string>
+  <string name="gear_item_bande">Elastische Bandage</string>
+  <string name="gear_item_gants_nitrile">Nitrilhandschuhe</string>
+  <!-- Alimentation -->
+  <string name="gear_item_repas_lyo">Lyophilisierte Mahlzeiten</string>
+  <string name="gear_item_snacks">Snacks (Bars, getrocknete Früchte)</string>
+  <string name="gear_item_the_cafe">Kaffee und Tee</string>
+  <string name="gear_item_epices_sel">Salz / Gewürze</string>
+  <!-- Divers -->
+  <string name="gear_item_sac_poubelle">Müllbeutel (Leave No Trace)</string>
+  <string name="gear_item_sac_etanche">Wasserdichte / Reißverschlusstaschen</string>
+  <string name="gear_item_hygiene">Papier + Tülle / hydroalkoholisches Gel</string>
+  <string name="gear_item_chaussons">Pantoffeln Camp / Sandalen</string>
+  <string name="gear_item_app_photo">Kamera (optional)</string>
+  <string name="gear_item_carnet_crayon">Buch + Bleistift</string>
+  <!-- Hiver / Montagne -->
+  <string name="gear_item_crampons">Krabben (unter Bedingungen)</string>
+  <string name="gear_item_piolet">Piolet (je nach Route)</string>
+  <string name="gear_item_dva">DVA + Schaufel + Sonde</string>
+  <string name="gear_item_sur_gants">Hot surfers / mittens</string>
+  <string name="gear_item_collant_chaud">Niedrige/hohe Wärmeschicht</string>
+  <string name="gear_item_sur_pantalon">Überpants wasserdicht atmen</string>
+  <!-- ===== Clés attendues par les layouts / menus ===== -->
+  <string name="gear_shoes">Schuhe</string>
+  <string name="gear_backpack">Rucksack</string>
+  <string name="gear_water">Wasser</string>
+  <string name="gear_food">Lebensmittel</string>
+  <string name="gear_map_compass">&amp; Kompasskarte</string>
+  <string name="gear_first_aid">Notfallkit</string>
+  <string name="gear_bivouac_title">Bivouac</string>
+  <string name="gear_tent">Zelt / Tarp</string>
+  <string name="gear_sleeping_bag">Schlafsack</string>
+  <string name="gear_mat">Matratze / Schaum</string>
+  <string name="gear_stove">Reede</string>
+  <!-- Menu action -->
+  <string name="gear_reset">Zurück zur Übersicht</string>
+  </resources>

@@ -72,6 +72,10 @@ class InfoHubActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info_hub)
 
+
+        // Rend le retour (bouton back) plus “snappy” en supprimant l’animation.
+        overridePendingTransition(0, 0)
+
         // --- Toolbar ---
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar_info)
         setSupportActionBar(toolbar)
@@ -336,4 +340,10 @@ class InfoHubActivity : AppCompatActivity() {
             rotateChevron(i, expanded)
         }
     }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(0, 0)
+    }
+
 }

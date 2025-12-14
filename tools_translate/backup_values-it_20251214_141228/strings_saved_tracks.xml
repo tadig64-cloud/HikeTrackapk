@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="stx_open_folder">Open Folder</string>
+  <string name="stx_refresh">Update</string>
+  <string name="stx_delete_confirm_title">Delete this GPX?</string>
+  <string name="stx_delete_confirm_msg">This action will delete the device memory file.</string>
+  <string name="stx_deleted">File deleted</string>
+  <string name="stx_open_failed">Could not open this file.</string>
+  <string name="stx_share_failed">Failed sharing.</string>
+  <string name="stx_no_viewer">No application available to open this file.</string>
+      <string name="pref_app_language_summary">Scegli la lingua dell'interfaccia.</string>
+    <string name="pref_keep_screen_on_title">Schermo sempre acceso</string>
+    <string name="pref_app_language_title">Lingua dell'app</string>
+    <string name="pref_keep_screen_on_summary">Evita che lo schermo si spenga durante l'uso.</string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="notif_channel_tracking_title">Trace recording</string>
+  <string name="notif_channel_tracking_desc">Notifications related to GPS recording.</string>
+  <string name="notif_rec_title">Record trace</string>
+  <string name="notif_rec_text">Active service</string>
+  </resources>

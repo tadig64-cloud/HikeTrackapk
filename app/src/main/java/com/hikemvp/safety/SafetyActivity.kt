@@ -12,6 +12,10 @@ class SafetyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_safety)
 
+
+        // Rend le retour (bouton back) plus “snappy” en supprimant l’animation.
+        overridePendingTransition(0, 0)
+
         findViewById<com.google.android.material.appbar.MaterialToolbar>(R.id.toolbar).apply {
             setNavigationOnClickListener { finish() }
         }
@@ -29,4 +33,10 @@ class SafetyActivity : AppCompatActivity() {
             startActivity(Intent.createChooser(share, getString(R.string.menu_sos)))
         }
     }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(0, 0)
+    }
+
 }

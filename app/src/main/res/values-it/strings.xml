@@ -1,0 +1,909 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" xmlns:tools="http://schemas.android.com/tools">
+  <string-array name="map_source_entries">
+    <item>OpenStreetMap</item>
+    <item>Satellite</item>
+    <item>Relief</item>
+  </string-array>
+  <string-array name="map_source_values">
+    <item>osm</item>
+    <item>satellite</item>
+    <item>field</item>
+  </string-array>
+  <string name="pref_keep_screen_on_title">Schermo sempre acceso</string>
+  <string-array name="app_language_entries" translatable="false">
+    <item>Francese</item>
+    <item>Inglese</item>
+    <item>Spagnolo</item>
+    <item>Tedesco</item>
+    <item>Italiano</item>
+    <item>Portoghese</item>
+    <item>Portoghese (Brasile)</item>
+    <item>Olandese</item>
+    <item>Polacco</item>
+    <item>Russo</item>
+    <item>Arabo</item>
+    <item>Cinese (semplificato)</item>
+    <item>Giapponese</item>
+  </string-array>
+  <string-array name="app_language_values" translatable="false">
+    <item>fr</item>
+    <item>en</item>
+    <item>es</item>
+    <item>de</item>
+    <item>it</item>
+    <item>pt</item>
+    <item>pt-BR</item>
+    <item>nl</item>
+    <item>pl</item>
+    <item>ru</item>
+    <item>ar</item>
+    <item>zh-CN</item>
+    <item>ja</item>
+  </string-array>
+  <string-array name="gear_nav">
+    <item>IGN / Topo Card</item>
+    <item>Compass</item>
+    <item>GPS / Phone App + Battery</item>
+    <item>GPX Trace</item>
+    <item>Altimeter</item>
+    <item>Sifflet</item>
+    <item>Front lamp + batteries</item>
+  </string-array>
+  <string-array name="gear_vetements">
+    <item>Breathable jacket</item>
+    <item>Soft/polar</item>
+    <item>High/low thermal layer</item>
+    <item>Hiking pants</item>
+    <item>Breathable T-shirt (x2)</item>
+    <item>Hiking socks (x2)</item>
+    <item>Cap / Buff / Cap</item>
+    <item>Gloves</item>
+    <item>Guests</item>
+  </string-array>
+  <string-array name="gear_couchage">
+    <item>Sleeping bag (temp. adapted)</item>
+    <item>Mattress</item>
+    <item>Bag sheet</item>
+    <item>Inflatable Pillow</item>
+  </string-array>
+  <string-array name="gear_abri">
+    <item>Tent / Tarp</item>
+    <item>Arceaux / Sardines / Haubans</item>
+    <item>Floor covering</item>
+  </string-array>
+  <string-array name="gear_cuisine">
+    <item>Reed + fuel</item>
+    <item>Popote + covered</item>
+    <item>Fire ignition / lighter</item>
+    <item>Sponge + biodegradable mini soap</item>
+    <item>Food (meals, snacks)</item>
+    <item>Trash bag (leave no trace)</item>
+  </string-array>
+  <string-array name="gear_hydratation">
+    <item>Gourde(s) / Water pocket</item>
+    <item>Filter / Purification tablet</item>
+    <item>Salt/electrolytes</item>
+  </string-array>
+  <string-array name="gear_securite">
+    <item>First aid kit</item>
+    <item>Survival coverage</item>
+    <item>Multifunctional knife</item>
+    <item>Adhesive tape / Repair</item>
+    <item>Sunscreen / Lip Stick</item>
+    <item>Anti-moss</item>
+  </string-array>
+  <string-array name="gear_electronique">
+    <item>Phone + offline card</item>
+    <item>Powerbank + cable</item>
+    <item>Watch/Altimeter</item>
+    <item>Camera</item>
+  </string-array>
+  <string-array name="gear_divers">
+    <item>Walking poles</item>
+    <item>Personal pharmacy (antalgics, dressings...)</item>
+    <item>Identity papers / CB / Cash</item>
+    <item>Vital card / Insurance</item>
+    <item>Waterproof bag / Zip</item>
+    <item>Toilets (paper, trowel)</item>
+  </string-array>
+  <string name="menu_about">About</string>
+  <string name="about_title">About</string>
+  <string name="confirm_delete_title">Confirm deletion</string>
+  <string name="confirm_delete_message">Do you really want to delete this item? This action is irreversible.</string>
+  <string name="backup_done">Saved</string>
+  <string name="backup_failed">Backup failed</string>
+  <string name="cl_day_h">Day hiking</string>
+  <string name="cl_trek_h">Trek / several days</string>
+  <string name="cl_bivouac_h">Bivouac</string>
+  <string name="cl_water">Water (1.5–3 L)</string>
+  <string name="cl_snacks">Snacks / cold meals</string>
+  <string name="cl_map">Paper card</string>
+  <string name="cl_compass">Compass</string>
+  <string name="cl_phone">Phone charged</string>
+  <string name="cl_powerbank">External battery</string>
+  <string name="cl_firstaid">First aid kit</string>
+  <string name="cl_jacket">Windproof jacket / chaude</string>
+  <string name="cl_headlamp">Front lamp</string>
+  <string name="cl_sleepbag">Sleeping bag</string>
+  <string name="cl_stove">Reed</string>
+  <string name="cl_fuel">Fuel</string>
+  <string name="cl_cookset">Poppy / utensils</string>
+  <string name="cl_fooddays">Rations (x days)</string>
+  <string name="cl_filter">Filter / water pellets</string>
+  <string name="cl_repair">Repair kit</string>
+  <string name="cl_hygiene">Hygiene</string>
+  <string name="cl_tent">Tent</string>
+  <string name="cl_tarp">Tarp / tarpaulin</string>
+  <string name="cl_pad">Mattress</string>
+  <string name="cl_warmlayers">Hot diapers</string>
+  <string name="cl_rain">Rainwear</string>
+  <string name="cl_reset">Reset</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Cancel</string>
+  <string name="open">Open</string>
+  <string name="share">Share</string>
+  <string name="menu_gear">Equipment</string>
+  <string name="gear_title">Checklist Material</string>
+  <string name="gear_hdr_navigation">Navigation</string>
+  <string name="gear_hdr_securite">Security</string>
+  <string name="gear_hdr_habillement">Clothing</string>
+  <string name="gear_hdr_couchage">Bedding</string>
+  <string name="gear_hdr_abri">Shelter</string>
+  <string name="gear_hdr_cuisine">Kitchen / Water</string>
+  <string name="gear_hdr_electronique">Electronics</string>
+  <string name="gear_hdr_pharmacie">Emergency kit</string>
+  <string name="gear_hdr_alimentation">Food</string>
+  <string name="gear_hdr_divers">Miscellaneous</string>
+  <string name="gear_hdr_hiver">Winter / Mountain</string>
+  <string name="gear_item_carte_topo">Topo paper card</string>
+  <string name="gear_item_boussole">Compass</string>
+  <string name="gear_item_gps">GPS / smartphone with offline maps</string>
+  <string name="gear_item_powerbank">External battery (Powerbank)</string>
+  <string name="gear_item_cable_chargement">Loading cable</string>
+  <string name="gear_item_trousse_survie">Mini survival kit (bifflet, lighter, firesteel)</string>
+  <string name="gear_item_couteau">Knife / multi-tool</string>
+  <string name="gear_item_lampe">Front lamp + batteries</string>
+  <string name="gear_item_couverture_survie">Survival coverage</string>
+  <string name="gear_item_bande_kinesio">Bands / straps</string>
+  <string name="gear_item_creme_solaire">Sunscreen + lipstick</string>
+  <string name="gear_item_repulsif">Mosquito / tick repellent</string>
+  <string name="gear_item_kit_reparation">Repair kit (dut tape, thread, needle)</string>
+  <string name="gear_item_tshirt_ls">Breathable T-shirt (1–2)</string>
+  <string name="gear_item_polaire">Light polar</string>
+  <string name="gear_item_doudoune">Dudoune synth / down</string>
+  <string name="gear_item_veste_pluie">Breathable jacket (hardshell)</string>
+  <string name="gear_item_pantalon_rando">Hiking pants (or shorts + tights)</string>
+  <string name="gear_item_sous_vetements">Underwear (2 pairs)</string>
+  <string name="gear_item_chaussettes">Socks (2–3 pairs)</string>
+  <string name="gear_item_gants">Light gloves</string>
+  <string name="gear_item_bonnet">Cap / Buff</string>
+  <string name="gear_item_guetres">Guests (wetland/snow)</string>
+  <string name="gear_item_sac_couchage">Sleeping bag (temp. adapted comfort)</string>
+  <string name="gear_item_tapis_sol">Mattress / foam</string>
+  <string name="gear_item_drap_soie">Silk sheet / Liner</string>
+  <string name="gear_item_oreiller">Inflatable Pillow (optional)</string>
+  <string name="gear_item_tente">Tent / tarp</string>
+  <string name="gear_item_duvet_pluie">Footprint / floor mat</string>
+  <string name="gear_item_haubans">Haubans + pickets</string>
+  <string name="gear_item_baton_marche">Sticks (if tarp)</string>
+  <string name="gear_item_rechaud">Reed (gas/alcohol/wood)</string>
+  <string name="gear_item_cartouche">Cartridge / fuel</string>
+  <string name="gear_item_popote">Popote + covered</string>
+  <string name="gear_item_briquet">Bricket / watertight matches</string>
+  <string name="gear_item_filtre">Filters/Paints Purification</string>
+  <string name="gear_item_gourde">Gourde / water pocket (2–3 L)</string>
+  <string name="gear_item_mug">Mug / bowl</string>
+  <string name="gear_item_eponge">Sponge, biodegradable mini soap</string>
+  <string name="gear_item_tel">Telephone (aircraft mode)</string>
+  <string name="gear_item_cable_tel">USB cable</string>
+  <string name="gear_item_gps_dedicace">GPS dedicated (optional)</string>
+  <string name="gear_item_montre">Watch / altimeter (optional)</string>
+  <string name="gear_item_pansements">Bandages, sterile compresses</string>
+  <string name="gear_item_antiseptique">Antiseptic</string>
+  <string name="gear_item_antalgique">Antalgic (paracetamol/ibuprofen...)</string>
+  <string name="gear_item_pince_tiques">Tickspin</string>
+  <string name="gear_item_bande">Elastic banding</string>
+  <string name="gear_item_gants_nitrile">Nitrile gloves</string>
+  <string name="gear_item_repas_lyo">Lyophilized meals</string>
+  <string name="gear_item_snacks">Snacks (bars, dried fruits)</string>
+  <string name="gear_item_the_cafe">Tea/Coffee</string>
+  <string name="gear_item_epices_sel">Salt / spices</string>
+  <string name="gear_item_sac_poubelle">Trash bags (Leave No Trace)</string>
+  <string name="gear_item_sac_etanche">Waterproof / zip bags</string>
+  <string name="gear_item_hygiene">Paper + trowel / hydroalcoholic gel</string>
+  <string name="gear_item_chaussons">Slippers camp / sandals</string>
+  <string name="gear_item_app_photo">Camera (optional)</string>
+  <string name="gear_item_carnet_crayon">Book + pencil</string>
+  <string name="gear_item_crampons">Cramps (subject to conditions)</string>
+  <string name="gear_item_piolet">Piolet (depending on route)</string>
+  <string name="gear_item_dva">DVA + shovel + probe</string>
+  <string name="gear_item_sur_gants">Hot surfers / mittens</string>
+  <string name="gear_item_collant_chaud">Low/high thermal layer</string>
+  <string name="gear_item_sur_pantalon">Overpants waterproof-breathing</string>
+  <string name="gear_shoes">Footwear adapted</string>
+  <string name="gear_backpack">Backpack</string>
+  <string name="gear_water">Water</string>
+  <string name="gear_food">Food</string>
+  <string name="gear_map_compass">&amp; compass card</string>
+  <string name="gear_first_aid">Emergency kit</string>
+  <string name="gear_bivouac_title">Bivouac</string>
+  <string name="gear_tent">Tent / tarp</string>
+  <string name="gear_sleeping_bag">Sleeping bag</string>
+  <string name="gear_mat">Mattress / foam</string>
+  <string name="gear_stove">Reed</string>
+  <string name="gear_reset">Reset list</string>
+  <string name="group_title">Group</string>
+  <string name="menu_group_title">Group</string>
+  <string name="group_host">Create a group</string>
+  <string name="group_join">Join a group</string>
+  <string name="group_ready">Loan</string>
+  <string name="group_stop">Stop</string>
+  <string name="group_permissions_missing">Missing authorizations (Location / Wi-Fi / Bluetooth)</string>
+  <string name="group_cannot_open">Could not open group</string>
+  <string name="group_member_avatar_cd">Avatar of the member</string>
+  <string name="group_info_center">Centre</string>
+  <string name="group_stop_title">Stop Group</string>
+  <string name="groupx_restore_camera">Resume map view on startup</string>
+  <string name="groupx_fit_group">Frame on the group on startup (if members)</string>
+  <string name="groupx_notif_restore_on">Retrieving the enabled view</string>
+  <string name="groupx_notif_restore_off">Recapture of view disabled</string>
+  <string name="groupx_notif_fit_on">Frame on the enabled group</string>
+  <string name="groupx_notif_fit_off">Frame on the disabled group</string>
+  <string name="groupx_live_channel_name">Group (proximity)</string>
+  <string name="groupx_live_channel_desc">Group monitoring via proximity (Bluetooth / Wi-Fi)</string>
+  <string name="groupx_live_running">Active group — connected members: %1$d</string>
+  <string name="groupx_live_host_advertising">Host waiting..</string>
+  <string name="groupx_live_discovering">Search host..</string>
+  <string name="groupx_join_request_title">__TOK3_ wants to join</string>
+  <string name="groupx_join_request_text">Confirm the addition to the group?</string>
+  <string name="groupx_action_accept">Accept</string>
+  <string name="groupx_action_reject">Refuse</string>
+  <string name="groupx_action_stop">Stop</string>
+  <string name="groupx_perm_battery_title">Battery optimization</string>
+  <string name="groupx_perm_battery_text">Disable optimization for more regular monitoring.</string>
+  <string name="groupx_notif_channel_name">Group</string>
+  <string name="groupx_notif_channel_desc">Group notifications</string>
+  <string name="groupx_notif_member_removed">Deleted member: %1$s</string>
+  <string name="groupx_delete_title">Remove</string>
+  <string name="groupx_delete_msg">Delete %1$s from the group?</string>
+  <string name="groupx_hide_demo">Hide demo members</string>
+  <string name="groupx_color_title">Colour of the tablet</string>
+  <string name="help_placeholder">Aid</string>
+  <string name="hike_history_title">History of hiking</string>
+  <string name="hike_empty">Nessuna escursione salvata per ora.</string>
+  <string name="history_empty">No trace at the moment.\nImports a GPX file via the menu.</string>
+  <string name="history_import">Import GPX</string>
+  <string name="history_rescan">Rescanner</string>
+  <string name="history_row_stats">%1$s km • +%2$d / -%3$d • %4$s</string>
+  <string name="history_row_meta">%1$d pts • %2$s</string>
+  <string name="history_import_ok">Imported: %1$s</string>
+  <string name="history_import_fail">Import failure</string>
+  <string name="history_sort">Sort..</string>
+  <string name="history_sort_title">Sort By</string>
+  <string name="history_sort_date_desc">Date (recent → old)</string>
+  <string name="history_sort_date_asc">Date (former → recent)</string>
+  <string name="history_sort_dist_desc">Distance (▼)</string>
+  <string name="history_sort_dist_asc">Distance (↑)</string>
+  <string name="history_sort_gain_desc">D+</string>
+  <string name="history_sort_gain_asc">D+ (↑)</string>
+  <string name="history_filter_elev">Only with altitude</string>
+  <string name="history_totals">Total: %1$s km • +%2$d / -%3$d</string>
+  <string name="history_totals_placeholder">Total: 0.00 km • +0 / -0</string>
+  <string name="history_detail_title">Detail of trace</string>
+  <string name="history_share">Share GPX</string>
+  <string name="history_share_title">Share Track</string>
+  <string name="history_detail_missing">Not found: %1$s</string>
+  <string name="history_search">Search</string>
+  <string name="history_search_hint">Name or file..</string>
+  <string name="history_delete">Remove</string>
+  <string name="history_delete_title">Clear track?</string>
+  <string name="history_delete_msg">Confirm removal of %1$s?</string>
+  <string name="history_delete_confirm">Remove</string>
+  <string name="undo">Cancel</string>
+  <string name="history_deleted">Deleted: %1$s</string>
+  <string name="history_delete_fail">Unable to remove</string>
+  <string name="i18n_action_record_button_contentDescription_enregistrer">Save</string>
+  <string name="i18n_action_record_button_contentDescription_enregistrer_2">Save</string>
+  <string name="i18n_activity_group_hint_votre_nom_daffichage">Your Display Name</string>
+  <string name="i18n_activity_group_hint_votre_nom_daffichage_2">Your Display Name</string>
+  <string name="i18n_activity_group_text_arrter">Stop</string>
+  <string name="i18n_activity_group_text_arrter_2">Stop</string>
+  <string name="i18n_activity_group_text_crer_groupe">Create group</string>
+  <string name="i18n_activity_group_text_crer_groupe_2">Create group</string>
+  <string name="i18n_activity_group_text_groupe__prt">Group - loan</string>
+  <string name="i18n_activity_group_text_groupe__prt_2">Group - loan</string>
+  <string name="i18n_activity_group_text_membres_tap_pour_dtails">Members (tap for details)</string>
+  <string name="i18n_activity_group_text_membres_tap_pour_dtails_2">Members (tap for details)</string>
+  <string name="i18n_activity_group_text_rejoindre">Join</string>
+  <string name="i18n_activity_group_text_rejoindre_2">Join</string>
+  <string name="i18n_activity_group_text_vider_la_liste">Clear List</string>
+  <string name="i18n_activity_group_text_vider_la_liste_2">Clear List</string>
+  <string name="i18n_activity_main_text_ouverture_de_la_carte">Opening the map..</string>
+  <string name="i18n_activity_main_text_ouverture_de_la_carte_2">Opening the map..</string>
+  <string name="i18n_activity_map_text_lat_nlon_nalt">Lat: —\nLon: —\nAlt: —</string>
+  <string name="i18n_activity_map_text_lat_nlon_nalt_2">Lat: —\nLon: —\nAlt: —</string>
+  <string name="i18n_activity_replay_contentDescription_playpause">Play/Pause</string>
+  <string name="i18n_activity_replay_contentDescription_playpause_2">Play/Pause</string>
+  <string name="i18n_activity_replay_text_1">1×</string>
+  <string name="i18n_activity_replay_text_1_2">1×</string>
+  <string name="i18n_activity_replay_text_rejoue">Replay</string>
+  <string name="i18n_activity_replay_text_rejoue_2">Replay</string>
+  <string name="i18n_activity_sos_text_batterie">Battery: —</string>
+  <string name="i18n_activity_sos_text_batterie_2">Battery: —</string>
+  <string name="i18n_activity_track_detail_text_000_km__0__0">0.00 km • +0 / -0</string>
+  <string name="i18n_activity_track_detail_text_000_km__0__0_2">0.00 km • +0 / -0</string>
+  <string name="i18n_activity_track_detail_text_0_pts__filegpx">0 pts • file.gpx</string>
+  <string name="i18n_activity_track_detail_text_0_pts__filegpx_2">0 pts • file.gpx</string>
+  <string name="i18n_activity_track_detail_text_nom">Name</string>
+  <string name="i18n_activity_track_detail_text_nom_2">Name</string>
+  <string name="i18n_dialog_track_details_hint_alerte__m">Alert to (m)</string>
+  <string name="i18n_dialog_track_details_hint_alerte__m_2">Alert to (m)</string>
+  <string name="i18n_dialog_track_details_hint_nouveau_nom">New name</string>
+  <string name="i18n_dialog_track_details_hint_nouveau_nom_2">New name</string>
+  <string name="i18n_dialog_track_details_text_couleur">Colour</string>
+  <string name="i18n_dialog_track_details_text_couleur_2">Colour</string>
+  <string name="i18n_dialog_track_details_text_dfinir_alerte">Set Alert</string>
+  <string name="i18n_dialog_track_details_text_dfinir_alerte_2">Set Alert</string>
+  <string name="i18n_dialog_track_details_text_dtails_de_la_trace">Trace Details</string>
+  <string name="i18n_dialog_track_details_text_dtails_de_la_trace_2">Trace Details</string>
+  <string name="i18n_dialog_track_details_text_exporter">Export</string>
+  <string name="i18n_dialog_track_details_text_exporter_2">Export</string>
+  <string name="i18n_dialog_track_details_text_suivre">Follow</string>
+  <string name="i18n_dialog_track_details_text_suivre_2">Follow</string>
+  <string name="i18n_dialog_track_details_text_supprimer">Remove</string>
+  <string name="i18n_dialog_track_details_text_supprimer_2">Remove</string>
+  <string name="i18n_dialog_waypoint_list_hint_rechercher_nom_ou_4312_123">Search (name or 43.12, -1.23)</string>
+  <string name="i18n_dialog_waypoint_list_hint_rechercher_nom_ou_4312_123_2">Search (name or 43.12, -1.23)</string>
+  <string name="i18n_dialog_waypoint_list_text_afficher_groupes_masqus">Show masked groups</string>
+  <string name="i18n_dialog_waypoint_list_text_afficher_groupes_masqus_2">Show masked groups</string>
+  <string name="i18n_dialog_waypoint_list_text_annuler">Cancel</string>
+  <string name="i18n_dialog_waypoint_list_text_annuler_2">Cancel</string>
+  <string name="i18n_dialog_waypoint_list_text_aucun_waypoint_pour_linstant">No waypoint yet.</string>
+  <string name="i18n_dialog_waypoint_list_text_aucun_waypoint_pour_linstant_2">No waypoint yet.</string>
+  <string name="i18n_dialog_waypoint_list_text_basculer_mode_slection">Switch selection mode</string>
+  <string name="i18n_dialog_waypoint_list_text_basculer_mode_slection_2">Switch selection mode</string>
+  <string name="i18n_dialog_waypoint_list_text_effacer_le_filtre">Clear filter</string>
+  <string name="i18n_dialog_waypoint_list_text_effacer_le_filtre_2">Clear filter</string>
+  <string name="i18n_dialog_waypoint_list_text_exporter_gpx_filtre">Export GPX (filter)</string>
+  <string name="i18n_dialog_waypoint_list_text_exporter_gpx_filtre_2">Export GPX (filter)</string>
+  <string name="i18n_dialog_waypoint_list_text_exporter_json_backup">Export JSON (backup)</string>
+  <string name="i18n_dialog_waypoint_list_text_exporter_json_backup_2">Export JSON (backup)</string>
+  <string name="i18n_dialog_waypoint_list_text_exporter_slection">Export selection</string>
+  <string name="i18n_dialog_waypoint_list_text_exporter_slection_2">Export selection</string>
+  <string name="i18n_dialog_waypoint_list_text_fermer">Close</string>
+  <string name="i18n_dialog_waypoint_list_text_fermer_2">Close</string>
+  <string name="i18n_dialog_waypoint_list_text_importer_gpxcsvjson">Import (GPX/CSV/JSON)</string>
+  <string name="i18n_dialog_waypoint_list_text_importer_gpxcsvjson_2">Import (GPX/CSV/JSON)</string>
+  <string name="i18n_dialog_waypoint_list_text_masquerafficher_groupe">Hide/Show Group</string>
+  <string name="i18n_dialog_waypoint_list_text_masquerafficher_groupe_2">Hide/Show Group</string>
+  <string name="i18n_dialog_waypoint_list_text_supprimer_slection">Delete Selection</string>
+  <string name="i18n_dialog_waypoint_list_text_supprimer_slection_2">Delete Selection</string>
+  <string name="i18n_dialog_waypoint_list_text_tout_slectionner">Select All</string>
+  <string name="i18n_dialog_waypoint_list_text_tout_slectionner_2">Select All</string>
+  <string name="i18n_dialog_waypoint_list_text_waypoints">Waypoints</string>
+  <string name="i18n_dialog_waypoint_list_text_waypoints_2">Waypoints</string>
+  <string name="i18n_fragment_map_text_000_km">0.00 km</string>
+  <string name="i18n_fragment_map_text_000_km_2">0.00 km</string>
+  <string name="i18n_fragment_map_text_000_km_3">0.00 km</string>
+  <string name="i18n_fragment_map_text_000_km_4">0.00 km</string>
+  <string name="i18n_fragment_map_text_00_kmh">0.0 km/h</string>
+  <string name="i18n_fragment_map_text_00_kmh_2">0.0 km/h</string>
+  <string name="i18n_fragment_map_text_00h00">00:00</string>
+  <string name="i18n_fragment_map_text_00h00_2">00:00</string>
+  <string name="i18n_fragment_map_text_0_m">+0 m</string>
+  <string name="i18n_fragment_map_text_0_m_2">-0 m</string>
+  <string name="i18n_fragment_map_text_0_m_3">0 m</string>
+  <string name="i18n_fragment_map_text_0_m_4">0 m</string>
+  <string name="i18n_fragment_map_text_0_m_5">+0 m</string>
+  <string name="i18n_fragment_map_text_0_m_6">-0 m</string>
+  <string name="i18n_fragment_map_text_0_m_7">0 m</string>
+  <string name="i18n_fragment_map_text_0_m_8">0 m</string>
+  <string name="i18n_fragment_map_text_d">D+</string>
+  <string name="i18n_fragment_map_text_d_2">D-</string>
+  <string name="i18n_fragment_map_text_d_3">D+</string>
+  <string name="i18n_fragment_map_text_d_4">D-</string>
+  <string name="i18n_fragment_map_text_dist">Dist</string>
+  <string name="i18n_fragment_map_text_dist_2">Dist</string>
+  <string name="i18n_fragment_map_text_eta">ETA</string>
+  <string name="i18n_fragment_map_text_eta_2">ETA</string>
+  <string name="i18n_fragment_map_text_plan">Plan</string>
+  <string name="i18n_fragment_map_text_plan_2">Plan</string>
+  <string name="i18n_item_hike_text_123_km__d_520_m__4h_05">12.3 km • D+ 520 m • 4h 05</string>
+  <string name="i18n_item_hike_text_123_km__d_520_m__4h_05_2">12.3 km • D+ 520 m • 4h 05</string>
+  <string name="i18n_item_hike_text_14_sept_2025_1042">14 sept. 2025 10:42</string>
+  <string name="i18n_item_hike_text_14_sept_2025_1042_2">14 sept. 2025 10:42</string>
+  <string name="i18n_item_hike_text_notes">Notes..</string>
+  <string name="i18n_item_hike_text_notes_2">Notes..</string>
+  <string name="i18n_menu_map_group_only_title_groupe">Group</string>
+  <string name="i18n_menu_map_group_only_title_groupe_2">Group</string>
+  <string name="i18n_menu_map_title_afficher_les_zones_protges">Show protected areas</string>
+  <string name="i18n_menu_map_title_afficher_les_zones_protges_2">Show protected areas</string>
+  <string name="i18n_menu_map_title_cartes__tuiles">Maps &amp; Tiles</string>
+  <string name="i18n_menu_map_title_cartes__tuiles_2">Maps &amp; Tiles</string>
+  <string name="i18n_menu_map_title_centrer_sur_moi">Focus on me</string>
+  <string name="i18n_menu_map_title_centrer_sur_moi_2">Focus on me</string>
+  <string name="i18n_menu_map_title_dtails_du_parcours">Route details</string>
+  <string name="i18n_menu_map_title_dtails_du_parcours_2">Route details</string>
+  <string name="i18n_menu_map_title_effacer_le_plan">Clear Plan</string>
+  <string name="i18n_menu_map_title_effacer_le_plan_2">Clear Plan</string>
+  <string name="i18n_menu_map_title_enregistrement">Registration</string>
+  <string name="i18n_menu_map_title_enregistrement_2">Registration</string>
+  <string name="i18n_menu_map_title_exporter_le_plan_gpx">Export GPX Plan</string>
+  <string name="i18n_menu_map_title_exporter_le_plan_gpx_2">Export GPX Plan</string>
+  <string name="i18n_menu_map_title_groupe">Group</string>
+  <string name="i18n_menu_map_title_groupe_2">Group</string>
+  <string name="i18n_menu_map_title_guidage_nature">Nature guidance</string>
+  <string name="i18n_menu_map_title_guidage_nature_2">Nature guidance</string>
+  <string name="i18n_menu_map_title_guidage_nature_3">Nature guidance</string>
+  <string name="i18n_menu_map_title_guidage_nature_4">Nature guidance</string>
+  <string name="i18n_menu_map_title_importer_des_poi">Import POI..</string>
+  <string name="i18n_menu_map_title_importer_des_poi_2">Import POI..</string>
+  <string name="i18n_menu_map_title_infos__secours">Information &amp; help</string>
+  <string name="i18n_menu_map_title_infos__secours_2">Information &amp; help</string>
+  <string name="i18n_menu_map_title_infos_rando">Hike info</string>
+  <string name="i18n_menu_map_title_infos_rando_2">Hike info</string>
+  <string name="i18n_menu_map_title_matriel">Equipment</string>
+  <string name="i18n_menu_map_title_matriel_2">Equipment</string>
+  <string name="i18n_menu_map_title_outils">Tools</string>
+  <string name="i18n_menu_map_title_outils_2">Tools</string>
+  <string name="i18n_menu_map_title_ouvrir_le_dossier">Open Folder</string>
+  <string name="i18n_menu_map_title_ouvrir_le_dossier_2">Open Folder</string>
+  <string name="i18n_menu_map_title_paramtres">Parameters</string>
+  <string name="i18n_menu_map_title_paramtres_2">Parameters</string>
+  <string name="i18n_menu_map_title_pause">Break</string>
+  <string name="i18n_menu_map_title_pause_2">Break</string>
+  <string name="i18n_menu_map_title_planification">Planning</string>
+  <string name="i18n_menu_map_title_planification_2">Planning</string>
+  <string name="i18n_menu_map_title_planifier_un_itinraire">Plan a route</string>
+  <string name="i18n_menu_map_title_planifier_un_itinraire_2">Plan a route</string>
+  <string name="i18n_menu_map_title_points_deau">Water points</string>
+  <string name="i18n_menu_map_title_points_deau_2">Water points</string>
+  <string name="i18n_menu_map_title_replay_du_trac">Track Replay</string>
+  <string name="i18n_menu_map_title_replay_du_trac_2">Track Replay</string>
+  <string name="i18n_menu_map_title_reprendre">Take over</string>
+  <string name="i18n_menu_map_title_reprendre_2">Take over</string>
+  <string name="i18n_menu_map_title_retour_au_dpart">Return to departure</string>
+  <string name="i18n_menu_map_title_retour_au_dpart_2">Return to departure</string>
+  <string name="i18n_menu_map_title_rglages">Settings</string>
+  <string name="i18n_menu_map_title_rglages_2">Settings</string>
+  <string name="i18n_menu_map_title_rglages_d__d">Settings D+ / D–</string>
+  <string name="i18n_menu_map_title_rglages_d__d_2">Settings D+ / D–</string>
+  <string name="i18n_menu_map_title_seuil_horssentier">Off-story threshold..</string>
+  <string name="i18n_menu_map_title_seuil_horssentier_2">Off-story threshold..</string>
+  <string name="i18n_menu_map_title_snap_to_trails_ors">Snap to trail (ORS)</string>
+  <string name="i18n_menu_map_title_snap_to_trails_ors_2">Snap to trail (ORS)</string>
+  <string name="i18n_menu_map_title_sos">SOS</string>
+  <string name="i18n_menu_map_title_sos_2">SOS</string>
+  <string name="i18n_menu_map_title_sources_nature">Nature sources..</string>
+  <string name="i18n_menu_map_title_sources_nature_2">Nature sources..</string>
+  <string name="i18n_menu_map_title_suivi">Monitoring</string>
+  <string name="i18n_menu_map_title_suivi_2">Monitoring</string>
+  <string name="i18n_menu_profile_quick_title_mon_profil">My profile</string>
+  <string name="i18n_menu_profile_quick_title_mon_profil_2">My profile</string>
+  <string name="i18n_menu_v6_shortcuts_title_points_deau">Water points</string>
+  <string name="i18n_menu_v6_shortcuts_title_points_deau_2">Water points</string>
+  <string name="i18n_menu_v6_shortcuts_title_premiers_secours">First aid</string>
+  <string name="i18n_menu_v6_shortcuts_title_premiers_secours_2">First aid</string>
+  <string name="i18n_menu_v6_shortcuts_title_respect_nature">Nature</string>
+  <string name="i18n_menu_v6_shortcuts_title_respect_nature_2">Nature</string>
+  <string name="i18n_menu_v6_shortcuts_title_retour_dpart">Return</string>
+  <string name="i18n_menu_v6_shortcuts_title_retour_dpart_2">Return</string>
+  <string name="i18n_menu_v6_shortcuts_title_sos">SOS</string>
+  <string name="i18n_menu_v6_shortcuts_title_sos_2">SOS</string>
+  <string name="i18n_menu_waypoint_groups_title_groupes">Groups</string>
+  <string name="i18n_menu_waypoint_groups_title_groupes_2">Groups</string>
+  <string name="i18n_preferences_dialogTitle_vitesse_de_planification">Planning speed</string>
+  <string name="i18n_preferences_dialogTitle_vitesse_de_planification_2">Planning speed</string>
+  <string name="i18n_preferences_summary_ajuste_la_frquencedistance_des_p">Adjusts the frequency/distance of GPS points according to the movement (ACTIVE / SLOW / IDLE).</string>
+  <string name="i18n_preferences_summary_ajuste_la_frquencedistance_des_p_2">Adjusts the frequency/distance of GPS points according to the movement (ACTIVE / SLOW / IDLE).</string>
+  <string name="i18n_preferences_summary_rduit_la_frquence_des_mises__jou">Reduces update frequency (saves battery).</string>
+  <string name="i18n_preferences_summary_rduit_la_frquence_des_mises__jou_2">Reduces update frequency (saves battery).</string>
+  <string name="i18n_preferences_title_co_batterie_gps_adaptatif">Eco battery (Adaptive GPS)</string>
+  <string name="i18n_preferences_title_co_batterie_gps_adaptatif_2">Eco battery (Adaptive GPS)</string>
+  <string name="i18n_preferences_title_cobatterie_gps_adaptatif">Eco-battery (Adaptive GPS)</string>
+  <string name="i18n_preferences_title_cobatterie_gps_adaptatif_2">Eco-battery (Adaptive GPS)</string>
+  <string name="i18n_preferences_title_nergie__gps">Energy / GPS</string>
+  <string name="i18n_preferences_title_nergie__gps_2">Energy / GPS</string>
+  <string name="i18n_preferences_title_planification">Planning</string>
+  <string name="i18n_preferences_title_planification_2">Planning</string>
+  <string name="i18n_preferences_title_planification__batterie">Planning &amp; Battery</string>
+  <string name="i18n_preferences_title_planification__batterie_2">Planning &amp; Battery</string>
+  <string name="i18n_preferences_title_vitesse_de_planification_kmh">Planning speed (km/h)</string>
+  <string name="i18n_preferences_title_vitesse_de_planification_kmh_2">Planning speed (km/h)</string>
+  <string name="i18n_preferences_title_vitesse_de_planification_kmh_3">Planning speed (km/h)</string>
+  <string name="i18n_preferences_title_vitesse_de_planification_kmh_4">Planning speed (km/h)</string>
+  <string name="i18n_profile_badge_text_profil">Profile</string>
+  <string name="i18n_profile_badge_text_profil_2">Profile</string>
+  <string name="i18n_row_gpx_item_text_taille__modifi_le">Size • Modified on</string>
+  <string name="i18n_row_gpx_item_text_taille__modifi_le_2">Size • Modified on</string>
+  <string name="i18n_row_gpx_item_text_track_0001gpx">track_0001.gpx</string>
+  <string name="i18n_row_gpx_item_text_track_0001gpx_2">track_0001.gpx</string>
+  <string name="i18n_row_gpx_track_text_000_km__0__0">0.00 km • +0 / -0</string>
+  <string name="i18n_row_gpx_track_text_000_km__0__0_2">0.00 km • +0 / -0</string>
+  <string name="i18n_row_gpx_track_text_0_pts__filegpx">0 pts • file.gpx</string>
+  <string name="i18n_row_gpx_track_text_0_pts__filegpx_2">0 pts • file.gpx</string>
+  <string name="i18n_row_gpx_track_text_nom_de_la_trace">Name of trace</string>
+  <string name="i18n_row_gpx_track_text_nom_de_la_trace_2">Name of trace</string>
+  <string name="i18n_row_waypoint_contentDescription_plus_doptions">More options</string>
+  <string name="i18n_row_waypoint_contentDescription_plus_doptions_2">More options</string>
+  <string name="i18n_row_waypoint_text_000000_000000__20250101_1200">0.00000, 0.00000 • 2025-01-01 12:00</string>
+  <string name="i18n_row_waypoint_text_000000_000000__20250101_1200_2">0.00000, 0.00000 • 2025-01-01 12:00</string>
+  <string name="i18n_row_waypoint_text_waypoint">Waypoint</string>
+  <string name="i18n_row_waypoint_text_waypoint_2">Waypoint</string>
+  <string name="i18n_track_detail_bottomsheet_text_alarme">Alarm</string>
+  <string name="i18n_track_detail_bottomsheet_text_alarme_2">Alarm</string>
+  <string name="i18n_track_detail_bottomsheet_text_altitude_minmax">Altitude min/max</string>
+  <string name="i18n_track_detail_bottomsheet_text_altitude_minmax_2">Altitude min/max</string>
+  <string name="i18n_track_detail_bottomsheet_text_arrive">Arrival</string>
+  <string name="i18n_track_detail_bottomsheet_text_arrive_2">Arrival</string>
+  <string name="i18n_track_detail_bottomsheet_text_couleur">Colour</string>
+  <string name="i18n_track_detail_bottomsheet_text_couleur_2">Colour</string>
+  <string name="i18n_track_detail_bottomsheet_text_d__d">D+/D-</string>
+  <string name="i18n_track_detail_bottomsheet_text_d__d_2">D+/D-</string>
+  <string name="i18n_track_detail_bottomsheet_text_distance">Distance</string>
+  <string name="i18n_track_detail_bottomsheet_text_distance_2">Distance</string>
+  <string name="i18n_track_detail_bottomsheet_text_dpart">Departure</string>
+  <string name="i18n_track_detail_bottomsheet_text_dpart_2">Departure</string>
+  <string name="i18n_track_detail_bottomsheet_text_dure">Duration</string>
+  <string name="i18n_track_detail_bottomsheet_text_dure_2">Duration</string>
+  <string name="i18n_track_detail_bottomsheet_text_exporter">Export</string>
+  <string name="i18n_track_detail_bottomsheet_text_exporter_2">Export</string>
+  <string name="i18n_track_detail_bottomsheet_text_infos_supplmentaires">Additional information</string>
+  <string name="i18n_track_detail_bottomsheet_text_infos_supplmentaires_2">Additional information</string>
+  <string name="i18n_track_detail_bottomsheet_text_partager">Share</string>
+  <string name="i18n_track_detail_bottomsheet_text_partager_2">Share</string>
+  <string name="i18n_track_detail_bottomsheet_text_renommermodifier">Rename/modify</string>
+  <string name="i18n_track_detail_bottomsheet_text_renommermodifier_2">Rename/modify</string>
+  <string name="i18n_track_detail_bottomsheet_text_suivredcouper">Follow/Cut</string>
+  <string name="i18n_track_detail_bottomsheet_text_suivredcouper_2">Follow/Cut</string>
+  <string name="i18n_track_detail_bottomsheet_text_supprimer">Remove</string>
+  <string name="i18n_track_detail_bottomsheet_text_supprimer_2">Remove</string>
+  <string name="i18n_track_detail_bottomsheet_text_temps_en_mouvement">Time on the move</string>
+  <string name="i18n_track_detail_bottomsheet_text_temps_en_mouvement_2">Time on the move</string>
+  <string name="i18n_track_detail_bottomsheet_text_titre_de_la_trace">Title of trace</string>
+  <string name="i18n_track_detail_bottomsheet_text_titre_de_la_trace_2">Title of trace</string>
+  <string name="i18n_track_detail_bottomsheet_text_vitesse">Speed</string>
+  <string name="i18n_track_detail_bottomsheet_text_vitesse_2">Speed</string>
+  <string name="ih_section_markings">Marking &amp; acronyms</string>
+  <string name="ih_section_weather">Weather &amp; storms</string>
+  <string name="ih_section_orientation">Orientation &amp; progression</string>
+  <string name="ih_section_respect">Respect for nature</string>
+  <string name="ih_section_firstaid">First Aid &amp; SOS</string>
+  <string name="ih_markings_body">Segnaletica: impara i simboli locali e segui il percorso segnato.</string>
+  <string name="ih_weather_body">Before leaving:
+• Consult a local newsletter + evolution hour by hour (wind, rain, thunderstorms).
+• Look also: temperature felt in altitude, gusts on peaks, limit rain/snow (if season).
+• Plan B: shorter/lower route + loops (fast return).
+
+Thunderstorms (simple rules):
+• Avoid ridges, peaks, edges, clear areas when risk increases.
+• Remove metal objects (sticks, fences) and move away from isolated trees.
+• Flash-to-bang: &lt; 30 s between lightning and thunder 
+• Safety position: squat on bag/insulating, feet joints, hands on knees; avoids stretching.
+• As a group: spread out (10 m) to limit the risk of collective impact.
+• Wait 30 minutes after the last thunder before you leave.
+
+Other weather traps:
+• Strong wind: caution on edges/coles (disequilibrium), move away from the edges.
+• Heavy rain: attention to flash floods (valley bottoms, ravines) + slides.
+• Fog: slows down, stays grouped, pointing forward (sign, crossing, secondary top).</string>
+  <string name="ih_orient_body">Orientamento: usa mappa e bussola; tieni traccia della tua posizione.</string>
+  <string name="ih_respect_body">Rispetto della natura: resta sui sentieri, riporta a casa i rifiuti e rispetta la fauna.</string>
+  <string name="ih_firstaid_body">Primo soccorso: porta un kit di base e sappi usarlo.</string>
+  <string name="ih_expand">Show</string>
+  <string name="ih_collapse">Hide</string>
+  <string name="loading">Loading..</string>
+  <string name="map_action_reset_camera">Reset View</string>
+  <string name="map_reset_done">Reset view</string>
+  <string name="menu_open_tracks_folder">Open Track Folder</string>
+  <string name="more_title">More</string>
+  <string name="menu_import">Import</string>
+  <string name="menu_export">Export</string>
+  <string name="menu_offline_maps">Offline cards</string>
+  <string name="menu_help">Aid</string>
+  <string name="notif_channel_tracking_title">Trace recording</string>
+  <string name="notif_channel_tracking_desc">Notifications related to GPS recording.</string>
+  <string name="notif_rec_title">Record trace</string>
+  <string name="notif_rec_text">Active service</string>
+  <string name="no_offline_maps">No offline map available</string>
+  <string name="offline_title_starting">Download preparation</string>
+  <string name="offline_title_downloading">Downloading in progress</string>
+  <string name="offline_title_working">Treatment in progress</string>
+  <string name="offline_title_error">Error</string>
+  <string name="offline_title_failed">Failure</string>
+  <string name="offline_title_done">Completed</string>
+  <string name="offline_msg_starting">Initialization..</string>
+  <string name="offline_msg_progress">Progression: %1$dTOK4__</string>
+  <string name="offline_msg_failed">The download failed.</string>
+  <string name="offline_msg_done">Offline maps ready.</string>
+  <string name="offline_tiles_progress">Downloading tiles..</string>
+  <string name="offline_tiles_cancel">Cancel download</string>
+  <string name="pref_title_backups">Backup</string>
+  <string name="pref_summary_backups">Export application data</string>
+  <string name="offline_btn_close">Close</string>
+  <string name="offline_btn_cancel">Cancel</string>
+  <string name="profile_title">Profile</string>
+  <string name="profile_pick_avatar">Choose a profile photo</string>
+  <string name="profile_clear_avatar">Delete Photo</string>
+  <string name="profile_pseudo">Nickname</string>
+  <string name="profile_pref_hud_weather">Show weather in the HUD</string>
+  <string name="profile_pref_auto_follow">Auto Position Tracking</string>
+  <string name="profile_action_save">Save</string>
+  <string name="profile_action_change_photo">Change Photo</string>
+  <string name="profile_action_remove_photo">Remove Photo</string>
+  <string name="profile_action_history">History</string>
+  <string name="profile_action_settings">Profile Parameters</string>
+  <string name="profile_avatar_selected">Selected photo</string>
+  <string name="profile_avatar_cleared">Photo deleted</string>
+  <string name="profile_pseudo_required">The nickname is required</string>
+  <string name="profile_saved">Registered profile</string>
+  <string name="profile_badge_content_desc">Profile badge</string>
+  <string name="profile_badge_label">Hiking badge</string>
+  <string name="not_yet_implemented">Soon available</string>
+  <string name="action_profile_save">Save</string>
+  <string name="action_profile_edit">Modify</string>
+  <string name="action_profile_delete">Remove</string>
+  <string name="action_profile_close">Close</string>
+  <string name="action_profile_change_photo">Change Photo</string>
+  <string name="action_profile_reset">Reset</string>
+  <string name="profile_badge_user">User</string>
+  <string name="profile_badge_hint">Profile</string>
+  <string name="profile_entry_label">Profile HikeTrack</string>
+  <string name="profile_history_title">History</string>
+  <string name="profile_settings_title">Profile settings</string>
+  <string name="btn_pause">Break</string>
+  <string name="btn_resume">Take over</string>
+  <string name="msg_rec_paused">Recording on pause</string>
+  <string name="msg_rec_resumed">Resuming registration</string>
+  <string name="channel_recording_name">Trace recording</string>
+  <string name="notif_recording_title_active">Registration in progress</string>
+  <string name="notif_recording_title_paused">Recording on pause</string>
+  <string name="notif_recording_text_active">Distance: __TOK3_ km</string>
+  <string name="notif_recording_text_paused">Break • Distance: __TOK3_ km</string>
+  <string name="ht_respect_nature_text">Respect in National Reserves and Parks
+• Parks: protected areas. Frequent rules: stay on the trails, do not pick anything, no fire, dogs prohibited (even on a leash), drones prohibited unless authorized. Respect on-site signs and local orders.
+• Nature reserves &amp; regional parks: variable rules (bivouac, dogs, fires). Check for seasonal quietness areas and signage.
+
+Why not bathe in high-altitude lakes
+• Fragile ecosystems: many lakes are oligotrophic and very sensitive; small disturbances have great effects.
+• Pollutants: sunscreen/body products, textile fibres and micro-organisms degrade water and plankton; focus on managed bathing areas.
+• Wildlife disturbance: amphibians and shorebirds are sensitive to noise, trampling and clapp (plants, spawning grounds).
+• Health/safety: very cold water (thermal shock/hypothermia), slippery banks; Some municipalities prohibit bathing by decree.
+• Simple rule: if a ban is displayed, you do not bathe; Otherwise, observe without entering the water, leave nothing, avoid prolonged contact.
+
+Good practices in protected areas
+• Stay on the trails to limit erosion.
+• Bivouac: often tolerated overnight (after 7pm – before 9am), away from roads/houses; remain &gt; 20 m from lakes/water courses; leave with grey water and waste.
+• Dogs: usually forbidden in park hearts; keep on a leash and respect periods of tranquillity.
+• Drones: assimilated to motorized and prohibited aircraft in park cores (rare exceptions on authorization).
+• Wildlife &amp; herds: do not continue; make a wide detour; Close the fences.
+
+Marking: color codes
+- GR: white/red; // = straight; angle = turn; Cross = wrong path.
+GRP: yellow/red; territory loops.
+PR: yellow; local/day loops.</string>
+  <string name="ht_safety_storm_title">Thunderstorm: what to do?</string>
+  <string name="ht_safety_storm_before">• Check the local weather before you leave.
+• Avoid ridges, peaks, edges and clear areas if risk increases.
+• Identify areas of retreat in advance (cabana, building, dense forest not isolated).
+.</string>
+  <string name="ht_safety_storm_during">Durante un temporale: allontanati da creste, alberi isolati e punti alti. Scendi in una zona riparata.</string>
+  <string name="ht_safety_storm_after">• Wait for the confirmed distance (≥30 min without thunder).
+• Checks the condition of the unit, warms/drys if necessary.
+• In case of accident, alert 112 and precise position, condition, access.
+.</string>
+  <string name="ht_safety_heat_title">Heat &amp; heat</string>
+  <string name="ht_safety_heat_body">• Leave early/late, avoid the hottest hours.
+• Wood small to small (0.5–1 L/h depending on effort), dirty a little food.
+• Cover yourself: hat/chap, glasses, sunscreen, light sleeves.
+• Weighs naked/forearm if possible, multiplies breaks in shade.
+• Warning signs: headache, nausea, cramps, dizziness, confusion — STOP, get shaded, refresh yourself, rehydrate yourself, warn if it persists.
+.</string>
+  <string name="ht_safety_cold_title">Cold &amp; hypothermia</string>
+  <string name="ht_safety_cold_body">• Superimposed 3 layers (breathing / insulating / rainproof).
+• Warm head/hand/foot guard; changes a wet garment as soon as possible.
+• Cut the wind, shelter; move regularly without sweating excessively.
+• Drink and eat (hot if possible) to keep energy.
+• Warning signs: uncontrolled chills, awkwardness, drowsiness — warms gently, isolates soil/wind, alerts if worsening.
+.</string>
+  <string name="ht_safety_nav_title">Fog &amp; astray</string>
+  <string name="ht_safety_nav_body">Navigazione: prepara la traccia, controlla cartina e bussola, usa il GPS con prudenza e avvisa un contatto del percorso.</string>
+  <string name="ht_safety_animals_title">Animals &amp; herds</string>
+  <string name="ht_safety_animals_body">Fauna selvatica: mantieni le distanze, resta calmo e non dare cibo agli animali.</string>
+  <string name="stx_open_folder">Open Folder</string>
+  <string name="stx_refresh">Update</string>
+  <string name="stx_delete_confirm_title">Delete this GPX?</string>
+  <string name="stx_delete_confirm_msg">This action will delete the device memory file.</string>
+  <string name="stx_deleted">File deleted</string>
+  <string name="stx_open_failed">Could not open this file.</string>
+  <string name="stx_share_failed">Failed sharing.</string>
+  <string name="stx_no_viewer">No application available to open this file.</string>
+  <string name="pref_cat_language">Language</string>
+  <string name="pref_language_title">Language of application</string>
+  <string name="pref_app_language_title">Lingua dell\'app</string>
+  <string name="pref_app_language_summary">Scegli la lingua dell\'interfaccia</string>
+  <string name="pref_keep_screen_on_summary">Mantieni lo schermo acceso mentre usi la mappa</string>
+  <string name="share_gpx">Share GPX</string>
+  <string name="no_viewer_app">No application to display this image.</string>
+  <string name="missing_permission">Could not open image (missing permission).</string>
+  <string name="file_not_found">File not found.</string>
+  <string name="tab_map">Map</string>
+  <string name="tab_group">Group</string>
+  <string name="tab_tracks">Traces</string>
+  <string name="tab_waypoints">Waypoints</string>
+  <string name="tab_more">More</string>
+  <string name="placeholder_more">Useful functions to come..</string>
+  <string name="placeholder_tracks">No trace yet.</string>
+  <string name="placeholder_waypoints">No waypoints yet.</string>
+  <string name="toast_tracks">Opening the trace list..</string>
+  <string name="title_tracks">Traces</string>
+  <string name="title_waypoints">Waypoints</string>
+  <string name="title_more">More</string>
+  <string name="toast_waypoints">Waypoints function to come..</string>
+  <string name="toast_more">Utilitarian functions to come..</string>
+  <string name="no_tracks">No trace yet</string>
+  <string name="tracks_open_placeholder">What do you want to do?</string>
+  <string name="bts_title">Return to departure</string>
+  <string name="bts_waiting_fix">Waiting for GPS..</string>
+  <string name="bts_bearing_placeholder">Heading: —°</string>
+  <string name="bts_bearing_fmt">Cap: __TOK3_°</string>
+  <string name="bts_distance_m_fmt">%1$d m</string>
+  <string name="bts_distance_km_fmt">__TOK3_ km</string>
+  <string name="bts_no_start">No starting point found</string>
+  <string name="bts_no_start_toast">Start a recording to set a starting point.</string>
+  <string name="bts_perm_denied">Authorization to locate refused.</string>
+  <string name="bts_gps_unavailable">No location provider available.</string>
+  <string name="bts_arrow_cd">Arrow to starting point</string>
+  <string name="bts_hint">The arrow points to the first recorded point (departure)._TOK0__The distance and heading automatically update.</string>
+  <string name="v6_bts_title">Return to departure</string>
+  <string name="v6_bts_desc">Guide to the starting point with heading and distance.</string>
+  <string name="v6_bts_no_fix">GPS position unavailable</string>
+  <string name="v6_bts_distance_fmt">__TOK3_ km</string>
+  <string name="v6_bts_bearing_fmt">__TOK3_°</string>
+  <string name="v6_sos_title">SOS – Emergency</string>
+  <string name="v6_sos_desc">Emergency information and call options or SMS.</string>
+  <string name="v6_sos_call">Call 911</string>
+  <string name="v6_sos_sms">Send SMS emergency</string>
+  <string name="v6_sos_prep">Prepare SOS message..</string>
+  <string name="v6_water_title">Water points</string>
+  <string name="v6_water_none">No water points nearby.</string>
+  <string name="v6_water_loading">Loading water points..</string>
+  <string name="v6_water_distance_fmt">%1$.0f m</string>
+  <string name="v6_respect_title">Respect for nature</string>
+  <string name="v6_respect_intro">Simple rules to minimize impact in hiking.</string>
+  <string name="v6_firstaid_title">First aid</string>
+  <string name="v6_firstaid_intro">Essential gestures to keep in mind in case of incident.</string>
+  <string name="v6_open">Open</string>
+  <string name="v6_close">Close</string>
+  <string name="v6_retry">Try again</string>
+  <string name="waypoints_title">Waypoints</string>
+  <string name="sort_by_name">Sort by name</string>
+  <string name="waypoints_empty">No waypoint yet.</string>
+  <string name="close">Close</string>
+  <string name="view_on_map">See on the map</string>
+  <string name="rename">Rename</string>
+  <string name="delete">Remove</string>
+  <string name="rename_waypoint_title">Rename the waypoint</string>
+  <string name="name_empty">Empty name</string>
+  <string name="rename_failed">Could not rename this waypoint.</string>
+  <string name="delete_waypoint_title">Delete Waypoint</string>
+  <string name="delete_waypoint_message">Delete %1$s?</string>
+  <string name="deleted">Deleted</string>
+  <string name="copied_coords">Copyed contact information: %1$.5f, %2$.5f</string>
+  <string name="action_rename">Rename</string>
+  <string name="action_delete">Remove</string>
+  <string name="delete_failed">Could not delete this waypoint.</string>
+  <string name="more">More options</string>
+  <string name="wp_action_open">Open</string>
+  <string name="wp_action_share">Share</string>
+  <string name="wp_action_delete">Remove</string>
+  <string name="wp_view_on_map">See on the map</string>
+  <string name="wp_rename">Rename</string>
+  <string name="wp_delete">Remove</string>
+  <string name="wp_share">Share</string>
+  <string name="waypoint_deleted">Waypoint deleted</string>
+  <string name="waypoint_delete_message">Delete this waypoint?</string>
+  <string name="waypoint_empty_message">No waypoint recorded.</string>
+  <string name="weather_panel_title">Weather</string>
+  <string name="weather_loading">Weather update..</string>
+  <string name="weather_na">—</string>
+  <string name="confirm_clear_title">Clear track?</string>
+  <string name="confirm_clear_msg">This action erases the displayed trace.</string>
+  <string name="btn_stop">Stop</string>
+  <string name="btn_cancel">Cancel</string>
+  <string name="qw_title">Weather conditions: reflexes</string>
+  <string name="qw_close">Close</string>
+  <string name="qw_intro">Tap the weather map to quickly find reflexes by situation. These tips do not replace a reliable newsletter or common sense in the field.</string>
+  <string name="qw_thunder_title">- Thunderstorms</string>
+  <string name="qw_thunder_body">Rischio di temporali: cerca riparo ed evita le zone esposte.</string>
+  <string name="qw_wind_title">Strong wind</string>
+  <string name="qw_wind_body">• Beware of ridges and corridors; avoid exposed lakes and bridges._TOK0__
+• Anticipe unstable branches/rocks; space the group.
+• Fixed hood/equipment; lowers the center of gravity in the gusts.
+.</string>
+  <string name="qw_heat_title">Heat</string>
+  <string name="qw_heat_body">• Hydrate early and often; useful salts/sweet water.
+• Slow down, multiplies breaks in shadow; cover neck/head.
+• Monitor cramps, headaches, confusion, stop &amp; cool.
+.</string>
+  <string name="qw_cold_title">Cold / Snow</string>
+  <string name="qw_cold_body">• Overlays layers; protects ends and wind._TOK0_
+• Dry storage: changes a wet top; Isolate yourself from the ground.
+• Hypo: chills, awkwardness, slowness, warm sweetness, wet change.
+.</string>
+  <string name="qw_fog_title">🌫️ Brouillard</string>
+  <string name="qw_fog_body">• Reduce the appearance; remains grouped; visibility / cliff = prudence ++._TOK0__
+• Orient yourself: compass, short azimuth, simple attack points.
+• Mark the path (waypoints), often check map/terrain.
+.</string>
+  <string name="qw_rain_title">Rain / Crude</string>
+  <string name="qw_rain_body">• Avoids ravine bottoms in case of thunderstorm; flash raw attention._TOK0__
+• Keep a breathable layer; protects what should not be wet.
+• Feet: anticipated slide (stone/wood) and prolonged cold.
+.</string>
+  <string name="wx_thunder_title">Thunderstorms &amp; Lightning</string>
+  <string name="wx_thunder_intro">Mountain thunderstorm = immediate danger (fouling, hail, gusts, flash floods). Anticipate and adapt the route.
+.</string>
+  <string name="wx_thunder_do">• Check the weather report before leaving (possible thunderstorm = short/evasive route).
+• In the field, watch the sky: rapid budding, distant thunder, rotating wind, sizzling.
+• Evacuate ridges, ridges, peaks, exposed slabs; target a low but dry area, away from an isolated point._TOK0__
+• Step away from each other by at least 20 m to limit the group risk.
+• As a last resort, squat on dry bag/cord (insulating), tight feet, minimum exposure time.
+.</string>
+  <string name="wx_thunder_dont">• Do not stay under an isolated tree, a metallic overhang, a top cross, an electric line.
+• Do not use sticks/pilets held in the air; store antennas, masts, umbrellas.
+• Do not shelter the entire group in the same place; avoid running caves and banks in flood.
+.</string>
+  <string name="wx_thunder_after">After the storm: prudence on wet snows/rocks, weakened snow bridges, flooded flows/locals.
+.</string>
+  <string name="wx_heat_title">Heat &amp; sunshine</string>
+  <string name="wx_heat_tips">• Early departure, adapted rhythm, frequent breaks in the shade.
+• Drink before thirst, electrolytes if prolonged effort; hat + glasses category 3/4, cream SPF 50.\n
+• Monitor headache, nausea, confusion: immediate cessation/refreshment; alert so worsening.
+.</string>
+  <string name="wx_cold_title">Cold &amp; hypothermia</string>
+  <string name="wx_cold_tips">• Overlay of layers (breathing/insulating/winding), hand/foot/head protections.
+• Moulded = danger: prefer dry clothes; watch chills, malfeasance, drowsiness.\n
+• Sweet hot drink, soil isolation (cover), shelter from the wind; Emergency alert if altered.
+.</string>
+  <string name="wx_wind_title">Strong wind</string>
+  <string name="wx_wind_tips">• Beware of gusts in ridges/coles, unstable cornices.
+• Short-set poles, safe support points, dust glasses.
+• Renunciate if uncertain progression: turn back = right decision.
+.</string>
+  <string name="aide_prevention_title">Help &amp; Prevention</string>
+  <string name="aide_tab_security">Security</string>
+  <string name="aide_tab_respect">Compliance</string>
+  <string name="aide_tab_checklist">Checklist</string>
+  <string name="aide_security_text">Safety tips in nature:_TOK0__
+• Notify a relative of your itinerary and an hour of return.
+• Checks the weather and any warnings.
+• Brings water, food, hot layer, emergency kit, survival blanket._TOK0__
+• Offline card / topo + charged phone (energy saving mode).\n
+• Keep the margin (day, weather, shape) and know how to turn around.
+• In season of hunting or fishing: remains visible (living colors) and follow local signs.
+.</string>
+  <string name="aide_respect_text">Respect for nature and others :_TOK0__
+• Stay on the trails, close fences, dogs kept on leash if necessary._TOK0__
+• Take all your waste (even biodegradable) and avoid fire in times of risk.
+• Be discreet near homes, herds and sensitive areas (nested, reserves).
+• Fishermen: learn about minimum periods, permits and sizes; respect banks and other users.\n
+• Mushroom pickers: identifies with certainty, cuts with a knife without tearing the mycelium, uses an airy basket and collects only the necessary.
+.</string>
+  <string name="aide_checklist_text">Quick checklist before leaving :_TOK0__
+• Itinerary + off-line track OK? Weather checked? Close informed ?\n
+• Water (≥ 1.5 L), snacks, windbreak/polar, emergency kit, survival cover.
+• Headlight, phone charge, map / GPS; useful whistle._TOK0__
+• Depending on the season: sun/rain/cold protection, repellent.
+• On-site: regular rhythm, breaks, turn back if doubted.\n
+• Emergency: 112 (or SMS 114). Gives the place as precise as possible.
+.</string>
+  <string name="wp_confirm_delete">Delete %s?</string>
+  <string name="wp_noname">Unnamed</string>
+  <string name="wp_coords_format">%1$.5f, %2$.5f</string>
+  <string name="action_export">Export</string>
+  <string name="sort">Sort</string>
+  <string name="sort_by_date">Sort by date</string>
+  <string name="add_new">Add</string>
+</resources>

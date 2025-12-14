@@ -1,0 +1,4 @@
+<resources>
+    <string name="no_tracks">Aucune trace pour le moment</string>
+    <string name="tracks_open_placeholder">Que souhaitez-vous faire ?</string>
+</resources>

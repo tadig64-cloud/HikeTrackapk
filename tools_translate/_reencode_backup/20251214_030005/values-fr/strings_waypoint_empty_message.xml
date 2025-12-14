@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="waypoint_empty_message">Aucun waypoint enregistré.</string>
+</resources>

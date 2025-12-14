@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="ih_section_markings">Marking &amp; acronyms</string>
+  <string name="ih_section_weather">Weather &amp; storms</string>
+  <string name="ih_section_orientation">Orientation &amp; progression</string>
+  <string name="ih_section_respect">Respect for nature</string>
+  <string name="ih_section_firstaid">First Aid &amp; SOS</string>
+  <!-- ====== BALISAGE & SIGLES ====== -->
+  <string name="ih_markings_body">Segnaletica: impara i simboli locali e segui il percorso segnato.</string>
+  <!-- ====== MÉTÉO & ORAGES (général) ====== -->
+  <string name="ih_weather_body">Before leaving:
+• Consult a local newsletter + evolution hour by hour (wind, rain, thunderstorms).
+• Look also: temperature felt in altitude, gusts on peaks, limit rain/snow (if season).
+• Plan B: shorter/lower route + loops (fast return).
+
+Thunderstorms (simple rules):
+• Avoid ridges, peaks, edges, clear areas when risk increases.
+• Remove metal objects (sticks, fences) and move away from isolated trees.
+• Flash-to-bang: &lt; 30 s between lightning and thunder 
+• Safety position: squat on bag/insulating, feet joints, hands on knees; avoids stretching.
+• As a group: spread out (10 m) to limit the risk of collective impact.
+• Wait 30 minutes after the last thunder before you leave.
+
+Other weather traps:
+• Strong wind: caution on edges/coles (disequilibrium), move away from the edges.
+• Heavy rain: attention to flash floods (valley bottoms, ravines) + slides.
+• Fog: slows down, stays grouped, pointing forward (sign, crossing, secondary top).</string>
+  <!-- ====== ORIENTATION & PROGRESSION ====== -->
+  <string name="ih_orient_body">Orientamento: usa mappa e bussola; tieni traccia della tua posizione.</string>
+  <!-- ====== RESPECT DE LA NATURE ====== -->
+  <string name="ih_respect_body">Rispetto della natura: resta sui sentieri, riporta a casa i rifiuti e rispetta la fauna.</string>
+  <!-- ====== PREMIERS SECOURS & SOS ====== -->
+  <string name="ih_firstaid_body">Primo soccorso: porta un kit di base e sappi usarlo.</string>
+  <string name="ih_expand">Show</string>
+  <string name="ih_collapse">Hide</string>
+      <string name="pref_app_language_summary">Scegli la lingua dell'interfaccia.</string>
+    <string name="pref_keep_screen_on_title">Schermo sempre acceso</string>
+    <string name="pref_app_language_title">Lingua dell'app</string>
+    <string name="pref_keep_screen_on_summary">Evita che lo schermo si spenga durante l'uso.</string>
+</resources>

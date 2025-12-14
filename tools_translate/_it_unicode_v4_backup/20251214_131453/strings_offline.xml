@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- IMPORTANT: ne pas définir no_tracks ici pour éviter les doublons -->
+  <string name="no_offline_maps">No offline map available</string>
+  <string name="offline_title_starting">Download preparation</string>
+  <string name="offline_title_downloading">Downloading in progress</string>
+  <string name="offline_title_working">Treatment in progress</string>
+  <string name="offline_title_error">Error</string>
+  <string name="offline_title_failed">Failure</string>
+  <string name="offline_title_done">Completed</string>
+  <string name="offline_msg_starting">Initialization..</string>
+  <string name="offline_msg_progress">Progression: %1$dTOK4__</string>
+  <string name="offline_msg_failed">The download failed.</string>
+  <string name="offline_msg_done">Offline maps ready.</string>
+  <string name="offline_tiles_progress">Downloading tiles..</string>
+  <string name="offline_tiles_cancel">Cancel download</string>
+  <string name="pref_title_backups">Backup</string>
+  <string name="pref_summary_backups">Export application data</string>
+  <string name="offline_btn_close">Close</string>
+  <string name="offline_btn_cancel">Cancel</string>
+  </resources>

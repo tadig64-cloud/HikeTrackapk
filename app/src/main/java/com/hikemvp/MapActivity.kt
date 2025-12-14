@@ -10,6 +10,9 @@ import android.content.SharedPreferences
 import android.util.Log
 import android.widget.ArrayAdapter
 import com.hikemvp.R
+import androidx.activity.OnBackPressedCallback
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+
 
 
 import android.widget.FrameLayout
@@ -122,16 +125,19 @@ class MapActivity : AppCompatActivity() {
         val fConn  = android.content.IntentFilter("com.hikemvp.group.CONNECTED")
         val fPos   = android.content.IntentFilter("com.hikemvp.group.POSITION")
         val fMarks = android.content.IntentFilter("com.hikemvp.group.ACTION_GROUP_MARKERS")
+        val fStatus = android.content.IntentFilter(Constants.ACTION_RECORDING_STATUS)
         if (android.os.Build.VERSION.SDK_INT >= 33) {
             registerReceiver(groupConnectedReceiver, fConn, android.content.Context.RECEIVER_NOT_EXPORTED)
             registerReceiver(groupPosReceiver,       fPos,  android.content.Context.RECEIVER_NOT_EXPORTED)
             registerReceiver(groupMarkersReceiver,   fMarks,android.content.Context.RECEIVER_NOT_EXPORTED)
+            registerReceiver(statusReceiver,       fStatus, android.content.Context.RECEIVER_NOT_EXPORTED)
         } else {
             @Suppress("DEPRECATION")
             run {
                 registerReceiver(groupConnectedReceiver, fConn)
                 registerReceiver(groupPosReceiver,       fPos)
                 registerReceiver(groupMarkersReceiver,   fMarks)
+                registerReceiver(statusReceiver,       fStatus)
             }
         }
         receiversRegistered = true
@@ -142,6 +148,7 @@ class MapActivity : AppCompatActivity() {
         runCatching { unregisterReceiver(groupConnectedReceiver) }
         runCatching { unregisterReceiver(groupPosReceiver) }
         runCatching { unregisterReceiver(groupMarkersReceiver) }
+        runCatching { unregisterReceiver(statusReceiver) }
         receiversRegistered = false
     }
 
@@ -1895,7 +1902,36 @@ private fun parseGpxTimes(file: java.io.File): List<Long> {
             }
         }
 
-    // ===== Lifecycle =====
+    
+
+    // ===== Exit confirmation (anti sortie involontaire) =====
+    private var exitConfirmDialog: AlertDialog? = null
+
+    private fun installExitConfirmBackHandler() {
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Si MapActivity n'est pas la "racine" (ex: ouverture via deep-link), on revient juste en arrière.
+                if (!isTaskRoot) {
+                    finish()
+                    return
+                }
+
+                // Évite d'empiler plusieurs dialogs si on spam le bouton retour.
+                if (exitConfirmDialog?.isShowing == true) return
+
+                exitConfirmDialog = MaterialAlertDialogBuilder(this@MapActivity)
+                    .setTitle("Quitter HikeTrack ?")
+                    .setMessage("Voulez-vous vraiment quitter l’application ?")
+                    .setNegativeButton("Rester", null)
+                    .setPositiveButton("Quitter") { _, _ ->
+                        finish()
+                    }
+                    .show()
+            }
+        })
+    }
+
+// ===== Lifecycle =====
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
                 setContentView(R.layout.activity_map)
@@ -1914,6 +1950,8 @@ requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 }
 
         setContentView(R.layout.activity_map)
+        installExitConfirmBackHandler()
+
         MapUiWiring.wire(this)
         map = findViewById(R.id.mapView)
         com.hikemvp.GroupGlobals.mapView = map
@@ -2058,6 +2096,7 @@ runCatching {
             runCatching { unregisterReceiver(groupConnectedReceiver) }
             runCatching { unregisterReceiver(groupPosReceiver) }
             runCatching { unregisterReceiver(groupMarkersReceiver) }
+            runCatching { unregisterReceiver(statusReceiver) }
             receiversRegistered = false
         }
         super.onStop()
@@ -2066,11 +2105,27 @@ runCatching {
     override fun onResume() {
         super.onResume()
         
+        // Sync état réel de l’enregistrement (si démarré depuis un autre écran : Groupe, notif, etc.)
+        runCatching {
+            isRecording = RecordingStatePrefs.isActive(this)
+            isPaused = RecordingStatePrefs.isPaused(this)
+        }
+
+
+        // Si l’état a changé pendant que l’écran n’était pas au premier plan (stop depuis Groupe / notif),
+        // on force un refresh UI + on coupe les tickers inutiles.
+        if (!isRecording || isPaused) {
+            stopElapsedTicker()
+            stopOffTrailTicker()
+        }
+        
         refreshProfileSubtitle()
 map.onResume()
         applyUserPrefs()
         updateToolbarTheme()
         updateStatsVisibility()
+        invalidateOptionsMenu()
+        updateRecordButtonIcon()
         if (isRecording && !isPaused) startElapsedTicker()
         if (natureGuidanceOn) startNatureTicker()
         loadSavedTracksToMap()
@@ -3311,6 +3366,8 @@ map.onResume()
         if (!isRecording) return
         stopElapsedTicker(); stopOffTrailTicker()
         isRecording = false; isPaused = false
+        // Sync immédiat (évite l’icône 'pause' qui reste affichée si l’arrêt se fait via un autre flux)
+        runCatching { RecordingStatePrefs.set(this, active = false, paused = false) }
         updateStatsVisibility(); updateToolbarTheme()
         try {
             val svc = Intent(

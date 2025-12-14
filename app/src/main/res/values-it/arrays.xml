@@ -1,15 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
-<resources>
-  <string-array name="map_source_entries">
-    <item>OpenStreetMap</item>
-    <item>Satellite</item>
-    <item>Relief</item>
-    </string-array>
-  <string-array name="map_source_values">
-    <item>osm</item>
-    <item>satellite</item>
-    <item>field</item>
-    </string-array>
-      <string name="pref_keep_screen_on_title">Schermo sempre acceso</string>
-    </resources>
-
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"
+    xmlns:tools="http://schemas.android.com/tools">
+</resources>

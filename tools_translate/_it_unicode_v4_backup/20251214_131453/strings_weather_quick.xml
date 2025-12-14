@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="qw_title">Weather conditions: reflexes</string>
+  <string name="qw_close">Close</string>
+  <string name="qw_intro">Tap the weather map to quickly find reflexes by situation. These tips do not replace a reliable newsletter or common sense in the field.</string>
+  <!-- Orages -->
+  <string name="qw_thunder_title">- Thunderstorms</string>
+  <string name="qw_thunder_body">Rischio di temporali: cerca riparo ed evita le zone esposte.</string>
+  <!-- Vent -->
+  <string name="qw_wind_title">Strong wind</string>
+  <string name="qw_wind_body">• Beware of ridges and corridors; avoid exposed lakes and bridges._TOK0__
+• Anticipe unstable branches/rocks; space the group.
+• Fixed hood/equipment; lowers the center of gravity in the gusts.
+.</string>
+  <!-- Chaleur -->
+  <string name="qw_heat_title">Heat</string>
+  <string name="qw_heat_body">• Hydrate early and often; useful salts/sweet water.
+• Slow down, multiplies breaks in shadow; cover neck/head.
+• Monitor cramps, headaches, confusion, stop &amp; cool.
+.</string>
+  <!-- Froid / Neige -->
+  <string name="qw_cold_title">Cold / Snow</string>
+  <string name="qw_cold_body">• Overlays layers; protects ends and wind._TOK0_
+• Dry storage: changes a wet top; Isolate yourself from the ground.
+• Hypo: chills, awkwardness, slowness, warm sweetness, wet change.
+.</string>
+  <!-- Brouillard -->
+  <string name="qw_fog_title">🌫️ Brouillard</string>
+  <string name="qw_fog_body">• Reduce the appearance; remains grouped; visibility / cliff = prudence ++._TOK0__
+• Orient yourself: compass, short azimuth, simple attack points.
+• Mark the path (waypoints), often check map/terrain.
+.</string>
+  <!-- Pluie / Crues -->
+  <string name="qw_rain_title">Rain / Crude</string>
+  <string name="qw_rain_body">• Avoids ravine bottoms in case of thunderstorm; flash raw attention._TOK0__
+• Keep a breathable layer; protects what should not be wet.
+• Feet: anticipated slide (stone/wood) and prolonged cold.
+.</string>
+  </resources>

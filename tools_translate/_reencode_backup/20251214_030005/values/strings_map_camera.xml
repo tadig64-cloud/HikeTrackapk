@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="map_action_reset_camera">Réinitialiser la vue</string>
+    <string name="map_reset_done">Vue réinitialisée</string>
+</resources>

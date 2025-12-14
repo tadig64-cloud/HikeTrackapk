@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="qw_title">Condiciones meteorológicas: reflejos</string>
+  <string name="qw_close">Cerca</string>
+  <string name="qw_intro">Pulse el mapa del tiempo para encontrar rápidamente reflejos por situación. Estos consejos no reemplazan un boletín fiable o un sentido común en el campo.</string>
+  <!-- Orages -->
+  <string name="qw_thunder_title">- Tormentas</string>
+  <string name="qw_thunder_body">• Evite crestas, árboles aislados, crestas, cuevas húmedas, agua.
+• Discutir palos y objetos metálicos; Aislarse del suelo (sac, espuma).
+• Flash-to-bang: se realizaron 30 segundos cerca del peligro. Baja a una zona baja e inflodable.
+• Posición de seguridad: asfalto, pies articulados, aislante. No se acueste.
+.</string>
+  <!-- Vent -->
+  <string name="qw_wind_title">viento fuerte</string>
+  <string name="qw_wind_body">• Tenga cuidado con las crestas y pasillos; evite lagos y puentes expuestos._TOK0__
+• Anticipe ramas inestables / rocas; espacio el grupo.
+• Capota fija/equipamiento; baja el centro de gravedad en las ráfagas.
+.</string>
+  <!-- Chaleur -->
+  <string name="qw_heat_title">Calor</string>
+  <string name="qw_heat_body">• Hidratar temprano y a menudo; sales útiles / agua dulce.
+• Despacio, multiplica las rupturas en la sombra; cubre el cuello/cabeza.
+• Monitorear calambres, dolores de cabeza, confusión, parar &gt; fresco.
+.</string>
+  <!-- Froid / Neige -->
+  <string name="qw_cold_title">Cold / Nieve</string>
+  <string name="qw_cold_body">• Superpone capas; protege los extremos y el viento._TOK0_
+• Almacenamiento seco: cambia una parte superior mojada; Aíslase del suelo.
+• Hipo: escalofríos, torpeza, lentitud, dulzura cálida, cambio húmedo.
+.</string>
+  <!-- Brouillard -->
+  <string name="qw_fog_title">🌫️ Brouillard</string>
+  <string name="qw_fog_body">• Reducir la apariencia; restos agrupados; visibilidad / acantilado = prudencia ++_TOK0__
+• Póngase cómodo: brújula, corto azimut, simples puntos de ataque.
+• Marcar el camino (puntos), a menudo ver mapa/terrano.
+.</string>
+  <!-- Pluie / Crues -->
+  <string name="qw_rain_title">Rain / Crude</string>
+  <string name="qw_rain_body">• Evita los fondos de barranco en caso de tormenta; llama la atención cruda._TOK0__
+• Mantenga una capa transpirable; protege lo que no debe estar mojado.
+• Pies: deslizamiento anticipado (piedra / madera) y frío prolongado.
+.</string>
+  </resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">HikeTrack</string>
+  <string name="menu_info_hub">Info escursione</string>
+  <string name="info_hub_title">Info escursione</string>
+  <string name="menu_guide">Guida escursione</string>
+  <string name="menu_saved_tracks">Tracce salvate</string>
+  <string name="saved_tracks_title">Tracce salvate</string>
+  <string name="settings_section_tracks">Tracce</string>
+  <string name="tab_tracks">Tracce</string>
+  <string name="title_tracks">Tracce</string>
+  <string name="pref_persist_tracks_title">Persistenza tracce</string>
+</resources>

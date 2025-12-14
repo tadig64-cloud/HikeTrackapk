@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Placeholders & toasts for tabs-related screens (FR) -->
+  <string name="placeholder_more">Useful functions to come..</string>
+  <string name="placeholder_tracks">No trace yet.</string>
+  <string name="placeholder_waypoints">No waypoints yet.</string>
+  <string name="toast_tracks">Opening the trace list..</string>
+      <string name="pref_app_language_summary">Scegli la lingua dell'interfaccia.</string>
+    <string name="pref_keep_screen_on_title">Schermo sempre acceso</string>
+    <string name="pref_app_language_title">Lingua dell'app</string>
+    <string name="pref_keep_screen_on_summary">Evita che lo schermo si spenga durante l'uso.</string>
+</resources>

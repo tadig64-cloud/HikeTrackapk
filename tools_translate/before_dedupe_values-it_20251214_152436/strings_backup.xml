@@ -1,0 +1,10 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Backup / suppression (locale par défaut) -->
+  <string name="confirm_delete_title">Confirm deletion</string>
+  <string name="confirm_delete_message">Do you really want to delete this item? This action is irreversible.</string>
+  <string name="backup_done">Saved</string>
+  <string name="backup_failed">Backup failed</string>
+      <string name="pref_keep_screen_on_title">Schermo sempre acceso</string>
+    </resources>
+

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Palette "md_*" principale -->
+    <color name="md_primary">#006A60</color>
+    <color name="md_on_primary">#FFFFFF</color>
+    <color name="md_primary_variant">#004D45</color>
+
+    <color name="md_secondary">#4E635E</color>
+    <color name="md_on_secondary">#FFFFFF</color>
+
+    <color name="md_background">#FFFBFE</color>
+    <color name="md_on_background">#1C1B1F</color>
+
+    <color name="md_surface">#FFFBFE</color>
+    <color name="md_on_surface">#1C1B1F</color>
+
+    <color name="md_error">#B3261E</color>
+    <color name="md_on_error">#FFFFFF</color>
+
+    <!-- Alias classiques -->
+    <color name="colorPrimary">@color/md_primary</color>
+    <color name="colorPrimaryVariant">@color/md_primary_variant</color>
+    <color name="colorSecondary">@color/md_secondary</color>
+    <color name="colorOnPrimary">@color/md_on_primary</color>
+    <color name="colorOnSecondary">@color/md_on_secondary</color>
+    <color name="colorSurface">@color/md_surface</color>
+    <color name="colorOnSurface">@color/md_on_surface</color>
+    <color name="colorBackground">@color/md_background</color>
+    <color name="colorOnBackground">@color/md_on_background</color>
+    <color name="colorError">@color/md_error</color>
+    <color name="colorOnError">@color/md_on_error</color>
+
+    <!-- Divers -->
+    <color name="ht_toolbar_dark">#101114</color>
+
+    <!-- Toolbar : état normal (plus clair, icônes colorées) -->
+    <color name="topbar_idle_bg">#B0BEC5</color>   <!-- BlueGrey 200 (clair) -->
+    <color name="topbar_idle_icon">#0D47A1</color> <!-- Bleu foncé lisible -->
+
+    <!-- Toolbar : enregistrement (clair + contraste) -->
+    <color name="topbar_rec_bg">#FFE0E0</color>    <!-- rouge très clair -->
+    <color name="topbar_rec_icon">#B71C1C</color>  <!-- rouge foncé -->
+
+    <!-- Couleurs "legacy" -->
+    <color name="purple_200">#BB86FC</color>
+    <color name="purple_500">#6200EE</color>
+    <color name="purple_700">#3700B3</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="teal_700">#018786</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+</resources>

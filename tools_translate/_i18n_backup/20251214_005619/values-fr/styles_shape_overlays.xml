@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Fallbacks locaux si la lib Material3 ne fournit pas ces overlays sur ta version -->
+
+    <!-- Base générique attendue par certains parents -->
+    <style name="ShapeAppearanceOverlay.Material3" />
+
+    <!-- Famille "Corner" utilisée par tes vues -->
+    <style name="ShapeAppearanceOverlay.Material3.Corner">
+        <item name="cornerFamily">rounded</item>
+    </style>
+
+    <!-- Variantes référencées dans activity_map.xml -->
+    <style name="ShapeAppearanceOverlay.Material3.Corner.Medium"
+        parent="ShapeAppearanceOverlay.Material3.Corner">
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.Material3.Corner.ExtraLarge"
+        parent="ShapeAppearanceOverlay.Material3.Corner">
+        <item name="cornerSize">28dp</item>
+    </style>
+
+</resources>

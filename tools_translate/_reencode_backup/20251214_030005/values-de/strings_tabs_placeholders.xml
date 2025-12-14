@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Placeholders & toasts for tabs-related screens (FR) -->
+  <string name="placeholder_more">Nützliche Funktionen kommen..</string>
+  <string name="placeholder_tracks">Noch keine Spur.</string>
+  <string name="placeholder_waypoints">Noch keine Wegpunkte.</string>
+  <string name="toast_tracks">Eröffnung der Spurliste..</string>
+  </resources>
