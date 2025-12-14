@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="gear_nav">
+    <item>IGN / Topo Card</item>
+    <item>Kompass</item>
+    <item>GPS / Telefon App + Batterie</item>
+    <item>GPX Tranchen</item>
+    <item>In den Warenkorb</item>
+    <item>Siff</item>
+    <item>Frontleuchte + Batterien</item>
+  </string-array>
+  <string-array name="gear_vetements">
+    <item>Atmungsaktive Jacke</item>
+    <item>Weich/polar</item>
+    <item>Hoch/niedrige Wärmeschicht</item>
+    <item>Wanderhose</item>
+    <item>Atmungsaktives T-Shirt (x2)</item>
+    <item>Wandersocken (x2)</item>
+    <item>Cap / Buff / Cap</item>
+    <item>Handschuhe</item>
+    <item>Gäste</item>
+  </string-array>
+  <string-array name="gear_couchage">
+    <item>Schlafsack (temp. angepasst)</item>
+    <item>Matratzen</item>
+    <item>Taschentuch</item>
+    <item>Aufblasbare Kissen</item>
+  </string-array>
+  <string-array name="gear_abri">
+    <item>Zelt / Tarp</item>
+    <item>Arceaux / Sardinen / Haubans</item>
+    <item>Bodenbelag</item>
+  </string-array>
+  <string-array name="gear_cuisine">
+    <item>Reed + Kraftstoff</item>
+    <item>Popote + bedeckt</item>
+    <item>Feuerzündung / Feuerlöscher</item>
+    <item>Schwamm + biologisch abbaubare Miniseife</item>
+    <item>Essen (Mahlzeiten, Snacks)</item>
+    <item>Müllbeutel (Löschen keine Spur)</item>
+  </string-array>
+  <string-array name="gear_hydratation">
+    <item>Gourde(s) / Wassertasche</item>
+    <item>Filter / Reinigungstablette</item>
+    <item>Salz/Elektrolyten</item>
+  </string-array>
+  <string-array name="gear_securite">
+    <item>Erste Hilfe Kit</item>
+    <item>Überlebensdeckung</item>
+    <item>Multifunktionsmesser</item>
+    <item>Klebeband / Reparatur</item>
+    <item>Sonnencreme / Lippenstift</item>
+    <item>Antimos</item>
+  </string-array>
+  <string-array name="gear_electronique">
+    <item>Telefon + Offline-Karte</item>
+    <item>Powerbank + Kabel</item>
+    <item>Uhr/Altimeter</item>
+    <item>Kamera</item>
+  </string-array>
+  <string-array name="gear_divers">
+    <item>Gehstangen</item>
+    <item>Persönliche Apotheke (Antialgik, Dressing...)</item>
+    <item>Identitätspapiere / CB / Bargeld</item>
+    <item>Vitalkarte / Versicherung</item>
+    <item>Wasserdichte Tasche / Zip</item>
+    <item>Toiletten (Papier, Tanne)</item>
+  </string-array>
+</resources>

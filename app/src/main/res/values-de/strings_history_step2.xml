@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="history_totals">Insgesamt: %1$s km • +__TOK4_ / -_TOK5___</string>
+  <string name="history_totals_placeholder">Gesamt: 0,00 km • +0 / -0</string>
+  <string name="history_detail_title">Detail der Spur</string>
+  <string name="history_share">GPX teilen</string>
+  <string name="history_share_title">Auf der Karte anzeigen</string>
+  <string name="history_detail_missing">Nicht gefunden: %1$s</string>
+  </resources>

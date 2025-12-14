@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Titres / onglets -->
+  <string name="aide_prevention_title">Ayuda a la prevención</string>
+  <string name="aide_tab_security">Seguridad</string>
+  <string name="aide_tab_respect">Cumplimiento</string>
+  <string name="aide_tab_checklist">Lista de verificación</string>
+  <!-- Onglet 1 : Sécurité -->
+  <string name="aide_security_text">Consejos de seguridad en la naturaleza:_TOK0__
+• Notificar a un pariente de su itinerario y una hora de regreso.
+• Revisa el clima y cualquier advertencia.
+• Trae agua, comida, capa caliente, kit de emergencia, manta de supervivencia._TOK0__
+• Tarjeta Offline / topo + teléfono cargado (modo de ahorro de energía).\n
+• Mantenga el margen (día, tiempo, forma) y sepa cómo dar la vuelta.
+• En temporada de caza o pesca: permanece visible (colores vivos) y sigue los signos locales.
+.</string>
+  <!-- Onglet 2 : Respect -->
+  <string name="aide_respect_text">Respeto por la naturaleza y otros:_ TOK0_
+• Mantente en los senderos, cercas estrechas, perros mantenidos en correa si es necesario._TOK0___
+• Tome todos sus desechos (incluso biodegradable) y evite el fuego en tiempos de riesgo.
+• Sea discreto cerca de hogares, rebaños y zonas sensibles (sondados, reservas).
+• Pescadores: aprender sobre períodos mínimos, permisos y tamaños; respetar bancos y otros usuarios.\n
+• Pegatinas de baño: identifica con certeza, corta con un cuchillo sin romper el micelio, utiliza una canasta de aire y recoge sólo lo necesario.
+.</string>
+  <!-- Onglet 3 : Checklist -->
+  <string name="aide_checklist_text">Lista de verificación rápida antes de salir :_ TOK0_
+• Itinerario + pista off-line OK? ¿Se ha comprobado el tiempo? ¿Está bien informado?
+• Agua (≥ 1,5 L), aperitivos, parabrisas/polar, kit de emergencia, cubierta de supervivencia.
+• Faro, carga telefónica, mapa / GPS; silbato útil._TOK0__
+• Dependiendo de la temporada: protección solar/raina/cold, repelente.
+• On-site: ritmo regular, descansos, volver si se duda._______
+• Emergencia: 112 (o SMS 114). Da el lugar lo más preciso posible.
+.</string>
+  </resources>

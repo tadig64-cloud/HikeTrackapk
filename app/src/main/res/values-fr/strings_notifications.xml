@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notif_channel_tracking_title">Enregistrement des traces</string>
+    <string name="notif_channel_tracking_desc">Notifications liées à l’enregistrement GPS.</string>
+    <string name="notif_rec_title">Enregistrement de la trace</string>
+    <string name="notif_rec_text">Service actif</string>
+</resources>

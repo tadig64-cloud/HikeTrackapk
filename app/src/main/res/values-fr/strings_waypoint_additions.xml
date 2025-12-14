@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Garder UNIQUEMENT ces 3 clés ici. 
+         NE PAS redéfinir wp_noname ni wp_coords_format dans ce fichier
+         puisqu'elles existent déjà dans values-waypoint_list.xml -->
+    <string name="wp_share">Partager</string>
+    <string name="waypoint_deleted">Waypoint supprimé</string>
+    <string name="waypoint_delete_message">Supprimer ce waypoint ?</string>
+</resources>

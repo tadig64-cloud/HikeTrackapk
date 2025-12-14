@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="stx_open_folder">Open Folder</string>
+  <string name="stx_refresh">Aktualisierung</string>
+  <string name="stx_delete_confirm_title">Löschen Sie diese GPX?</string>
+  <string name="stx_delete_confirm_msg">Diese Aktion wird die Gerätespeicherdatei löschen.</string>
+  <string name="stx_deleted">Datei gelöscht</string>
+  <string name="stx_open_failed">Könnte diese Datei nicht öffnen.</string>
+  <string name="stx_share_failed">Nicht geteilt.</string>
+  <string name="stx_no_viewer">Keine Anwendung zur Verfügung, um diese Datei zu öffnen.</string>
+  </resources>

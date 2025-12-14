@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="qw_title">Wetterbedingungen: reflexes</string>
+  <string name="qw_close">Schließen</string>
+  <string name="qw_intro">Tippen Sie auf die Wetterkarte, um schnell Reflexe durch Situation zu finden. Diese Tipps ersetzen keinen zuverlässigen Newsletter oder gesunden Menschenverstand im Feld.</string>
+  <!-- Orages -->
+  <string name="qw_thunder_title">- Thunderstorms</string>
+  <string name="qw_thunder_body">• Vermeiden Sie Grats, isolierte Bäume, Grats, nasse Höhlen, Wasser.
+• Streichstöcke und Metallobjekte; Isolieren Sie sich aus dem Boden (Sac, Schaum).
+• Flash-to-bang: &lt; 30 Sekunden in der Nähe von Gefahr. Gehen Sie hinunter zu einem niedrigen, undurchflutbaren Bereich._TOK0__
+• Sicherheitsposition: Hocke, Fussgelenke, auf Isolierung. Leg dich nicht hin.
+.</string>
+  <!-- Vent -->
+  <string name="qw_wind_title">Starker Wind</string>
+  <string name="qw_wind_body">• Achten Sie auf die Berge und Korridore; vermeiden Sie die belichteten Seen und Brücken._TOK0__
+• Anticipe instabile Zweige/Gesteine; Raum die Gruppe.
+• Fixed Kapuze/Ausrüstung; senkt den Schwerpunkt in den Böen.
+.</string>
+  <!-- Chaleur -->
+  <string name="qw_heat_title">Wärme</string>
+  <string name="qw_heat_body">• Hydrate früh und oft; nützliche Salze/süßes Wasser.
+• Langsam nach unten, Multiplis bricht im Schatten; Abdeckung Hals / Kopf.
+• Überwachen Sie Krämpfe, Kopfschmerzen, Verwirrung, Stop &amp; Cool.
+.</string>
+  <!-- Froid / Neige -->
+  <string name="qw_cold_title">Kalt / Schnee</string>
+  <string name="qw_cold_body">• Overlays Schichten; schützt Enden und Wind._TOK0_
+• Trockene Lagerung: ändert ein nasses Top; Isolieren Sie sich vom Boden.
+• Hypo: Kälte, Faulheit, Langsamkeit, warme Süße, nasse Veränderung.
+.</string>
+  <!-- Brouillard -->
+  <string name="qw_fog_title">🌫️ Brouillard</string>
+  <string name="qw_fog_body">• Reduzieren Sie das Aussehen; bleibt gruppiert; Sichtbarkeit / Klippe = Prudence ++._TOK0__
+• Orient selbst: Kompass, kurze Azimut, einfache Angriffspunkte.
+• Markieren Sie den Pfad (Wegepunkte), überprüfen Sie oft Karte/Terrain.
+.</string>
+  <!-- Pluie / Crues -->
+  <string name="qw_rain_title">Regen / Grau</string>
+  <string name="qw_rain_body">• Vermeidet Schluchtböden bei Gewittern; blinken rohe Aufmerksamkeit._TOK0__
+• Halten Sie eine atmungsaktive Schicht; schützt, was nicht nass sein sollte.
+• Füße: erwartete Folie (Stein/Holz) und verlängerte Kälte.
+.</string>
+  </resources>

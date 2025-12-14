@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Language picker (ListPreference) -->
+    <!-- IMPORTANT: app_language_values MUST stay identical in every locale (never translate codes). -->
+    <string-array name="app_language_entries" translatable="false">
+        <item>Francuski</item>
+        <item>Angielski</item>
+        <item>Hiszpański</item>
+        <item>Niemiecki</item>
+        <item>Włoski</item>
+        <item>Portugalski</item>
+        <item>Portugalski (Brazylia)</item>
+        <item>Niderlandzki</item>
+        <item>Polski</item>
+        <item>Rosyjski</item>
+        <item>Arabski</item>
+        <item>Chiński (uproszczony)</item>
+        <item>Japoński</item>
+    </string-array>
+
+    <string-array name="app_language_values" translatable="false">
+        <item>fr</item>
+        <item>en</item>
+        <item>es</item>
+        <item>de</item>
+        <item>it</item>
+        <item>pt</item>
+        <item>pt-BR</item>
+        <item>nl</item>
+        <item>pl</item>
+        <item>ru</item>
+        <item>ar</item>
+        <item>zh-CN</item>
+        <item>ja</item>
+    </string-array>
+
+</resources>

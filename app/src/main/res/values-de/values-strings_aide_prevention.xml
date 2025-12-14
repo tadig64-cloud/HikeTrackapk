@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Titres / onglets -->
+  <string name="aide_prevention_title">Hilfe und Prävention</string>
+  <string name="aide_tab_security">Sicherheit</string>
+  <string name="aide_tab_respect">Einhaltung</string>
+  <string name="aide_tab_checklist">Checkliste</string>
+  <!-- Onglet 1 : Sécurité -->
+  <string name="aide_security_text">Sicherheitstipps in der Natur:_TOK0_
+• Benachrichtigen Sie einen Verwandten Ihrer Reiseroute und eine Stunde Rückkehr.
+• Überprüfen Sie das Wetter und alle Warnungen.
+• Bringt Wasser, Nahrung, heiße Schicht, Notfallkit, Überlebensdecke._TOK0__
+• Offline-Karte / topo + geladenes Telefon (Energiesparmodus)._TOK0__
+• Halten Sie die Marge (Tag, Wetter, Form) und wissen, wie Sie sich umdrehen.
+• In der Saison der Jagd oder Fischerei: bleibt sichtbar (lebende Farben) und folgen lokalen Zeichen.
+.</string>
+  <!-- Onglet 2 : Respect -->
+  <string name="aide_respect_text">Achtung der Natur und anderer :_ ANZAHL
+• Bleiben Sie auf den Trails, schließen Sie Zäune, Hunde auf Leine gehalten, wenn nötig._TOK0__
+• Nehmen Sie alle Ihre Abfälle (auch biologisch abbaubar) und vermeiden Sie Feuer in Zeiten des Risikos.
+• Seien Sie diskret in der Nähe von Häusern, Herden und sensiblen Bereichen (Neben, Reserven).
+• Fischer: lernen Sie über Mindestzeiträume, Genehmigungen und Größen; respektieren Sie Banken und andere Benutzer._TOK0___
+• Pilz-Picker: identifiziert mit Sicherheit, Schnitte mit einem Messer, ohne das Myzel zu reißen, verwendet einen luftigen Korb und sammelt nur die notwendigen.
+.</string>
+  <!-- Onglet 3 : Checklist -->
+  <string name="aide_checklist_text">Schnelle Checkliste vor Verlassen :_ ANZAHL
+• Route + Offline-Track OK? Wetter überprüft? Geschlossen?\n
+• Wasser (≥ 1,5 L), Snacks, Windbreak/polar, Notfall-Kit, Überlebensabdeckung.
+• Scheinwerfer, Telefon, Karte / GPS; nützliche Pfeife._TOK0__
+• Je nach Jahreszeit: Sonnen-/Regen-/Kälteschutz, abweisend.
+• Vor-Ort: regelmäßiger Rhythmus, Pausen, zurückdrehen, wenn Zweifel.\n
+• Notfall: 112 (oder SMS 114). Gibt den Platz so genau wie möglich.
+.</string>
+  </resources>

@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Titles used by placeholder screens -->
+  <string name="title_tracks">Spuren</string>
+  <string name="title_waypoints">Wege</string>
+  <string name="title_more">Mehr</string>
+  <!-- Missing toasts for placeholder actions -->
+  <string name="toast_waypoints">Waypoints funktionieren..</string>
+  <string name="toast_more">Utilitaristische Funktionen kommen..</string>
+  </resources>

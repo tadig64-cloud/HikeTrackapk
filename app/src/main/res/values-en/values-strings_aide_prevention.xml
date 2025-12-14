@@ -1,42 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-
-    <!-- Titres / onglets -->
-    <string name="aide_prevention_title">Aide &amp; Prévention</string>
-    <string name="aide_tab_security">Sécurité</string>
-    <string name="aide_tab_respect">Respect</string>
-    <string name="aide_tab_checklist">Checklist</string>
-
-    <!-- Onglet 1 : Sécurité -->
-    <string name="aide_security_text">
-        Conseils de sécurité en sortie nature :\n
-        • Préviens un proche de ton itinéraire et d’une heure de retour.\n
-        • Vérifie la météo et les éventuelles alertes.\n
-        • Emporte eau, nourriture, couche chaude, trousse de secours, couverture de survie.\n
-        • Carte hors-ligne / topo + téléphone chargé (mode économie d’énergie).\n
-        • Garde de la marge (jour, météo, forme) et sais faire demi-tour.\n
-        • En saison de chasse ou de pêche : reste visible (couleurs vives) et suis la signalisation locale.
-    </string>
-
-    <!-- Onglet 2 : Respect -->
-    <string name="aide_respect_text">
-        Respect de la nature et des autres :\n
-        • Reste sur les sentiers, referme les clôtures, chiens tenus en laisse si nécessaire.\n
-        • Emporte tous tes déchets (même biodégradables) et évite le feu en période à risque.\n
-        • Sois discret près des habitations, troupeaux et zones sensibles (nichées, réserves).\n
-        • Pêcheurs : informe-toi sur les périodes, permis et tailles minimales ; respecte les berges et les autres usagers.\n
-        • Cueilleurs de champignons : identifie avec certitude, coupe au couteau sans arracher le mycélium, utilise un panier aéré et ne prélève que le nécessaire.
-    </string>
-
-    <!-- Onglet 3 : Checklist -->
-    <string name="aide_checklist_text">
-        Checklist rapide avant de partir :\n
-        • Itinéraire + trace hors-ligne OK ? Météo vérifiée ? Proche informé ?\n
-        • Eau (≥ 1,5 L), encas, coupe-vent / polaire, trousse de secours, couverture de survie.\n
-        • Lampe frontale, charge du téléphone, carte / GPS ; sifflet utile.\n
-        • Selon la saison : protection soleil/pluie/froid, répulsif tiques.\n
-        • Sur place : rythme régulier, pauses, demi-tour si doute.\n
-        • Urgences : 112 (ou SMS 114). Donne le lieu le plus précis possible.
-    </string>
-
-</resources>
+  <!-- Titres / onglets -->
+  <string name="aide_prevention_title">Help &amp; Prevention</string>
+  <string name="aide_tab_security">Security</string>
+  <string name="aide_tab_respect">Compliance</string>
+  <string name="aide_tab_checklist">Checklist</string>
+  <!-- Onglet 1 : Sécurité -->
+  <string name="aide_security_text">Safety tips in nature:_TOK0__
+• Notify a relative of your itinerary and an hour of return.
+• Checks the weather and any warnings.
+• Brings water, food, hot layer, emergency kit, survival blanket._TOK0__
+• Offline card / topo + charged phone (energy saving mode).\n
+• Keep the margin (day, weather, shape) and know how to turn around.
+• In season of hunting or fishing: remains visible (living colors) and follow local signs.
+.</string>
+  <!-- Onglet 2 : Respect -->
+  <string name="aide_respect_text">Respect for nature and others :_TOK0__
+• Stay on the trails, close fences, dogs kept on leash if necessary._TOK0__
+• Take all your waste (even biodegradable) and avoid fire in times of risk.
+• Be discreet near homes, herds and sensitive areas (nested, reserves).
+• Fishermen: learn about minimum periods, permits and sizes; respect banks and other users.\n
+• Mushroom pickers: identifies with certainty, cuts with a knife without tearing the mycelium, uses an airy basket and collects only the necessary.
+.</string>
+  <!-- Onglet 3 : Checklist -->
+  <string name="aide_checklist_text">Quick checklist before leaving :_TOK0__
+• Itinerary + off-line track OK? Weather checked? Close informed ?\n
+• Water (≥ 1.5 L), snacks, windbreak/polar, emergency kit, survival cover.
+• Headlight, phone charge, map / GPS; useful whistle._TOK0__
+• Depending on the season: sun/rain/cold protection, repellent.
+• On-site: regular rhythm, breaks, turn back if doubted.\n
+• Emergency: 112 (or SMS 114). Gives the place as precise as possible.
+.</string>
+  </resources>

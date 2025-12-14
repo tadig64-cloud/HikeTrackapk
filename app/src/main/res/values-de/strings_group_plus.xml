@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Notifications -->
+  <string name="groupx_notif_channel_name">Gruppe</string>
+  <string name="groupx_notif_channel_desc">Gruppenbenachrichtigungen</string>
+  <string name="groupx_notif_member_removed">Gelöschtes Mitglied: %1$s</string>
+  <!-- Suppression / options -->
+  <string name="groupx_delete_title">Entfernen</string>
+  <string name="groupx_delete_msg">Löschen %1$s aus der Gruppe?</string>
+  <string name="groupx_hide_demo">Demo Mitglieder verbergen</string>
+  <!-- Pastille couleur -->
+  <string name="groupx_color_title">Farbe der Tablette</string>
+  </resources>

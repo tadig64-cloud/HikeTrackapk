@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Ce que l'utilisateur voit (on peut traduire) -->
+    <string-array name="ht_language_entries">
+        <item>System</item>
+        <item>Français</item>
+        <item>English</item>
+        <item>Español</item>
+        <item>Deutsch</item>
+        <item>Italiano</item>
+    </string-array>
+
+    <!-- Ce qui est réellement enregistré (NE JAMAIS TRADUIRE, NE JAMAIS BOUGER L’ORDRE) -->
+    <string-array name="ht_language_values">
+        <item>system</item>
+        <item>fr</item>
+        <item>en</item>
+        <item>es</item>
+        <item>de</item>
+        <item>it</item>
+    </string-array>
+
+</resources>

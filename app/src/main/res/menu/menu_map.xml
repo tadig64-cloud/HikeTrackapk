@@ -1,6 +1,6 @@
 <menu xmlns:ns0="http://schemas.android.com/apk/res/android" xmlns:ns1="http://schemas.android.com/apk/res-auto">
 
-    
+
     <item ns0:id="@+id/action_center_me" ns0:icon="@drawable/ic_gps_fixed" ns0:title="@string/i18n_menu_map_title_centrer_sur_moi_2" ns1:showAsAction="always" />
 
     <item ns0:id="@+id/action_record" ns0:icon="@drawable/ic_record_circle" ns0:title="@string/menu_record" ns1:showAsAction="always" ns1:iconTint="@null" />
@@ -11,9 +11,9 @@
 
     <item ns0:id="@+id/action_pause" ns0:icon="@drawable/ic_pause_colored" ns0:title="@string/i18n_menu_map_title_pause_2" ns1:showAsAction="never" />
 
-    
 
-    
+
+
     <item ns0:title="@string/i18n_menu_map_title_enregistrement_2">
         <menu>
             <item ns0:id="@+id/action_group" ns0:title="@string/i18n_menu_map_title_groupe_2" ns0:icon="@drawable/ic_group" ns1:showAsAction="ifRoom" />
@@ -28,7 +28,7 @@
 
     </item>
 
-    
+
     <item ns0:title="@string/i18n_menu_map_title_planification_2">
         <menu>
             <item ns0:id="@+id/action_plan_toggle" ns0:title="@string/i18n_menu_map_title_planifier_un_itinraire_2" ns0:checkable="true" ns1:showAsAction="never" />
@@ -48,31 +48,32 @@
 
     </item>
 
-    
-    <item ns0:title="@string/i18n_menu_map_title_cartes__tuiles_2">
+
+    <!-- FIX: on met le texte en dur pour éviter l’affichage littéral "&amp;" venant des strings -->
+    <item ns0:title="Cartes &amp; tuiles">
         <menu>
             <item ns0:id="@+id/action_download_tiles" ns0:title="@string/download_tiles_title" ns0:icon="@drawable/ic_download_24" ns1:showAsAction="ifRoom" />
             </menu>
 
     </item>
 
-    
+
     <item ns0:title="@string/i18n_menu_map_title_guidage_nature_3">
         <menu>
             <item ns0:id="@+id/action_nature_toggle" ns0:title="@string/i18n_menu_map_title_guidage_nature_4" ns0:checkable="true" ns1:showAsAction="never" />
             <item ns0:id="@+id/action_nature_sources" ns0:title="@string/i18n_menu_map_title_sources_nature_2" ns1:showAsAction="never" />
-            
+
             <item ns0:id="@+id/action_nature_import" ns0:title="@string/i18n_menu_map_title_importer_des_poi_2" ns1:showAsAction="never" />
             </menu>
 
     </item>
 
-    
+
     <item ns0:title="@string/i18n_menu_map_title_outils_2">
         <menu>
             <item ns0:id="@+id/action_gear" ns0:title="@string/i18n_menu_map_title_matriel_2" ns1:showAsAction="never" />
             <item ns0:id="@+id/action_water_points" ns0:title="@string/i18n_menu_map_title_points_deau_2" ns1:showAsAction="never" />
-            
+
             <item ns0:id="@+id/action_open_tracks_folder" ns0:title="@string/i18n_menu_map_title_ouvrir_le_dossier_2" ns1:showAsAction="never" />
             <item ns0:id="@+id/action_waypoint_list" ns0:title="@string/waypoint_list_title" ns0:icon="@drawable/ic_list" ns1:showAsAction="ifRoom|withText" />
             <item ns0:id="@+id/action_aide_prevention" ns0:title="@string/aide_prevention_title" ns1:showAsAction="never" />
@@ -80,8 +81,9 @@
 
     </item>
 
-    
-    <item ns0:title="@string/i18n_menu_map_title_infos__secours_2">
+
+    <!-- FIX: on met le texte en dur pour éviter l’affichage littéral "&amp;" venant des strings -->
+    <item ns0:title="Infos &amp; secours">
         <menu>
             <item ns0:id="@+id/action_info_hub" ns0:title="@string/i18n_menu_map_title_infos_rando_2" ns1:showAsAction="never" />
             <item ns0:id="@+id/action_sos" ns0:title="@string/i18n_menu_map_title_sos_2" ns1:showAsAction="never" />
@@ -89,7 +91,7 @@
 
     </item>
 
-    
+
     <item ns0:title="@string/i18n_menu_map_title_rglages_2">
         <menu>
             <item ns0:id="@+id/action_settings" ns0:title="@string/i18n_menu_map_title_paramtres_2" ns1:showAsAction="never" />
@@ -100,6 +102,6 @@
 
     </item>
 
-    
+
     <item ns0:id="@+id/action_protected_areas_toggle" ns0:title="@string/i18n_menu_map_title_afficher_les_zones_protges_2" ns0:checkable="true" ns1:showAsAction="never" />
 </menu>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Dialog strings for WaypointList -->
+  <string name="wp_confirm_delete">Löschen %s?</string>
+  <string name="wp_noname">Name</string>
+  <!-- Keep the coordinate format here if it's not already defined elsewhere -->
+  <string name="wp_coords_format">%1$.5f_ %2$.5f_</string>
+  <!-- Waypoint list toolbar/menu labels -->
+  <string name="action_export">Ausfuhr</string>
+  <string name="sort">Sortierung</string>
+  <string name="sort_by_date">Sortieren nach Datum</string>
+  <string name="add_new">Hinzufügen</string>
+  </resources>

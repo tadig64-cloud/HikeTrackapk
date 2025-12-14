@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Clés nouvelles pour la section Langue -->
+    <string name="pref_cat_language">Langue</string>
+    <string name="pref_language_title">Langue de l’application</string>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Back to Start -->
+  <string name="bts_title">Volver a la salida</string>
+  <string name="bts_waiting_fix">Esperando a GPS..</string>
+  <string name="bts_bearing_placeholder">Dirección: —°</string>
+  <string name="bts_bearing_fmt">Cap: __TOK3_°</string>
+  <string name="bts_distance_m_fmt">%1$d_</string>
+  <string name="bts_distance_km_fmt">__TOK3_ km</string>
+  <string name="bts_no_start">No hay punto de partida encontrado</string>
+  <string name="bts_no_start_toast">Iniciar una grabación para establecer un punto de partida.</string>
+  <string name="bts_perm_denied">La autorización para localizar se negó.</string>
+  <string name="bts_gps_unavailable">No hay proveedor de ubicación disponible.</string>
+  <string name="bts_arrow_cd">Arrow to starting point</string>
+  <string name="bts_hint">La flecha apunta al primer punto registrado (departimiento)._ TOK0__La distancia y el rumbo se actualizan automáticamente.</string>
+  </resources>

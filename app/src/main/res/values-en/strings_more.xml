@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="more_title">More</string>
+  <string name="menu_import">Import</string>
+  <string name="menu_export">Export</string>
+  <string name="menu_offline_maps">Offline cards</string>
+  <string name="menu_help">Aid</string>
+  </resources>

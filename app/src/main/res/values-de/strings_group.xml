@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="group_title">Gruppe</string>
+  <string name="menu_group_title">Gruppe</string>
+  <string name="group_host">Eine Gruppe erstellen</string>
+  <string name="group_join">Mitglied einer Gruppe</string>
+  <string name="group_ready">Darlehen</string>
+  <string name="group_stop">Stopp</string>
+  <string name="group_permissions_missing">Fehlende Berechtigungen (Standort / Wi-Fi / Bluetooth)</string>
+  <string name="group_cannot_open">Gruppe nicht öffnen</string>
+  <!-- A11y / UI libellés -->
+  <string name="group_member_avatar_cd">Avatar des Mitglieds</string>
+  <string name="group_info_center">Zentrum</string>
+  <!-- Titre d’action (onglet/bouton) -->
+  <string name="group_stop_title">Stop Group</string>
+  </resources>

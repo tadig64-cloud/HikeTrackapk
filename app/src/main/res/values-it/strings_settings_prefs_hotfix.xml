@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="pref_app_language_title">Lingua dell&apos;app</string>
+  <string name="pref_app_language_summary">Scegli la lingua dell&apos;app</string>
+  <string name="pref_keep_screen_on_summary">Mantieni lo schermo acceso mentre usi la mappa</string>
+</resources>

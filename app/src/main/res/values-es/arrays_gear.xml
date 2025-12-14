@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="gear_nav">
+    <item>Tarjeta IGN / Topo</item>
+    <item>Compass</item>
+    <item>GPS / teléfono App + batería</item>
+    <item>GPX Trace</item>
+    <item>Altimeter</item>
+    <item>Sifflet</item>
+    <item>Lámpara frontal + baterías</item>
+  </string-array>
+  <string-array name="gear_vetements">
+    <item>Chaqueta transpirable</item>
+    <item>Soft/polar</item>
+    <item>Capa térmica alta/bajo</item>
+    <item>Pantalones de senderismo</item>
+    <item>Camiseta transpirable (x2)</item>
+    <item>Calcetines de senderismo (x2)</item>
+    <item>Cap / Buff / Cap</item>
+    <item>Guantes</item>
+    <item>Invitados</item>
+  </string-array>
+  <string-array name="gear_couchage">
+    <item>Bolsa de dormir (temp. adaptado)</item>
+    <item>Mattress</item>
+    <item>Bolsa</item>
+    <item>Pillow inflable</item>
+  </string-array>
+  <string-array name="gear_abri">
+    <item>Tent / Tarp</item>
+    <item>Arceaux / Sardines / Haubans</item>
+    <item>Pavimentos</item>
+  </string-array>
+  <string-array name="gear_cuisine">
+    <item>Reed + combustible</item>
+    <item>Popote + cubierto</item>
+    <item>Incendio encendido / encendedor</item>
+    <item>Jabón mini biodegradable</item>
+    <item>Comida (comidas, aperitivos)</item>
+    <item>Bolsa de basura (sin dejar rastro)</item>
+  </string-array>
+  <string-array name="gear_hydratation">
+    <item>Gourde(s) / Bolsillo de agua</item>
+    <item>Filtro / tableta de purificación</item>
+    <item>Salt/electrolytes</item>
+  </string-array>
+  <string-array name="gear_securite">
+    <item>Kit de primeros auxilios</item>
+    <item>Cobertura de supervivencia</item>
+    <item>Cuchillo multifuncional</item>
+    <item>Cinta adhesiva / Reparación</item>
+    <item>Pantalla solar / palo de labios</item>
+    <item>Anti-moss</item>
+  </string-array>
+  <string-array name="gear_electronique">
+    <item>Teléfono + tarjeta offline</item>
+    <item>Powerbank + cable</item>
+    <item>Watch/Altimeter</item>
+    <item>Cámara</item>
+  </string-array>
+  <string-array name="gear_divers">
+    <item>Cañas caminando</item>
+    <item>Farmacia personal (antálgica, aderezos...)</item>
+    <item>Documentos de identidad / CB / efectivo</item>
+    <item>Tarjeta Vital / Seguro</item>
+    <item>Bolsa impermeable / Zip</item>
+    <item>Toilets (papel, pantalón)</item>
+  </string-array>
+</resources>

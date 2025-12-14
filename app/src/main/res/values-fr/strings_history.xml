@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="history_empty">Aucune trace pour le moment.\nImporte un fichier GPX via le menu.</string>
+    <string name="history_import">Importer GPX</string>
+    <string name="history_rescan">Rescanner</string>
+    <string name="history_row_stats">%1$s km • +%2$d / -%3$d • %4$s</string>
+    <string name="history_row_meta">%1$d pts • %2$s</string>
+    <string name="history_import_ok">Importé : %1$s</string>
+    <string name="history_import_fail">Échec de l’import</string>
+</resources>

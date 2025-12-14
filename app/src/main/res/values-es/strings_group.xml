@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="group_title">Grupo</string>
+  <string name="menu_group_title">Grupo</string>
+  <string name="group_host">Crear un grupo</string>
+  <string name="group_join">Únase a un grupo</string>
+  <string name="group_ready">Loan</string>
+  <string name="group_stop">Para</string>
+  <string name="group_permissions_missing">Falta de autorizaciones (Ubicación / Wi-Fi / Bluetooth)</string>
+  <string name="group_cannot_open">No podía abrir grupo</string>
+  <string name="group_member_avatar_cd">Avatar del miembro</string>
+  <string name="group_info_center">Centre</string>
+  <string name="group_stop_title">Stop Group</string>
+</resources>

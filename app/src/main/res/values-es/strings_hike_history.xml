@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="hike_history_title">Historia del senderismo</string>
+  <string name="hike_empty">Aún no hay rutas registradas.</string>
+</resources>

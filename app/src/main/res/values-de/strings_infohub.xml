@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="ih_section_markings">Kennzeichnung und Akronyme</string>
+  <string name="ih_section_weather">Wetter und Stürme</string>
+  <string name="ih_section_orientation">Orientierung und Progression</string>
+  <string name="ih_section_respect">Achtung der Natur</string>
+  <string name="ih_section_firstaid">Erste Hilfe &amp; SOS</string>
+  <!-- ====== BALISAGE & SIGLES ====== -->
+  <string name="ih_markings_body">GR (Großes Wandern): weiß/rote Markierung; Routen von mehreren Tagen.
+GRP (Country GR): gelb/rote Markierung; Schleifen/Kreuzungen auf einem Gebietsmaßstab.
+• PR (Promenade &amp; Wandern): gelbe Markierung; Schleifen am halben Tag/Tag.
+
+Macht (Formen):
+•
+• - = links abbiegen
+• - = rechts drehen
+• (oder X) = falsche Richtung (Rückkehr)
+
+Zu wissen (sehr nützlich im Feld):
+• An den Kreuzungen suchen Sie zuerst die Marke "guter Weg" (Wenn Sie eine sehen, gehen Sie in die falsche Richtung.
+• Oft wird ein Bestätigungszeichen ein paar Dutzend Meter nach der Zweiglinie platziert.
+• Wenn Sie eine Weile keine Marke gesehen haben: ruhig zurück zum letzten sicheren Ort (letzte Marke).
+• Markierungen können auf Felsen, Stämmen, Stangen, Wänden sein: nach links/rechts der Spur und ein wenig höher.
+• Neben offiziellen Routen kann die lokale Beschilderung variieren: folgen Sie den Schildern vor Ort und bleiben mit der Karte/Zerrasse konsistent.
+
+Benchmark: Das offizielle Markup von GR/GRP/PR wird von der FFRandonnée definiert.</string>
+  <!-- ====== MÉTÉO & ORAGES (général) ====== -->
+  <string name="ih_weather_body">Vor der Abreise:
+• Besuchen Sie einen lokalen Newsletter + Evolution Stunde für Stunde (Wind, Regen, Gewitter).
+• Schauen Sie auch: Temperatur fühlte sich in der Höhe, Böen auf Gipfeln, begrenzen Regen/Schnee (wenn Saison).
+• Plan B: kürzere/untere Strecke + Schleifen (schnelle Rückgabe).
+
+Thunderstorms (einfache Regeln):
+• Vermeiden Sie Stege, Spitzen, Kanten, klare Bereiche, wenn das Risiko steigt.
+• Entfernen Sie Metallobjekte (Sticks, Zäune) und ziehen Sie von isolierten Bäumen weg.
+• Flash-to-bang: &lt; 30 s zwischen Blitz und Donner
+• Sicherheitsposition: Hocke auf Tasche / Isolierung, Füße Gelenke, Hände auf Knien; vermeidet Dehnung.
+• Als Gruppe: verteilt (10 m), um das Risiko der kollektiven Auswirkungen zu begrenzen.
+• Warten Sie 30 Minuten nach dem letzten Donner, bevor Sie gehen.
+
+andere Wetterfallen:
+• Starker Wind: Vorsicht an Kanten/Spalten (Disequilibrium), weg von den Kanten.
+• Starker Regen: Aufmerksamkeit auf Blitzfluten (Valley-Boden, Schluchten) + Rutschen.
+• Nebel: verlangsamt, bleibt gruppiert, zeigt nach vorne (Zeichen, Kreuzung, sekundäre Spitze).</string>
+  <!-- ====== ORIENTATION & PROGRESSION ====== -->
+  <string name="ih_orient_body">Vor der Abreise:
+• Realistisch geschätzt: Entfernung + Höhe + Dauer (Margin!), Wasserpunkte, Schattenzonen, Flucht.
+• Karten/Trace offline herunterladen; Batterie + Wirtschaftlichkeit Modus überprüfen.
+• Informieren Sie eine relative (Route + Rückgabezeit): Es ist einfach, es spart.
+
+Im Feld:
+• Kontrolliert regelmäßig: Markierung, Karte, Relief (Vallon/Peak), nächster Markerschritt.
+• An Kreuzungen: Nehmen Sie eine Pause, bestätigen Sie die Richtung BEFORE Sie greifen.
+• Rhythmus: regelmäßig; Mikropause; früh trinken (vor Durst); essen, bevor sie betrunken sind.
+
+Gruppe:
+• Der langsamste gibt den Rhythmus. Feste Wartepunkte. Gehfarm.
+• Wenn jemand müde ist: verkürzen/verkürzen früh (vor dem Ende).
+
+Wenn Sie zweifeln / wenn Sie verloren sind:
+• STOP: Stoppen, atmen, beobachten, finden Sie den letzten sicheren Ort, Plan.
+• Rückkehr zum letzten sicheren Punkt ist oft die beste Lösung (einfach und effektiv).
+• Wenn Wetter/Nacht/Gefahr: Schutz + Wärme + Batterie Wirtschaft; Alarm bei Bedarf.</string>
+  <!-- ====== RESPECT DE LA NATURE ====== -->
+  <string name="ih_respect_body">Regel ohne Spur:
+• Tragen Sie alle Ihre Abfälle (auch biologisch abbaubar). Lass keine Taschentücher.
+• Natürliche Bedürfnisse: weg von Trails und Wasserpunkten; begraben (kleines Loch) und Stecker, wenn möglich.
+• Stille: vermeidet starke/cris Musik (Funa + andere Wanderer). Bleiben Sie ruhig in der Nähe der Häuser.
+
+Wildtiere:
+• Behalten Sie Ihre Distanz (insbesondere junge/wilde Tiere). Nicht füttern.
+• Hunde: oft im Herzen des Parks verboten; anderswo, verlassen nach Zonen/Perioden (troupeaux, Fauna).
+• Wenn patous: Bleiben Sie ruhig, Bypass weit, nicht laufen, halten Sie den Hund in Ihrer Nähe (oder ohne Leine, wenn nötig, um Konflikt zu vermeiden - je nach Situation).
+
+Schutzgebiete:
+• Bleiben Sie auf den Trails (Bewegung + zerbrechliche Bereiche).
+• Drohnen: oft verboten (insbesondere Parkherzen), es sei denn erlaubt.
+
+Höhe Seen:
+• Oft nicht empfohlen: fragile Ökosysteme + Verschmutzung (Kreamen) + sehr kaltes Wasser (Hypothermie) + manchmal durch Dekret verboten.
+
+Bivouac / Feuer:
+• Bivouac oft toleriert 1 Nacht ( bleibt &gt; 20 m von den Seen/Fluss.
+• Feuer oft verboten: Bevorzugt einen Herd und respektiert lokale Aufträge.</string>
+  <!-- ====== PREMIERS SECOURS & SOS ====== -->
+  <string name="ih_firstaid_body">Notfallreaktion (Frankreich):
+• 112 (europäische Zahl) — arbeitet oft ohne ein konventionelles Netz.
+• 114 (SMS) wenn Anruf unmöglich (auch nützlich, wenn Sie nicht sprechen können).
+• 15 (SAMU) / 18 (Firemen) / 17 (Polizei) nach Situation.
+
+Am Telefon zu sagen:
+• Wo? (Common/Sektor, Col/Refuge/sign, GPS Koordinaten falls möglich)
+• Was? (Fall, Unwohlsein, Verletzung) — wie viele Menschen — Zustand (bewußt? atmen?)
+• Möglicher Zugang (Straße/Bahn, Wahrzeichen, Wetter vor Ort)
+
+Nützliche Gesten (simple):
+• Schutz – Alarm – Hilfe: sichern Sie den Bereich zuerst.
+• Hämorrhage: direkte starke Kompression.
+• Unbewusst, der atmet: PLS, Cover, Monitor.
+• Stärke/Fraktur: immobilisieren, gehen vermeiden, warm halten.
+• Hypothermie: Isolieren vom Boden, Schneiden des Windes, Entfernen der nassen, Abdeckung.
+• Wärme: Schatten, Erfrischung, Getränk in kleinen Sips, stoppen Sie den Aufwand.
+
+Verloren / eingesperrt:
+• Bleiben Sie zusammen, speichern Sie die Batterie, markieren Sie Ihre Position, Schutz, Signal selbst (Blow/Lampe).</string>
+  <string name="ih_expand">Show</string>
+  <string name="ih_collapse">Hirse</string>
+  </resources>

@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="groupx_restore_camera">Resume Map Ansicht auf das Startup</string>
+  <string name="groupx_fit_group">Frame on the group on startup (falls Mitglieder)</string>
+  <string name="groupx_notif_restore_on">Wiederherstellen der aktivierten Ansicht</string>
+  <string name="groupx_notif_restore_off">Wiederaufnahme der Ansicht deaktiviert</string>
+  <string name="groupx_notif_fit_on">Frame auf der aktivierten Gruppe</string>
+  <string name="groupx_notif_fit_off">Rahmen für die Behindertengruppe</string>
+  </resources>

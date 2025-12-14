@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="undo">Annuler</string>
-    <string name="history_deleted">Supprimé : %1$s</string>
-    <string name="history_delete_fail">Suppression impossible</string>
-</resources>
+  <string name="undo">Cancel</string>
+  <string name="history_deleted">Deleted: %1$s</string>
+  <string name="history_delete_fail">Unable to remove</string>
+  </resources>

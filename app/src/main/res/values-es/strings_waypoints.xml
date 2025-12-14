@@ -1,29 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="waypoints_title">Waypoints</string>
-    <string name="sort_by_name">Trier par nom</string>
-    <string name="waypoints_empty">Aucun waypoint pour l’instant.</string>
-    <string name="close">Fermer</string>
-
-    <string name="view_on_map">Voir sur la carte</string>
-    <string name="rename">Renommer</string>
-    <string name="delete">Supprimer</string>
-
-    <string name="rename_waypoint_title">Renommer le waypoint</string>
-    <string name="name_empty">Nom vide</string>
-    <string name="rename_failed">Impossible de renommer ce waypoint.</string>
-
-    <string name="delete_waypoint_title">Supprimer le waypoint</string>
-    <string name="delete_waypoint_message">Supprimer « %1$s » ?</string>
-    <string name="deleted">Supprimé</string>
-
-    <string name="copied_coords">Coordonnées copiées : %1$.5f, %2$.5f</string>
-
-    <!-- Pour les boutons de boîte de dialogue -->
-    <string name="action_rename">Renommer</string>
-    <string name="action_delete">Supprimer</string>
-    <string name="delete_failed">Impossible de supprimer ce waypoint.</string>
-
-    <!-- Utilisé par row_waypoint.xml -->
-    <string name="more">Plus d’options</string>
-</resources>
+  <string name="waypoints_title">Waypoints</string>
+  <string name="sort_by_name">Ordenar por nombre</string>
+  <string name="waypoints_empty">Aún no hay punto de vista.</string>
+  <string name="close">Cerca</string>
+  <string name="view_on_map">Ver en el mapa</string>
+  <string name="rename">Rename</string>
+  <string name="delete">Retirar</string>
+  <string name="rename_waypoint_title">Renombrar el waypoint</string>
+  <string name="name_empty">Nombre vacío</string>
+  <string name="rename_failed">No podía renombrar este punto.</string>
+  <string name="delete_waypoint_title">Delete Waypoint</string>
+  <string name="delete_waypoint_message">Eliminar %1$s?</string>
+  <string name="deleted">Suprimido</string>
+  <string name="copied_coords">Información de contacto copiada: %1$.5f_ %2$.5f</string>
+  <!-- Pour les boutons de boîte de dialogue -->
+  <string name="action_rename">Rename</string>
+  <string name="action_delete">Retirar</string>
+  <string name="delete_failed">No podía borrar este punto de vista.</string>
+  <!-- Utilisé par row_waypoint.xml -->
+  <string name="more">Más opciones</string>
+  </resources>

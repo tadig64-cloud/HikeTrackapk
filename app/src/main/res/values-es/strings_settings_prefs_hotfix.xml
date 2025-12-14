@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="pref_category_general">General</string>
+  <string name="pref_app_language_title">Idioma de la aplicación</string>
+  <string name="pref_app_language_summary">Elige el idioma usado en HikeTrack.</string>
+  <string name="pref_keep_screen_on_title">Mantener la pantalla encendida</string>
+  <string name="pref_keep_screen_on_summary">Evita que la pantalla se apague mientras el mapa está abierto.</string>
+</resources>

@@ -1,25 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="ht_respect_nature_text">Respect dans les réserves et parcs nationaux
-• Cœurs de parc : zones protégées. Règles fréquentes : rester sur les sentiers, ne rien cueillir, pas de feu, chiens interdits (même en laisse), drones interdits sauf autorisation. Respecter la signalisation sur place et les arrêtés locaux.
-• Réserves naturelles &amp; parcs régionaux : règles variables (bivouac, chiens, feux). Vérifier les zones de quiétude saisonnières et la signalétique.
+  <string name="ht_respect_nature_text">Respect in National Reserves and Parks
+• Parks: protected areas. Frequent rules: stay on the trails, do not pick anything, no fire, dogs prohibited (even on a leash), drones prohibited unless authorized. Respect on-site signs and local orders.
+• Nature reserves &amp; regional parks: variable rules (bivouac, dogs, fires). Check for seasonal quietness areas and signage.
 
-Pourquoi éviter de se baigner dans les lacs d’altitude
-• Écosystèmes fragiles : beaucoup de lacs sont oligotrophes et très sensibles ; de petites perturbations ont de grands effets.
-• Polluants : crèmes solaires/produits corporels, fibres textiles et micro-organismes dégradent l’eau et le plancton ; privilégier les zones de baignade aménagées.
-• Dérangement de la faune : amphibiens et oiseaux de rive sont sensibles au bruit, au piétinement et au clapot (plantes, frayères).
-• Santé/sécurité : eau très froide (choc thermique/hypothermie), berges glissantes ; certaines communes interdisent la baignade par arrêté.
-• Règle simple : si une interdiction est affichée, on ne se baigne pas ; sinon, observer sans entrer dans l’eau, ne rien laisser, éviter un contact prolongé.
+Why not bathe in high-altitude lakes
+• Fragile ecosystems: many lakes are oligotrophic and very sensitive; small disturbances have great effects.
+• Pollutants: sunscreen/body products, textile fibres and micro-organisms degrade water and plankton; focus on managed bathing areas.
+• Wildlife disturbance: amphibians and shorebirds are sensitive to noise, trampling and clapp (plants, spawning grounds).
+• Health/safety: very cold water (thermal shock/hypothermia), slippery banks; Some municipalities prohibit bathing by decree.
+• Simple rule: if a ban is displayed, you do not bathe; Otherwise, observe without entering the water, leave nothing, avoid prolonged contact.
 
-Bonnes pratiques en espaces protégés
-• Rester sur les sentiers pour limiter l’érosion.
-• Bivouac : souvent toléré une nuit (après 19h – avant 9h), à l’écart des routes/habitations ; rester à &gt; 20 m des lacs/cours d’eau ; repartir avec eaux grises et déchets.
-• Chiens : généralement interdits dans les cœurs de parc ; ailleurs, tenir en laisse et respecter les périodes de quiétude.
-• Drones : assimilés à des aéronefs motorisés et interdits dans les cœurs de parc (rares exceptions sur autorisation).
-• Faune &amp; troupeaux : ne pas poursuivre ; faire un large détour ; refermer les clôtures.
+Good practices in protected areas
+• Stay on the trails to limit erosion.
+• Bivouac: often tolerated overnight (after 7pm – before 9am), away from roads/houses; remain &gt; 20 m from lakes/water courses; leave with grey water and waste.
+• Dogs: usually forbidden in park hearts; keep on a leash and respect periods of tranquillity.
+• Drones: assimilated to motorized and prohibited aircraft in park cores (rare exceptions on authorization).
+• Wildlife &amp; herds: do not continue; make a wide detour; Close the fences.
 
-Balisage : codes couleur
-🔴⚪ GR : blanc/rouge ; // = tout droit ; angle = tourner ; croix = mauvais chemin.
-🟡🔴 GRP : jaune/rouge ; boucles de territoire.
-🟡 PR : jaune ; boucles locales/à la journée.</string>
-</resources>
+Marking: color codes
+- GR: white/red; // = straight; angle = turn; Cross = wrong path.
+GRP: yellow/red; territory loops.
+PR: yellow; local/day loops.</string>
+  </resources>

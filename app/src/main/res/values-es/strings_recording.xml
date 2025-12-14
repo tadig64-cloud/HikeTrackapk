@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Manquants qui faisaient planter la compile -->
+  <string name="btn_pause">Break</string>
+  <string name="btn_resume">Tomar posesión</string>
+  <string name="msg_rec_paused">Grabación en pausa</string>
+  <string name="msg_rec_resumed">Continuación del registro</string>
+  <!-- Nouveaux libellés pour la notif / canal -->
+  <string name="channel_recording_name">Grabación de rastros</string>
+  <string name="notif_recording_title_active">Registro en curso</string>
+  <string name="notif_recording_title_paused">Grabación en pausa</string>
+  <string name="notif_recording_text_active">Distancia: __TOK3_ km</string>
+  <string name="notif_recording_text_paused">Break • Distancia: __TOK3_ km</string>
+  </resources>

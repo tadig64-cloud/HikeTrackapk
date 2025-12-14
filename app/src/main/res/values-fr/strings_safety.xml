@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ===== Sécurité : ORAGES ===== -->
+    <string name="ht_safety_storm_title">Orage : que faire ?</string>
+    <string name="ht_safety_storm_before">
+• Consulte la météo locale avant de partir.
+• Évite les crêtes, sommets, arêtes et zones dégagées si le risque augmente.
+• Identifie à l’avance des zones de repli (cabane, bâtiment, forêt dense non isolée).
+    </string>
+
+    <string name="ht_safety_storm_during">
+• Écarte-toi des autres (≈10 m entre personnes).
+• Éloigne sac/bâtons/objets métalliques ; ne les garde pas sur toi.
+• Descends vers une zone moins exposée, loin des arbres isolés et du métal (clôtures).
+• Évite grottes peu profondes, abris métalliques, lisières et eau (cours d’eau, lacs).
+• Mets-toi accroupi sur la pointe des pieds, les bras autour des genoux, contact minimal au sol.
+• Applique la règle 30/30 : si l’éclair et le tonnerre sont espacés de &lt; 30 s, abrite-toi ; attends 30 min après le dernier tonnerre.
+    </string>
+
+    <string name="ht_safety_storm_after">
+• Attends l’éloignement confirmé (≥30 min sans tonnerre).
+• Vérifie l’état du groupe, réchauffe/assèche si besoin.
+• En cas d’accident, alerte le 112 et précise position, état, accès.
+    </string>
+
+    <!-- ===== Sécurité : CHALEUR / CANICULE ===== -->
+    <string name="ht_safety_heat_title">Chaleur &amp; canicule</string>
+    <string name="ht_safety_heat_body">
+• Pars tôt/tard, évite les heures les plus chaudes.
+• Bois petit à petit (0,5–1 L/h selon effort), sale un peu l’alimentation.
+• Couvre-toi : casquette/chapeau, lunettes, crème solaire, manches légères.
+• Mouille nuque/avant-bras si possible, multiplie les pauses à l’ombre.
+• Signes d’alerte : maux de tête, nausées, crampes, vertiges, confusion — STOP, mets-toi à l’ombre, rafraîchis-toi, réhydrate-toi, préviens si ça persiste.
+    </string>
+
+    <!-- ===== Sécurité : FROID / HYPOTHERMIE ===== -->
+    <string name="ht_safety_cold_title">Froid &amp; hypothermie</string>
+    <string name="ht_safety_cold_body">
+• Superpose 3 couches (respirante / isolante / coupe-vent-pluie).
+• Garde tête/mains/pieds au chaud ; change un vêtement mouillé dès que possible.
+• Coupe le vent, abrite-toi ; bouge régulièrement sans transpirer excessivement.
+• Bois et mange (chaud si possible) pour garder de l’énergie.
+• Signes d’alerte : frissons incontrôlés, maladresse, somnolence — réchauffe en douceur, isole du sol/vent, alerte si aggravation.
+    </string>
+
+    <!-- ===== Sécurité : BROUILLARD / ÉGAREMENT ===== -->
+    <string name="ht_safety_nav_title">Brouillard &amp; égarement</string>
+    <string name="ht_safety_nav_body">
+• STOP : respire, fais le point. Ne t’enfonce pas au hasard.
+• Reviens au dernier point sûr (balisage, croisement) si c’est simple et court.
+• Carte/boussole/GPS : vérifie cap et ligne de niveau ; avance par étapes courtes avec repères.
+• De nuit/brouillard, reste groupé, utilise sifflet/lampe en cas de besoin.
+• Si doute prolongé ou danger : abrite-toi, économise énergie, alerte si nécessaire.
+    </string>
+
+    <!-- ===== Sécurité : ANIMAUX / TROUPEAUX ===== -->
+    <string name="ht_safety_animals_title">Animaux &amp; troupeaux</string>
+    <string name="ht_safety_animals_body">
+• Reste calme, élargis le détour, tiens ton chien en laisse loin des bêtes.
+• Ne traverse pas un troupeau en son centre, contourne en gardant la distance.
+• Referme les clôtures, n’effraie pas les animaux, évite de courir.
+• Face à un chien de protection : arrête-toi, parle d’une voix posée, contourne lentement.
+    </string>
+
+</resources>

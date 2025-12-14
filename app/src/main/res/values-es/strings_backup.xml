@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Backup / suppression (locale par défaut) -->
+  <string name="confirm_delete_title">Confirmación de supresión</string>
+  <string name="confirm_delete_message">¿De verdad quieres eliminar este artículo? Esta acción es irreversible.</string>
+  <string name="backup_done">Guardado</string>
+  <string name="backup_failed">Respaldo fallado</string>
+  </resources>

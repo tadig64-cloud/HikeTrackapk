@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- ===== Sécurité : ORAGES ===== -->
+  <string name="ht_safety_storm_title">Tormenta: ¿qué hacer?</string>
+  <string name="ht_safety_storm_before">• Comprueba el clima local antes de irte.
+• Evite crestas, picos, bordes y áreas claras si aumenta el riesgo.
+• Identificar áreas de retiro por adelantado (cabana, edificio, bosque denso no aislado).
+.</string>
+  <string name="ht_safety_storm_during">• Aléjate de otros (a unos 10 m entre personas).
+• Objetos de bolsa/palabra/metal; No te los guardes.
+• Bajar a una zona menos expuesta, lejos de árboles aislados y metal (cerros).
+• Evite cuevas poco profundas, refugios metálicos, bordes y agua ( cursos de agua, lagos).
+• Asiento en la punta de los pies, brazos alrededor de las rodillas, contacto mínimo en el suelo.
+• Aplicar Regla 30/30: si el relámpago y el trueno son espaciados 30 s, refugio; Espera 30 minutos después del último trueno.
+.</string>
+  <string name="ht_safety_storm_after">• Espera la distancia confirmada (≥30 min sin trueno).
+• Comprueba la condición de la unidad, calidez/drys si es necesario.
+• En caso de accidente, alerta 112 y posición precisa, condición, acceso.
+.</string>
+  <!-- ===== Sécurité : CHALEUR / CANICULE ===== -->
+  <string name="ht_safety_heat_title">Calor &amp; calor</string>
+  <string name="ht_safety_heat_body">• Salir temprano/late, evitar las horas más calientes.
+• Madera pequeña a pequeña (0.5–1 L/h dependiendo del esfuerzo), sucia un poco de comida.
+• Cúbrete: sombrero/chap, gafas, protector solar, mangas ligeras.
+• Pesa desnudo / antebrazo si es posible, multiplica las rupturas en la sombra.
+• Señales de advertencia: dolor de cabeza, náuseas, calambres, mareos, confusión — DETENER, obtener sombreado, refrescarse, rehidratarse, advertir si persiste.
+.</string>
+  <!-- ===== Sécurité : FROID / HYPOTHERMIE ===== -->
+  <string name="ht_safety_cold_title">Frío</string>
+  <string name="ht_safety_cold_body">• Superpuesto 3 capas (respiración / aislamiento / impermeable).
+• Cabeza caliente / mano / guardia de pie; cambia una prenda mojada tan pronto como sea posible.
+• Cortar el viento, el refugio; moverse regularmente sin sudar excesivamente.
+• Bebe y come (caliente si es posible) para mantener la energía.
+• Señales de advertencia: escalofríos incontrolados, torpeza, somnolencia — calienta suavemente, aísla suelo/viento, alerta si empeora.
+.</string>
+  <!-- ===== Sécurité : BROUILLARD / ÉGAREMENT ===== -->
+  <string name="ht_safety_nav_title">Fog " astray</string>
+  <string name="ht_safety_nav_body">• DETENCIÓN: respirar, tomar acciones. No se hunda al azar.
+• Volver al último punto seguro (marcar, cruzar) si es simple y corto.
+• Card/boussole/GPS: gorra de verificación y línea de nivel; avances en pasos cortos con marcadores.
+• Por la noche/scratch, manténgase agrupado, utilice silbato/lamp si es necesario.
+• Si hay larga duda o peligro: refugio, ahorro de energía, alerta si es necesario.
+.</string>
+  <!-- ===== Sécurité : ANIMAUX / TROUPEAUX ===== -->
+  <string name="ht_safety_animals_title">Animales y vacas</string>
+  <string name="ht_safety_animals_body">• Mantenga la calma, ensanche el desvío, mantenga a su perro en una correa lejos de las bestias.
+• No cruce un rebaño en su centro, pasa por alto mientras mantiene la distancia.
+• Cierren las cercas, no asusten a los animales, eviten correr.
+• Frente a un perro protector: parar, hablar con una voz, lentamente desapareciendo.
+.</string>
+  </resources>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- IMPORTANT: ne pas définir no_tracks ici pour éviter les doublons -->
+  <string name="no_offline_maps">Keine Offline-Karte verfügbar</string>
+  <string name="offline_title_starting">Vorbereitung herunterladen</string>
+  <string name="offline_title_downloading">Download im Fortschritt</string>
+  <string name="offline_title_working">Behandlung im laufenden</string>
+  <string name="offline_title_error">Fehler</string>
+  <string name="offline_title_failed">Ausfall</string>
+  <string name="offline_title_done">Abgeschlossen</string>
+  <string name="offline_msg_starting">Initialisierung..</string>
+  <string name="offline_msg_progress">Progression: %1$dTOK4__</string>
+  <string name="offline_msg_failed">Der Download ist fehlgeschlagen.</string>
+  <string name="offline_msg_done">Offline-Karten bereit.</string>
+  <string name="offline_tiles_progress">Kacheln herunterladen..</string>
+  <string name="offline_tiles_cancel">Zurück zur Übersicht</string>
+  <string name="pref_title_backups">Sicherung</string>
+  <string name="pref_summary_backups">Ausfuhranmeldungsdaten</string>
+  <string name="offline_btn_close">Schließen</string>
+  <string name="offline_btn_cancel">Abbrechen</string>
+  </resources>

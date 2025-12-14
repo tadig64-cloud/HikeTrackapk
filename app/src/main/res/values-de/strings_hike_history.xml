@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="hike_history_title">Geschichte des Wanderns</string>
+  <string name="hike_empty">Es gibt noch keine aufgezeichneten Touren.</string>
+</resources>

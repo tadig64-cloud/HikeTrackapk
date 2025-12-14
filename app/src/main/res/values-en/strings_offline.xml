@@ -1,21 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Dialog / statut téléchargement de tuiles -->
-    <string name="offline_title_starting">Préparation du téléchargement…</string>
-    <string name="offline_title_downloading">Téléchargement des tuiles…</string>
-    <string name="offline_title_working">Téléchargement des tuiles…</string>
-    <string name="offline_title_done">Téléchargement terminé</string>
-    <string name="offline_title_failed">Échec du téléchargement</string>
-    <string name="offline_title_error">Erreur de téléchargement</string>
-
-    <string name="offline_msg_starting">Initialisation…</string>
-    <string name="offline_msg_progress">%1$d / %2$d tuiles</string>
-    <string name="offline_msg_done">Tuiles téléchargées : %1$d</string>
-    <string name="offline_msg_failed">Erreur : %1$s</string>
-
-    <string name="offline_tiles_progress">%1$d / %2$d tuiles</string>
-    <string name="offline_tiles_cancel">Annuler</string>
-
-    <string name="offline_btn_cancel">Annuler</string>
-    <string name="offline_btn_close">Fermer</string>
-</resources>
+  <!-- IMPORTANT: ne pas définir no_tracks ici pour éviter les doublons -->
+  <string name="no_offline_maps">No offline map available</string>
+  <string name="offline_title_starting">Download preparation</string>
+  <string name="offline_title_downloading">Downloading in progress</string>
+  <string name="offline_title_working">Treatment in progress</string>
+  <string name="offline_title_error">Error</string>
+  <string name="offline_title_failed">Failure</string>
+  <string name="offline_title_done">Completed</string>
+  <string name="offline_msg_starting">Initialization..</string>
+  <string name="offline_msg_progress">Progression: %1$dTOK4__</string>
+  <string name="offline_msg_failed">The download failed.</string>
+  <string name="offline_msg_done">Offline maps ready.</string>
+  <string name="offline_tiles_progress">Downloading tiles..</string>
+  <string name="offline_tiles_cancel">Cancel download</string>
+  <string name="pref_title_backups">Backup</string>
+  <string name="pref_summary_backups">Export application data</string>
+  <string name="offline_btn_close">Close</string>
+  <string name="offline_btn_cancel">Cancel</string>
+  </resources>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string-array name="map_source_entries">
+    <item>OpenStreetMap</item>
+    <item>Satélite</item>
+    <item>Socorro</item>
+    </string-array>
+  <string-array name="map_source_values">
+    <item>osm</item>
+    <item>satélite</item>
+    <item>sobre el terreno</item>
+    </string-array>
+  </resources>

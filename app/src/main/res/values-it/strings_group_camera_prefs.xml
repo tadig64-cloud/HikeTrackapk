@@ -1,0 +1,11 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="groupx_restore_camera">Resume map view on startup</string>
+  <string name="groupx_fit_group">Frame on the group on startup (if members)</string>
+  <string name="groupx_notif_restore_on">Retrieving the enabled view</string>
+  <string name="groupx_notif_restore_off">Recapture of view disabled</string>
+  <string name="groupx_notif_fit_on">Frame on the enabled group</string>
+  <string name="groupx_notif_fit_off">Frame on the disabled group</string>
+      <string name="pref_keep_screen_on_title">Schermo sempre acceso</string>
+    </resources>
+

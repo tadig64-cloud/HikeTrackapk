@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- Manquants qui faisaient planter la compile -->
+  <string name="btn_pause">Bruch</string>
+  <string name="btn_resume">Übernehmen</string>
+  <string name="msg_rec_paused">Aufzeichnung auf Pause</string>
+  <string name="msg_rec_resumed">Wiederaufnahme der Registrierung</string>
+  <!-- Nouveaux libellés pour la notif / canal -->
+  <string name="channel_recording_name">Aufzeichnungsträger</string>
+  <string name="notif_recording_title_active">Anmeldung im laufenden</string>
+  <string name="notif_recording_title_paused">Aufzeichnung auf Pause</string>
+  <string name="notif_recording_text_active">Entfernung: __TOK3_ km</string>
+  <string name="notif_recording_text_paused">Bruch • Entfernung: __TOK3_ km</string>
+  </resources>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Titre / menu -->
+    <string name="menu_gear">Matériel</string>
+    <string name="gear_title">Checklist Matériel</string>
+
+    <!-- En-têtes de sections -->
+    <string name="gear_hdr_navigation">Navigation</string>
+    <string name="gear_hdr_securite">Sécurité</string>
+    <string name="gear_hdr_habillement">Vêtements</string>
+    <string name="gear_hdr_couchage">Couchage</string>
+    <string name="gear_hdr_abri">Abri</string>
+    <string name="gear_hdr_cuisine">Cuisine / Eau</string>
+    <string name="gear_hdr_electronique">Électronique</string>
+    <string name="gear_hdr_pharmacie">Trousse de secours</string>
+    <string name="gear_hdr_alimentation">Alimentation</string>
+    <string name="gear_hdr_divers">Divers</string>
+    <string name="gear_hdr_hiver">Hiver / Montagne</string>
+
+    <!-- Navigation -->
+    <string name="gear_item_carte_topo">Carte topo papier</string>
+    <string name="gear_item_boussole">Boussole</string>
+    <string name="gear_item_gps">GPS / smartphone avec cartes hors ligne</string>
+    <string name="gear_item_powerbank">Batterie externe (Powerbank)</string>
+    <string name="gear_item_cable_chargement">Câble de chargement</string>
+
+    <!-- Sécurité -->
+    <string name="gear_item_trousse_survie">Mini trousse de survie (sifflet, briquet, firesteel)</string>
+    <string name="gear_item_couteau">Couteau / multi-outil</string>
+    <string name="gear_item_lampe">Lampe frontale + piles</string>
+    <string name="gear_item_couverture_survie">Couverture de survie</string>
+    <string name="gear_item_bande_kinesio">Bandes / strap</string>
+    <string name="gear_item_creme_solaire">Crème solaire + stick lèvres</string>
+    <string name="gear_item_repulsif">Répulsif moustiques / tiques</string>
+    <string name="gear_item_kit_reparation">Kit réparation (duct tape, fil, aiguille)</string>
+
+    <!-- Vêtements -->
+    <string name="gear_item_tshirt_ls">T-shirt respirant (1–2)</string>
+    <string name="gear_item_polaire">Polaire légère</string>
+    <string name="gear_item_doudoune">Doudoune synthé / duvet</string>
+    <string name="gear_item_veste_pluie">Veste imper-respirante (hardshell)</string>
+    <string name="gear_item_pantalon_rando">Pantalon rando (ou short + collant)</string>
+    <string name="gear_item_sous_vetements">Sous-vêtements (2 paires)</string>
+    <string name="gear_item_chaussettes">Chaussettes rando (2–3 paires)</string>
+    <string name="gear_item_gants">Gants légers</string>
+    <string name="gear_item_bonnet">Bonnet / Buff</string>
+    <string name="gear_item_guetres">Guêtres (terrain humide/neige)</string>
+
+    <!-- Couchage -->
+    <string name="gear_item_sac_couchage">Sac de couchage (temp. confort adaptée)</string>
+    <string name="gear_item_tapis_sol">Matelas / mousse</string>
+    <string name="gear_item_drap_soie">Drap de soie / liner</string>
+    <string name="gear_item_oreiller">Oreiller gonflable (optionnel)</string>
+
+    <!-- Abri -->
+    <string name="gear_item_tente">Tente / tarp</string>
+    <string name="gear_item_duvet_pluie">Footprint / tapis de sol</string>
+    <string name="gear_item_haubans">Haubans + piquets</string>
+    <string name="gear_item_baton_marche">Bâtons (si tarp)</string>
+
+    <!-- Cuisine / Eau -->
+    <string name="gear_item_rechaud">Réchaud (gaz/alcool/bois)</string>
+    <string name="gear_item_cartouche">Cartouche / carburant</string>
+    <string name="gear_item_popote">Popote + couverts</string>
+    <string name="gear_item_briquet">Briquet / allumettes étanches</string>
+    <string name="gear_item_filtre">Filtre / pastilles purification</string>
+    <string name="gear_item_gourde">Gourde / poche à eau (2–3 L)</string>
+    <string name="gear_item_mug">Mug / bol</string>
+    <string name="gear_item_eponge">Éponge, mini-savon biodégradable</string>
+
+    <!-- Électronique -->
+    <string name="gear_item_tel">Téléphone (mode avion)</string>
+    <string name="gear_item_cable_tel">Câble USB</string>
+    <string name="gear_item_gps_dedicace">GPS dédié (optionnel)</string>
+    <string name="gear_item_montre">Montre / altimètre (optionnel)</string>
+
+    <!-- Trousse de secours -->
+    <string name="gear_item_pansements">Pansements, compresses stériles</string>
+    <string name="gear_item_antiseptique">Antiseptique</string>
+    <string name="gear_item_antalgique">Antalgique (paracétamol/ibuprofène…)</string>
+    <string name="gear_item_pince_tiques">Pince à tiques</string>
+    <string name="gear_item_bande">Bandage élastique</string>
+    <string name="gear_item_gants_nitrile">Gants nitrile</string>
+
+    <!-- Alimentation -->
+    <string name="gear_item_repas_lyo">Repas lyophilisés</string>
+    <string name="gear_item_snacks">Snacks (barres, fruits secs)</string>
+    <string name="gear_item_the_cafe">Thé / café</string>
+    <string name="gear_item_epices_sel">Sel / épices</string>
+
+    <!-- Divers -->
+    <string name="gear_item_sac_poubelle">Sacs poubelle (Leave No Trace)</string>
+    <string name="gear_item_sac_etanche">Sacs étanches / zip</string>
+    <string name="gear_item_hygiene">Papier + trowel / gel hydroalcoolique</string>
+    <string name="gear_item_chaussons">Chaussons camp / sandales</string>
+    <string name="gear_item_app_photo">Appareil photo (optionnel)</string>
+    <string name="gear_item_carnet_crayon">Carnet + crayon</string>
+
+    <!-- Hiver / Montagne -->
+    <string name="gear_item_crampons">Crampons (selon conditions)</string>
+    <string name="gear_item_piolet">Piolet (selon itinéraire)</string>
+    <string name="gear_item_dva">DVA + pelle + sonde</string>
+    <string name="gear_item_sur_gants">Surgants / moufles chaudes</string>
+    <string name="gear_item_collant_chaud">Sous-couche thermique bas / haut</string>
+    <string name="gear_item_sur_pantalon">Sur-pantalon imper-respirant</string>
+
+    <!-- ===== Clés attendues par les layouts / menus ===== -->
+    <string name="gear_shoes">Chaussures adaptées</string>
+    <string name="gear_backpack">Sac à dos</string>
+    <string name="gear_water">Eau</string>
+    <string name="gear_food">Nourriture</string>
+    <string name="gear_map_compass">Carte &amp; boussole</string>
+    <string name="gear_first_aid">Trousse de secours</string>
+
+    <string name="gear_bivouac_title">Bivouac</string>
+    <string name="gear_tent">Tente / tarp</string>
+    <string name="gear_sleeping_bag">Sac de couchage</string>
+    <string name="gear_mat">Matelas / mousse</string>
+    <string name="gear_stove">Réchaud</string>
+
+    <!-- Menu action -->
+    <string name="gear_reset">Réinitialiser la liste</string>
+
+</resources>

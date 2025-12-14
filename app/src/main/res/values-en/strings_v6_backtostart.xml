@@ -1,15 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Back to Start -->
-    <string name="bts_title">Retour au départ</string>
-    <string name="bts_waiting_fix">En attente du GPS…</string>
-    <string name="bts_bearing_placeholder">Cap : —°</string>
-    <string name="bts_bearing_fmt">Cap : %1$d°</string>
-    <string name="bts_distance_m_fmt">%1$d m</string>
-    <string name="bts_distance_km_fmt">%.2f km</string>
-    <string name="bts_no_start">Aucun point de départ trouvé</string>
-    <string name="bts_no_start_toast">Démarrez un enregistrement pour définir un point de départ.</string>
-    <string name="bts_perm_denied">Autorisation de localisation refusée.</string>
-    <string name="bts_gps_unavailable">Aucun fournisseur de localisation disponible.</string>
-    <string name="bts_arrow_cd">Flèche vers le point de départ</string>
-    <string name="bts_hint">La flèche pointe vers le premier point enregistré (départ).\nLa distance et le cap se mettent à jour automatiquement.</string>
-</resources>
+  <!-- Back to Start -->
+  <string name="bts_title">Return to departure</string>
+  <string name="bts_waiting_fix">Waiting for GPS..</string>
+  <string name="bts_bearing_placeholder">Heading: —°</string>
+  <string name="bts_bearing_fmt">Cap: __TOK3_°</string>
+  <string name="bts_distance_m_fmt">%1$d m</string>
+  <string name="bts_distance_km_fmt">__TOK3_ km</string>
+  <string name="bts_no_start">No starting point found</string>
+  <string name="bts_no_start_toast">Start a recording to set a starting point.</string>
+  <string name="bts_perm_denied">Authorization to locate refused.</string>
+  <string name="bts_gps_unavailable">No location provider available.</string>
+  <string name="bts_arrow_cd">Arrow to starting point</string>
+  <string name="bts_hint">The arrow points to the first recorded point (departure)._TOK0__The distance and heading automatically update.</string>
+  </resources>

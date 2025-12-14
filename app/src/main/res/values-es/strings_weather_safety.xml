@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Orages -->
+  <string name="wx_thunder_title">Tormentas &amp; Rayos</string>
+  <string name="wx_thunder_intro">Tormenta de montaña = peligro inmediato (inundación, granizo, ráfagas, inundaciones flash). Anticipar y adaptar la ruta.
+.</string>
+  <string name="wx_thunder_do">• Compruebe el informe del tiempo antes de salir (posible tormenta = ruta corta/evasiva).
+• En el campo, mira el cielo: rápido ronquido, lejano trueno, viento giratorio, deslumbrante.
+• Evacuar crestas, crestas, picos, losas expuestas; apuntar una zona baja pero seca, lejos de un punto aislado._TOK0___
+• Apártese unos de otros por lo menos 20 m para limitar el riesgo de grupo.
+• Como último recurso, squat en bolsa/cord seco (aislante), pies apretados, tiempo mínimo de exposición.
+.</string>
+  <string name="wx_thunder_dont">• No te quedes debajo de un árbol aislado, un overhang metálico, una cruz superior, una línea eléctrica.
+• No use palos/pilets en el aire; almacene antenas, mascotas, paraguas.
+• No cobija a todo el grupo en el mismo lugar; evite correr cuevas y bancos en inundación.
+.</string>
+  <string name="wx_thunder_after">Después de la tormenta: prudencia sobre nieves húmedas/rocks, puentes de nieve debilitados, flujos inundados/locales.
+.</string>
+  <!-- Chaleur -->
+  <string name="wx_heat_title">Calor &amp; sol</string>
+  <string name="wx_heat_tips">• Salida temprana, ritmo adaptado, pausas frecuentes en la sombra.
+• Beber antes de la sed, electrolitos si esfuerzo prolongado; sombrero + gafas categoría 3/4, crema SPF 50.
+• Supervisar el dolor de cabeza, las náuseas, la confusión: cese/refresamiento inmediato; alertar tan empeoramiento.
+.</string>
+  <!-- Froid -->
+  <string name="wx_cold_title">Frío</string>
+  <string name="wx_cold_tips">• Superposición de capas (respiración/aislante/viento), protección de mano/pie/cabeza.
+• Moulded = peligro: preferir ropa seca; ver escalofríos, mal comportamiento, somnolencia.
+• Bebida caliente dulce, aislamiento del suelo (cubierta), refugio del viento; alerta de emergencia si se altera.
+.</string>
+  <!-- Vent -->
+  <string name="wx_wind_title">Viento fuerte</string>
+  <string name="wx_wind_tips">• Tenga cuidado de las ráfagas en las crestas/coles, cornisas inestables.
+• Postes cortos, puntos de soporte seguros, gafas de polvo.
+• Renunciar si progresión incierta: retroceder = decisión correcta.
+.</string>
+  </resources>

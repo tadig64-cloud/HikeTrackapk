@@ -40,32 +40,48 @@
     </LinearLayout>
 
     <!-- Map -->
-    <org.osmdroid.views.MapView
-        android:id="@+id/map"
+        <!-- Map -->
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1">
 
-    <!-- Bottom button row -->
+        <org.osmdroid.views.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    <!-- Right-side button column (replaces old bottom row to avoid squashed buttons) -->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/groupButtonsColumn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="6dp"
-        android:weightSum="5">
+        android:layout_gravity="end|center_vertical"
+        android:orientation="vertical"
+        android:padding="4dp"
+        android:layout_margin="4dp"
+        android:layout_marginEnd="2dp"
+        android:gravity="end"
+        android:measureWithLargestChild="true">
 
-        <Button
+<Button
             android:id="@+id/btnRecordGroup"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="● Rec groupe" />
-
-        <Button
-            android:id="@+id/btnZoomAll"
-            android:layout_width="0dp"
             android:layout_height="36dp"
-            android:layout_weight="1"
+            android:layout_marginBottom="6dp"
+            android:layout_gravity="end"
             android:minWidth="0dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="● Rec grp" />
+
+<Button
+            android:id="@+id/btnZoomAll"
+            android:layout_gravity="end"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginBottom="6dp"
+android:minWidth="0dp"
             android:paddingStart="6dp"
             android:paddingEnd="6dp"
             android:text="Zoom"
@@ -74,12 +90,13 @@
             android:maxLines="1"
             android:ellipsize="end" />
 
-        <Button
+<Button
             android:id="@+id/btnLabels"
-            android:layout_width="0dp"
+            android:layout_gravity="end"
+            android:layout_width="wrap_content"
             android:layout_height="36dp"
-            android:layout_weight="1"
-            android:minWidth="0dp"
+            android:layout_marginBottom="6dp"
+android:minWidth="0dp"
             android:paddingStart="6dp"
             android:paddingEnd="6dp"
             android:text="Labels"
@@ -88,12 +105,13 @@
             android:maxLines="1"
             android:ellipsize="end" />
 
-        <Button
+<Button
             android:id="@+id/btnCluster"
-            android:layout_width="0dp"
+            android:layout_gravity="end"
+            android:layout_width="wrap_content"
             android:layout_height="36dp"
-            android:layout_weight="1"
-            android:minWidth="0dp"
+            android:layout_marginBottom="6dp"
+android:minWidth="0dp"
             android:paddingStart="6dp"
             android:paddingEnd="6dp"
             android:text="Cluster"
@@ -102,12 +120,13 @@
             android:maxLines="1"
             android:ellipsize="end" />
 
-        <Button
+<Button
             android:id="@+id/btnSim"
-            android:layout_width="0dp"
+            android:layout_gravity="end"
+            android:layout_width="wrap_content"
             android:layout_height="36dp"
-            android:layout_weight="1"
-            android:minWidth="0dp"
+            android:layout_marginBottom="6dp"
+android:minWidth="0dp"
             android:paddingStart="6dp"
             android:paddingEnd="6dp"
             android:text="Sim"
@@ -116,12 +135,12 @@
             android:maxLines="1"
             android:ellipsize="end" />
 
-        <Button
+<Button
             android:id="@+id/btnP2P"
-            android:layout_width="0dp"
+            android:layout_gravity="end"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_weight="1"
-            android:minWidth="0dp"
+android:minWidth="0dp"
             android:paddingStart="6dp"
             android:paddingEnd="6dp"
             android:text="P2P
@@ -135,7 +154,9 @@ Aide"
             android:contentDescription="Découvrir en P2P (appui long: aide)"/>
     </LinearLayout>
 
-    <!-- Members list -->
+    </FrameLayout>
+
+<!-- Members list -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listMembers"
         android:layout_width="match_parent"

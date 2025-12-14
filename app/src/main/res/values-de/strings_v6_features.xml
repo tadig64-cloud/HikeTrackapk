@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <!-- ⚠️ Les titres de menu V6 (menu_sos, menu_back_to_start, etc.)
+         sont DÉJÀ dans strings.xml. On ne les redéfinit pas ici pour éviter
+         les doublons. -->
+  <!-- Back to Start -->
+  <string name="v6_bts_title">Zurück zur Abreise</string>
+  <string name="v6_bts_desc">Führung zum Ausgangspunkt mit Überschrift und Distanz.</string>
+  <string name="v6_bts_no_fix">GPS-Position nicht verfügbar</string>
+  <string name="v6_bts_distance_fmt">__TOK3_ km</string>
+  <string name="v6_bts_bearing_fmt">__TOK3_°</string>
+  <!-- SOS -->
+  <string name="v6_sos_title">SOS – Notfall</string>
+  <string name="v6_sos_desc">Notfallinformationen und Anrufoptionen oder SMS.</string>
+  <string name="v6_sos_call">Anruf 911</string>
+  <string name="v6_sos_sms">SMS Notfall senden</string>
+  <string name="v6_sos_prep">SOS-Nachricht vorbereiten..</string>
+  <!-- Points d’eau -->
+  <string name="v6_water_title">Wasserpunkte</string>
+  <string name="v6_water_none">Keine Wasserpunkte in der Nähe.</string>
+  <string name="v6_water_loading">Wasserpunkte laden..</string>
+  <string name="v6_water_distance_fmt">%1$.0f m</string>
+  <!-- Respect de la nature -->
+  <string name="v6_respect_title">Achtung der Natur</string>
+  <string name="v6_respect_intro">Einfache Regeln, um Auswirkungen beim Wandern zu minimieren.</string>
+  <!-- Premiers secours -->
+  <string name="v6_firstaid_title">Erste Hilfe</string>
+  <string name="v6_firstaid_intro">Wesentliche Gesten, um im Falle des Vorfalls im Auge zu behalten.</string>
+  <!-- Commun -->
+  <string name="v6_open">Öffnen</string>
+  <string name="v6_close">Schließen</string>
+  <string name="v6_retry">Noch einmal</string>
+  </resources>

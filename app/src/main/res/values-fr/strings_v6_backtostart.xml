@@ -1,0 +1,15 @@
+<resources>
+    <!-- Back to Start -->
+    <string name="bts_title">Retour au départ</string>
+    <string name="bts_waiting_fix">En attente du GPS…</string>
+    <string name="bts_bearing_placeholder">Cap : —°</string>
+    <string name="bts_bearing_fmt">Cap : %1$d°</string>
+    <string name="bts_distance_m_fmt">%1$d m</string>
+    <string name="bts_distance_km_fmt">%.2f km</string>
+    <string name="bts_no_start">Aucun point de départ trouvé</string>
+    <string name="bts_no_start_toast">Démarrez un enregistrement pour définir un point de départ.</string>
+    <string name="bts_perm_denied">Autorisation de localisation refusée.</string>
+    <string name="bts_gps_unavailable">Aucun fournisseur de localisation disponible.</string>
+    <string name="bts_arrow_cd">Flèche vers le point de départ</string>
+    <string name="bts_hint">La flèche pointe vers le premier point enregistré (départ).\nLa distance et le cap se mettent à jour automatiquement.</string>
+</resources>
