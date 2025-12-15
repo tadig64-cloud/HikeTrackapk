@@ -217,71 +217,142 @@ class MapActivity : AppCompatActivity() {
 
     // --- KML minimal parser: LineString -> track points, Point -> POI markers ---
     private fun parseKmlFromStream(input: java.io.InputStream): Pair<List<GeoPoint>, List<Marker>> {
-        val text = input.bufferedReader(Charsets.UTF_8).readText()
+        // Important: on évite de charger tout le KML en String (ça explose la RAM et ça freeze l’UI).
+        val res = com.hikemvp.utils.KmlImporter.parse(
+            input = input,
+            decimateEvery = 3,
+            minDistMeters = 5.0,
+            maxPois = 5000
+        )
 
-
-        // 1) Trace (LineString)
-        val trackPts = mutableListOf<GeoPoint>()
-        runCatching {
-            // Récupère le premier <coordinates> à l’intérieur d’un <LineString>
-            val lineStringRegex = Regex(
-                "<LineString[\\s\\S]*?<coordinates>([\\s\\S]*?)</coordinates>[\\s\\S]*?</LineString>",
-                RegexOption.IGNORE_CASE
-            )
-            val coordsBlock = lineStringRegex.find(text)?.groupValues?.get(1)
-            coordsBlock?.trim()?.let { block ->
-                // Les coordonnées KML sont "lon,lat[,alt]" séparées par des espaces ou des retours ligne
-                val tokens = block.split(Regex("\\s+")).filter { it.isNotBlank() }
-                for (tok in tokens) {
-                    val parts = tok.split(',')
-                    if (parts.size >= 2) {
-                        val lon = parts[0].toDoubleOrNull() ?: continue
-                        val lat = parts[1].toDoubleOrNull() ?: continue
-                        val alt = parts.getOrNull(2)?.toDoubleOrNull()
-                        trackPts += if (alt != null) GeoPoint(lat, lon, alt) else GeoPoint(lat, lon)
-                    }
-                }
-            }
+        val markers = res.pois.map { poi ->
+            buildKmlMarker(poi)
         }
 
-        // 2) POI (Placemark avec Point)
-        val poiMarkers = mutableListOf<Marker>()
-        runCatching {
-            // Matche chaque Placemark qui contient un Point
-            val placemarkRegex = Regex(
-                "<Placemark[\\s\\S]*?</Placemark>",
-                RegexOption.IGNORE_CASE
-            )
-            val nameRegex = Regex("<name>([\\s\\S]*?)</name>", RegexOption.IGNORE_CASE)
-            val pointRegex = Regex(
-                "<Point[\\s\\S]*?<coordinates>([\\s\\S]*?)</coordinates>[\\s\\S]*?</Point>",
-                RegexOption.IGNORE_CASE
-            )
-
-            placemarkRegex.findAll(text).forEach { pm ->
-                val block = pm.value
-                val point = pointRegex.find(block)?.groupValues?.get(1)?.trim() ?: return@forEach
-                val name = nameRegex.find(block)?.groupValues?.get(1)?.trim() ?: "POI"
-                // On ne prend que la première coordonnée du Point
-                val parts = point.split(',').map { it.trim() }
-                if (parts.size >= 2) {
-                    val lon = parts[0].toDoubleOrNull()
-                    val lat = parts[1].toDoubleOrNull()
-                    if (lat != null && lon != null) {
-                        val m = Marker(map).apply {
-                            position = GeoPoint(lat, lon)
-                            title = name
-                            setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-                            icon = ContextCompat.getDrawable(this@MapActivity, android.R.drawable.ic_menu_mylocation)
-                        }
-                        poiMarkers += m
-                    }
-                }
-            }
-        }
-
-        return trackPts to poiMarkers
+        return res.track to markers
     }
+
+    private fun addKmlPoisToMap(
+        pois: List<com.hikemvp.utils.KmlImporter.POI>,
+        batchSize: Int = 200
+    ) {
+        if (pois.isEmpty()) return
+
+        // On ajoute par lots pour éviter les gros freezes quand il y a des milliers de POI.
+        val handler = android.os.Handler(android.os.Looper.getMainLooper())
+        val baseIcon = androidx.core.content.ContextCompat.getDrawable(
+            this,
+            android.R.drawable.ic_menu_mylocation
+        )
+        val iconState = baseIcon?.constantState
+
+        var idx = 0
+        val total = pois.size
+
+        fun postBatch() {
+            val end = kotlin.math.min(idx + batchSize, total)
+            for (i in idx until end) {
+                val poi = pois[i]
+                val m = buildKmlMarker(poi, baseIcon, iconState)
+                map.overlays.add(m)
+                importedOverlays.add(m)
+            }
+            map.invalidate()
+            idx = end
+            if (idx < total) {
+                handler.post { postBatch() }
+            }
+        }
+
+        if (android.os.Looper.myLooper() == android.os.Looper.getMainLooper()) {
+            postBatch()
+        } else {
+            handler.post { postBatch() }
+        }
+    }
+
+    private fun buildKmlMarker(
+        poi: com.hikemvp.utils.KmlImporter.POI,
+        baseIcon: android.graphics.drawable.Drawable? = null,
+        iconState: android.graphics.drawable.Drawable.ConstantState? = null
+    ): Marker {
+        val m = Marker(map)
+        m.position = poi.point
+        m.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        m.title = poi.title
+
+        // Petit résumé (léger). Le détail complet est affiché au clic, dans une fenêtre dédiée.
+        m.snippet = buildKmlSnippetShort(poi)
+
+        val icon0 = baseIcon ?: androidx.core.content.ContextCompat.getDrawable(
+            this,
+            android.R.drawable.ic_menu_mylocation
+        )
+        val state0 = iconState ?: icon0?.constantState
+        m.icon = state0?.newDrawable()?.mutate() ?: icon0
+
+        m.setOnMarkerClickListener { _, _ ->
+            showKmlPoiDialog(poi)
+            true
+        }
+        return m
+    }
+
+    private fun buildKmlSnippetShort(poi: com.hikemvp.utils.KmlImporter.POI): String {
+        val desc = poi.description.trim()
+        return when {
+            desc.isNotEmpty() -> {
+                val oneLine = desc.lineSequence().firstOrNull()?.trim().orEmpty()
+                if (oneLine.length > 140) oneLine.take(140) + "…" else oneLine
+            }
+            poi.extras.isNotEmpty() -> "Infos disponibles (${poi.extras.size}) — appuie pour voir."
+            else -> ""
+        }
+    }
+
+    private fun showKmlPoiDialog(poi: com.hikemvp.utils.KmlImporter.POI) {
+        val sb = StringBuilder()
+
+        // Coordonnées en haut, pratique pour les refuges/points d’intérêt.
+        sb.append("Coordonnées : ")
+            .append(String.format(java.util.Locale.US, "%.6f", poi.point.latitude))
+            .append(", ")
+            .append(String.format(java.util.Locale.US, "%.6f", poi.point.longitude))
+            .append("\n\n")
+
+        val desc = poi.description.trim()
+        if (desc.isNotEmpty()) {
+            sb.append(desc)
+            sb.append("\n\n")
+        }
+
+        if (poi.extras.isNotEmpty()) {
+            sb.append("Détails :\n")
+            poi.extras.entries
+                .sortedBy { it.key.lowercase(java.util.Locale.getDefault()) }
+                .forEach { (k, v) ->
+                    val vv = v.trim()
+                    if (vv.isNotEmpty()) sb.append("• ").append(k).append(" : ").append(vv).append("\n")
+                }
+        }
+
+        val message = sb.toString().trim().ifEmpty { "Aucune information trouvée pour ce point." }
+
+        val pad = (16f * resources.displayMetrics.density).toInt()
+        val tv = android.widget.TextView(this).apply {
+            text = message
+            setTextIsSelectable(true)
+            setPadding(pad, pad, pad, pad)
+        }
+        val sv = android.widget.ScrollView(this).apply { addView(tv) }
+
+        com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+            .setTitle(poi.title.ifBlank { "Point KML" })
+            .setView(sv)
+            .setPositiveButton("OK", null)
+            .show()
+    }
+
 
 
 
@@ -451,13 +522,47 @@ class MapActivity : AppCompatActivity() {
                     lower.endsWith(".gpx") || (
                             contentResolver.getType(uri)?.contains("gpx", ignoreCase = true) == true
                             ) -> {
-                        val poly = GpxUtils.parseToPolyline(input)
-                        addImportedTrackToMap(poly.actualPoints, name.removeSuffix(".gpx"))
-                        TrackStore.setAll(poly.actualPoints)
-                        resetStats()
-                        if (poly.actualPoints.size > 1) computeStatsFrom(poly.actualPoints)
-                        updateStatsUI()
-                        Toast.makeText(this, "GPX importé", Toast.LENGTH_SHORT).show()
+                        // Import GPX robuste (streaming + simplification) pour éviter les OOM avec gros fichiers
+                        try {
+                            val size = queryContentSizeBytes(uri)
+                            if (size != null && size > 120L * 1024L * 1024L) {
+                                Toast.makeText(this, "GPX trop volumineux (${(size / 1024 / 1024)} Mo).", Toast.LENGTH_LONG).show()
+                                return@use
+                            }
+
+                            val totalPts = countGpxPoints(uri)
+                            val maxPts = 15000
+                            val step = if (totalPts > maxPts) ((totalPts + maxPts - 1) / maxPts) else 1
+
+                            val pts = parseGpxPointsStreaming(uri, step = step, minDistMeters = 3.0)
+
+                            if (pts.size < 2) {
+                                Toast.makeText(this, "GPX vide ou invalide", Toast.LENGTH_SHORT).show()
+                                return@use
+                            }
+
+                            clearImportedOverlays()
+                            addImportedTrackToMap(pts, name.removeSuffix(".gpx"))
+                            TrackStore.setAll(pts)
+
+                            resetStats()
+                            if (pts.size > 1) computeStatsFrom(pts)
+                            updateStatsUI()
+
+                            val msg = if (step > 1) {
+                                "GPX importé : ${pts.size} pts (simplifié x$step)"
+                            } else {
+                                "GPX importé : ${pts.size} pts"
+                            }
+                            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+
+                            // Zoom doux sur la trace importée
+                            try { zoomToPoints(pts) } catch (_: Throwable) {}
+                        } catch (oom: OutOfMemoryError) {
+                            // Évite le crash global (souvent ça fait tomber aussi la météo)
+                            clearImportedOverlays()
+                            Toast.makeText(this, "Mémoire insuffisante pour importer ce GPX. Essayez un fichier plus léger.", Toast.LENGTH_LONG).show()
+                        }
                     }
 
                     // ----- KML -----
@@ -483,24 +588,7 @@ class MapActivity : AppCompatActivity() {
                                         map.overlays.add(polyline)
                                         importedOverlays.add(polyline)
                                     }
-                                    res.pois.forEach { poi ->
-                                        val m = org.osmdroid.views.overlay.Marker(map).apply {
-                                            position = poi.point
-                                            title = poi.title
-                                            val extrasText = if (poi.extras.isNotEmpty())
-                                                poi.extras.entries.joinToString("\n") { (k,v) -> "$k: $v" }
-                                            else null
-                                            val desc = poi.description?.takeIf { it.isNotBlank() }
-                                            snippet = listOfNotNull(desc, extrasText).joinToString("\n\n").ifBlank { null }
-                                            setAnchor(org.osmdroid.views.overlay.Marker.ANCHOR_CENTER,
-                                                org.osmdroid.views.overlay.Marker.ANCHOR_BOTTOM)
-                                            icon = androidx.core.content.ContextCompat.getDrawable(
-                                                this@MapActivity, android.R.drawable.ic_menu_mylocation
-                                            )
-                                        }
-                                        map.overlays.add(m)
-                                        importedOverlays.add(m)
-                                    }
+                                    addKmlPoisToMap(res.pois)
                                     map.invalidate()
                                     android.widget.Toast.makeText(this, "KML importé", android.widget.Toast.LENGTH_SHORT).show()
                                 }
@@ -515,12 +603,19 @@ class MapActivity : AppCompatActivity() {
 
                     // ----- CSV -----
                     lower.endsWith(".csv") || lower.endsWith(".txt") -> {
-                        val txt = input.bufferedReader(Charsets.UTF_8).readText()
-                        val lines = txt.lineSequence().filter { it.isNotBlank() }.toList()
+                        // Lecture en streaming (évite de charger tout le fichier en mémoire)
+                        val lines = mutableListOf<String>()
+                        input.bufferedReader(Charsets.UTF_8).useLines { seq ->
+                            seq.forEach { l ->
+                                val s = l.trim()
+                                if (s.isNotEmpty()) lines.add(s)
+                                // garde une limite raisonnable
+                                if (lines.size > 200_000) return@useLines
+                            }
+                        }
                         // enlève un éventuel header
                         val pay = if (lines.isNotEmpty()
-                            && lines.first().contains("lat", true)
-                            && lines.first().contains("lon", true)
+                            && (lines.first().contains("lat", true) || lines.first().contains("lon", true))
                         ) lines.drop(1) else lines
                         addPoisFromCsv(pay)
                         Toast.makeText(this, "CSV importé", Toast.LENGTH_SHORT).show()
@@ -774,7 +869,384 @@ hudPseudoView?.let { view ->
             }
         }
 
-    private val exportGpxCreate =
+    
+    // ===== Import multi-formats (depuis le menu "Importer un fichier") =====
+    // On laisse OpenDocument en "*/*" puis on route selon l’extension du fichier choisi.
+    private val importFile =
+        registerForActivityResult(
+            ActivityResultContracts.OpenDocument()
+        ) { uri ->
+            if (uri == null) return@registerForActivityResult
+            importFileFromUri(uri)
+        }
+
+    private fun importFileFromUri(uri: Uri) {
+        // Permission SAF (lecture persistante si possible)
+        try {
+            contentResolver.takePersistableUriPermission(
+                uri,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+            )
+        } catch (_: Throwable) { /* pas grave */ }
+
+        val name = DocumentFile.fromSingleUri(this, uri)?.name ?: "import"
+        Toast.makeText(this, "Import : $name", Toast.LENGTH_SHORT).show()
+        var ext = name.substringAfterLast('.', "").lowercase(Locale.getDefault())
+        if (ext.isBlank()) {
+            val mime = runCatching { contentResolver.getType(uri).orEmpty().lowercase(Locale.getDefault()) }.getOrDefault("")
+            ext = when {
+                mime.contains("gpx") -> "gpx"
+                mime.contains("kml") -> "kml"
+                mime.contains("zip") -> "kmz"
+                mime.contains("json") -> "json"
+                mime.contains("csv") -> "csv"
+                else -> ""
+            }
+        }
+
+        when (ext) {
+            "gpx" -> importGpxFromUri(uri)
+            "kml" -> importKmlFromUri(uri)
+            "kmz" -> importKmzFromUri(uri)
+            "json", "geojson" -> importJsonFromUri(uri)
+            "csv" -> importDelimitedPointsFromUri(uri, ',')
+            "tsv" -> importDelimitedPointsFromUri(uri, '\t')
+            "mbtiles" -> importMbtilesFromUri(uri)
+            "dxf" -> importDxfFromUri(uri)
+            "txt" -> importTxtFromUri(uri)
+            "jpg", "jpeg", "png" -> importImageFromUri(uri)
+            else -> Toast.makeText(
+                this,
+                "Format non supporté pour l’instant : .$ext",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
+    // --- GPX ---
+    private fun importGpxFromUri(uri: Uri) {
+        runCatching {
+            contentResolver.openInputStream(uri)?.use { input ->
+                val polyline = GpxUtils.parseToPolyline(input)
+                val name = DocumentFile.fromSingleUri(this, uri)?.name?.removeSuffix(".gpx") ?: "Import"
+                addImportedTrackToMap(polyline.actualPoints, name)
+                TrackStore.setAll(polyline.actualPoints)
+                resetStats()
+                if (polyline.actualPoints.size > 1) computeStatsFrom(polyline.actualPoints)
+                updateStatsUI()
+                    zoomToPoints(polyline.actualPoints)
+            }
+            Toast.makeText(this, R.string.gpx_import_ok, Toast.LENGTH_SHORT).show()
+            maybeStartOffTrailTicker()
+        }.onFailure {
+            Toast.makeText(this, R.string.gpx_import_fail, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    // --- KML (LineString + Point) ---
+    private fun importKmlFromUri(uri: Uri) {
+        kotlin.concurrent.thread {
+            runCatching {
+                val res = com.hikemvp.utils.KmlImporter.parse(
+                    context = this@MapActivity,
+                    uri = uri,
+                    decimateEvery = 3,
+                    minDistMeters = 5.0,
+                    maxPois = 5000
+                )
+
+                runOnUiThread {
+                    clearImportedOverlays()
+                    addImportedTrackToMap(res.track, "Import KML")
+                    addKmlPoisToMap(res.pois)
+                }
+            }.onFailure { e ->
+                runOnUiThread {
+                    android.widget.Toast.makeText(
+                        this@MapActivity,
+                        "Import KML échoué : ${e.message ?: e.javaClass.simpleName}",
+                        android.widget.Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+    }
+
+    // --- KMZ (zip contenant un .kml) ---
+    private fun importKmzFromUri(uri: Uri) {
+        kotlin.concurrent.thread {
+            runCatching {
+                contentResolver.openInputStream(uri)?.use { raw ->
+                    java.util.zip.ZipInputStream(raw).use { zis ->
+                        var entry = zis.nextEntry
+                        var found = false
+
+                        while (entry != null) {
+                            if (!entry.isDirectory && entry.name.endsWith(".kml", ignoreCase = true)) {
+                                val res = com.hikemvp.utils.KmlImporter.parse(
+                                    input = zis,
+                                    decimateEvery = 3,
+                                    minDistMeters = 5.0,
+                                    maxPois = 5000
+                                )
+
+                                runOnUiThread {
+                                    clearImportedOverlays()
+                                    addImportedTrackToMap(res.track, "Import KMZ")
+                                    addKmlPoisToMap(res.pois)
+                                }
+
+                                found = true
+                                break
+                            }
+                            entry = zis.nextEntry
+                        }
+
+                        if (!found) {
+                            throw IllegalArgumentException("Aucun fichier .kml trouvé dans le KMZ")
+                        }
+                    }
+                } ?: throw IllegalStateException("Impossible d'ouvrir le fichier")
+            }.onFailure { e ->
+                runOnUiThread {
+                    android.widget.Toast.makeText(
+                        this@MapActivity,
+                        "Import KMZ échoué : ${e.message ?: e.javaClass.simpleName}",
+                        android.widget.Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+    }
+
+    // --- JSON / GeoJSON (minimal) ---
+    private fun importJsonFromUri(uri: Uri) {
+        runCatching {
+            val text = contentResolver.openInputStream(uri)?.use { it.bufferedReader(Charsets.UTF_8).readText() } ?: ""
+            val root = JSONObject(text)
+
+            // GeoJSON FeatureCollection -> on prend :
+            // - LineString / MultiLineString => trace importée
+            // - Point => marqueurs
+            // - Polygon / MultiPolygon => polygones
+            val type = root.optString("type", "")
+            if (type.equals("FeatureCollection", ignoreCase = true)) {
+                val features = root.optJSONArray("features") ?: JSONArray()
+
+                val trackPts = mutableListOf<GeoPoint>()
+                val markers = mutableListOf<Marker>()
+                val polys = mutableListOf<Polygon>()
+
+                for (i in 0 until features.length()) {
+                    val f = features.optJSONObject(i) ?: continue
+                    val geom = f.optJSONObject("geometry") ?: continue
+                    val gType = geom.optString("type", "")
+                    val coords = geom.opt("coordinates")
+
+                    when (gType) {
+                        "LineString" -> {
+                            trackPts += geoJsonLineStringToPoints(coords as? JSONArray)
+                        }
+                        "MultiLineString" -> {
+                            val arr = coords as? JSONArray ?: continue
+                            for (j in 0 until arr.length()) {
+                                trackPts += geoJsonLineStringToPoints(arr.optJSONArray(j))
+                            }
+                        }
+                        "Point" -> {
+                            val pt = geoJsonPointToGeoPoint(coords as? JSONArray) ?: continue
+                            val title = f.optJSONObject("properties")?.optString("name")
+                                ?: f.optJSONObject("properties")?.optString("title")
+                                ?: "POI"
+                            markers += Marker(map).apply {
+                                position = pt
+                                this.title = title
+                                setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                                icon = ContextCompat.getDrawable(this@MapActivity, android.R.drawable.ic_menu_mylocation)
+                            }
+                        }
+                        "Polygon", "MultiPolygon" -> {
+                            // On réutilise ton parseur existant si dispo, sinon minimal
+                            runCatching {
+                                val pg = parseGeoJsonPolygons(JSONObject(text).toString())
+                                polys += pg
+                            }
+                        }
+                    }
+                }
+
+                if (trackPts.size > 1) {
+                    val name = DocumentFile.fromSingleUri(this, uri)?.name?.substringBeforeLast('.') ?: "GeoJSON"
+                    addImportedTrackToMap(trackPts, name)
+                    TrackStore.setAll(trackPts)
+                    resetStats()
+                    computeStatsFrom(trackPts)
+                    updateStatsUI()
+                    zoomToPoints(trackPts)
+                }
+
+                if (markers.isNotEmpty()) {
+                    map.overlays.addAll(markers)
+                }
+                if (polys.isNotEmpty()) {
+                    map.overlays.addAll(0, polys)
+                }
+                if (markers.isNotEmpty() || polys.isNotEmpty()) map.invalidate()
+
+                Toast.makeText(this, "JSON/GeoJSON importé", Toast.LENGTH_SHORT).show()
+            } else {
+                // JSON non-GeoJSON : on ne casse rien, on prévient simplement
+                Toast.makeText(this, "JSON détecté (format non reconnu).", Toast.LENGTH_LONG).show()
+            }
+        }.onFailure {
+            Toast.makeText(this, "Échec import JSON", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun geoJsonLineStringToPoints(arr: JSONArray?): List<GeoPoint> {
+        if (arr == null) return emptyList()
+        val out = ArrayList<GeoPoint>(arr.length())
+        for (i in 0 until arr.length()) {
+            val c = arr.optJSONArray(i) ?: continue
+            val lon = c.optDouble(0, Double.NaN)
+            val lat = c.optDouble(1, Double.NaN)
+            if (!lat.isNaN() && !lon.isNaN()) out += GeoPoint(lat, lon)
+        }
+        return out
+    }
+
+    private fun geoJsonPointToGeoPoint(arr: JSONArray?): GeoPoint? {
+        if (arr == null) return null
+        val lon = arr.optDouble(0, Double.NaN)
+        val lat = arr.optDouble(1, Double.NaN)
+        return if (!lat.isNaN() && !lon.isNaN()) GeoPoint(lat, lon) else null
+    }
+
+    
+
+// --- CSV / TSV : 2 colonnes lat/lon (ou lon/lat) ---
+    private fun importDelimitedPointsFromUri(uri: Uri, delimiter: Char) {
+        runCatching {
+            val name = DocumentFile.fromSingleUri(this, uri)?.name?.substringBeforeLast('.') ?: "Import"
+            val lines = contentResolver.openInputStream(uri)?.bufferedReader(Charsets.UTF_8)?.readLines().orEmpty()
+            if (lines.isEmpty()) throw IllegalArgumentException("empty")
+
+            val pts = mutableListOf<GeoPoint>()
+
+            // Détecte header
+            val header = lines.first()
+            val headerCols = header.split(delimiter).map { it.trim().lowercase(Locale.getDefault()) }
+            val hasHeader = headerCols.any { it.contains("lat") } && headerCols.any { it.contains("lon") || it.contains("lng") }
+
+            val startIdx = if (hasHeader) 1 else 0
+            var latIdx = -1
+            var lonIdx = -1
+            if (hasHeader) {
+                latIdx = headerCols.indexOfFirst { it.contains("lat") }
+                lonIdx = headerCols.indexOfFirst { it.contains("lon") || it.contains("lng") }
+            }
+
+            for (i in startIdx until lines.size) {
+                val cols = lines[i].split(delimiter).map { it.trim() }
+                if (cols.size < 2) continue
+
+                val lat: Double?
+                val lon: Double?
+
+                if (hasHeader && latIdx >= 0 && lonIdx >= 0 && cols.size > maxOf(latIdx, lonIdx)) {
+                    lat = cols[latIdx].replace(',', '.').toDoubleOrNull()
+                    lon = cols[lonIdx].replace(',', '.').toDoubleOrNull()
+                } else {
+                    // Heuristique : si la première valeur dépasse 90, c’est probablement lon,lat
+                    val a = cols[0].replace(',', '.').toDoubleOrNull()
+                    val b = cols[1].replace(',', '.').toDoubleOrNull()
+                    if (a == null || b == null) continue
+                    if (kotlin.math.abs(a) > 90) { lon = a; lat = b } else { lat = a; lon = b }
+                }
+
+                if (lat != null && lon != null) pts += GeoPoint(lat, lon)
+            }
+
+            if (pts.size > 1) {
+                addImportedTrackToMap(pts, name)
+                TrackStore.setAll(pts)
+                resetStats()
+                computeStatsFrom(pts)
+                updateStatsUI()
+                zoomToPoints(pts)
+                Toast.makeText(this, "Import $name : ${pts.size} points", Toast.LENGTH_SHORT).show()
+            } else if (pts.size == 1) {
+                val m = Marker(map).apply {
+                    position = pts.first()
+                    title = name
+                    setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                    icon = ContextCompat.getDrawable(this@MapActivity, android.R.drawable.ic_menu_mylocation)
+                }
+                map.overlays.add(m)
+                map.invalidate()
+                Toast.makeText(this, "Point importé : $name", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Aucun point détecté dans $name", Toast.LENGTH_LONG).show()
+            }
+        }.onFailure {
+            Toast.makeText(this, "Échec import CSV/TSV", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    // --- MBTiles : on copie dans un dossier app (pas de scan automatique ici) ---
+    private fun importMbtilesFromUri(uri: Uri) {
+        Toast.makeText(this, "Import MBTiles en cours…", Toast.LENGTH_SHORT).show()
+        Thread {
+            runCatching {
+                val fileName = (DocumentFile.fromSingleUri(this, uri)?.name ?: "map.mbtiles")
+                    .ifBlank { "map.mbtiles" }
+                    .let { if (it.endsWith(".mbtiles", true)) it else "$it.mbtiles" }
+
+                val dir = File(getExternalFilesDir(null), "mbtiles").apply { mkdirs() }
+                val dest = File(dir, fileName)
+
+                contentResolver.openInputStream(uri)?.use { input ->
+                    dest.outputStream().use { out -> input.copyTo(out) }
+                } ?: throw IllegalStateException("no stream")
+
+                runOnUiThread {
+                    Toast.makeText(
+                        this,
+                        "MBTiles importé : $fileName (dossier mbtiles)",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }.onFailure {
+                runOnUiThread {
+                    Toast.makeText(this, "Échec import MBTiles", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }.start()
+    }
+
+    // --- DXF / TXT / Images (stubs pour l’instant) ---
+    private fun importDxfFromUri(@Suppress("UNUSED_PARAMETER") uri: Uri) {
+        Toast.makeText(this, "Import DXF : à venir.", Toast.LENGTH_LONG).show()
+    }
+
+    private fun importTxtFromUri(@Suppress("UNUSED_PARAMETER") uri: Uri) {
+        Toast.makeText(this, "Import TXT : à venir.", Toast.LENGTH_LONG).show()
+    }
+
+    private fun importImageFromUri(uri: Uri) {
+        // Pour l’instant : on ouvre l’image avec une appli externe (plus tard : overlay géoréférencé)
+        runCatching {
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                setDataAndType(uri, "image/*")
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+            safeStartActivity(intent)
+        }.onFailure {
+            Toast.makeText(this, "Impossible d’ouvrir l’image.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+private val exportGpxCreate =
         registerForActivityResult(ActivityResultContracts.CreateDocument("application/gpx+xml")) { uri ->
             if (uri == null) return@registerForActivityResult
             try {
@@ -3107,21 +3579,8 @@ map.onResume()
 
             // Fichiers / réglages
             R.id.action_open_tracks_folder -> {
-                try {
-                    val initial = Uri.parse(
-                        "content://com.android.externalstorage.documents/document/primary:Android/data/$packageName/files/Documents"
-                    )
-                    val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE).apply {
-                        putExtra(android.provider.DocumentsContract.EXTRA_INITIAL_URI, initial)
-                    }
-                    safeStartActivity(intent)
-                } catch (_: Throwable) {
-                    Toast.makeText(
-                        this,
-                        "Impossible d’ouvrir le dossier ; utilisez un explorateur.",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
+                // Importer un fichier (traces/POI/cartes) : GPX, KML/KMZ, GeoJSON/JSON, CSV/TSV, MBTiles…
+                importFile.launch(arrayOf("*/*"))
                 true
             }
 
@@ -4985,5 +5444,98 @@ Dénivelé du plan
         try { gpxFab?.visibility = android.view.View.GONE } catch (_: Throwable) {}
     }
 
-}
 
+
+    // ------------------------
+    // Import helpers (anti-OOM)
+    // ------------------------
+
+    private fun queryContentSizeBytes(uri: Uri): Long? {
+        return try {
+            contentResolver.query(uri, arrayOf(android.provider.OpenableColumns.SIZE), null, null, null)
+                ?.use { c ->
+                    val idx = c.getColumnIndex(android.provider.OpenableColumns.SIZE)
+                    if (idx >= 0 && c.moveToFirst()) c.getLong(idx) else null
+                }
+        } catch (_: Throwable) {
+            null
+        }
+    }
+
+    private fun countGpxPoints(uri: Uri): Int {
+        return try {
+            contentResolver.openInputStream(uri)?.use { input ->
+                val factory = org.xmlpull.v1.XmlPullParserFactory.newInstance()
+                val parser = factory.newPullParser()
+                parser.setInput(java.io.InputStreamReader(input, Charsets.UTF_8))
+                var count = 0
+                var event = parser.eventType
+                while (event != org.xmlpull.v1.XmlPullParser.END_DOCUMENT) {
+                    if (event == org.xmlpull.v1.XmlPullParser.START_TAG) {
+                        val tag = parser.name ?: ""
+                        if (tag.equals("trkpt", true) || tag.equals("rtept", true)) count++
+                    }
+                    event = parser.next()
+                }
+                count
+            } ?: 0
+        } catch (_: Throwable) {
+            0
+        }
+    }
+
+    private fun parseGpxPointsStreaming(uri: Uri, step: Int, minDistMeters: Double): List<org.osmdroid.util.GeoPoint> {
+        val pts = ArrayList<org.osmdroid.util.GeoPoint>(minOf(15000, 2048))
+        contentResolver.openInputStream(uri)?.use { input ->
+            val factory = org.xmlpull.v1.XmlPullParserFactory.newInstance()
+            val parser = factory.newPullParser()
+            parser.setInput(java.io.InputStreamReader(input, Charsets.UTF_8))
+
+            var event = parser.eventType
+            var idx = 0
+
+            var lastLat = Double.NaN
+            var lastLon = Double.NaN
+
+            while (event != org.xmlpull.v1.XmlPullParser.END_DOCUMENT) {
+                if (event == org.xmlpull.v1.XmlPullParser.START_TAG) {
+                    val tag = parser.name ?: ""
+                    if (tag.equals("trkpt", true) || tag.equals("rtept", true)) {
+                        val lat = parser.getAttributeValue(null, "lat")?.toDoubleOrNull()
+                        val lon = parser.getAttributeValue(null, "lon")?.toDoubleOrNull()
+                        if (lat != null && lon != null) {
+                            idx++
+                            if (step <= 1 || (idx % step == 0)) {
+                                // distance filter
+                                if (!lastLat.isNaN() && minDistMeters > 0) {
+                                    val d = distanceMeters(lastLat, lastLon, lat, lon)
+                                    if (d < minDistMeters) {
+                                        event = parser.next()
+                                        continue
+                                    }
+                                }
+                                pts.add(org.osmdroid.util.GeoPoint(lat, lon))
+                                lastLat = lat
+                                lastLon = lon
+                                if (pts.size >= 15000) break
+                            }
+                        }
+                    }
+                }
+                event = parser.next()
+            }
+        }
+        return pts
+    }
+
+    private fun distanceMeters(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Float {
+        val res = FloatArray(1)
+        return try {
+            android.location.Location.distanceBetween(lat1, lon1, lat2, lon2, res)
+            res[0]
+        } catch (_: Throwable) {
+            0f
+        }
+    }
+
+}
