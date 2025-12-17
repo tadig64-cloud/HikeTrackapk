@@ -1,55 +1,183 @@
-<?xml version='1.0' encoding='utf-8'?>
-<LinearLayout xmlns:ns0="http://schemas.android.com/apk/res/android" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:orientation="vertical" ns0:padding="16dp" ns0:paddingBottom="@dimen/hud_bottom_inset">
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/trackDetailSheetRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:paddingBottom="@dimen/hud_bottom_inset">
 
-    
-    <TextView ns0:id="@+id/tvTitle" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:text="@string/i18n_track_detail_bottomsheet_text_titre_de_la_trace_2" ns0:textStyle="bold" ns0:textSize="18sp" ns0:paddingBottom="4dp" />
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/i18n_track_detail_bottomsheet_text_titre_de_la_trace_2"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:paddingBottom="4dp" />
 
-    
-    <TextView ns0:id="@+id/tvSubtitle" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:text="@string/i18n_track_detail_bottomsheet_text_infos_supplmentaires_2" ns0:textSize="14sp" ns0:paddingBottom="8dp" />
+    <TextView
+        android:id="@+id/tvSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/i18n_track_detail_bottomsheet_text_infos_supplmentaires_2"
+        android:textSize="14sp"
+        android:paddingBottom="8dp" />
 
-    
-    <TextView ns0:id="@+id/tvDistance" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:text="@string/i18n_track_detail_bottomsheet_text_distance_2" ns0:paddingBottom="4dp" />
+    <TextView
+        android:id="@+id/tvDistance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/i18n_track_detail_bottomsheet_text_distance_2"
+        android:paddingBottom="4dp" />
 
-    
-    <TextView ns0:id="@+id/tvDuration" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:text="@string/i18n_track_detail_bottomsheet_text_dure_2" ns0:paddingBottom="4dp" />
+    <TextView
+        android:id="@+id/tvDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/i18n_track_detail_bottomsheet_text_dure_2"
+        android:paddingBottom="4dp" />
 
-    
-    <TextView ns0:id="@+id/tvMoving" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:text="@string/i18n_track_detail_bottomsheet_text_temps_en_mouvement_2" ns0:paddingBottom="4dp" />
+    <TextView
+        android:id="@+id/tvMoving"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/i18n_track_detail_bottomsheet_text_en_mouvement_2"
+        android:paddingBottom="4dp" />
 
-    
-    <TextView ns0:id="@+id/tvPace" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:text="@string/i18n_track_detail_bottomsheet_text_vitesse_2" ns0:paddingBottom="4dp" />
+    <TextView
+        android:id="@+id/tvPace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/i18n_track_detail_bottomsheet_text_vitesse_moyenne_2"
+        android:paddingBottom="4dp" />
 
-    
-    <TextView ns0:id="@+id/tvAlt" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:text="@string/i18n_track_detail_bottomsheet_text_altitude_minmax_2" ns0:paddingBottom="4dp" />
+    <TextView
+        android:id="@+id/tvAlt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/i18n_track_detail_bottomsheet_text_altitude_minmax_2"
+        android:paddingBottom="4dp" />
 
-    
-    <TextView ns0:id="@+id/tvGainLoss" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:text="@string/i18n_track_detail_bottomsheet_text_d__d_2" ns0:paddingBottom="4dp" ns0:maxLines="1" ns0:ellipsize="end" />
+    <TextView
+        android:id="@+id/tvGainLoss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/i18n_track_detail_bottomsheet_text_d_d_2"
+        android:paddingBottom="4dp" />
 
-    
-    <TextView ns0:id="@+id/tvStart" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:text="@string/i18n_track_detail_bottomsheet_text_dpart_2" ns0:paddingBottom="4dp" />
+    <TextView
+        android:id="@+id/tvStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/i18n_track_detail_bottomsheet_text_dpart_2"
+        android:paddingBottom="4dp" />
 
-    
-    <TextView ns0:id="@+id/tvEnd" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:text="@string/i18n_track_detail_bottomsheet_text_arrive_2" ns0:paddingBottom="12dp" />
+    <TextView
+        android:id="@+id/tvEnd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/i18n_track_detail_bottomsheet_text_arrive_2"
+        android:paddingBottom="8dp" />
 
-    
-    <LinearLayout ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:orientation="horizontal" ns0:gravity="center" ns0:weightSum="3">
+    <!-- Ligne 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="3">
 
-        <Button ns0:id="@+id/btnShare" ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:text="@string/i18n_track_detail_bottomsheet_text_partager_2" />
+        <Button
+            android:id="@+id/btnShare"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/i18n_track_detail_bottomsheet_text_partager_2" />
 
-        <Button ns0:id="@+id/btnExport" ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:text="@string/i18n_track_detail_bottomsheet_text_exporter_2" />
+        <Button
+            android:id="@+id/btnExport"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/i18n_track_detail_bottomsheet_text_exporter_2" />
 
-        <Button ns0:id="@+id/btnRename" ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:text="@string/i18n_track_detail_bottomsheet_text_renommermodifier_2" />
+        <Button
+            android:id="@+id/btnRename"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/i18n_track_detail_bottomsheet_text_renommermodifier_2" />
     </LinearLayout>
 
-    <LinearLayout ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:orientation="horizontal" ns0:gravity="center" ns0:weightSum="3" ns0:layout_marginTop="8dp">
+    <!-- Ligne 2 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="3"
+        android:layout_marginTop="8dp">
 
-        <Button ns0:id="@+id/btnColor" ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:text="@string/i18n_track_detail_bottomsheet_text_couleur_2" />
+        <Button
+            android:id="@+id/btnColor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/i18n_track_detail_bottomsheet_text_couleur_2" />
 
-        <Button ns0:id="@+id/btnFollow" ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:text="@string/i18n_track_detail_bottomsheet_text_suivredcouper_2" />
+        <Button
+            android:id="@+id/btnFollow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/i18n_track_detail_bottomsheet_text_suivredcouper_2" />
 
-        <Button ns0:id="@+id/btnAlarm" ns0:layout_width="0dp" ns0:layout_height="wrap_content" ns0:layout_weight="1" ns0:text="@string/i18n_track_detail_bottomsheet_text_alarme_2" />
+        <Button
+            android:id="@+id/btnAlarm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/i18n_track_detail_bottomsheet_text_alarme_2" />
     </LinearLayout>
 
-    <Button ns0:id="@+id/btnDelete" ns0:layout_width="match_parent" ns0:layout_height="wrap_content" ns0:text="@string/i18n_track_detail_bottomsheet_text_supprimer_2" ns0:textColor="@android:color/holo_red_dark" ns0:layout_marginTop="12dp" />
+    <!-- Ligne 3 : Détails / Replay / Dossier -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="3"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/btnDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/i18n_menu_map_title_dtails_du_parcours_2" />
+
+        <Button
+            android:id="@+id/btnReplay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/i18n_menu_map_title_replay_du_trac_2" />
+
+        <Button
+            android:id="@+id/btnOpenFolder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/i18n_menu_map_title_ouvrir_le_dossier_2" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/i18n_track_detail_bottomsheet_text_supprimer_2"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_marginTop="12dp" />
 
 </LinearLayout>

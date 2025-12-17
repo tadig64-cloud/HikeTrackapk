@@ -1,6 +1,8 @@
 package com.hikemvp
 
 import android.os.Bundle
+import android.net.Uri
+import java.io.File
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.appbar.MaterialToolbar
@@ -10,6 +12,11 @@ import kotlin.math.roundToInt
 
 class TrackDetailsActivity : AppCompatActivity() {
 
+    companion object {
+        const val EXTRA_GPX_PATH = "com.hikemvp.extra.GPX_PATH"
+        const val EXTRA_TRACK_NAME = "com.hikemvp.extra.TRACK_NAME"
+    }
+
     private lateinit var b: ActivityTrackDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,11 +24,15 @@ class TrackDetailsActivity : AppCompatActivity() {
         b = ActivityTrackDetailsBinding.inflate(layoutInflater)
         setContentView(b.root)
 
+        val gpxPath = intent.getStringExtra(EXTRA_GPX_PATH)
+        val trackName = intent.getStringExtra(EXTRA_TRACK_NAME)
+
         val tb = b.root.findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(tb)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         tb.setNavigationOnClickListener { finish() }
         tb.title = getString(R.string.track_detail_title)
+        if (!trackName.isNullOrBlank()) tb.subtitle = trackName
 
         // thématisation cohérente avec la topbar “idle”
         val bg = ContextCompat.getColor(this, R.color.topbar_idle_bg)
@@ -34,7 +45,18 @@ class TrackDetailsActivity : AppCompatActivity() {
         tb.overflowIcon?.mutate()?.setTint(fg)
 
         // données
-        val pts: List<GeoPoint> = TrackStore.snapshot()
+        val pts: List<GeoPoint> = if (!gpxPath.isNullOrBlank()) {
+            runCatching {
+                val f = File(gpxPath)
+                contentResolver.openInputStream(Uri.fromFile(f))?.use { input ->
+                    GpxUtils.parseToTrackPoints(input).map { tp ->
+                        GeoPoint(tp.lat, tp.lon, tp.ele ?: Double.NaN)
+                    }
+                } ?: emptyList()
+            }.getOrElse { TrackStore.snapshot() }
+        } else {
+            TrackStore.snapshot()
+        }
         val dist = distanceMeters(pts)
         val (altMin, altMax) = altRange(pts)
 

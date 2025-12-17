@@ -57,7 +57,12 @@
     <!-- NOUVEAU : TRACES (post-rando) -->
     <item ns0:title="Traces enregistrées">
         <menu>
-            <item
+                        <item
+                ns0:id="@+id/action_saved_tracks"
+                ns0:title="Traces GPX enregistrées"
+                ns1:showAsAction="never" />
+
+<item
                 ns0:id="@+id/action_track_details"
                 ns0:title="@string/i18n_menu_map_title_dtails_du_parcours_2"
                 ns1:showAsAction="never" />

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Intentionally left blank to avoid duplicate string definitions.
-         'track_detail_title' vit désormais dans values/strings.xml -->
+    <!-- Ce fichier existait vide : on y ajoute uniquement les strings manquantes du bottomsheet "track_detail_bottomsheet.xml"
+         (sinon AAPT2 échoue au build). Aucun impact sur l'UI, c'est juste du texte. -->
+
+    <string name="i18n_track_detail_bottomsheet_text_en_mouvement_2">En mouvement :</string>
+    <string name="i18n_track_detail_bottomsheet_text_vitesse_moyenne_2">Vitesse moyenne :</string>
+    <string name="i18n_track_detail_bottomsheet_text_d_d_2">D+ / D- :</string>
 </resources>

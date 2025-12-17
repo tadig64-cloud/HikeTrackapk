@@ -542,7 +542,9 @@ class MapActivity : AppCompatActivity() {
                             }
 
                             clearImportedOverlays()
-                            addImportedTrackToMap(pts, name.removeSuffix(".gpx"))
+                            val t = addImportedTrackToMap(pts, name.removeSuffix(".gpx"))
+                            zoomToTrack(t)
+                            showTrackBottomSheet(t)
                             TrackStore.setAll(pts)
 
                             resetStats()
@@ -1288,6 +1290,52 @@ private val exportGpxCreate =
         if (uri != null) onImportDocument(uri)
     }
 
+
+    // ===== Ouverture externe (Open with…) =====
+    private var lastIncomingOpenSig: String? = null
+
+    /**
+     * Supporte l’ouverture d’un fichier depuis l’extérieur (ex: “Ouvrir avec HikeTrack” sur un .gpx).
+     * On réutilise la même pipeline d’import (anti-OOM) et on ouvre ensuite la fenêtre de détails.
+     */
+    private fun handleIncomingFileIntent(i: Intent?) {
+        if (i == null) return
+        val uri = extractUriFromIntent(i) ?: return
+
+        val sig = (i.action ?: "") + "|" + uri.toString()
+        if (sig == lastIncomingOpenSig) return
+        lastIncomingOpenSig = sig
+
+        // Certains providers ne donnent qu’une permission temporaire.
+        // On essaye de la rendre persistante (si possible) pour éviter les “permission denied”.
+        try {
+            if ((i.flags and Intent.FLAG_GRANT_READ_URI_PERMISSION) != 0) {
+                contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+        } catch (_: Throwable) { }
+
+        onImportDocument(uri)
+    }
+
+    private fun extractUriFromIntent(i: Intent): Uri? {
+        // Cas le plus courant : ACTION_VIEW avec data
+        i.data?.let { return it }
+
+        // Cas “Partager” / “Envoyer” : ACTION_SEND avec EXTRA_STREAM
+        runCatching { i.getParcelableExtra<Uri>(Intent.EXTRA_STREAM) }.getOrNull()?.let { return it }
+
+        // Certains gestionnaires de fichiers passent via ClipData
+        val cd = i.clipData
+        if (cd != null && cd.itemCount > 0) {
+            cd.getItemAt(0)?.uri?.let { return it }
+        }
+
+        // Fallback interne (si un écran te passe l’URI en extra)
+        runCatching { i.getParcelableExtra<Uri>("open_uri") }.getOrNull()?.let { return it }
+
+        return null
+    }
+
     // ===== Multi-traces =====
     private data class TrackOverlay(
         var id: String,
@@ -1364,13 +1412,15 @@ private val exportGpxCreate =
         }
     }
 
-    private fun addImportedTrackToMap(points: List<GeoPoint>, nameHint: String = "Import") {
+    private fun addImportedTrackToMap(points: List<GeoPoint>, nameHint: String = "Import"): TrackOverlay {
         val id = "import_${System.currentTimeMillis()}"
         val c = nextColor()
         val p = makePolyline(points, c)
         map.overlays.add(p)
-        otherTracks[id] = TrackOverlay(id, nameHint, file = null, polyline = p, color = c)
+        val t = TrackOverlay(id, nameHint, file = null, polyline = p, color = c)
+        otherTracks[id] = t
         map.invalidate()
+        return t
     }
 
     private fun zoomToTrack(t: TrackOverlay) {
@@ -2530,6 +2580,9 @@ requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         loadSavedTracksToMap()
         refreshWaypointsOnMap()
+
+        // Ouverture externe (Open with…) : GPX/KML/…
+        handleIncomingFileIntent(intent)
     
         try { refreshProfileSubtitle() } catch (_: Throwable) {}
 
@@ -2557,6 +2610,15 @@ runCatching {
     }
 }.onFailure { /* ignore */ }
 }
+
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        if (intent != null) {
+            setIntent(intent)
+            handleIncomingFileIntent(intent)
+        }
+    }
 
     override fun onStart() {
         super.onStart()
@@ -3492,6 +3554,12 @@ map.onResume()
             }
 
             // Tracé / outils
+            R.id.action_saved_tracks -> {
+                // Ouvre la liste des GPX enregistrés (écran "Traces enregistrées")
+                safeStartActivity(Intent(this, com.hikemvp.files.SavedTracksActivity::class.java)); true
+            }
+
+
             R.id.action_track_details -> {
                 safeStartActivity(Intent(this, TrackDetailsActivity::class.java)); true
             }
