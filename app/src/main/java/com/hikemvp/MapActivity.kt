@@ -542,9 +542,7 @@ class MapActivity : AppCompatActivity() {
                             }
 
                             clearImportedOverlays()
-                            val t = addImportedTrackToMap(pts, name.removeSuffix(".gpx"))
-                            zoomToTrack(t)
-                            showTrackBottomSheet(t)
+                            addImportedTrackToMap(pts, name.removeSuffix(".gpx"))
                             TrackStore.setAll(pts)
 
                             resetStats()
@@ -1290,52 +1288,6 @@ private val exportGpxCreate =
         if (uri != null) onImportDocument(uri)
     }
 
-
-    // ===== Ouverture externe (Open with…) =====
-    private var lastIncomingOpenSig: String? = null
-
-    /**
-     * Supporte l’ouverture d’un fichier depuis l’extérieur (ex: “Ouvrir avec HikeTrack” sur un .gpx).
-     * On réutilise la même pipeline d’import (anti-OOM) et on ouvre ensuite la fenêtre de détails.
-     */
-    private fun handleIncomingFileIntent(i: Intent?) {
-        if (i == null) return
-        val uri = extractUriFromIntent(i) ?: return
-
-        val sig = (i.action ?: "") + "|" + uri.toString()
-        if (sig == lastIncomingOpenSig) return
-        lastIncomingOpenSig = sig
-
-        // Certains providers ne donnent qu’une permission temporaire.
-        // On essaye de la rendre persistante (si possible) pour éviter les “permission denied”.
-        try {
-            if ((i.flags and Intent.FLAG_GRANT_READ_URI_PERMISSION) != 0) {
-                contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            }
-        } catch (_: Throwable) { }
-
-        onImportDocument(uri)
-    }
-
-    private fun extractUriFromIntent(i: Intent): Uri? {
-        // Cas le plus courant : ACTION_VIEW avec data
-        i.data?.let { return it }
-
-        // Cas “Partager” / “Envoyer” : ACTION_SEND avec EXTRA_STREAM
-        runCatching { i.getParcelableExtra<Uri>(Intent.EXTRA_STREAM) }.getOrNull()?.let { return it }
-
-        // Certains gestionnaires de fichiers passent via ClipData
-        val cd = i.clipData
-        if (cd != null && cd.itemCount > 0) {
-            cd.getItemAt(0)?.uri?.let { return it }
-        }
-
-        // Fallback interne (si un écran te passe l’URI en extra)
-        runCatching { i.getParcelableExtra<Uri>("open_uri") }.getOrNull()?.let { return it }
-
-        return null
-    }
-
     // ===== Multi-traces =====
     private data class TrackOverlay(
         var id: String,
@@ -1349,6 +1301,12 @@ private val exportGpxCreate =
     )
 
     private val otherTracks = LinkedHashMap<String, TrackOverlay>()
+
+    // Dernière trace « sélectionnée » (utile pour ouvrir automatiquement la fiche après un import / open-with)
+    private var selectedOverlayId: String? = null
+
+    // Anti double-import (évite d’importer 2x le même fichier à l’ouverture / rotation)
+    private var lastOpenWithUriString: String? = null
     private var exportPendingTrack: TrackOverlay? = null
 
     private val trackColors = intArrayOf(
@@ -1412,15 +1370,14 @@ private val exportGpxCreate =
         }
     }
 
-    private fun addImportedTrackToMap(points: List<GeoPoint>, nameHint: String = "Import"): TrackOverlay {
+    private fun addImportedTrackToMap(points: List<GeoPoint>, nameHint: String = "Import") {
         val id = "import_${System.currentTimeMillis()}"
+        selectedOverlayId = id
         val c = nextColor()
         val p = makePolyline(points, c)
         map.overlays.add(p)
-        val t = TrackOverlay(id, nameHint, file = null, polyline = p, color = c)
-        otherTracks[id] = t
+        otherTracks[id] = TrackOverlay(id, nameHint, file = null, polyline = p, color = c)
         map.invalidate()
-        return t
     }
 
     private fun zoomToTrack(t: TrackOverlay) {
@@ -2580,9 +2537,6 @@ requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         loadSavedTracksToMap()
         refreshWaypointsOnMap()
-
-        // Ouverture externe (Open with…) : GPX/KML/…
-        handleIncomingFileIntent(intent)
     
         try { refreshProfileSubtitle() } catch (_: Throwable) {}
 
@@ -2609,15 +2563,15 @@ runCatching {
         root.addView(hudPseudoView, lp)
     }
 }.onFailure { /* ignore */ }
+
+        // Si l'app est ouverte via « Ouvrir avec » (ACTION_VIEW), on importe et on ouvre la fiche de la trace.
+        handleIncomingOpenWithIntent(intent)
 }
 
-
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        if (intent != null) {
-            setIntent(intent)
-            handleIncomingFileIntent(intent)
-        }
+        setIntent(intent)
+        handleIncomingOpenWithIntent(intent)
     }
 
     override fun onStart() {
@@ -5393,6 +5347,78 @@ Dénivelé du plan
         importedOverlays.clear()
         map.invalidate()
         android.widget.Toast.makeText(this, "Imports effacés.", android.widget.Toast.LENGTH_SHORT).show()
+    }
+
+    private fun clearImportedOverlaysSilently() {
+        if (importedOverlays.isEmpty()) return
+        importedOverlays.forEach { map.overlays.remove(it) }
+        importedOverlays.clear()
+        map.invalidate()
+    }
+
+    private fun queryDisplayNameFromUri(uri: Uri): String? {
+        return try {
+            contentResolver.query(uri, arrayOf(android.provider.OpenableColumns.DISPLAY_NAME), null, null, null)?.use { c ->
+                val idx = c.getColumnIndex(android.provider.OpenableColumns.DISPLAY_NAME)
+                if (idx >= 0 && c.moveToFirst()) c.getString(idx) else null
+            }
+        } catch (_: Throwable) {
+            null
+        }
+    }
+
+    private fun handleIncomingOpenWithIntent(incoming: Intent?) {
+        if (incoming == null) return
+        if (incoming.action != Intent.ACTION_VIEW) return
+
+        val uri: Uri? = incoming.data ?: runCatching {
+            @Suppress("DEPRECATION")
+            incoming.getParcelableExtra(Intent.EXTRA_STREAM) as? Uri
+        }.getOrNull()
+
+        if (uri == null) {
+            Toast.makeText(this, "Aucun fichier à ouvrir.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val uriString = uri.toString()
+        if (lastOpenWithUriString == uriString) return
+        lastOpenWithUriString = uriString
+
+        // On nettoie seulement les overlays d’import “temporaires” (sans toast).
+        clearImportedOverlaysSilently()
+
+        // Import (GPX / KML / CSV...)
+        onImportDocument(uri)
+
+        // Essai 1 : une TrackOverlay vient d’être ajoutée (import_...)
+        var track: TrackOverlay? = selectedOverlayId?.let { otherTracks[it] }
+
+        // Essai 2 : le fichier correspond à une trace déjà “sauvegardée”
+        if (track == null) {
+            val displayName = queryDisplayNameFromUri(uri)
+            if (displayName != null) {
+                track = otherTracks.values.firstOrNull { it.file?.name == displayName }
+            }
+        }
+
+        // Essai 3 : si c’était un GPX et qu’il a été chargé dans la TrackStore, on crée une overlay dédiée
+        if (track == null) {
+            val lower = uriString.lowercase(Locale.ROOT)
+            val mime = runCatching { contentResolver.getType(uri) }.getOrNull() ?: ""
+            if (lower.endsWith(".gpx") || mime.contains("gpx", ignoreCase = true)) {
+                val pts = TrackStore.snapshot()
+                if (pts.size >= 2) {
+                    addImportedTrackToMap(pts, "Import GPX")
+                    track = selectedOverlayId?.let { otherTracks[it] }
+                }
+            }
+        }
+
+        if (track != null) {
+            zoomToTrack(track)
+            showTrackBottomSheet(track)
+        }
     }
 
 

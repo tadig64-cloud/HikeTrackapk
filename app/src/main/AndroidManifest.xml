@@ -58,7 +58,6 @@
             </intent-filter>
         </activity>
 
-        <!-- Ouvrir un GPX téléchargé / reçu depuis un gestionnaire de fichiers (Open with…) -->
         <activity
             android:name=".GpxOpenActivity"
             android:exported="true"
@@ -67,20 +66,28 @@
             android:screenOrientation="portrait">
 
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+    <action android:name="android.intent.action.VIEW" />
+    <category android:name="android.intent.category.DEFAULT" />
+    <category android:name="android.intent.category.BROWSABLE" />
 
-                <!-- GPX (content://) -->
-                <data android:scheme="content" android:mimeType="application/gpx+xml" />
-                <data android:scheme="content" android:mimeType="application/octet-stream" android:pathPattern=".*\.gpx" />
+    <!-- content:// (Téléchargements / Fichiers / Drive / etc.) -->
+    <data android:scheme="content" android:mimeType="application/gpx+xml" />
+    <data android:scheme="content" android:mimeType="text/xml" />
+    <data android:scheme="content" android:mimeType="application/xml" />
+    <data android:scheme="content" android:mimeType="text/plain" />
+    <data android:scheme="content" android:mimeType="application/octet-stream" />
+    <!-- certains providers gardent l’extension dans le path -->
+    <data android:scheme="content" android:pathPattern=".*\.gpx" />
 
-                <!-- GPX (file://) -->
-                <data android:scheme="file" android:mimeType="application/gpx+xml" android:pathPattern=".*\.gpx" />
-                <data android:scheme="file" android:mimeType="application/octet-stream" android:pathPattern=".*\.gpx" />
-                <data android:scheme="file" android:mimeType="text/xml" android:pathPattern=".*\.gpx" />
-                <data android:scheme="file" android:mimeType="application/xml" android:pathPattern=".*\.gpx" />
-            </intent-filter>
+    <!-- file:// (plus rare) -->
+    <data android:scheme="file" android:mimeType="application/gpx+xml" android:pathPattern=".*\.gpx" />
+    <data android:scheme="file" android:mimeType="text/xml" android:pathPattern=".*\.gpx" />
+    <data android:scheme="file" android:mimeType="application/xml" android:pathPattern=".*\.gpx" />
+    <data android:scheme="file" android:mimeType="text/plain" android:pathPattern=".*\.gpx" />
+    <data android:scheme="file" android:mimeType="application/octet-stream" android:pathPattern=".*\.gpx" />
+    <data android:scheme="file" android:pathPattern=".*\.gpx" />
+</intent-filter>
+
 
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -89,7 +96,6 @@
                 <data android:mimeType="application/octet-stream" />
             </intent-filter>
         </activity>
-
 
         <activity android:name=".MapActivity" android:exported="false" android:screenOrientation="portrait" android:launchMode="singleTop"/>
         <activity android:name=".TrackDetailsActivity" android:exported="false" android:label="@string/track_detail_title" android:parentActivityName=".MapActivity"/>
