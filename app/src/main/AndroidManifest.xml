@@ -65,35 +65,80 @@
             android:theme="@style/Theme.Transparent.NoActionBar"
             android:screenOrientation="portrait">
 
+            <!-- Ouvrir un fichier .gpx depuis un gestionnaire de fichiers / navigateur -->
             <intent-filter>
-    <action android:name="android.intent.action.VIEW" />
-    <category android:name="android.intent.category.DEFAULT" />
-    <category android:name="android.intent.category.BROWSABLE" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Certains gestionnaires ajoutent OPENABLE même sur VIEW -->
+                <category android:name="android.intent.category.OPENABLE" />
 
-    <!-- content:// (Téléchargements / Fichiers / Drive / etc.) -->
-    <data android:scheme="content" android:mimeType="application/gpx+xml" />
-    <data android:scheme="content" android:mimeType="text/xml" />
-    <data android:scheme="content" android:mimeType="application/xml" />
-    <data android:scheme="content" android:mimeType="text/plain" />
-    <data android:scheme="content" android:mimeType="application/octet-stream" />
-    <!-- certains providers gardent l’extension dans le path -->
-    <data android:scheme="content" android:pathPattern=".*\.gpx" />
+                <!-- content:// (Téléchargements / Fichiers / Drive / etc.) -->
+                <data android:scheme="content" android:mimeType="application/gpx+xml" />
+                <data android:scheme="content" android:mimeType="application/x-gpx+xml" />
+                <data android:scheme="content" android:mimeType="application/gpx" />
+                <data android:scheme="content" android:mimeType="application/x-gpx" />
+                <data android:scheme="content" android:mimeType="application/octet-stream" />
+                <data android:scheme="content" android:mimeType="application/xml" />
+                <data android:scheme="content" android:mimeType="text/xml" />
+                <data android:scheme="content" android:mimeType="text/plain" />
+                <!-- Certains providers gardent l’extension dans le path -->
+                <data android:scheme="content" android:mimeType="*/*" android:pathPattern=".*\.gpx" />
+                <data android:scheme="content" android:pathPattern=".*\.gpx" />
 
-    <!-- file:// (plus rare) -->
-    <data android:scheme="file" android:mimeType="application/gpx+xml" android:pathPattern=".*\.gpx" />
-    <data android:scheme="file" android:mimeType="text/xml" android:pathPattern=".*\.gpx" />
-    <data android:scheme="file" android:mimeType="application/xml" android:pathPattern=".*\.gpx" />
-    <data android:scheme="file" android:mimeType="text/plain" android:pathPattern=".*\.gpx" />
-    <data android:scheme="file" android:mimeType="application/octet-stream" android:pathPattern=".*\.gpx" />
-    <data android:scheme="file" android:pathPattern=".*\.gpx" />
-</intent-filter>
+                <!-- file:// (rare) -->
+                <data android:scheme="file" android:mimeType="application/gpx+xml" android:pathPattern=".*\.gpx" />
+                <data android:scheme="file" android:mimeType="application/x-gpx+xml" android:pathPattern=".*\.gpx" />
+                <data android:scheme="file" android:mimeType="application/gpx" android:pathPattern=".*\.gpx" />
+                <data android:scheme="file" android:mimeType="application/x-gpx" android:pathPattern=".*\.gpx" />
+                <data android:scheme="file" android:mimeType="application/octet-stream" android:pathPattern=".*\.gpx" />
+                <data android:scheme="file" android:mimeType="application/xml" android:pathPattern=".*\.gpx" />
+                <data android:scheme="file" android:mimeType="text/xml" android:pathPattern=".*\.gpx" />
+                <data android:scheme="file" android:mimeType="text/plain" android:pathPattern=".*\.gpx" />
+                <data android:scheme="file" android:pathPattern=".*\.gpx" />
+            </intent-filter>
 
+            <!-- Certains gestionnaires passent par GET_CONTENT / OPEN_DOCUMENT -->
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.OPENABLE" />
+                <data android:mimeType="application/gpx+xml" />
+                <data android:mimeType="application/x-gpx+xml" />
+                <data android:mimeType="application/gpx" />
+                <data android:mimeType="application/x-gpx" />
+                <data android:mimeType="application/octet-stream" />
+                <data android:mimeType="application/xml" />
+                <data android:mimeType="text/xml" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
 
+            <intent-filter>
+                <action android:name="android.intent.action.OPEN_DOCUMENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.OPENABLE" />
+                <data android:mimeType="application/gpx+xml" />
+                <data android:mimeType="application/x-gpx+xml" />
+                <data android:mimeType="application/gpx" />
+                <data android:mimeType="application/x-gpx" />
+                <data android:mimeType="application/octet-stream" />
+                <data android:mimeType="application/xml" />
+                <data android:mimeType="text/xml" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+
+            <!-- Partage -->
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="application/gpx+xml" />
+                <data android:mimeType="application/x-gpx+xml" />
+                <data android:mimeType="application/gpx" />
+                <data android:mimeType="application/x-gpx" />
                 <data android:mimeType="application/octet-stream" />
+                <data android:mimeType="application/xml" />
+                <data android:mimeType="text/xml" />
+                <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
 

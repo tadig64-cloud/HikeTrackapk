@@ -926,22 +926,72 @@ hudPseudoView?.let { view ->
     // --- GPX ---
     private fun importGpxFromUri(uri: Uri) {
         runCatching {
-            contentResolver.openInputStream(uri)?.use { input ->
+            val name = DocumentFile.fromSingleUri(this, uri)?.name?.removeSuffix(".gpx") ?: "Import"
+
+            val points = contentResolver.openInputStream(uri)?.use { input ->
                 val polyline = GpxUtils.parseToPolyline(input)
-                val name = DocumentFile.fromSingleUri(this, uri)?.name?.removeSuffix(".gpx") ?: "Import"
-                addImportedTrackToMap(polyline.actualPoints, name)
-                TrackStore.setAll(polyline.actualPoints)
-                resetStats()
-                if (polyline.actualPoints.size > 1) computeStatsFrom(polyline.actualPoints)
-                updateStatsUI()
-                    zoomToPoints(polyline.actualPoints)
+                polyline.actualPoints
+            } ?: throw IllegalStateException("openInputStream() null")
+
+            // Ajoute à la carte + stats + centrage
+            addImportedTrackToMap(points, name)
+            TrackStore.setAll(points)
+            resetStats()
+            if (points.size > 1) computeStatsFrom(points)
+            updateStatsUI()
+            zoomToPoints(points)
+
+            // Ouvre automatiquement la fiche (et donc l'utilisateur "voit" la trace importée)
+            selectedOverlayId?.let { id ->
+                otherTracks[id]?.let { t ->
+                    zoomToTrack(t)
+                    showTrackBottomSheet(t)
+                }
             }
+
             Toast.makeText(this, R.string.gpx_import_ok, Toast.LENGTH_SHORT).show()
             maybeStartOffTrailTicker()
-        }.onFailure {
-            Toast.makeText(this, R.string.gpx_import_fail, Toast.LENGTH_SHORT).show()
+        }.onFailure { e ->
+            // Fallback : si l'URI est capricieux (content://), on copie dans le dossier GPX de l'app puis on réessaie
+            runCatching {
+                val displayName = queryDisplayNameFromUri(uri) ?: "import_${System.currentTimeMillis()}.gpx"
+                val safeName = displayName.replace(Regex("[^a-zA-Z0-9._ -]"), "_")
+                val targetDir = com.hikemvp.gpx.GpxStorage.gpxDir(this).apply { mkdirs() }
+                val outFile = File(targetDir, if (safeName.lowercase(Locale.ROOT).endsWith(".gpx")) safeName else "$safeName.gpx")
+
+                contentResolver.openInputStream(uri)?.use { input ->
+                    outFile.outputStream().use { output -> input.copyTo(output) }
+                } ?: throw IllegalStateException("openInputStream() null")
+
+                // Ajoute comme trace "sauvegardée" + ouvre la fiche
+                val id = outFile.absolutePath
+                if (!otherTracks.containsKey(id)) {
+                    contentResolver.openInputStream(Uri.fromFile(outFile))?.use { input ->
+                        val poly = GpxUtils.parseToPolyline(input)
+                        val c = nextColor()
+                        val p = makePolyline(poly.actualPoints, c)
+                        map.overlays.add(p)
+                        otherTracks[id] = TrackOverlay(id, outFile.nameWithoutExtension, outFile, p, c)
+                        selectedOverlayId = id
+                    }
+                    map.invalidate()
+                } else {
+                    selectedOverlayId = id
+                }
+
+                otherTracks[selectedOverlayId]?.let { t ->
+                    zoomToTrack(t)
+                    showTrackBottomSheet(t)
+                }
+
+                Toast.makeText(this, R.string.gpx_import_ok, Toast.LENGTH_SHORT).show()
+            }.onFailure {
+                Toast.makeText(this, R.string.gpx_import_fail, Toast.LENGTH_SHORT).show()
+                Log.w("MapActivity", "importGpxFromUri failed: ${e.message}", e)
+            }
         }
     }
+
 
     // --- KML (LineString + Point) ---
     private fun importKmlFromUri(uri: Uri) {
@@ -2076,6 +2126,9 @@ private fun parseGpxTimes(file: java.io.File): List<Long> {
         val btnFollow = view.findViewById<View>(R.id.btnFollow)
         val btnAlarm = view.findViewById<View>(R.id.btnAlarm)
         val btnDelete = view.findViewById<View>(R.id.btnDelete)
+        val btnDetails = view.findViewById<View>(R.id.btnDetails)
+        val btnReplay = view.findViewById<View>(R.id.btnReplay)
+        val btnOpenFolder = view.findViewById<View>(R.id.btnOpenFolder)
         // Nouveau bouton (si présent dans le layout)
         val btnEdit: View? = run {
             val optionalId = view.resources.getIdentifier("btnEdit", "id", packageName)
@@ -2113,6 +2166,27 @@ private fun parseGpxTimes(file: java.io.File): List<Long> {
             dialog.dismiss()
             enterTrackEdit(t)
             true
+        }
+
+
+        // ====== Nouveaux boutons (Détails / Replay / Ouvrir dossier) ======
+        btnDetails.setOnClickListener {
+            // Pour être sûr que l'écran suivant a les bons points
+            runCatching { TrackStore.setAll(t.polyline.actualPoints) }
+            val i = Intent(this, TrackDetailsActivity::class.java).apply {
+                t.file?.let { putExtra(TrackDetailsActivity.EXTRA_GPX_PATH, it.absolutePath) }
+                putExtra(TrackDetailsActivity.EXTRA_TRACK_NAME, t.name)
+            }
+            safeStartActivity(i)
+        }
+
+        btnReplay.setOnClickListener {
+            runCatching { TrackStore.setAll(t.polyline.actualPoints) }
+            safeStartActivity(Intent(this, ReplayActivity::class.java))
+        }
+
+        btnOpenFolder.setOnClickListener {
+            safeStartActivity(Intent(this, com.hikemvp.files.SavedTracksActivity::class.java))
         }
 
         // ====== Modifier la trace (trim) ======
@@ -2215,7 +2289,7 @@ private fun parseGpxTimes(file: java.io.File): List<Long> {
 
         btnShare.setOnClickListener {
             runCatching {
-                val shareDir = File(cacheDir, "share").apply { mkdirs() }
+                val shareDir = File(cacheDir, "exports").apply { mkdirs() }
                 val out = File(shareDir, "trace_${System.currentTimeMillis()}.gpx")
                 out.outputStream()
                     .use { os -> GpxUtils.saveToFile(GpxUtils.polylineToGpx(t.polyline), os) }
@@ -2237,9 +2311,20 @@ private fun parseGpxTimes(file: java.io.File): List<Long> {
         }
 
         btnDelete.setOnClickListener {
-            map.overlays.remove(t.polyline); otherTracks.remove(t.id); t.file?.let { f -> runCatching { f.delete() } }
-            map.invalidate(); dialog.dismiss()
-            Toast.makeText(this, "Trace supprimée", Toast.LENGTH_SHORT).show()
+            AlertDialog.Builder(this)
+                .setTitle(R.string.confirm_clear_title)
+                .setMessage(getString(R.string.confirm_clear_msg))
+                .setPositiveButton(android.R.string.ok) { _, _ ->
+                    map.overlays.remove(t.polyline)
+                    otherTracks.remove(t.id)
+                    t.file?.let { f -> runCatching { f.delete() } }
+                    if (selectedOverlayId == t.id) selectedOverlayId = null
+                    map.invalidate()
+                    dialog.dismiss()
+                    Toast.makeText(this, "Trace supprimée", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton(R.string.btn_cancel, null)
+                .show()
         }
 
         dialog.show()
@@ -5371,6 +5456,35 @@ Dénivelé du plan
         if (incoming == null) return
         if (incoming.action != Intent.ACTION_VIEW) return
 
+        // 1) Si GpxOpenActivity a copié un fichier local, on l'utilise (ultra robuste)
+        val pathExtra = incoming.getStringExtra("com.hikemvp.extra.GPX_PATH")
+        if (!pathExtra.isNullOrBlank()) {
+            val f = File(pathExtra)
+            if (f.exists()) {
+                val id = f.absolutePath
+                // Ajoute la trace à la carte (comme "trace sauvegardée") si besoin
+                if (!otherTracks.containsKey(id)) {
+                    runCatching {
+                        contentResolver.openInputStream(Uri.fromFile(f))?.use { input ->
+                            val poly = GpxUtils.parseToPolyline(input)
+                            val c = nextColor()
+                            val p = makePolyline(poly.actualPoints, c)
+                            map.overlays.add(p)
+                            otherTracks[id] = TrackOverlay(id, f.nameWithoutExtension, f, p, c)
+                            map.invalidate()
+                        }
+                    }
+                }
+                selectedOverlayId = id
+                otherTracks[id]?.let { t ->
+                    zoomToTrack(t)
+                    showTrackBottomSheet(t)
+                }
+                return
+            }
+        }
+
+        // 2) Uri standard (content:// ou file://)
         val uri: Uri? = incoming.data ?: runCatching {
             @Suppress("DEPRECATION")
             incoming.getParcelableExtra(Intent.EXTRA_STREAM) as? Uri
@@ -5381,37 +5495,47 @@ Dénivelé du plan
             return
         }
 
+        // Permission lecture (si l'autre appli l'a donnée)
+        runCatching {
+            val takeFlags = incoming.flags and
+                (Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+            if (takeFlags != 0) contentResolver.takePersistableUriPermission(uri, takeFlags)
+        }
+
         val uriString = uri.toString()
-        if (lastOpenWithUriString == uriString) return
-        lastOpenWithUriString = uriString
+        val lower = uriString.lowercase(Locale.ROOT)
+        val mime = runCatching { contentResolver.getType(uri) }.getOrNull() ?: ""
 
-        // On nettoie seulement les overlays d’import “temporaires” (sans toast).
-        clearImportedOverlaysSilently()
+        // 2a) Si c'est bien un GPX, on l'importe directement (au lieu d'attendre TrackStore)
+        if (lower.endsWith(".gpx") || mime.contains("gpx", ignoreCase = true)) {
+            runCatching {
+                contentResolver.openInputStream(uri)?.use { input ->
+                    val poly = GpxUtils.parseToPolyline(input)
+                    val name = queryDisplayNameFromUri(uri)?.removeSuffix(".gpx") ?: "Import GPX"
+                    addImportedTrackToMap(poly.actualPoints, name)
+                    TrackStore.setAll(poly.actualPoints)
+                } ?: throw IllegalStateException("openInputStream() null")
 
-        // Import (GPX / KML / CSV...)
-        onImportDocument(uri)
+                selectedOverlayId?.let { id ->
+                    otherTracks[id]?.let { t ->
+                        zoomToTrack(t)
+                        showTrackBottomSheet(t)
+                    }
+                }
+            }.onFailure {
+                Toast.makeText(this, getString(R.string.gpx_import_fail), Toast.LENGTH_SHORT).show()
+            }
+            return
+        }
 
-        // Essai 1 : une TrackOverlay vient d’être ajoutée (import_...)
+        // 2b) Sinon, on tente de retrouver une trace déjà chargée correspondant au fichier
         var track: TrackOverlay? = selectedOverlayId?.let { otherTracks[it] }
 
-        // Essai 2 : le fichier correspond à une trace déjà “sauvegardée”
         if (track == null) {
             val displayName = queryDisplayNameFromUri(uri)
             if (displayName != null) {
                 track = otherTracks.values.firstOrNull { it.file?.name == displayName }
-            }
-        }
-
-        // Essai 3 : si c’était un GPX et qu’il a été chargé dans la TrackStore, on crée une overlay dédiée
-        if (track == null) {
-            val lower = uriString.lowercase(Locale.ROOT)
-            val mime = runCatching { contentResolver.getType(uri) }.getOrNull() ?: ""
-            if (lower.endsWith(".gpx") || mime.contains("gpx", ignoreCase = true)) {
-                val pts = TrackStore.snapshot()
-                if (pts.size >= 2) {
-                    addImportedTrackToMap(pts, "Import GPX")
-                    track = selectedOverlayId?.let { otherTracks[it] }
-                }
+                track?.let { selectedOverlayId = it.id }
             }
         }
 
@@ -5420,6 +5544,7 @@ Dénivelé du plan
             showTrackBottomSheet(track)
         }
     }
+
 
 
     private fun openGroup(): Boolean {
