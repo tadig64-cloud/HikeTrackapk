@@ -187,6 +187,18 @@
                     android:host="join" />
             </intent-filter>
 
+
+            <!-- Compat ancien format: hiketrack://group/join?code=XXXX -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="hiketrack"
+                    android:host="group"
+                    android:pathPrefix="/join" />
+            </intent-filter>
+
             <!-- HTTPS: https://hiketrack.app/join?code=XXXX -->
             <intent-filter android:autoVerify="false">
                 <action android:name="android.intent.action.VIEW" />

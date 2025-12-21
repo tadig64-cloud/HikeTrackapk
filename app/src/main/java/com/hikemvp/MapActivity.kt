@@ -90,6 +90,7 @@ import org.osmdroid.views.overlay.gestures.RotationGestureOverlay
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 import java.io.File
+import java.io.FileInputStream
 import java.text.SimpleDateFormat
 import java.util.Locale
 import kotlin.math.abs
@@ -856,10 +857,11 @@ hudPseudoView?.let { view ->
                     val polyline = GpxUtils.parseToPolyline(input)
                     val name = DocumentFile.fromSingleUri(this, uri)?.name?.removeSuffix(".gpx")
                         ?: "Import"
-                    addImportedTrackToMap(polyline.actualPoints, name)
-                    TrackStore.setAll(polyline.actualPoints)
+                    val pts: List<GeoPoint> = polyline.actualPoints?.filterNotNull() ?: emptyList()
+                    addImportedTrackToMap(pts, name)
+                    TrackStore.setAll(pts)
                     resetStats()
-                    if (polyline.actualPoints.size > 1) computeStatsFrom(polyline.actualPoints)
+                    if (pts.size > 1) computeStatsFrom(pts)
                     updateStatsUI()
                 }
                 Toast.makeText(this, R.string.gpx_import_ok, Toast.LENGTH_SHORT).show()
@@ -928,10 +930,16 @@ hudPseudoView?.let { view ->
         runCatching {
             val name = DocumentFile.fromSingleUri(this, uri)?.name?.removeSuffix(".gpx") ?: "Import"
 
-            val points = contentResolver.openInputStream(uri)?.use { input ->
+            val points: List<GeoPoint> = contentResolver.openInputStream(uri)?.use { input ->
                 val polyline = GpxUtils.parseToPolyline(input)
-                polyline.actualPoints
-            } ?: throw IllegalStateException("openInputStream() null")
+                // actualPoints peut être nullable selon les versions d'osmdroid + certains GPX peuvent contenir des nulls
+                polyline.actualPoints?.filterNotNull() ?: emptyList()
+            } ?: emptyList()
+
+            if (points.isEmpty()) {
+                Toast.makeText(this, R.string.gpx_import_fail, Toast.LENGTH_SHORT).show()
+                return
+            }
 
             // Ajoute à la carte + stats + centrage
             addImportedTrackToMap(points, name)
@@ -969,7 +977,7 @@ hudPseudoView?.let { view ->
                     contentResolver.openInputStream(Uri.fromFile(outFile))?.use { input ->
                         val poly = GpxUtils.parseToPolyline(input)
                         val c = nextColor()
-                        val p = makePolyline(poly.actualPoints, c)
+                        val p = makePolyline(poly.actualPoints?.filterNotNull() ?: emptyList(), c)
                         map.overlays.add(p)
                         otherTracks[id] = TrackOverlay(id, outFile.nameWithoutExtension, outFile, p, c)
                         selectedOverlayId = id
@@ -1355,6 +1363,389 @@ private val exportGpxCreate =
     // Dernière trace « sélectionnée » (utile pour ouvrir automatiquement la fiche après un import / open-with)
     private var selectedOverlayId: String? = null
 
+// --- Décoration de la trace active (sens, départ/arrivée, km, épaisseur adaptative) ---
+private var activeDecorTrackId: String? = null
+private var activeDecorPolyline: org.osmdroid.views.overlay.Polyline? = null
+private var activeDecorPoints: List<org.osmdroid.util.GeoPoint> = emptyList()
+private var activeDecorColor: Int = android.graphics.Color.parseColor("#FF6F00")
+private var activeDecorStartTimeMs: Long? = null
+private var activeDecorEndTimeMs: Long? = null
+private val activeDecorOverlays = mutableListOf<org.osmdroid.views.overlay.Overlay>()
+private var lastDecorZoomBucket: Int = -1
+
+// ---- Helpers décor trace (épaisseur, flèches, km, départ/arrivée + heures) ----
+
+/** Épaisseur du trait en pixels, adaptative au zoom (discret au dézoom, plus visible au zoom). */
+private fun computeTrackStrokeWidth(zoom: Double): Float {
+    val density = resources.displayMetrics.density
+    // zoom typique: 8..19
+    val z = zoom.toFloat().coerceIn(8f, 19f)
+    // en dp: 3dp à z<=10, jusqu'à ~9dp à z>=18
+    val dp = (3f + (z - 10f).coerceAtLeast(0f) * 0.75f).coerceIn(3f, 9f)
+    return dp * density
+}
+
+/** Supprime les décorations actuellement affichées (km/ flèches/ labels). */
+private fun clearActiveTrackDecorations() {
+    if (activeDecorOverlays.isNotEmpty()) {
+        activeDecorOverlays.forEach { map.overlays.remove(it) }
+        activeDecorOverlays.clear()
+    }
+    activeDecorTrackId = null
+    activeDecorPolyline = null
+    activeDecorPoints = emptyList()
+    activeDecorStartTimeMs = null
+    activeDecorEndTimeMs = null
+    lastDecorZoomBucket = -1
+}
+
+/**
+ * Active les décorations pour la trace sélectionnée.
+ * - points peut être fourni (plus fiable) sinon on prend polyline.actualPoints.
+ */
+private fun setActiveTrackDecorations(t: TrackOverlay, points: List<GeoPoint>? = null) {
+    // Nettoie si on change de trace
+    if (activeDecorTrackId != null && activeDecorTrackId != t.id) {
+        clearActiveTrackDecorations()
+    }
+
+    activeDecorTrackId = t.id
+    activeDecorPolyline = t.polyline
+    activeDecorColor = t.color
+    activeDecorPoints = (points ?: t.polyline.actualPoints?.filterNotNull() ?: emptyList())
+
+    // Heures départ/arrivée (si on a un fichier GPX associé)
+    val times = t.file?.let { parseGpxTimes(it) }.orEmpty()
+    if (times.isNotEmpty()) {
+        activeDecorStartTimeMs = times.first()
+        activeDecorEndTimeMs = times.last()
+    } else {
+        activeDecorStartTimeMs = null
+        activeDecorEndTimeMs = null
+    }
+
+    // Épaisseur + rendu fluide (évite l'effet "segmenté") dès maintenant
+    runCatching {
+        activeDecorPolyline?.outlinePaint?.apply {
+            strokeWidth = computeTrackStrokeWidth(map.zoomLevelDouble) * 1.15f
+            isAntiAlias = true
+            isDither = true
+            strokeCap = android.graphics.Paint.Cap.ROUND
+            strokeJoin = android.graphics.Paint.Join.ROUND
+        }
+    }
+
+    // Construit le décor selon le zoom
+    updateTrackDecorForZoom(force = true)
+}
+
+/** Met à jour l'épaisseur + affiche/masque flèches et points km selon le zoom. */
+private fun updateTrackDecorForZoom(force: Boolean = false) {
+    val poly = activeDecorPolyline ?: return
+    val pts = activeDecorPoints
+    if (pts.size < 2) return
+
+    // Ajuste l'épaisseur à chaque zoom (léger, pas intrusif)
+    runCatching { poly.outlinePaint.strokeWidth = computeTrackStrokeWidth(map.zoomLevelDouble) * 1.15f }
+
+    // Bucket pour éviter de reconstruire trop souvent
+    val z = map.zoomLevelDouble
+    val bucket = when {
+        // seuils un peu plus bas pour afficher le décor (notamment flèches) sur téléphone
+        z >= 15.5 -> 3
+        z >= 13.5 -> 2
+        z >= 11.5 -> 1
+        else -> 0
+    }
+
+    if (!force && bucket == lastDecorZoomBucket) return
+    lastDecorZoomBucket = bucket
+
+    // Nettoie et reconstruit (simple & fiable)
+    if (activeDecorOverlays.isNotEmpty()) {
+        activeDecorOverlays.forEach { map.overlays.remove(it) }
+        activeDecorOverlays.clear()
+    }
+
+    // Toujours: départ + arrivée (petits points)
+    val start = pts.first()
+    val end = pts.last()
+    val startDot = Marker(map).apply {
+        position = start
+        icon = makeDotIcon(activeDecorColor, filled = true, radiusDp = 4f)
+        setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
+        title = "Départ"
+    }
+    val endDot = Marker(map).apply {
+        position = end
+        icon = makeDotIcon(activeDecorColor, filled = false, radiusDp = 5f)
+        setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
+        title = "Arrivée"
+    }
+    map.overlays.add(startDot); activeDecorOverlays += startDot
+    map.overlays.add(endDot); activeDecorOverlays += endDot
+
+    // Heures (si dispo) : seulement à partir de bucket>=2 pour éviter la pollution
+    if (bucket >= 2) {
+        val sdf = java.text.SimpleDateFormat("HH'h'mm", java.util.Locale.getDefault())
+        activeDecorStartTimeMs?.let { ms ->
+            val label = Marker(map).apply {
+                position = start
+                icon = makeTimeLabelIcon(sdf.format(java.util.Date(ms)))
+                setAnchor(Marker.ANCHOR_LEFT, Marker.ANCHOR_BOTTOM)
+                // léger décalage
+                setInfoWindow(null)
+            }
+            map.overlays.add(label); activeDecorOverlays += label
+        }
+        activeDecorEndTimeMs?.let { ms ->
+            val label = Marker(map).apply {
+                position = end
+                icon = makeTimeLabelIcon(sdf.format(java.util.Date(ms)))
+                setAnchor(Marker.ANCHOR_LEFT, Marker.ANCHOR_BOTTOM)
+                setInfoWindow(null)
+            }
+            map.overlays.add(label); activeDecorOverlays += label
+        }
+    }
+
+    // Points tous les km : bucket>=1 (visible plus souvent, reste discret)
+    if (bucket >= 1) {
+        val kmDots = buildKmDots(pts, everyMeters = 1000.0)
+        kmDots.forEach { m ->
+            map.overlays.add(m); activeDecorOverlays += m
+        }
+    }
+
+// Flèches direction : bucket>=2 (zoom moyen/proche)
+if (bucket >= 2) {
+    // Plus on zoom, plus on densifie (et plus gros)
+    val spacingMeters = if (bucket >= 3) 150.0 else 250.0
+    val sizeDp = if (bucket >= 3) 18f else 16f
+
+    val samples = buildDirectionArrowSamples(pts, everyMeters = spacingMeters)
+    if (samples.isNotEmpty()) {
+        val overlay = DirectionArrowsOverlay(
+            samples = samples,
+            fillColor = activeDecorColor,
+            sizeDp = sizeDp
+        )
+        map.overlays.add(overlay); activeDecorOverlays += overlay
+    }
+}
+
+    map.invalidate()
+}
+
+private fun buildKmDots(points: List<GeoPoint>, everyMeters: Double): List<Marker> {
+    val out = mutableListOf<Marker>()
+    if (points.size < 2) return out
+    var acc = 0.0
+    var next = everyMeters
+    for (i in 1 until points.size) {
+        val d = points[i - 1].distanceToAsDouble(points[i]).coerceAtLeast(0.0)
+        acc += d
+        if (acc >= next) {
+            val m = Marker(map).apply {
+                position = points[i]
+                icon = makeDotIcon(android.graphics.Color.WHITE, filled = true, radiusDp = 2.5f, alpha = 180)
+                setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
+                setInfoWindow(null)
+            }
+            out += m
+            next += everyMeters
+        }
+    }
+    return out
+}
+
+private data class ArrowSample(
+    val pos: GeoPoint,
+    val from: GeoPoint,
+    val to: GeoPoint
+)
+
+/**
+ * Overlay qui dessine des flèches directionnelles "collées" au tracé.
+ * - Pas de Marker → pas de rotation bizarre quand on tourne la carte.
+ * - La direction est calculée en coordonnées écran (projection) à chaque draw.
+ */
+private inner class DirectionArrowsOverlay(
+    private val samples: List<ArrowSample>,
+    private val fillColor: Int,
+    private val sizeDp: Float
+) : org.osmdroid.views.overlay.Overlay() {
+
+    private val density = resources.displayMetrics.density
+    private val sPx = (sizeDp * density).coerceAtLeast(10f)
+
+    private val arrowPath = android.graphics.Path().apply {
+        // Triangle pointant vers le haut, centré à (0,0)
+        moveTo(0f, -sPx * 0.55f)                  // pointe
+        lineTo(sPx * 0.42f, sPx * 0.45f)          // bas droite
+        lineTo(0f, sPx * 0.18f)                   // encoche
+        lineTo(-sPx * 0.42f, sPx * 0.45f)         // bas gauche
+        close()
+    }
+
+    private val fillPaint = android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG).apply {
+        style = android.graphics.Paint.Style.FILL
+        color = fillColor
+        alpha = 235
+    }
+
+    private val strokePaint = android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG).apply {
+        style = android.graphics.Paint.Style.STROKE
+        color = android.graphics.Color.WHITE
+        alpha = 235
+        strokeJoin = android.graphics.Paint.Join.ROUND
+        strokeCap = android.graphics.Paint.Cap.ROUND
+        strokeWidth = (1.9f * density).coerceAtLeast(2f)
+    }
+
+    private val pPos = android.graphics.Point()
+    private val pA = android.graphics.Point()
+    private val pB = android.graphics.Point()
+
+    override fun draw(c: android.graphics.Canvas, osmv: org.osmdroid.views.MapView, shadow: Boolean) {
+        if (shadow) return
+        if (samples.isEmpty()) return
+
+        val proj = osmv.projection
+
+        for (s in samples) {
+            // Position où dessiner la flèche
+            proj.toPixels(s.pos, pPos)
+
+            // Deux points du segment pour calculer l'angle à l'écran
+            proj.toPixels(s.from, pA)
+            proj.toPixels(s.to, pB)
+
+            val dx = (pB.x - pA.x).toFloat()
+            val dy = (pB.y - pA.y).toFloat()
+            if (dx == 0f && dy == 0f) continue
+
+            // Angle écran : atan2(dy,dx) donne 0° à droite, on convertit pour avoir 0° en haut
+            val ang = (kotlin.math.atan2(dy.toDouble(), dx.toDouble()) * 180.0 / Math.PI).toFloat() + 90f
+
+            c.save()
+            c.translate(pPos.x.toFloat(), pPos.y.toFloat())
+            c.rotate(ang)
+            c.drawPath(arrowPath, strokePaint)
+            c.drawPath(arrowPath, fillPaint)
+            c.restore()
+        }
+    }
+}
+
+private fun buildDirectionArrowSamples(points: List<GeoPoint>, everyMeters: Double): List<ArrowSample> {
+    val out = mutableListOf<ArrowSample>()
+    if (points.size < 2) return out
+
+    var traveled = 0.0
+    var next = everyMeters
+
+    for (i in 1 until points.size) {
+        val a = points[i - 1]
+        val b = points[i]
+        val d = a.distanceToAsDouble(b).coerceAtLeast(0.0)
+        if (d <= 0.01) continue
+
+        while (traveled + d >= next) {
+            val t = ((next - traveled) / d).coerceIn(0.0, 1.0)
+            val lat = a.latitude + (b.latitude - a.latitude) * t
+            val lon = a.longitude + (b.longitude - a.longitude) * t
+            val pos = GeoPoint(lat, lon)
+            out += ArrowSample(pos = pos, from = a, to = b)
+            next += everyMeters
+        }
+
+        traveled += d
+    }
+
+    return out
+}
+
+
+private fun makeDotIcon(color: Int, filled: Boolean, radiusDp: Float, alpha: Int = 255): android.graphics.drawable.Drawable {
+    val density = resources.displayMetrics.density
+    val rPx = (radiusDp * density).toInt().coerceAtLeast(2)
+    val pad = (2 * density).toInt()
+    val size = (rPx * 2 + pad * 2).coerceAtLeast(12)
+    val bmp = android.graphics.Bitmap.createBitmap(size, size, android.graphics.Bitmap.Config.ARGB_8888)
+    val c = android.graphics.Canvas(bmp)
+    val paint = android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG).apply {
+        this.color = color
+        this.alpha = alpha
+        style = if (filled) android.graphics.Paint.Style.FILL else android.graphics.Paint.Style.STROKE
+        strokeWidth = (2 * density).coerceAtLeast(2f)
+    }
+    c.drawCircle((size / 2f), (size / 2f), rPx.toFloat(), paint)
+    return android.graphics.drawable.BitmapDrawable(resources, bmp)
+}
+
+private fun makeTimeLabelIcon(text: String): android.graphics.drawable.Drawable {
+    val density = resources.displayMetrics.density
+    val padX = (6 * density).toInt()
+    val padY = (3 * density).toInt()
+    val textPaint = android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG).apply {
+        color = android.graphics.Color.BLACK
+        textSize = 12f * density
+        typeface = android.graphics.Typeface.create(android.graphics.Typeface.DEFAULT, android.graphics.Typeface.BOLD)
+    }
+    val w = (textPaint.measureText(text) + padX * 2).toInt()
+    val h = (textPaint.fontMetrics.run { (bottom - top) } + padY * 2).toInt()
+    val bmp = android.graphics.Bitmap.createBitmap(w.coerceAtLeast(40), h.coerceAtLeast(18), android.graphics.Bitmap.Config.ARGB_8888)
+    val canvas = android.graphics.Canvas(bmp)
+    val bg = android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG).apply {
+        color = android.graphics.Color.WHITE
+        alpha = 220
+    }
+    val r = 6f * density
+    canvas.drawRoundRect(0f, 0f, bmp.width.toFloat(), bmp.height.toFloat(), r, r, bg)
+    val baseline = padY - textPaint.fontMetrics.top
+    canvas.drawText(text, padX.toFloat(), baseline, textPaint)
+    return android.graphics.drawable.BitmapDrawable(resources, bmp)
+}
+
+private fun makeArrowIcon(bearingDeg: Float, sizeDp: Float, fillColor: Int): android.graphics.drawable.Drawable {
+    val density = resources.displayMetrics.density
+    val s = (sizeDp * density).toInt().coerceAtLeast(22)
+    val bmp = android.graphics.Bitmap.createBitmap(s, s, android.graphics.Bitmap.Config.ARGB_8888)
+    val canvas = android.graphics.Canvas(bmp)
+
+    val fill = android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG).apply {
+        color = fillColor
+        alpha = 210
+        style = android.graphics.Paint.Style.FILL
+    }
+    val stroke = android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG).apply {
+        color = android.graphics.Color.WHITE
+        alpha = 220
+        style = android.graphics.Paint.Style.STROKE
+        strokeWidth = (1.6f * density).coerceAtLeast(2f)
+        strokeJoin = android.graphics.Paint.Join.ROUND
+        strokeCap = android.graphics.Paint.Cap.ROUND
+    }
+
+    // Triangle pointant vers le haut (avant rotation)
+    val path = android.graphics.Path().apply {
+        moveTo(s / 2f, s * 0.12f)
+        lineTo(s * 0.84f, s * 0.88f)
+        lineTo(s / 2f, s * 0.72f)
+        lineTo(s * 0.16f, s * 0.88f)
+        close()
+    }
+
+    canvas.save()
+    canvas.rotate(bearingDeg, s / 2f, s / 2f)
+    canvas.drawPath(path, fill)
+    canvas.drawPath(path, stroke)
+    canvas.restore()
+
+    return android.graphics.drawable.BitmapDrawable(resources, bmp)
+}
+
     // Anti double-import (évite d’importer 2x le même fichier à l’ouverture / rotation)
     private var lastOpenWithUriString: String? = null
     private var exportPendingTrack: TrackOverlay? = null
@@ -1389,12 +1780,20 @@ private val exportGpxCreate =
 
     private fun makePolyline(points: List<GeoPoint>, color: Int): Polyline =
         Polyline(map).apply {
-            outlinePaint.strokeWidth = 6f
+            outlinePaint.strokeWidth = computeTrackStrokeWidth(map.zoomLevelDouble)
             outlinePaint.color = color
+            // rendu fluide (évite l’effet "segmenté")
+            outlinePaint.isAntiAlias = true
+            outlinePaint.isDither = true
+            outlinePaint.strokeCap = android.graphics.Paint.Cap.ROUND
+            outlinePaint.strokeJoin = android.graphics.Paint.Join.ROUND
             setPoints(points)
             setOnClickListener { _, _, _ ->
                 val t = otherTracks.values.firstOrNull { it.polyline === this }
-                if (t != null) showTrackBottomSheet(t)
+                if (t != null) {
+                    setActiveTrackDecorations(t)
+                    showTrackBottomSheet(t)
+                }
                 true
             }
         }
@@ -1411,7 +1810,7 @@ private val exportGpxCreate =
                 contentResolver.openInputStream(android.net.Uri.fromFile(file))?.use { input ->
                     val poly = GpxUtils.parseToPolyline(input)
                     val c = nextColor()
-                    val p = makePolyline(poly.actualPoints, c)
+                    val p = makePolyline(poly.actualPoints?.filterNotNull() ?: emptyList(), c)
                     map.overlays.add(p)
                     otherTracks[id] = TrackOverlay(id, file.nameWithoutExtension, file, p, c)
                 }
@@ -1421,20 +1820,35 @@ private val exportGpxCreate =
     }
 
     private fun addImportedTrackToMap(points: List<GeoPoint>, nameHint: String = "Import") {
-        val id = "import_${System.currentTimeMillis()}"
-        selectedOverlayId = id
-        val c = nextColor()
-        val p = makePolyline(points, c)
-        map.overlays.add(p)
-        otherTracks[id] = TrackOverlay(id, nameHint, file = null, polyline = p, color = c)
-        map.invalidate()
-    }
+    val id = "import_${System.currentTimeMillis()}"
+    selectedOverlayId = id
+    val c = nextColor()
+    val p = makePolyline(points, c)
+    map.overlays.add(p)
+    val t = TrackOverlay(id, nameHint, file = null, polyline = p, color = c)
+    otherTracks[id] = t
+    // Décoration & style adaptatif
+    setActiveTrackDecorations(t, points = points)
+    map.invalidate()
+}
 
     private fun zoomToTrack(t: TrackOverlay) {
-        val pts = t.polyline.actualPoints
-        if (pts.isNullOrEmpty()) return
+        suspendFollowForTrackFocus()
+
+        val pts: List<GeoPoint> = t.polyline.actualPoints?.filterNotNull() ?: emptyList()
+        if (pts.isEmpty()) return
         val bb = org.osmdroid.util.BoundingBox.fromGeoPointsSafe(pts)
-        map.zoomToBoundingBox(bb, true, 100)
+
+        // Important : sur téléphone, le zoom/centrage peut être appelé trop tôt selon le chemin d'ouverture.
+        // On poste l'opération pour garantir que la MapView est bien prête.
+        map.post {
+            map.zoomToBoundingBox(bb, true, 120)
+
+            // Force une mise à jour des flèches / points km après le zoom (car l'ouverture peut avoir créé le décor
+            // avant le centrage automatique).
+            lastDecorZoomBucket = -1
+            map.postDelayed({ updateTrackDecorForZoom(force = true) }, 250)
+        }
     }
 
     // ===== Aide D+ / Dâˆ’ =====
@@ -2738,7 +3152,7 @@ map.onResume()
         scaleBarOverlay = ScaleBarOverlay(map)
         map.overlays.add(scaleBarOverlay)
         if (trackPolyline == null) {
-            trackPolyline = Polyline(map).apply { outlinePaint.strokeWidth = 6f }
+            trackPolyline = Polyline(map).apply { outlinePaint.strokeWidth = computeTrackStrokeWidth(map.zoomLevelDouble) }
             trackPolyline!!.setOnClickListener { _, _, _ ->
                 safeStartActivity(Intent(this, TrackDetailsActivity::class.java)); true
             }
@@ -2756,7 +3170,7 @@ map.onResume()
 
         if (planPolyline == null) {
             planPolyline = Polyline(map).apply {
-                outlinePaint.strokeWidth = 6f
+                outlinePaint.strokeWidth = computeTrackStrokeWidth(map.zoomLevelDouble)
                 outlinePaint.color = Color.CYAN
             }
             map.overlays.add(planPolyline)
@@ -2958,7 +3372,9 @@ map.onResume()
             }
 
             override fun onZoom(event: ZoomEvent?): Boolean {
-                update(); return false
+                update();
+                updateTrackDecorForZoom()
+                return false
             }
         })
     }
@@ -3390,7 +3806,7 @@ map.onResume()
     // ====== Tracé principal & marqueurs ======
     private fun showPolyline(points: List<GeoPoint>) {
         if (trackPolyline == null) {
-            trackPolyline = Polyline(map).apply { outlinePaint.strokeWidth = 6f }
+            trackPolyline = Polyline(map).apply { outlinePaint.strokeWidth = computeTrackStrokeWidth(map.zoomLevelDouble) }
             trackPolyline!!.setOnClickListener { _, _, _ ->
                 safeStartActivity(Intent(this, TrackDetailsActivity::class.java)); true
             }
@@ -3859,6 +4275,26 @@ map.onResume()
         }
         invalidateOptionsMenu()
     }
+
+    /**
+     * Quand on ouvre une trace (GPX/KML/...), on veut afficher la trace, pas être recentré automatiquement sur toi.
+     * Si le "Suivi" est actif, on le met en pause pour éviter que MyLocation ré-écrase le zoom sur la trace.
+     * (Tu peux le réactiver via le menu "Suivi".)
+     */
+    private fun suspendFollowForTrackFocus() {
+        if (isRecording) return
+        if (isFollowing) {
+            isFollowing = false
+            runCatching { myLocation.disableFollowLocation() }
+            // Pas de toast ici : on le fait en silence pour ne pas spammer.
+            invalidateOptionsMenu()
+        } else {
+            // Sécurité : on s'assure que le follow overlay est bien coupé
+            runCatching { myLocation.disableFollowLocation() }
+        }
+    }
+
+
 
     private fun startRecording() {
         isRecording = true; isPaused = false; followWhileRecording = true
@@ -5268,9 +5704,16 @@ map.onResume()
 
     private fun zoomToPoints(pts: List<GeoPoint>) {
         if (pts.isEmpty()) return
+        suspendFollowForTrackFocus()
         val bb = org.osmdroid.util.BoundingBox.fromGeoPointsSafe(pts)
-        map.zoomToBoundingBox(bb, true, 100)
+        map.post {
+            map.zoomToBoundingBox(bb, true, 100)
+            // Refresh décor après centrage (flèches / km)
+            lastDecorZoomBucket = -1
+            map.postDelayed({ updateTrackDecorForZoom(force = true) }, 250)
+        }
     }
+
 
     private fun showPlannerHelpDialog() {
         val msg = """
@@ -5456,6 +5899,10 @@ Dénivelé du plan
         if (incoming == null) return
         if (incoming.action != Intent.ACTION_VIEW) return
 
+        // Quand on ouvre un fichier, on veut centrer sur la trace (pas sur la position)
+        suspendFollowForTrackFocus()
+
+
         // 1) Si GpxOpenActivity a copié un fichier local, on l'utilise (ultra robuste)
         val pathExtra = incoming.getStringExtra("com.hikemvp.extra.GPX_PATH")
         if (!pathExtra.isNullOrBlank()) {
@@ -5465,10 +5912,10 @@ Dénivelé du plan
                 // Ajoute la trace à la carte (comme "trace sauvegardée") si besoin
                 if (!otherTracks.containsKey(id)) {
                     runCatching {
-                        contentResolver.openInputStream(Uri.fromFile(f))?.use { input ->
+                        FileInputStream(f).use { input ->
                             val poly = GpxUtils.parseToPolyline(input)
                             val c = nextColor()
-                            val p = makePolyline(poly.actualPoints, c)
+                            val p = makePolyline(poly.actualPoints?.filterNotNull() ?: emptyList(), c)
                             map.overlays.add(p)
                             otherTracks[id] = TrackOverlay(id, f.nameWithoutExtension, f, p, c)
                             map.invalidate()
@@ -5512,8 +5959,14 @@ Dénivelé du plan
                 contentResolver.openInputStream(uri)?.use { input ->
                     val poly = GpxUtils.parseToPolyline(input)
                     val name = queryDisplayNameFromUri(uri)?.removeSuffix(".gpx") ?: "Import GPX"
-                    addImportedTrackToMap(poly.actualPoints, name)
-                    TrackStore.setAll(poly.actualPoints)
+                    val pts: List<GeoPoint> = poly.actualPoints?.filterNotNull() ?: emptyList()
+                    if (pts.isEmpty()) throw IllegalStateException("GPX vide")
+                    addImportedTrackToMap(pts, name)
+                    TrackStore.setAll(pts)
+                    resetStats()
+                    if (pts.size > 1) computeStatsFrom(pts)
+                    updateStatsUI()
+                    zoomToPoints(pts)
                 } ?: throw IllegalStateException("openInputStream() null")
 
                 selectedOverlayId?.let { id ->

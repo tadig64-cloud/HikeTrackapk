@@ -1,110 +1,122 @@
 package com.hikemvp
 
+import android.content.ClipData
 import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
 import android.util.Log
+import android.view.Gravity
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.hikemvp.gpx.GpxStorage
 import java.io.File
+import java.io.FileInputStream
 import java.io.FileOutputStream
 
 /**
- * Activity "tampon" pour ouvrir un fichier GPX reçu depuis :
- * - un gestionnaire de fichiers (ACTION_VIEW / ACTION_EDIT)
- * - un partage (ACTION_SEND / ACTION_SEND_MULTIPLE)
+ * Activity "tampon" pour ouvrir un fichier reçu depuis :
+ * - un gestionnaire de fichiers (ACTION_VIEW)
+ * - un partage (ACTION_SEND)
  *
- * ⚠️ IMPORTANT (robustesse Android) :
- * Les fichiers venant d'Internet / du gestionnaire de fichiers arrivent souvent en `content://...`
- * et MapActivity (ou d'autres écrans) peuvent ne pas aimer ce format.
- *
- * Donc ici :
- * - on tente de copier le fichier dans le dossier GPX de l'app
- * - on redirige vers MapActivity avec :
- *   - data = Uri d'origine
- *   - EXTRA_GPX_URI = Uri d'origine en string
- *   - EXTRA_GPX_PATH = chemin local copié (si la copie a réussi)
+ * Objectif : ne JAMAIS bloquer l'UI (sinon écran noir / ANR), copier le fichier
+ * dans le dossier des GPX de l'app (si possible), puis rediriger vers MapActivity.
  */
 class GpxOpenActivity : AppCompatActivity() {
 
+    private var handledKey: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        handleIncomingIntent(intent)
-        finish() // on ne garde pas cet écran
+
+        // Mini UI de chargement (évite l'écran noir pendant la copie)
+        setContentView(makeLoadingView())
+
+        handleIncomingIntentAsync(intent)
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        if (intent != null) handleIncomingIntent(intent)
-        finish()
+        setIntent(intent)
+        handleIncomingIntentAsync(intent)
     }
 
-    private fun handleIncomingIntent(inIntent: Intent) {
+    private fun makeLoadingView(): LinearLayout {
+        return LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            gravity = Gravity.CENTER
+            setPadding(48, 48, 48, 48)
+
+            addView(ProgressBar(this@GpxOpenActivity))
+            addView(TextView(this@GpxOpenActivity).apply {
+                text = "Import en cours…"
+                textSize = 16f
+                setPadding(0, 24, 0, 0)
+            })
+        }
+    }
+
+    private fun handleIncomingIntentAsync(inIntent: Intent) {
         val uri = extractUri(inIntent)
+        val key = uri?.toString() ?: "no_uri"
+        if (handledKey == key) return
+        handledKey = key
 
-        if (uri == null) {
-            Toast.makeText(this, "Aucun fichier GPX détecté.", Toast.LENGTH_LONG).show()
-            Log.w(TAG, "No Uri found in incoming intent: action=${inIntent.action}")
-            return
-        }
-
-        // Essai de conserver l'autorisation de lecture si c'est un Uri persistable (DocumentsProvider)
-        try {
-            val takeFlags = inIntent.flags and
-                (Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-            if (takeFlags != 0) {
-                contentResolver.takePersistableUriPermission(uri, takeFlags)
+        kotlin.concurrent.thread {
+            if (uri == null) {
+                runOnUiThread {
+                    Toast.makeText(this, "Aucun fichier détecté.", Toast.LENGTH_LONG).show()
+                    finish()
+                }
+                return@thread
             }
-        } catch (_: Throwable) {
-            // pas grave
-        }
 
-        // Tente de copier le contenu dans le dossier des GPX de l'app (robuste)
-        val localPath = tryCopyToAppGpxFolder(uri)
-
-        // Redirection vers la carte
-        val openMap = Intent(this, MapActivity::class.java).apply {
-            action = Intent.ACTION_VIEW
-            data = uri
-
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-
-            // Extras "compat"
-            putExtra(EXTRA_GPX_URI, uri.toString())
-            if (!localPath.isNullOrBlank()) {
-                putExtra(EXTRA_GPX_PATH, localPath)
+            // Essai de conserver l'autorisation de lecture si c'est un Uri persistable (DocumentsProvider)
+            try {
+                val takeFlags = inIntent.flags and
+                    (Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+                if (takeFlags != 0) {
+                    contentResolver.takePersistableUriPermission(uri, takeFlags)
+                }
+            } catch (_: Throwable) {
+                // pas grave
             }
-            @Suppress("DEPRECATION")
-            putExtra(Intent.EXTRA_STREAM, uri)
-        }
 
-        try {
-            startActivity(openMap)
-        } catch (t: Throwable) {
-            Toast.makeText(this, "Impossible d'ouvrir la trace dans HikeTrack.", Toast.LENGTH_LONG).show()
-            Log.e(TAG, "Failed to start MapActivity with uri=$uri localPath=$localPath", t)
+            // Copie (si possible) dans le dossier GPX de l'app
+            val localPath = tryCopyToAppGpxFolder(uri)
+
+            // Redirection vers la carte
+            runOnUiThread {
+                val openMap = Intent(this, MapActivity::class.java).apply {
+                    action = Intent.ACTION_VIEW
+                    data = uri
+                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+
+                    // Important : propager l'autorisation Uri vers MapActivity
+                    clipData = ClipData.newUri(contentResolver, "open", uri)
+
+                    if (!localPath.isNullOrBlank()) {
+                        putExtra(EXTRA_GPX_PATH, localPath)
+                    }
+                    putExtra(EXTRA_GPX_URI, uri.toString())
+                }
+
+                startActivity(openMap)
+                finish()
+            }
         }
     }
 
-    /**
-     * Copie le fichier pointé par un Uri (souvent content://) dans un dossier GPX
-     * appartenant à l'app. Renvoie le chemin local si succès, sinon null.
-     */
     private fun tryCopyToAppGpxFolder(uri: Uri): String? {
         return try {
-            // Si déjà un fichier direct, on ne copie pas (on garde le path)
-            if (uri.scheme == "file") {
-                return uri.path
-            }
-
-            val displayName = queryDisplayName(uri)
-            val safeName = (displayName ?: "import_${System.currentTimeMillis()}.gpx")
-                .replace(Regex("[^a-zA-Z0-9._ -]"), "_")
+            val displayName = queryDisplayName(uri) ?: "import.gpx"
+            val safeName = sanitizeFileName(displayName)
 
             val folder = GpxStorage.gpxDir(this@GpxOpenActivity).apply { mkdirs() }
             var outFile = File(folder, safeName)
@@ -116,11 +128,19 @@ class GpxOpenActivity : AppCompatActivity() {
                 outFile = File(folder, "${base}_${System.currentTimeMillis()}.$ext")
             }
 
+            // Copie stream -> fichier local (gros buffer pour limiter le temps)
             contentResolver.openInputStream(uri)?.use { input ->
                 FileOutputStream(outFile).use { output ->
-                    input.copyTo(output)
+                    input.copyTo(output, 128 * 1024)
                 }
             } ?: return null
+
+            // sanity check : si vide, on ignore
+            runCatching {
+                if (outFile.length() == 0L) return null
+                // tentative de lecture rapide (évite un fichier "corrompu")
+                FileInputStream(outFile).use { /* ok */ }
+            }
 
             outFile.absolutePath
         } catch (t: Throwable) {
@@ -144,21 +164,24 @@ class GpxOpenActivity : AppCompatActivity() {
         }
     }
 
+    private fun sanitizeFileName(name: String): String {
+        // Empêche caractères interdits selon FS
+        return name.replace(Regex("""[\\/:*?"<>|]"""), "_").trim().ifBlank { "import.gpx" }
+    }
+
     private fun extractUri(inIntent: Intent): Uri? {
         return when (inIntent.action) {
-            Intent.ACTION_VIEW,
-            Intent.ACTION_EDIT -> inIntent.data
-
             Intent.ACTION_SEND -> {
                 @Suppress("DEPRECATION")
-                inIntent.getParcelableExtra(Intent.EXTRA_STREAM)
+                (inIntent.getParcelableExtra(Intent.EXTRA_STREAM) as? Uri)
+                    ?: inIntent.clipData?.let { cd -> if (cd.itemCount > 0) cd.getItemAt(0).uri else null }
                     ?: inIntent.data
             }
 
-            Intent.ACTION_SEND_MULTIPLE -> {
-                @Suppress("DEPRECATION")
-                val list = inIntent.getParcelableArrayListExtra<Uri>(Intent.EXTRA_STREAM)
-                list?.firstOrNull() ?: inIntent.data
+            Intent.ACTION_VIEW -> {
+                // Certains gestionnaires utilisent clipData
+                inIntent.clipData?.let { cd -> if (cd.itemCount > 0) cd.getItemAt(0).uri else null }
+                    ?: inIntent.data
             }
 
             else -> inIntent.data
